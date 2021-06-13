@@ -4,6 +4,7 @@ public enum _ZStackElement {
   case view(ViewConstraint)
   case vStack(VStackConstraint)
   case hStack(HStackConstraint)
+  case zStack(ZStackConstraint)
 }
 
 public struct ZStackConstraint: LayoutDescriptorType {
@@ -52,6 +53,10 @@ public struct ZStackConstraint: LayoutDescriptorType {
         stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))
+
+      case .zStack(let stackConstraint):
+
+        stackConstraint.setupConstraints(parent: parent, in: context)
 
       }
     }
