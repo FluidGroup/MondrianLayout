@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Storybook",
+        "repositoryURL": "git@github.com:eure/Storybook-ios.git",
+        "state": {
+          "branch": "main",
+          "revision": "f617d48f143bc697a54f5de8c664f1aaa8c0ad36",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
