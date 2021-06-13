@@ -17,37 +17,35 @@ import BoxLayout2
 final class DemoView: UIView {
 
   private let profileImageView = UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 32, height: 32))
-  private let imageView = UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 32, height: 32))
+  private let imageView = UIView.make(backgroundColor: .systemYellow)
 
   private let likeButton = UIView.make(backgroundColor: .systemRed, preferredSize: .init(width: 32, height: 32))
   private let commentButton = UIView.make(backgroundColor: .systemRed, preferredSize: .init(width: 32, height: 32))
   private let messageButton = UIView.make(backgroundColor: .systemRed, preferredSize: .init(width: 32, height: 32))
 
   init() {
+
     super.init(frame: .zero)
 
-    let context = Context(targetView: self)
-
-    VStackConstraint {
-      StackSpacer(minLength: 10)
-      StackSpacer(minLength: 10)
-      profileImageView
-      StackSpacer(minLength: 10)
-      StackSpacer(minLength: 10)
-      imageView
-      StackSpacer(minLength: 10)
-      HStackConstraint {
-        likeButton
-        StackSpacer(minLength: 2)
-        commentButton
-        StackSpacer(minLength: 2)
-        messageButton
+    self.buildLayout {
+      VStackConstraint {
+        StackSpacer(minLength: 10)
+        StackSpacer(minLength: 10)
+        profileImageView
+        StackSpacer(minLength: 10)
+        StackSpacer(minLength: 10)
+        ViewConstraint(imageView)
+          .height(20)
+        StackSpacer(minLength: 10)
+        HStackConstraint {
+          likeButton
+          StackSpacer(minLength: 2)
+          commentButton
+          StackSpacer(minLength: 2)
+          messageButton
+        }
       }
     }
-    .setupConstraints(parent: .init(view: self), in: context)
-
-    context.prepareViewHierarchy()
-    context.activate()
 
   }
 

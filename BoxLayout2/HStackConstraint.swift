@@ -23,9 +23,11 @@ public struct HStackConstraint: ConstraintLayoutElementType {
       let first = parsed.first!
 
       switch first {
-      case .view(let view):
+      case .view(let viewConstraint):
 
-        context.register(view: view)
+        let view = viewConstraint.view
+
+        context.register(view: viewConstraint)
 
         context.add(constraints: [
           view.topAnchor.constraint(equalTo: parent.topAnchor),
@@ -93,11 +95,13 @@ public struct HStackConstraint: ConstraintLayoutElementType {
         }
 
         switch element {
-        case .view(let view):
+        case .view(let viewConstraint):
+
+          let view = viewConstraint.view
 
           currentBox = .init(view: view)
 
-          context.register(view: view)
+          context.register(view: viewConstraint)
 
           perform()
 

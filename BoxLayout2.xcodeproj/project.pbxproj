@@ -23,6 +23,9 @@
 		4B64B1C32676267900460282 /* VHStackElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C22676267900460282 /* VHStackElement.swift */; };
 		4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackConstraint.swift */; };
 		4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackConstraint.swift */; };
+		4B64B1C926762C1400460282 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+.swift */; };
+		4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */; };
+		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
 		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
@@ -87,6 +90,9 @@
 		4B64B1C22676267900460282 /* VHStackElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHStackElement.swift; sourceTree = "<group>"; };
 		4B64B1C426762A6F00460282 /* VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackConstraint.swift; sourceTree = "<group>"; };
 		4B64B1C626762A8200460282 /* HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackConstraint.swift; sourceTree = "<group>"; };
+		4B64B1C826762C1400460282 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
+		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		4BE4E9452675CABE00D096DC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintBuilder.swift; sourceTree = "<group>"; };
@@ -158,10 +164,13 @@
 				4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */,
 				4B64B1BA2675F98500460282 /* StackElementBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutConstraints.swift */,
+				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
 				4B64B1C22676267900460282 /* VHStackElement.swift */,
 				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
 				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
 				4B64B1B82675F7AB00460282 /* LayoutBox.swift */,
+				4B64B1C826762C1400460282 /* UIView+.swift */,
+				4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */,
 			);
 			path = BoxLayout2;
 			sourceTree = "<group>";
@@ -340,9 +349,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */,
+				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
 				4B64B1C32676267900460282 /* VHStackElement.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */,
+				4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */,
+				4B64B1C926762C1400460282 /* UIView+.swift in Sources */,
 				4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */,
 				4BE4E9482675CC4600D096DC /* LayoutConstraintBuilder.swift in Sources */,
 				4B64B1BB2675F98500460282 /* StackElementBuilder.swift in Sources */,

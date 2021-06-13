@@ -18,7 +18,7 @@ extension StackElementBuilder {
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> VHStackElement {
-    return .view(view)
+    return .view(.init(view))
   }
 
   public static func buildExpression(_ spacer: StackSpacer) -> VHStackElement {
@@ -31,5 +31,9 @@ extension StackElementBuilder {
 
   public static func buildExpression(_ stack: VStackConstraint) -> VHStackElement {
     return .vStack(stack)
+  }
+
+  public static func buildExpression(_ view: ViewConstraint) -> VHStackElement {
+    return .view(view)
   }
 }

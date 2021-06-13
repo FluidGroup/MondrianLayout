@@ -35,7 +35,7 @@ public final class Context {
 
   public private(set) var layoutGuides: [UILayoutGuide] = []
   public private(set) var constraints: [NSLayoutConstraint] = []
-  public private(set) var views: [UIView] = []
+  public private(set) var views: [ViewConstraint] = []
 
   func add(constraints: [NSLayoutConstraint]) {
     self.constraints.append(contentsOf: constraints)
@@ -49,14 +49,16 @@ public final class Context {
     return guide
   }
 
-  func register(view: UIView) {
+  func register(view: ViewConstraint) {
     views.append(view)
+
+    constraints.append(contentsOf: view.makeConstraints())
   }
 
   public func prepareViewHierarchy() {
     views.forEach {
-      $0.translatesAutoresizingMaskIntoConstraints = false
-      targetView.addSubview($0)
+      $0.view.translatesAutoresizingMaskIntoConstraints = false
+      targetView.addSubview($0.view)
     }
   }
 
