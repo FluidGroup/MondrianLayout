@@ -1,11 +1,11 @@
 import UIKit
 
-public struct VStackConstraint: ConstraintLayoutElementType {
+public struct VStackConstraint: LayoutDescriptorType {
 
-  public let elements: [VHStackElement]
+  public let elements: [_VHStackContent]
 
   public init(
-    @StackElementBuilder elements: () -> [VHStackElement]
+    @VHStackContentBuilder elements: () -> [_VHStackContent]
   ) {
     self.elements = elements()
   }
@@ -43,9 +43,15 @@ public struct VStackConstraint: ConstraintLayoutElementType {
       case .hStack(let stack):
 
         stack.setupConstraints(parent: parent, in: context)
+
+      case .zStack(let stack):
+
+        stack.setupConstraints(parent: parent, in: context)
+
       case .spacer:
         // FIXME:
         break
+
       }
 
     } else {
@@ -57,7 +63,7 @@ public struct VStackConstraint: ConstraintLayoutElementType {
       var currentBox: LayoutBox!
 
       for (i, element) in parsed.enumerated() {
-        
+
         func perform() {
 
           hasStartedLayout = true
@@ -72,13 +78,19 @@ public struct VStackConstraint: ConstraintLayoutElementType {
             if elements.indices.last == i {
               // last element
               context.add(constraints: [
-                currentBox.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: spaceToPrevious),
+                currentBox.topAnchor.constraint(
+                  equalTo: previous.bottomAnchor,
+                  constant: spaceToPrevious
+                ),
                 currentBox.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
               ])
             } else {
               // middle element
               context.add(constraints: [
-                currentBox.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: spaceToPrevious)
+                currentBox.topAnchor.constraint(
+                  equalTo: previous.bottomAnchor,
+                  constant: spaceToPrevious
+                )
               ])
             }
           } else {
@@ -109,7 +121,7 @@ public struct VStackConstraint: ConstraintLayoutElementType {
 
         case .vStack(let stack):
 
-          let newLayoutGuide = context.makeLayoutGuide()
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.VStack")
 
           currentBox = .init(layoutGuide: newLayoutGuide)
 
@@ -121,7 +133,19 @@ public struct VStackConstraint: ConstraintLayoutElementType {
 
         case .hStack(let stack):
 
-          let newLayoutGuide = context.makeLayoutGuide()
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.HStack")
+
+          currentBox = .init(layoutGuide: newLayoutGuide)
+
+          stack.setupConstraints(parent: currentBox, in: context)
+
+          perform()
+
+          previous = currentBox
+
+        case .zStack(let stack):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.ZStack")
 
           currentBox = .init(layoutGuide: newLayoutGuide)
 
@@ -140,7 +164,6 @@ public struct VStackConstraint: ConstraintLayoutElementType {
           }
 
         }
-
 
       }
 

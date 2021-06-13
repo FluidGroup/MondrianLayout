@@ -1,11 +1,11 @@
 import UIKit
 
-public struct HStackConstraint: ConstraintLayoutElementType {
+public struct HStackConstraint: LayoutDescriptorType {
 
-  public let elements: [VHStackElement]
+  public let elements: [_VHStackContent]
 
   public init(
-    @StackElementBuilder elements: () -> [VHStackElement]
+    @VHStackContentBuilder elements: () -> [_VHStackContent]
   ) {
     self.elements = elements()
   }
@@ -43,6 +43,11 @@ public struct HStackConstraint: ConstraintLayoutElementType {
       case .hStack(let stack):
 
         stack.setupConstraints(parent: parent, in: context)
+
+      case .zStack(let stack):
+
+        stack.setupConstraints(parent: parent, in: context)
+
       case .spacer:
         // FIXME:
         break
@@ -109,7 +114,7 @@ public struct HStackConstraint: ConstraintLayoutElementType {
 
         case .vStack(let stack):
 
-          let newLayoutGuide = context.makeLayoutGuide()
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.VStack")
 
           currentBox = .init(layoutGuide: newLayoutGuide)
 
@@ -121,7 +126,19 @@ public struct HStackConstraint: ConstraintLayoutElementType {
 
         case .hStack(let stack):
 
-          let newLayoutGuide = context.makeLayoutGuide()
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.HStack")
+
+          currentBox = .init(layoutGuide: newLayoutGuide)
+
+          stack.setupConstraints(parent: currentBox, in: context)
+
+          perform()
+
+          previous = currentBox
+
+        case .zStack(let stack):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.ZStack")
 
           currentBox = .init(layoutGuide: newLayoutGuide)
 

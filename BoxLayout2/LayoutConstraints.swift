@@ -1,28 +1,5 @@
 import UIKit
 
-public struct SingleElement<View: UIView>: ConstraintLayoutElementType {
-
-  private let view: View
-
-  public init(
-    view: View
-  ) {
-    self.view = view
-  }
-}
-
-public struct MultipleElements: ConstraintLayoutElementType {
-
-  public let components: [ConstraintLayoutElementType]
-
-  public init(
-    components: [ConstraintLayoutElementType]
-  ) {
-    self.components = components
-  }
-
-}
-
 public final class Context {
 
   private let targetView: UIView
@@ -36,14 +13,16 @@ public final class Context {
   public private(set) var layoutGuides: [UILayoutGuide] = []
   public private(set) var constraints: [NSLayoutConstraint] = []
   public private(set) var views: [ViewConstraint] = []
+  public private(set) var viewAppliers: [() -> Void] = []
 
   func add(constraints: [NSLayoutConstraint]) {
     self.constraints.append(contentsOf: constraints)
   }
 
-  func makeLayoutGuide() -> UILayoutGuide {
+  func makeLayoutGuide(identifier: String) -> UILayoutGuide {
 
     let guide = UILayoutGuide()
+    guide.identifier = identifier
 
     layoutGuides.append(guide)
     return guide
@@ -51,8 +30,8 @@ public final class Context {
 
   func register(view: ViewConstraint) {
     views.append(view)
-
     constraints.append(contentsOf: view.makeConstraints())
+    viewAppliers.append(view.makeApplier())
   }
 
   public func prepareViewHierarchy() {
@@ -64,6 +43,8 @@ public final class Context {
 
   public func activate() {
 
+    viewAppliers.forEach { $0() }
+
     layoutGuides.forEach {
       targetView.addLayoutGuide($0)
     }
@@ -72,18 +53,6 @@ public final class Context {
 
   }
 }
-
-//public struct ZStackConstraint: ConstraintLayoutElementType {
-//
-//  public let content: Content
-//
-//  public init(
-//    @LayoutConstraintBuilder content: () -> Content
-//  ) {
-//    self.content = content()
-//  }
-//
-//}
 
 public struct StackSpacer {
 

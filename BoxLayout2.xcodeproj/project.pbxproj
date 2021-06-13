@@ -17,20 +17,22 @@
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
 		4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
 		4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* LayoutBox.swift */; };
-		4B64B1BB2675F98500460282 /* StackElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* StackElementBuilder.swift */; };
+		4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */; };
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
-		4B64B1C32676267900460282 /* VHStackElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C22676267900460282 /* VHStackElement.swift */; };
 		4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackConstraint.swift */; };
 		4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackConstraint.swift */; };
 		4B64B1C926762C1400460282 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+.swift */; };
 		4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
+		4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */; };
+		4B9E1A1A267632A100D1E1C9 /* ZStackElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A19267632A100D1E1C9 /* ZStackElementBuilder.swift */; };
+		4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */; };
+		4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */; };
 		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
 		4BE4E9462675CABE00D096DC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9452675CABE00D096DC /* Book.swift */; };
-		4BE4E9482675CC4600D096DC /* LayoutConstraintBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,19 +85,21 @@
 		4B64B1AF2675D2AF00460282 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4B64B1B12675D2AF00460282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B64B1B82675F7AB00460282 /* LayoutBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBox.swift; sourceTree = "<group>"; };
-		4B64B1BA2675F98500460282 /* StackElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackElementBuilder.swift; sourceTree = "<group>"; };
+		4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHStackContentBuilder.swift; sourceTree = "<group>"; };
 		4B64B1BC26761BE900460282 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4B64B1BE26761DA800460282 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B64B1C026761E0300460282 /* RevealServer.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RevealServer.xcframework; sourceTree = "<group>"; };
-		4B64B1C22676267900460282 /* VHStackElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHStackElement.swift; sourceTree = "<group>"; };
 		4B64B1C426762A6F00460282 /* VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackConstraint.swift; sourceTree = "<group>"; };
 		4B64B1C626762A8200460282 /* HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackConstraint.swift; sourceTree = "<group>"; };
 		4B64B1C826762C1400460282 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
+		4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackConstraint.swift; sourceTree = "<group>"; };
+		4B9E1A19267632A100D1E1C9 /* ZStackElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackElementBuilder.swift; sourceTree = "<group>"; };
+		4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDescriptorType.swift; sourceTree = "<group>"; };
+		4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeConstraint.swift; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		4BE4E9452675CABE00D096DC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
-		4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,11 +165,13 @@
 			isa = PBXGroup;
 			children = (
 				4B4057652675C501003B28A1 /* BoxLayout2.h */,
-				4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */,
-				4B64B1BA2675F98500460282 /* StackElementBuilder.swift */,
+				4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */,
+				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
+				4B9E1A19267632A100D1E1C9 /* ZStackElementBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutConstraints.swift */,
+				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
+				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
-				4B64B1C22676267900460282 /* VHStackElement.swift */,
 				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
 				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
 				4B64B1B82675F7AB00460282 /* LayoutBox.swift */,
@@ -348,16 +354,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */,
+				4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */,
 				4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
-				4B64B1C32676267900460282 /* VHStackElement.swift in Sources */,
+				4B9E1A1A267632A100D1E1C9 /* ZStackElementBuilder.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */,
+				4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */,
 				4B64B1C926762C1400460282 /* UIView+.swift in Sources */,
 				4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */,
-				4BE4E9482675CC4600D096DC /* LayoutConstraintBuilder.swift in Sources */,
-				4B64B1BB2675F98500460282 /* StackElementBuilder.swift in Sources */,
+				4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
