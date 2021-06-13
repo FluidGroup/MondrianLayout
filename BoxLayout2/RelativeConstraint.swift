@@ -18,8 +18,17 @@ public struct RelativeConstraint: LayoutDescriptorType {
   public var left: CGFloat?
 
   public init(
+    top: CGFloat? = nil,
+    left: CGFloat? = nil,
+    bottom: CGFloat? = nil,
+    right: CGFloat? = nil,
     @RelativeContentBuilder content: () -> _RelativeContent
   ) {
+
+    self.top = top
+    self.left = left
+    self.bottom = bottom
+    self.right = right
     self.content = content()
   }
 
@@ -33,13 +42,13 @@ public struct RelativeConstraint: LayoutDescriptorType {
             current.topAnchor.constraint(equalTo: parent.topAnchor, constant: $0)
           },
           right.map {
-            current.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: $0)
+            current.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: -$0)
           },
           left.map {
             current.leftAnchor.constraint(equalTo: parent.leftAnchor, constant: $0)
           },
           bottom.map {
-            current.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: $0)
+            current.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -$0)
           },
         ].compactMap { $0 }
       )
@@ -50,9 +59,13 @@ public struct RelativeConstraint: LayoutDescriptorType {
           current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
           current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor),
           current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor),
-          
-          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh),
-          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh),
+
+          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+            .defaultHigh
+          ),
+          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+            .defaultHigh
+          ),
         ].compactMap { $0 }
       )
     }
@@ -100,7 +113,7 @@ public enum RelativeContentBuilder {
 extension RelativeContentBuilder {
 
   @_disfavoredOverload
-  public static func buildBlock(_ components: _RelativeContent...) -> [_RelativeContent] {
+  public static func buildBlock(_ components: _RelativeContent) -> _RelativeContent {
     return components
   }
 

@@ -7,10 +7,65 @@ let book = Book(title: "MyBook") {
 
   BookSection(title: "Sample") {
 
+    BookPreview {
+      AnonymousDemoView { (view: UIView) in
+        view.buildLayout {
+          VStackConstraint {
+            ZStackConstraint {
+              UIView.make(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 100, height: 100)
+              )
+
+              RelativeConstraint(top: 10, right: 10) {
+                ViewConstraint(
+                  UIView.make(
+                    backgroundColor: .systemBlue,
+                    preferredSize: .init(width: 10, height: 10)
+                  )
+                )
+              }
+
+            }
+          }
+        }
+      }
+    }
+
+    BookPreview {
+      AnonymousDemoView { (view: UIView) in
+        view.buildLayout {
+          VStackConstraint {
+            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+
+          }
+        }
+      }
+    }
+
     BookPreview(viewBlock: {
       DemoView()
     })
   }
+}
+
+final class AnonymousDemoView: UIView {
+
+  init(
+    _ build: (UIView) -> Void
+  ) {
+    super.init(frame: .zero)
+    build(self)
+  }
+
+  required init?(
+    coder: NSCoder
+  ) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
 }
 
 final class DemoView: UIView {

@@ -12,24 +12,34 @@ public enum ZStackElementBuilder {
 
 extension ZStackElementBuilder {
 
+  public typealias Component = _ZStackElement
+
   @_disfavoredOverload
-  public static func buildBlock(_ components: _ZStackElement...) -> [_ZStackElement] {
+  public static func buildBlock(_ components: _ZStackElement...) -> [Component] {
     return components
   }
 
-  public static func buildExpression<View: UIView>(_ view: View) -> _ZStackElement {
+  public static func buildExpression<View: UIView>(_ view: View) -> Component {
     return .view(.init(view))
   }
   
-  public static func buildExpression(_ stack: HStackConstraint) -> _ZStackElement {
+  public static func buildExpression(_ stack: HStackConstraint) -> Component {
     return .hStack(stack)
   }
 
-  public static func buildExpression(_ stack: VStackConstraint) -> _ZStackElement {
+  public static func buildExpression(_ stack: VStackConstraint) -> Component {
     return .vStack(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> _ZStackElement {
+  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
+    return .zStack(stack)
+  }
+
+  public static func buildExpression(_ stack: RelativeConstraint) -> Component {
+    return .relative(stack)
+  }
+
+  public static func buildExpression(_ view: ViewConstraint) -> Component {
     return .view(view)
   }
 }

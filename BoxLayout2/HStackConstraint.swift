@@ -36,17 +36,21 @@ public struct HStackConstraint: LayoutDescriptorType {
           view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
         ])
 
-      case .vStack(let stack):
+      case .relative(let relativeConstraint):
 
-        stack.setupConstraints(parent: parent, in: context)
+        relativeConstraint.setupConstraints(parent: parent, in: context)
 
-      case .hStack(let stack):
+      case .vStack(let stackConstraint):
 
-        stack.setupConstraints(parent: parent, in: context)
+        stackConstraint.setupConstraints(parent: parent, in: context)
 
-      case .zStack(let stack):
+      case .hStack(let stackConstraint):
 
-        stack.setupConstraints(parent: parent, in: context)
+        stackConstraint.setupConstraints(parent: parent, in: context)
+
+      case .zStack(let stackConstraint):
+
+        stackConstraint.setupConstraints(parent: parent, in: context)
 
       case .spacer:
         // FIXME:
@@ -103,49 +107,41 @@ public struct HStackConstraint: LayoutDescriptorType {
         case .view(let viewConstraint):
 
           let view = viewConstraint.view
-
           currentBox = .init(view: view)
-
           context.register(view: viewConstraint)
-
           perform()
-
           previous = currentBox
 
-        case .vStack(let stack):
+        case .relative(let relativeConstraint):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Relative")
+          currentBox = .init(layoutGuide: newLayoutGuide)
+          relativeConstraint.setupConstraints(parent: currentBox, in: context)
+          perform()
+          previous = currentBox
+
+        case .vStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.VStack")
-
           currentBox = .init(layoutGuide: newLayoutGuide)
-
-          stack.setupConstraints(parent: currentBox, in: context)
-
+          stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
-
           previous = currentBox
 
-        case .hStack(let stack):
+        case .hStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.HStack")
-
           currentBox = .init(layoutGuide: newLayoutGuide)
-
-          stack.setupConstraints(parent: currentBox, in: context)
-
+          stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
-
           previous = currentBox
 
-        case .zStack(let stack):
+        case .zStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.ZStack")
-
           currentBox = .init(layoutGuide: newLayoutGuide)
-
-          stack.setupConstraints(parent: currentBox, in: context)
-
+          stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
-
           previous = currentBox
 
         case .spacer(let spacer):
