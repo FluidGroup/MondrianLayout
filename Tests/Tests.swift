@@ -17,43 +17,54 @@ func layout<Content: ConstraintLayoutElementType>(
 
 class Tests: XCTestCase {
 
-  func test_pattern1() {
+  func test_pattern_stack() {
 
-    let result = layout {
+    _ = layout {
       HStackConstraint {
-        VStackConstraint {
-          SingleElement()
-        }
+        UIView()
       }
     }
 
-    _ = result as HStackConstraint<VStackConstraint<SingleElement>>
+    _ = layout {
+      HStackConstraint {
+        UIView()
+        StackSpacer(minLength: 0)
+      }
+    }
+
+  }
+
+  func test_pattern1() {
+
+    _ = layout {
+      HStackConstraint {
+//        VStackConstraint {
+//          UIView()
+//        }
+      }
+    }
 
   }
 
   func test_pattern2() {
 
-    let result = layout {
+    _ = layout {
       HStackConstraint {
-        SingleElement()
-        VStackConstraint {}
+        UIView()
+//        VStackConstraint {}
       }
     }
-
-    _ = result as HStackConstraint<MultipleElements>
 
   }
 
   func test_pattern3() {
 
-    let result = layout {
+    _ = layout {
       HStackConstraint {
         UIView()
         UIView()
       }
     }
-
-    _ = result as HStackConstraint<MultipleElements>
 
   }
 }

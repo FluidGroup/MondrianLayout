@@ -16,6 +16,10 @@
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
 		4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
+		4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* LayoutBox.swift */; };
+		4B64B1BB2675F98500460282 /* StackElementBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* StackElementBuilder.swift */; };
+		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
+		4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
 		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
@@ -69,10 +73,14 @@
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4B4057802675C51F003B28A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B64B1AD2675D2AF00460282 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64B1AF2675D2AF00460282 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4B64B1B12675D2AF00460282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B64B1B82675F7AB00460282 /* LayoutBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBox.swift; sourceTree = "<group>"; };
+		4B64B1BA2675F98500460282 /* StackElementBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackElementBuilder.swift; sourceTree = "<group>"; };
+		4B64B1BC26761BE900460282 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4B64B1BE26761DA800460282 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B64B1C026761E0300460282 /* RevealServer.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RevealServer.xcframework; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		4BE4E9452675CABE00D096DC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintBuilder.swift; sourceTree = "<group>"; };
@@ -91,6 +99,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */,
+				4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */,
 				4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */,
 				4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */,
 			);
@@ -117,6 +126,7 @@
 		4B4057582675C501003B28A1 = {
 			isa = PBXGroup;
 			children = (
+				4B64B1C026761E0300460282 /* RevealServer.xcframework */,
 				4B4057642675C501003B28A1 /* BoxLayout2 */,
 				4B4057712675C51E003B28A1 /* Demo_BoxLayout2 */,
 				4B64B1AE2675D2AF00460282 /* Tests */,
@@ -140,7 +150,9 @@
 			children = (
 				4B4057652675C501003B28A1 /* BoxLayout2.h */,
 				4BE4E9472675CC4600D096DC /* LayoutConstraintBuilder.swift */,
+				4B64B1BA2675F98500460282 /* StackElementBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutConstraints.swift */,
+				4B64B1B82675F7AB00460282 /* LayoutBox.swift */,
 			);
 			path = BoxLayout2;
 			sourceTree = "<group>";
@@ -152,8 +164,9 @@
 				4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */,
 				4BE4E9452675CABE00D096DC /* Book.swift */,
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
+				4B64B1BE26761DA800460282 /* Info.plist */,
 				4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */,
-				4B4057802675C51F003B28A1 /* Info.plist */,
+				4B64B1BC26761BE900460282 /* Extensions.swift */,
 			);
 			path = Demo_BoxLayout2;
 			sourceTree = "<group>";
@@ -317,8 +330,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */,
 				4BE4E9482675CC4600D096DC /* LayoutConstraintBuilder.swift in Sources */,
+				4B64B1BB2675F98500460282 /* StackElementBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +344,7 @@
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
+				4B64B1BD26761BE900460282 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

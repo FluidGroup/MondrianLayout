@@ -20,11 +20,11 @@ extension LayoutConstraintBuilder {
 
   @_disfavoredOverload
   public static func buildBlock(_ components: ConstraintLayoutElementType...) -> MultipleElements {
-    fatalError()
+    return MultipleElements(components: components)
   }
 
-  public static func buildExpression(_ expression: UIView) -> SingleElement {
-    fatalError()
+  public static func buildExpression<View: UIView>(_ view: View) -> SingleElement<View> {
+    return SingleElement(view: view)
   }
 
  public static func buildExpression<Component: ConstraintLayoutElementType>(
@@ -33,6 +33,11 @@ extension LayoutConstraintBuilder {
     component
   }
 
+}
+
+public enum Edge {
+  case element(ConstraintLayoutElementType)
+  case elements([ConstraintLayoutElementType])
 }
 
 public protocol ConstraintLayoutElementType {
