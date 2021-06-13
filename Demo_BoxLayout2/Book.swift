@@ -29,11 +29,18 @@ final class DemoView: UIView {
     let context = Context(targetView: self)
 
     VStackConstraint {
+      StackSpacer(minLength: 10)
+      StackSpacer(minLength: 10)
       profileImageView
+      StackSpacer(minLength: 10)
+      StackSpacer(minLength: 10)
       imageView
+      StackSpacer(minLength: 10)
       HStackConstraint {
         likeButton
+        StackSpacer(minLength: 2)
         commentButton
+        StackSpacer(minLength: 2)
         messageButton
       }
     }
