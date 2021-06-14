@@ -36,6 +36,47 @@ let book = Book(title: "BoxLayout2") {
         view.buildLayout {
           VStackConstraint {
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            ZStackConstraint {
+              UIView.make(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 100, height: 100)
+              )
+
+              RelativeConstraint(top: 10, right: 10) {
+                ViewConstraint(
+                  UIView.make(
+                    backgroundColor: .systemBlue,
+                    preferredSize: .init(width: 10, height: 10)
+                  )
+                )
+              }
+
+            }
+            ZStackConstraint {
+              UIView.make(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 100, height: 100)
+              )
+
+              RelativeConstraint(top: 10, right: 10) {
+                ViewConstraint(
+                  UIView.make(
+                    backgroundColor: .systemBlue,
+                    preferredSize: .init(width: 10, height: 10)
+                  )
+                )
+              }
+            }
+          }
+        }
+      }
+    }
+
+    BookPreview {
+      AnonymousDemoView { (view: UIView) in
+        view.buildLayout {
+          VStackConstraint {
+            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
           }
@@ -56,6 +97,9 @@ final class AnonymousDemoView: UIView {
   ) {
     super.init(frame: .zero)
     build(self)
+
+    setContentHuggingPriority(.required, for: .horizontal)
+    setContentHuggingPriority(.required, for: .vertical)
   }
 
   required init?(

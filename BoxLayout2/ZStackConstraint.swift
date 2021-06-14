@@ -43,10 +43,7 @@ public struct ZStackConstraint: LayoutDescriptorType {
 
       case .relative(let relativeConstraint):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.VStack")
-        relativeConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-
-        perform(current: .init(layoutGuide: newLayoutGuide))
+        relativeConstraint.setupConstraints(parent: parent, in: context)
 
       case .vStack(let stackConstraint):
 

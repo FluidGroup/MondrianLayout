@@ -59,15 +59,22 @@ public struct RelativeConstraint: LayoutDescriptorType {
           current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
           current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor),
           current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor),
-
-          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
-            .defaultHigh
-          ),
-          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
-            .defaultHigh
-          ),
-        ].compactMap { $0 }
+        ]
       )
+
+      if top != nil, right != nil, left != nil, bottom != nil {
+        context.add(
+          constraints: [
+            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+              .defaultHigh
+            ),
+            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+              .defaultHigh
+            ),
+          ]
+        )
+      }
+
     }
 
     switch content {
