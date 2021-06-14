@@ -1,5 +1,6 @@
 # BoxLayout2 (will get another name)
-Another experimental project in favor of BoxLayout
+Another experimental project in favor of BoxLayout  
+[Previous one is here](https://github.com/muukii/BoxLayout)
 
 > 🧦 Currently still in development
 > And I'm not sure if my idea goes true.
