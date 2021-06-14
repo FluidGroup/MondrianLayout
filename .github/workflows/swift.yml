@@ -16,7 +16,7 @@ jobs:
           xcode-version: "12.4"
       - uses: actions/checkout@v2
       - name: webfactory/ssh-agent
-        uses: webfactory/ssh-agent@v0.4.1
+        uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Preparation for SwiftPM
