@@ -2,8 +2,7 @@ import BoxLayout2
 import StorybookKit
 import UIKit
 
-let book = Book(title: "MyBook") {
-  BookText("Hello, MyBook")
+let book = Book(title: "BoxLayout2") {
 
   BookSection(title: "Sample") {
 
@@ -39,7 +38,6 @@ let book = Book(title: "MyBook") {
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-
           }
         }
       }
