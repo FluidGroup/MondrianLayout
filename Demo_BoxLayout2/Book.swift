@@ -6,6 +6,21 @@ let book = Book(title: "BoxLayout2") {
 
   BookSection(title: "Sample") {
 
+    if #available(iOS 13, *) {
+      BookPreview {
+        AnyView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            VStackConstraint {
+              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
+              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
+              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
+              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
+            }
+          }
+        }
+      }
+    }
+
     BookPreview {
       AnyView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
@@ -60,7 +75,7 @@ let book = Book(title: "BoxLayout2") {
               )
               .viewConstraint()
               .relative(top: 10, right: 10)
-              
+
             }
           }
         }

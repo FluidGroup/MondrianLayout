@@ -26,16 +26,29 @@ extension UIView {
   }
 }
 
+extension UIImageView {
+
+  static func mock(image: UIImage) -> UIView {
+    let view = UIImageView(image: image)
+    return view
+
+  }
+}
+
 final class IntrinsicSizeView: UIView {
 
   private let preferredSize: CGSize
 
-  init(preferredSize: CGSize) {
+  init(
+    preferredSize: CGSize
+  ) {
     self.preferredSize = preferredSize
     super.init(frame: .zero)
   }
 
-  required init?(coder: NSCoder) {
+  required init?(
+    coder: NSCoder
+  ) {
     fatalError("init(coder:) has not been implemented")
   }
 
