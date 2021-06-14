@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
+		4B0941322677C02700E1997B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* Util.swift */; };
+		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutConstraints.swift */; };
 		4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
 		4B384D8F2675CF47001B0267 /* BoxLayout2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -74,6 +77,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4B0941312677C02700E1997B /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraints.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* BoxLayout2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoxLayout2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057652675C501003B28A1 /* BoxLayout2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxLayout2.h; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */,
+				4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +205,7 @@
 			children = (
 				4B64B1AF2675D2AF00460282 /* Tests.swift */,
 				4B64B1B12675D2AF00460282 /* Info.plist */,
+				4B0941312677C02700E1997B /* Util.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -274,6 +280,9 @@
 				4B64B1B42675D2AF00460282 /* PBXTargetDependency */,
 			);
 			name = Tests;
+			packageProductDependencies = (
+				4B09412F2677BDB700E1997B /* SnapshotTesting */,
+			);
 			productName = Tests;
 			productReference = 4B64B1AD2675D2AF00460282 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -311,6 +320,7 @@
 			mainGroup = 4B4057582675C501003B28A1;
 			packageReferences = (
 				4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */,
+				4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 4B4057632675C501003B28A1 /* Products */;
 			projectDirPath = "";
@@ -385,6 +395,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B64B1B02675D2AF00460282 /* Tests.swift in Sources */,
+				4B0941332677C1F000E1997B /* Extensions.swift in Sources */,
+				4B0941322677C02700E1997B /* Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +741,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
 		4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:eure/Storybook-ios.git";
@@ -740,6 +760,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4B09412F2677BDB700E1997B /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
 		4BE4E93F2675CA5700D096DC /* StorybookKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */;

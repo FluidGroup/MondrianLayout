@@ -7,6 +7,39 @@
 
 import XCTest
 import BoxLayout2
+import SnapshotTesting
+
+final class LayoutSnapshotTests: XCTestCase {
+
+  private let record = false
+
+  func test_1() {
+
+    let view = AnyView(size: .init(width: 100, height: 100)) { view in
+      view.buildLayout {
+        VStackConstraint {
+          ZStackConstraint {
+            UIView.mock(
+              backgroundColor: .systemYellow,
+              preferredSize: .init(width: 100, height: 100)
+            )
+
+            UIView.mock(
+              backgroundColor: .systemBlue,
+              preferredSize: .init(width: 10, height: 10)
+            )
+            .viewConstraint()
+            .relative(top: 10, right: 10)
+
+          }
+        }
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: record)
+
+  }
+}
 
 /*
 @discardableResult

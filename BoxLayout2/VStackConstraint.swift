@@ -1,6 +1,10 @@
 import UIKit
 
-public struct VStackConstraint: LayoutDescriptorType {
+public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+
+  public var _relativeContent: _RelativeContent {
+    .vStack(self)
+  }
 
   public let elements: [_VHStackContent]
 

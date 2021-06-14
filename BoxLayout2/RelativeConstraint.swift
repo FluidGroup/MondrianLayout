@@ -143,4 +143,32 @@ extension RelativeContentBuilder {
   public static func buildExpression(_ view: ViewConstraint) -> _RelativeContent {
     return .view(view)
   }
+
+  @_disfavoredOverload
+  public static func buildExpression(_ components: _RelativeContent) -> _RelativeContent {
+    return components
+  }
+}
+
+public protocol _RelativeContentConvertible {
+
+  var _relativeContent: _RelativeContent {
+    get
+  }
+}
+
+extension _RelativeContentConvertible {
+
+  // MARK: - Modifiers
+  public func relative(
+    top: CGFloat? = nil,
+    left: CGFloat? = nil,
+    bottom: CGFloat? = nil,
+    right: CGFloat? = nil
+  ) -> RelativeConstraint {
+    return .init(top: top, left: left, bottom: bottom, right: right) {
+      self._relativeContent
+    }
+  }
+
 }

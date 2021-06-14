@@ -5,7 +5,11 @@ struct DimensionDescriptor {
   let priority: UILayoutPriority
 }
 
-public struct ViewConstraint {
+public struct ViewConstraint: _RelativeContentConvertible {
+
+  public var _relativeContent: _RelativeContent {
+    return .view(self)
+  }
 
   public let view: UIView
 
@@ -32,7 +36,10 @@ public struct ViewConstraint {
     self.view = view
   }
 
-  public func huggingPriority(_ axis: NSLayoutConstraint.Axis, _ priority: UILayoutPriority = .required) -> Self {
+  public func huggingPriority(
+    _ axis: NSLayoutConstraint.Axis,
+    _ priority: UILayoutPriority = .required
+  ) -> Self {
     _modify {
       switch axis {
       case .horizontal:
@@ -45,7 +52,10 @@ public struct ViewConstraint {
     }
   }
 
-  public func compressionResistancePriority(_ axis: NSLayoutConstraint.Axis, _ priority: UILayoutPriority = .required) -> Self {
+  public func compressionResistancePriority(
+    _ axis: NSLayoutConstraint.Axis,
+    _ priority: UILayoutPriority = .required
+  ) -> Self {
     _modify {
       switch axis {
       case .horizontal:
@@ -122,7 +132,7 @@ public struct ViewConstraint {
     return { [weak view] in
 
       guard let view = view else { return }
-      
+
       if let priority = verticalHuggingPriority {
         view.setContentHuggingPriority(priority, for: .vertical)
       }

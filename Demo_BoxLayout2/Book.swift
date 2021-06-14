@@ -11,19 +11,17 @@ let book = Book(title: "BoxLayout2") {
         view.buildLayout {
           VStackConstraint {
             ZStackConstraint {
-              UIView.make(
+              UIView.mock(
                 backgroundColor: .systemYellow,
                 preferredSize: .init(width: 100, height: 100)
               )
 
-              RelativeConstraint(top: 10, right: 10) {
-                ViewConstraint(
-                  UIView.make(
-                    backgroundColor: .systemBlue,
-                    preferredSize: .init(width: 10, height: 10)
-                  )
-                )
-              }
+              UIView.mock(
+                backgroundColor: .systemBlue,
+                preferredSize: .init(width: 10, height: 10)
+              )
+              .viewConstraint()
+              .relative(top: 10, right: 10)
 
             }
           }
@@ -35,37 +33,34 @@ let book = Book(title: "BoxLayout2") {
       AnonymousDemoView { (view: UIView) in
         view.buildLayout {
           VStackConstraint {
-            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             ZStackConstraint {
-              UIView.make(
+              UIView.mock(
                 backgroundColor: .systemYellow,
                 preferredSize: .init(width: 100, height: 100)
               )
 
-              RelativeConstraint(top: 10, right: 10) {
-                ViewConstraint(
-                  UIView.make(
-                    backgroundColor: .systemBlue,
-                    preferredSize: .init(width: 10, height: 10)
-                  )
-                )
-              }
+              UIView.mock(
+                backgroundColor: .systemBlue,
+                preferredSize: .init(width: 10, height: 10)
+              )
+              .viewConstraint()
+              .relative(top: 10, right: 10)
 
             }
             ZStackConstraint {
-              UIView.make(
+              UIView.mock(
                 backgroundColor: .systemYellow,
                 preferredSize: .init(width: 100, height: 100)
               )
 
-              RelativeConstraint(top: 10, right: 10) {
-                ViewConstraint(
-                  UIView.make(
-                    backgroundColor: .systemBlue,
-                    preferredSize: .init(width: 10, height: 10)
-                  )
-                )
-              }
+              UIView.mock(
+                backgroundColor: .systemBlue,
+                preferredSize: .init(width: 10, height: 10)
+              )
+              .viewConstraint()
+              .relative(top: 10, right: 10)
+              
             }
           }
         }
@@ -76,9 +71,9 @@ let book = Book(title: "BoxLayout2") {
       AnonymousDemoView { (view: UIView) in
         view.buildLayout {
           VStackConstraint {
-            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-            UIView.make(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
+            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
           }
         }
       }
@@ -112,30 +107,30 @@ final class AnonymousDemoView: UIView {
 
 final class DemoView: UIView {
 
-  private let profileImageView = UIView.make(
+  private let profileImageView = UIView.mock(
     backgroundColor: .systemYellow,
     preferredSize: .init(width: 32, height: 32)
   )
 
   private let nicknameLabel = UILabel.make(text: "Muukii")
 
-  private let imageView = UIView.make(backgroundColor: .systemYellow)
+  private let imageView = UIView.mock(backgroundColor: .systemYellow)
 
-  private let likeButton = UIView.make(
+  private let likeButton = UIView.mock(
     backgroundColor: .systemRed,
     preferredSize: .init(width: 32, height: 32)
   )
-  private let commentButton = UIView.make(
+  private let commentButton = UIView.mock(
     backgroundColor: .systemRed,
     preferredSize: .init(width: 32, height: 32)
   )
-  private let messageButton = UIView.make(
+  private let messageButton = UIView.mock(
     backgroundColor: .systemRed,
     preferredSize: .init(width: 32, height: 32)
   )
 
-  private let box = UIView.make(backgroundColor: .systemYellow)
-  private let box2 = UIView.make(backgroundColor: .systemRed)
+  private let box = UIView.mock(backgroundColor: .systemYellow)
+  private let box2 = UIView.mock(backgroundColor: .systemRed)
 
   init() {
 

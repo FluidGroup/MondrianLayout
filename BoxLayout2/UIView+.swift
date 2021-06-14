@@ -15,4 +15,8 @@ extension UIView {
     return context
   }
 
+  public func viewConstraint() -> ViewConstraint {
+    .init(self)
+  }
+
 }

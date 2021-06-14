@@ -8,7 +8,11 @@ public enum _ZStackElement {
   case relative(RelativeConstraint)
 }
 
-public struct ZStackConstraint: LayoutDescriptorType {
+public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+
+  public var _relativeContent: _RelativeContent {
+    return .zStack(self)
+  }
 
   public let elements: [_ZStackElement]
 
