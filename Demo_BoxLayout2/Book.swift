@@ -21,6 +21,112 @@ let book = Book(title: "BoxLayout2") {
       }
     }
 
+    BookNavigationLink(title: "VStackConstraint") {
+
+      BookPreview {
+        AnyView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            VStackConstraint(spacing: 4) {
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+            }
+          }
+        }
+      }
+      .title("Spacing")
+
+      BookPreview {
+        AnyView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            VStackConstraint(spacing: 4) {
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              StackSpacer(minLength: 4)
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+            }
+          }
+        }
+      }
+      .title("Spacing with additional spacer")
+    }
+
+    BookNavigationLink(title: "HStackConstraint") {
+      BookPreview {
+        AnyView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            HStackConstraint(spacing: 4) {
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+            }
+          }
+        }
+      }
+      .title("Spacing")
+
+      BookPreview {
+        AnyView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            HStackConstraint(spacing: 4) {
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              StackSpacer(minLength: 4)
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              UIView.mock(
+                backgroundColor: .systemYellow,
+                preferredSize: .init(width: 28, height: 28)
+              )
+            }
+          }
+        }
+      }
+      .title("Spacing with additional spacer")
+
+    }
+
     BookPreview {
       AnyView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {

@@ -153,15 +153,17 @@ public struct ViewConstraint: _RelativeContentConvertible {
 
     if let height = height {
       constraint.append(
-        view.heightAnchor.constraint(equalToConstant: height.constant).withPriority(height.priority)
-          .withIdentifier("ViewConstraints.height")
+        view.heightAnchor.constraint(equalToConstant: height.constant)
+          .withPriority(height.priority)
+          .withInternalIdentifier("ViewConstraints.height")
       )
     }
 
     if let width = width {
       constraint.append(
-        view.widthAnchor.constraint(equalToConstant: width.constant).withPriority(width.priority)
-          .withIdentifier("ViewConstraints.width")
+        view.widthAnchor.constraint(equalToConstant: width.constant)
+          .withPriority(width.priority)
+          .withInternalIdentifier("ViewConstraints.width")
       )
     }
 
@@ -169,7 +171,8 @@ public struct ViewConstraint: _RelativeContentConvertible {
       constraint.append(
         view.heightAnchor.constraint(greaterThanOrEqualToConstant: minHeight.constant).withPriority(
           minHeight.priority
-        ).withIdentifier("ViewConstraints.minHeight")
+        )
+        .withInternalIdentifier("ViewConstraints.minHeight")
       )
     }
 
@@ -177,7 +180,8 @@ public struct ViewConstraint: _RelativeContentConvertible {
       constraint.append(
         view.widthAnchor.constraint(greaterThanOrEqualToConstant: width.constant).withPriority(
           width.priority
-        ).withIdentifier("ViewConstraints.minWidth")
+        )
+        .withInternalIdentifier("ViewConstraints.minWidth")
       )
     }
 
@@ -185,7 +189,8 @@ public struct ViewConstraint: _RelativeContentConvertible {
       constraint.append(
         view.heightAnchor.constraint(lessThanOrEqualToConstant: height.constant).withPriority(
           height.priority
-        ).withIdentifier("ViewConstraints.maxHeight")
+        )
+        .withInternalIdentifier("ViewConstraints.maxHeight")
       )
     }
 
@@ -193,14 +198,16 @@ public struct ViewConstraint: _RelativeContentConvertible {
       constraint.append(
         view.widthAnchor.constraint(lessThanOrEqualToConstant: width.constant).withPriority(
           width.priority
-        ).withIdentifier("ViewConstraints.maxWdith")
+        )
+        .withInternalIdentifier("ViewConstraints.maxWdith")
       )
     }
 
     if let aspectRatio = aspectRatio {
       constraint.append(
         view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: aspectRatio.constant)
-          .withPriority(aspectRatio.priority).withIdentifier("ViewConstraints.aspectRatio")
+          .withPriority(aspectRatio.priority)
+          .withInternalIdentifier("ViewConstraints.aspectRatio")
       )
     }
 

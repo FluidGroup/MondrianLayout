@@ -2,8 +2,14 @@ import UIKit
 
 extension NSLayoutConstraint {
 
+  func withInternalIdentifier(_ string: String) -> NSLayoutConstraint {
+    self.identifier = "BoxLayout." + string
+    return self
+  }
+
+
   func withIdentifier(_ string: String) -> NSLayoutConstraint {
-    self.identifier = identifier
+    self.identifier = string
     return self
   }
 

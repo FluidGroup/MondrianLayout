@@ -2,15 +2,28 @@ import UIKit
 
 public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
 
+  public enum VerticalAlignment {
+    case top
+    case center
+    case bottom
+    case fill
+  }
+
   public var _relativeContent: _RelativeContent {
     return .hStack(self)
   }
 
+  public let spacing: CGFloat
+  public let alignment: VerticalAlignment
   public let elements: [_VHStackContent]
 
   public init(
+    spacing: CGFloat = 0,
+    alignment: VerticalAlignment = .fill,
     @VHStackContentBuilder elements: () -> [_VHStackContent]
   ) {
+    self.spacing = spacing
+    self.alignment = alignment
     self.elements = elements()
   }
 
@@ -33,28 +46,21 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         context.register(view: viewConstraint)
 
+        // FIXME: case of single element, constraints
+
         context.add(constraints: [
-          view.topAnchor.constraint(equalTo: parent.topAnchor),
-          view.leftAnchor.constraint(equalTo: parent.leftAnchor),
-          view.rightAnchor.constraint(equalTo: parent.rightAnchor),
-          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+          view.topAnchor.constraint(equalTo: parent.topAnchor).withInternalIdentifier("HStack.top"),
+          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier("HStack.left"),
+          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier("HStack.right"),
+          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier("HStack.bottom"),
         ])
 
-      case .relative(let relativeConstraint):
+      case .relative(let constraint as LayoutDescriptorType),
+           .vStack(let constraint as LayoutDescriptorType),
+           .hStack(let constraint as LayoutDescriptorType),
+           .zStack(let constraint as LayoutDescriptorType):
 
-        relativeConstraint.setupConstraints(parent: parent, in: context)
-
-      case .vStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(parent: parent, in: context)
-
-      case .hStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(parent: parent, in: context)
-
-      case .zStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(parent: parent, in: context)
+        constraint.setupConstraints(parent: parent, in: context)
 
       case .spacer:
         // FIXME:
@@ -104,7 +110,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
             ])
           }
 
-          spaceToPrevious = 0
+          spaceToPrevious = spacing
         }
 
         switch element {

@@ -30,12 +30,12 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       func perform(current: _LayoutElement) {
 
         context.add(constraints: [
-          current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor),
-          current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-          current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor),
-          current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor),
-          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh),
-          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh),
+          current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor).withInternalIdentifier("ZStack.left"),
+          current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor).withInternalIdentifier("ZStack.top"),
+          current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor).withInternalIdentifier("ZStack.right"),
+          current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor).withInternalIdentifier("ZStack.bottom"),
+          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh).withInternalIdentifier("ZStack.centerX"),
+          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh).withInternalIdentifier("ZStack.cenretY"),
         ])
       }
 
