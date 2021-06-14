@@ -1,4 +1,7 @@
 # MondrianLayout - (BoxLayout2)
+
+A layout builder with AutoLayout
+
 Another experimental project in favor of BoxLayout  
 [Previous one is here](https://github.com/muukii/BoxLayout)
 
