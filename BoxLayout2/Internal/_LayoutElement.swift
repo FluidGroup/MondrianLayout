@@ -1,7 +1,7 @@
 
 import UIKit
 
-public struct LayoutBox {
+public struct _LayoutElement {
 
   let leadingAnchor: NSLayoutXAxisAnchor
   let trailingAnchor: NSLayoutXAxisAnchor

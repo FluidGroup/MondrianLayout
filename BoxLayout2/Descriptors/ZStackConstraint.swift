@@ -1,3 +1,4 @@
+import UIKit
 
 public enum _ZStackElement {
 
@@ -22,11 +23,11 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.elements = elements()
   }
 
-  public func setupConstraints(parent: LayoutBox, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: Context) {
 
     elements.forEach { element in
 
-      func perform(current: LayoutBox) {
+      func perform(current: _LayoutElement) {
 
         context.add(constraints: [
           current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor),
@@ -76,4 +77,42 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
   }
 
+}
+
+@_functionBuilder
+public enum ZStackElementBuilder {
+  public typealias Component = _ZStackElement
+}
+
+extension ZStackElementBuilder {
+
+
+  @_disfavoredOverload
+  public static func buildBlock(_ components: _ZStackElement...) -> [Component] {
+    return components
+  }
+
+  public static func buildExpression<View: UIView>(_ view: View) -> Component {
+    return .view(.init(view))
+  }
+
+  public static func buildExpression(_ stack: HStackConstraint) -> Component {
+    return .hStack(stack)
+  }
+
+  public static func buildExpression(_ stack: VStackConstraint) -> Component {
+    return .vStack(stack)
+  }
+
+  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
+    return .zStack(stack)
+  }
+
+  public static func buildExpression(_ stack: RelativeConstraint) -> Component {
+    return .relative(stack)
+  }
+
+  public static func buildExpression(_ view: ViewConstraint) -> Component {
+    return .view(view)
+  }
 }

@@ -1,8 +1,14 @@
 import UIKit
 
+/**
+ A building layout enviroment
+ - constraints
+ - layout guides
+ - tasks apply to view (setting content hugging and compression resistance)
+ */
 public final class Context {
 
-  private let targetView: UIView
+  public let targetView: UIView
 
   public init(
     targetView: UIView
@@ -34,6 +40,7 @@ public final class Context {
     viewAppliers.append(view.makeApplier())
   }
 
+  /// Add including views to the target view.
   public func prepareViewHierarchy() {
     views.forEach {
       $0.view.translatesAutoresizingMaskIntoConstraints = false

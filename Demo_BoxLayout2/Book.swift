@@ -7,8 +7,8 @@ let book = Book(title: "BoxLayout2") {
   BookSection(title: "Sample") {
 
     BookPreview {
-      AnonymousDemoView { (view: UIView) in
-        view.buildLayout {
+      AnyView(width: nil, height: nil) { (view: UIView) in
+        view.buildSublayersLayout {
           VStackConstraint {
             ZStackConstraint {
               UIView.mock(
@@ -30,8 +30,8 @@ let book = Book(title: "BoxLayout2") {
     }
 
     BookPreview {
-      AnonymousDemoView { (view: UIView) in
-        view.buildLayout {
+      AnyView(width: nil, height: nil) { (view: UIView) in
+        view.buildSublayersLayout {
           VStackConstraint {
             UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             ZStackConstraint {
@@ -68,8 +68,8 @@ let book = Book(title: "BoxLayout2") {
     }
 
     BookPreview {
-      AnonymousDemoView { (view: UIView) in
-        view.buildLayout {
+      AnyView(width: nil, height: nil) { (view: UIView) in
+        view.buildSublayersLayout {
           VStackConstraint {
             UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
             UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
@@ -83,26 +83,6 @@ let book = Book(title: "BoxLayout2") {
       DemoView()
     })
   }
-}
-
-final class AnonymousDemoView: UIView {
-
-  init(
-    _ build: (UIView) -> Void
-  ) {
-    super.init(frame: .zero)
-    build(self)
-
-    setContentHuggingPriority(.required, for: .horizontal)
-    setContentHuggingPriority(.required, for: .vertical)
-  }
-
-  required init?(
-    coder: NSCoder
-  ) {
-    fatalError("init(coder:) has not been implemented")
-  }
-
 }
 
 final class DemoView: UIView {
@@ -136,7 +116,7 @@ final class DemoView: UIView {
 
     super.init(frame: .zero)
 
-    self.buildLayout {
+    self.buildSublayersLayout {
       VStackConstraint {
         StackSpacer(minLength: 10)
         StackSpacer(minLength: 10)

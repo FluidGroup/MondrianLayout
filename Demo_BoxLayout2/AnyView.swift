@@ -5,7 +5,8 @@ import BoxLayout2
 final class AnyView: UIView {
 
   init(
-    size: CGSize,
+    width: CGFloat?,
+    height: CGFloat?,
     build: (UIView) -> Void
   ) {
     super.init(frame: .zero)
@@ -15,10 +16,18 @@ final class AnyView: UIView {
     setContentHuggingPriority(.required, for: .vertical)
 
     translatesAutoresizingMaskIntoConstraints = false
-    NSLayoutConstraint.activate([
-      heightAnchor.constraint(equalToConstant: size.height),
-      widthAnchor.constraint(equalToConstant: size.width)
-    ])
+
+//    buildSelfSizing {
+//      $0.height(height)
+//    }
+
+    if let width = width {
+      widthAnchor.constraint(equalToConstant: width).isActive = true
+    }
+
+    if let height = height {
+      heightAnchor.constraint(equalToConstant: height).isActive = true
+    }
 
     layoutIfNeeded()
 

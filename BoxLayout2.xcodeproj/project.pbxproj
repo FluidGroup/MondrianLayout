@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
-		4B0941322677C02700E1997B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* Util.swift */; };
+		4B0941322677C02700E1997B /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* AnyView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutConstraints.swift */; };
 		4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
@@ -19,7 +19,7 @@
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
 		4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
-		4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* LayoutBox.swift */; };
+		4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* _LayoutElement.swift */; };
 		4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */; };
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
@@ -36,6 +36,7 @@
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
 		4BE4E9462675CABE00D096DC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9452675CABE00D096DC /* Book.swift */; };
+		4BFF75CE2677C91B003FA7F0 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* AnyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4B0941312677C02700E1997B /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4B0941312677C02700E1997B /* AnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraints.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* BoxLayout2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoxLayout2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057652675C501003B28A1 /* BoxLayout2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxLayout2.h; sourceTree = "<group>"; };
@@ -88,7 +89,7 @@
 		4B64B1AD2675D2AF00460282 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64B1AF2675D2AF00460282 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4B64B1B12675D2AF00460282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B64B1B82675F7AB00460282 /* LayoutBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBox.swift; sourceTree = "<group>"; };
+		4B64B1B82675F7AB00460282 /* _LayoutElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LayoutElement.swift; sourceTree = "<group>"; };
 		4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VHStackContentBuilder.swift; sourceTree = "<group>"; };
 		4B64B1BC26761BE900460282 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4B64B1BE26761DA800460282 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -170,18 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				4B4057652675C501003B28A1 /* BoxLayout2.h */,
-				4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */,
-				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
-				4B9E1A19267632A100D1E1C9 /* ZStackElementBuilder.swift */,
-				4B384D892675CDA9001B0267 /* LayoutConstraints.swift */,
-				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
-				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
-				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
-				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
-				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
-				4B64B1B82675F7AB00460282 /* LayoutBox.swift */,
-				4B64B1C826762C1400460282 /* UIView+.swift */,
-				4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */,
+				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
+				4BFF75D12677CC32003FA7F0 /* Extensions */,
+				4BFF75D02677CC21003FA7F0 /* Internal */,
 			);
 			path = BoxLayout2;
 			sourceTree = "<group>";
@@ -195,6 +187,7 @@
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
 				4B64B1BE26761DA800460282 /* Info.plist */,
 				4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */,
+				4B0941312677C02700E1997B /* AnyView.swift */,
 				4B64B1BC26761BE900460282 /* Extensions.swift */,
 			);
 			path = Demo_BoxLayout2;
@@ -205,9 +198,41 @@
 			children = (
 				4B64B1AF2675D2AF00460282 /* Tests.swift */,
 				4B64B1B12675D2AF00460282 /* Info.plist */,
-				4B0941312677C02700E1997B /* Util.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4BFF75CF2677CC16003FA7F0 /* Descriptors */ = {
+			isa = PBXGroup;
+			children = (
+				4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */,
+				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
+				4B9E1A19267632A100D1E1C9 /* ZStackElementBuilder.swift */,
+				4B384D892675CDA9001B0267 /* LayoutConstraints.swift */,
+				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
+				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
+				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
+				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
+				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
+			);
+			path = Descriptors;
+			sourceTree = "<group>";
+		};
+		4BFF75D02677CC21003FA7F0 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				4B64B1B82675F7AB00460282 /* _LayoutElement.swift */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		4BFF75D12677CC32003FA7F0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4B64B1C826762C1400460282 /* UIView+.swift */,
+				4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +391,7 @@
 			files = (
 				4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */,
 				4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */,
-				4B64B1B92675F7AB00460282 /* LayoutBox.swift in Sources */,
+				4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
 				4B9E1A1A267632A100D1E1C9 /* ZStackElementBuilder.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */,
@@ -383,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFF75CE2677C91B003FA7F0 /* AnyView.swift in Sources */,
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
@@ -396,7 +422,7 @@
 			files = (
 				4B64B1B02675D2AF00460282 /* Tests.swift in Sources */,
 				4B0941332677C1F000E1997B /* Extensions.swift in Sources */,
-				4B0941322677C02700E1997B /* Util.swift in Sources */,
+				4B0941322677C02700E1997B /* AnyView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

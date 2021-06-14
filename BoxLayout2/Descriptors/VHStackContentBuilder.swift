@@ -1,28 +1,35 @@
 import UIKit
 
-#if swift(>=5.4)
-@resultBuilder
-public enum ZStackElementBuilder {
+public enum _VHStackContent {
+
+  case view(ViewConstraint)
+  case relative(RelativeConstraint)
+  case spacer(StackSpacer)
+  case vStack(VStackConstraint)
+  case hStack(HStackConstraint)
+  case zStack(ZStackConstraint)
 }
-#else
+
 @_functionBuilder
-public enum ZStackElementBuilder {
+public enum VHStackContentBuilder {
+  public typealias Component = _VHStackContent
 }
-#endif
 
-extension ZStackElementBuilder {
-
-  public typealias Component = _ZStackElement
+extension VHStackContentBuilder {
 
   @_disfavoredOverload
-  public static func buildBlock(_ components: _ZStackElement...) -> [Component] {
+  public static func buildBlock(_ components: Component...) -> [Component] {
     return components
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> Component {
     return .view(.init(view))
   }
-  
+
+  public static func buildExpression(_ spacer: StackSpacer) -> Component {
+    return .spacer(spacer)
+  }
+
   public static func buildExpression(_ stack: HStackConstraint) -> Component {
     return .hStack(stack)
   }
@@ -39,8 +46,7 @@ extension ZStackElementBuilder {
     return .relative(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> Component {
+  public static func buildExpression(_ view: ViewConstraint) -> _VHStackContent {
     return .view(view)
   }
 }
-

@@ -32,9 +32,9 @@ public struct RelativeConstraint: LayoutDescriptorType {
     self.content = content()
   }
 
-  public func setupConstraints(parent: LayoutBox, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: Context) {
 
-    func perform(current: LayoutBox) {
+    func perform(current: _LayoutElement) {
 
       context.add(
         constraints: [
@@ -107,45 +107,40 @@ public struct RelativeConstraint: LayoutDescriptorType {
 
 }
 
-#if swift(>=5.4)
-@resultBuilder
-public enum RelativeContentBuilder {
-}
-#else
 @_functionBuilder
 public enum RelativeContentBuilder {
+  public typealias Component = _RelativeContent
 }
-#endif
 
 extension RelativeContentBuilder {
 
   @_disfavoredOverload
-  public static func buildBlock(_ components: _RelativeContent) -> _RelativeContent {
+  public static func buildBlock(_ components: _RelativeContent) -> Component {
     return components
   }
 
-  public static func buildExpression<View: UIView>(_ view: View) -> _RelativeContent {
+  public static func buildExpression<View: UIView>(_ view: View) -> Component {
     return .view(.init(view))
   }
 
-  public static func buildExpression(_ stack: VStackConstraint) -> _RelativeContent {
+  public static func buildExpression(_ stack: VStackConstraint) -> Component {
     return .vStack(stack)
   }
 
-  public static func buildExpression(_ stack: HStackConstraint) -> _RelativeContent {
+  public static func buildExpression(_ stack: HStackConstraint) -> Component {
     return .hStack(stack)
   }
 
-  public static func buildExpression(_ stack: ZStackConstraint) -> _RelativeContent {
+  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
     return .zStack(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> _RelativeContent {
+  public static func buildExpression(_ view: ViewConstraint) -> Component {
     return .view(view)
   }
 
   @_disfavoredOverload
-  public static func buildExpression(_ components: _RelativeContent) -> _RelativeContent {
+  public static func buildExpression(_ components: _RelativeContent) -> Component {
     return components
   }
 }

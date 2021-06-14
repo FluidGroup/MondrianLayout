@@ -15,8 +15,8 @@ final class LayoutSnapshotTests: XCTestCase {
 
   func test_1() {
 
-    let view = AnyView(size: .init(width: 100, height: 100)) { view in
-      view.buildLayout {
+    let view = AnyView(width: 100, height: 100) { view in
+      view.buildSublayersLayout {
         VStackConstraint {
           ZStackConstraint {
             UIView.mock(

@@ -1,9 +1,9 @@
 import UIKit
 
-public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
 
   public var _relativeContent: _RelativeContent {
-    .vStack(self)
+    return .hStack(self)
   }
 
   public let elements: [_VHStackContent]
@@ -14,7 +14,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.elements = elements()
   }
 
-  public func setupConstraints(parent: LayoutBox, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: Context) {
 
     let parsed = elements
 
@@ -59,16 +59,15 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       case .spacer:
         // FIXME:
         break
-
       }
 
     } else {
 
       var hasStartedLayout = false
       var initialSpace: CGFloat = 0
-      var previous: LayoutBox?
+      var previous: _LayoutElement?
       var spaceToPrevious: CGFloat = 0
-      var currentBox: LayoutBox!
+      var currentBox: _LayoutElement!
 
       for (i, element) in parsed.enumerated() {
 
@@ -77,8 +76,8 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           hasStartedLayout = true
 
           context.add(constraints: [
-            currentBox.leftAnchor.constraint(equalTo: parent.leftAnchor),
-            currentBox.rightAnchor.constraint(equalTo: parent.rightAnchor),
+            currentBox.topAnchor.constraint(equalTo: parent.topAnchor),
+            currentBox.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
           ])
 
           if let previous = previous {
@@ -86,26 +85,20 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
             if elements.indices.last == i {
               // last element
               context.add(constraints: [
-                currentBox.topAnchor.constraint(
-                  equalTo: previous.bottomAnchor,
-                  constant: spaceToPrevious
-                ),
-                currentBox.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+                currentBox.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious),
+                currentBox.rightAnchor.constraint(equalTo: parent.rightAnchor),
               ])
             } else {
               // middle element
               context.add(constraints: [
-                currentBox.topAnchor.constraint(
-                  equalTo: previous.bottomAnchor,
-                  constant: spaceToPrevious
-                )
+                currentBox.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious)
               ])
             }
           } else {
             // first element
             context.add(constraints: [
-              currentBox.topAnchor.constraint(
-                equalTo: parent.topAnchor,
+              currentBox.leftAnchor.constraint(
+                equalTo: parent.leftAnchor,
                 constant: initialSpace
               )
             ])
@@ -125,7 +118,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         case .relative(let relativeConstraint):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Relative")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Relative")
           currentBox = .init(layoutGuide: newLayoutGuide)
           relativeConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
@@ -133,7 +126,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         case .vStack(let stackConstraint):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.VStack")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.VStack")
           currentBox = .init(layoutGuide: newLayoutGuide)
           stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
@@ -141,7 +134,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         case .hStack(let stackConstraint):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.HStack")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.HStack")
           currentBox = .init(layoutGuide: newLayoutGuide)
           stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
@@ -149,7 +142,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         case .zStack(let stackConstraint):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.ZStack")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.ZStack")
           currentBox = .init(layoutGuide: newLayoutGuide)
           stackConstraint.setupConstraints(parent: currentBox, in: context)
           perform()
