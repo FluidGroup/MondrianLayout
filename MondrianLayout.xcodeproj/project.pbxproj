@@ -16,7 +16,6 @@
 		4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */; };
 		4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4B4057662675C501003B28A1 /* BoxLayout2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B4057652675C501003B28A1 /* BoxLayout2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
@@ -99,7 +98,6 @@
 		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B4057652675C501003B28A1 /* BoxLayout2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxLayout2.h; sourceTree = "<group>"; };
 		4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_MondrianLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 		4B4057642675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
-				4B4057652675C501003B28A1 /* BoxLayout2.h */,
 				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
 				4BFF75D12677CC32003FA7F0 /* Extensions */,
 				4BFF75D02677CC21003FA7F0 /* Internal */,
@@ -285,7 +282,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B4057662675C501003B28A1 /* BoxLayout2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
