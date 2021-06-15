@@ -7,9 +7,9 @@ extension UIView {
    Adding subviews included in layout
    */
   @discardableResult
-  public func buildSublayersLayout<Descriptor: LayoutDescriptorType>(build: () -> Descriptor) -> Context {
+  public func buildSublayersLayout<Descriptor: LayoutDescriptorType>(build: () -> Descriptor) -> LayoutBuilderContext {
 
-    let context = Context(targetView: self)
+    let context = LayoutBuilderContext(targetView: self)
     let layout = build()
     layout.setupConstraints(parent: .init(view: self), in: context)
 

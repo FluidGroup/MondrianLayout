@@ -21,8 +21,8 @@ public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConver
     return .background(self)
   }
 
-  public let content: _BackgroundContent
-  public let backgroundContent: _BackgroundContent
+  let content: _BackgroundContent
+  let backgroundContent: _BackgroundContent
 
   init(
     content: _BackgroundContent,
@@ -33,7 +33,7 @@ public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConver
     self.backgroundContent = backgroundContent
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     setupBackground: do {
 

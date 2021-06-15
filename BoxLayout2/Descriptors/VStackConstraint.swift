@@ -1,12 +1,13 @@
 import UIKit
 
-public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
+public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible,
+  _BackgroundContentConvertible
+{
 
   public enum HorizontalAlignment {
     case leading
     case center
     case trailing
-    case fill
   }
 
   public var _relativeContent: _RelativeContent {
@@ -23,7 +24,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
   public init(
     spacing: CGFloat = 0,
-    alignment: HorizontalAlignment = .fill,
+    alignment: HorizontalAlignment = .center,
     @VHStackContentBuilder elements: () -> [_VHStackContent]
   ) {
     self.spacing = spacing
@@ -31,7 +32,7 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.elements = elements()
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     let parsed = elements
 
@@ -54,17 +55,23 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         context.add(constraints: [
           view.topAnchor.constraint(equalTo: parent.topAnchor).withInternalIdentifier("VStack.top"),
-          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier("VStack.left"),
-          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier("VStack.right"),
-          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier("VStack.bottom"),
+          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier(
+            "VStack.left"
+          ),
+          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier(
+            "VStack.right"
+          ),
+          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier(
+            "VStack.bottom"
+          ),
         ])
 
       case .relative(let constraint as LayoutDescriptorType),
-           .vStack(let constraint as LayoutDescriptorType),
-           .hStack(let constraint as LayoutDescriptorType),
-           .zStack(let constraint as LayoutDescriptorType),
-           .background(let constraint as LayoutDescriptorType),
-           .overlay(let constraint as LayoutDescriptorType):
+        .vStack(let constraint as LayoutDescriptorType),
+        .hStack(let constraint as LayoutDescriptorType),
+        .zStack(let constraint as LayoutDescriptorType),
+        .background(let constraint as LayoutDescriptorType),
+        .overlay(let constraint as LayoutDescriptorType):
 
         constraint.setupConstraints(parent: parent, in: context)
 
@@ -88,42 +95,64 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
           hasStartedLayout = true
 
-          context.add(constraints: [
-            currentLayoutElement.leftAnchor.constraint(equalTo: parent.leftAnchor),
-            currentLayoutElement.rightAnchor.constraint(equalTo: parent.rightAnchor),
-          ])
+          alignmentLayout: do {
 
-          if let previous = previous {
-
-            if elements.indices.last == i {
-              // last element
+            switch alignment {
+            case .leading:
               context.add(constraints: [
-                currentLayoutElement.topAnchor.constraint(
-                  equalTo: previous.bottomAnchor,
-                  constant: spaceToPrevious
-                ),
-                currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+                currentLayoutElement.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
+                currentLayoutElement.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor),
               ])
+            case .center:
+              context.add(constraints: [
+                currentLayoutElement.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor),
+                currentLayoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
+                currentLayoutElement.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor),
+              ])
+            case .trailing:
+              context.add(constraints: [
+                currentLayoutElement.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor),
+                currentLayoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
+              ])
+            }
+
+          }
+
+          stackingLayout: do {
+
+            if let previous = previous {
+
+              if elements.indices.last == i {
+                // last element
+                context.add(constraints: [
+                  currentLayoutElement.topAnchor.constraint(
+                    equalTo: previous.bottomAnchor,
+                    constant: spaceToPrevious
+                  ),
+                  currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+                ])
+              } else {
+                // middle element
+                context.add(constraints: [
+                  currentLayoutElement.topAnchor.constraint(
+                    equalTo: previous.bottomAnchor,
+                    constant: spaceToPrevious
+                  )
+                ])
+              }
             } else {
-              // middle element
+              // first element
               context.add(constraints: [
                 currentLayoutElement.topAnchor.constraint(
-                  equalTo: previous.bottomAnchor,
-                  constant: spaceToPrevious
+                  equalTo: parent.topAnchor,
+                  constant: initialSpace
                 )
               ])
             }
-          } else {
-            // first element
-            context.add(constraints: [
-              currentLayoutElement.topAnchor.constraint(
-                equalTo: parent.topAnchor,
-                constant: initialSpace
-              )
-            ])
-          }
 
-          spaceToPrevious = spacing
+            spaceToPrevious = spacing
+
+          }
         }
 
         switch element {

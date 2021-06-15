@@ -6,21 +6,6 @@ let book = Book(title: "BoxLayout2") {
 
   BookSection(title: "Sample") {
 
-    if #available(iOS 13, *) {
-      BookPreview {
-        ExampleView(width: nil, height: nil) { (view: UIView) in
-          view.buildSublayersLayout {
-            VStackConstraint {
-              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
-              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
-              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
-              UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
-            }
-          }
-        }
-      }
-    }
-
     _book_background
 
     _book_overlay
@@ -30,10 +15,7 @@ let book = Book(title: "BoxLayout2") {
     _book_HStackConstraint
 
     _book_ZStackConstraint
-
-    BookPreview(viewBlock: {
-      DemoView()
-    })
+ 
   }
 }
 
@@ -44,7 +26,7 @@ final class DemoView: UIView {
     preferredSize: .init(width: 32, height: 32)
   )
 
-  private let nicknameLabel = UILabel.make(text: "Muukii")
+  private let nicknameLabel = UILabel.mockMultiline(text: "Muukii")
 
   private let imageView = UIView.mock(backgroundColor: .mondrianYellow)
 
@@ -70,25 +52,25 @@ final class DemoView: UIView {
 
     self.buildSublayersLayout {
       VStackConstraint {
-        StackSpacer(minLength: 10)
-        StackSpacer(minLength: 10)
+        SpaceConstraint(minLength: 10)
+        SpaceConstraint(minLength: 10)
         HStackConstraint {
           ViewConstraint(profileImageView)
             .huggingPriority(.horizontal, .required)
-          StackSpacer(minLength: 4)
+          SpaceConstraint(minLength: 4)
 
           nicknameLabel
         }
-        StackSpacer(minLength: 10)
-        StackSpacer(minLength: 10)
+        SpaceConstraint(minLength: 10)
+        SpaceConstraint(minLength: 10)
         ViewConstraint(imageView)
           .aspectRatio(1)
-        StackSpacer(minLength: 10)
+        SpaceConstraint(minLength: 10)
         HStackConstraint {
           likeButton
-          StackSpacer(minLength: 2)
+          SpaceConstraint(minLength: 2)
           commentButton
-          StackSpacer(minLength: 2)
+          SpaceConstraint(minLength: 2)
           messageButton
         }
         ZStackConstraint {

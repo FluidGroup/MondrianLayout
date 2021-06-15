@@ -1,12 +1,13 @@
 import UIKit
 
-public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
+public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible,
+  _BackgroundContentConvertible
+{
 
   public enum VerticalAlignment {
     case top
     case center
     case bottom
-    case fill
   }
 
   public var _relativeContent: _RelativeContent {
@@ -23,7 +24,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
   public init(
     spacing: CGFloat = 0,
-    alignment: VerticalAlignment = .fill,
+    alignment: VerticalAlignment = .center,
     @VHStackContentBuilder elements: () -> [_VHStackContent]
   ) {
     self.spacing = spacing
@@ -31,7 +32,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.elements = elements()
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     let parsed = elements
 
@@ -54,17 +55,23 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         context.add(constraints: [
           view.topAnchor.constraint(equalTo: parent.topAnchor).withInternalIdentifier("HStack.top"),
-          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier("HStack.left"),
-          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier("HStack.right"),
-          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier("HStack.bottom"),
+          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier(
+            "HStack.left"
+          ),
+          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier(
+            "HStack.right"
+          ),
+          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier(
+            "HStack.bottom"
+          ),
         ])
 
       case .relative(let constraint as LayoutDescriptorType),
-           .vStack(let constraint as LayoutDescriptorType),
-           .hStack(let constraint as LayoutDescriptorType),
-           .zStack(let constraint as LayoutDescriptorType),
-           .background(let constraint as LayoutDescriptorType),
-           .overlay(let constraint as LayoutDescriptorType):
+        .vStack(let constraint as LayoutDescriptorType),
+        .hStack(let constraint as LayoutDescriptorType),
+        .zStack(let constraint as LayoutDescriptorType),
+        .background(let constraint as LayoutDescriptorType),
+        .overlay(let constraint as LayoutDescriptorType):
 
         constraint.setupConstraints(parent: parent, in: context)
 
@@ -87,23 +94,49 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
           hasStartedLayout = true
 
-          context.add(constraints: [
-            currentLayoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
-            currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-          ])
+          alignmentLayout: do {
+            switch alignment {
+            case .top:
+              context.add(constraints: [
+                currentLayoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+                currentLayoutElement.bottomAnchor.constraint(
+                  lessThanOrEqualTo: parent.bottomAnchor
+                ),
+              ])
+            case .center:
+              context.add(constraints: [
+                currentLayoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+                currentLayoutElement.bottomAnchor.constraint(
+                  lessThanOrEqualTo: parent.bottomAnchor
+                ),
+                currentLayoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
+              ])
+            case .bottom:
+              context.add(constraints: [
+                currentLayoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+                currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+              ])
+            }
+          }
 
           if let previous = previous {
 
             if elements.indices.last == i {
               // last element
               context.add(constraints: [
-                currentLayoutElement.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious),
+                currentLayoutElement.leftAnchor.constraint(
+                  equalTo: previous.rightAnchor,
+                  constant: spaceToPrevious
+                ),
                 currentLayoutElement.rightAnchor.constraint(equalTo: parent.rightAnchor),
               ])
             } else {
               // middle element
               context.add(constraints: [
-                currentLayoutElement.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious)
+                currentLayoutElement.leftAnchor.constraint(
+                  equalTo: previous.rightAnchor,
+                  constant: spaceToPrevious
+                )
               ])
             }
           } else {

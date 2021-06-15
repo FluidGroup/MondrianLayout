@@ -34,7 +34,7 @@ public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertib
 
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     setupContent: do {
 

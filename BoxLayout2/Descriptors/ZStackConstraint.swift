@@ -29,7 +29,7 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.elements = elements()
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     elements.forEach { element in
 

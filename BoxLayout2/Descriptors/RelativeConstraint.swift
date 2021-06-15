@@ -45,7 +45,7 @@ public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConver
     self.content = content()
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     func perform(current: _LayoutElement) {
 

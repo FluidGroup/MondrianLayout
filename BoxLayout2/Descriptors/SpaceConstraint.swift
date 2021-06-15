@@ -1,8 +1,13 @@
-//
-//  SpaceConstraint.swift
-//  BoxLayout2
-//
-//  Created by Muukii on 2021/06/16.
-//
+import UIKit
 
-import Foundation
+public struct SpaceConstraint {
+
+  public let minLength: CGFloat
+
+  public init(
+    minLength: CGFloat
+  ) {
+    self.minLength = minLength
+  }
+}
+

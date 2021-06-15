@@ -9,7 +9,7 @@ import UIKit
 
 extension UIView {
 
-  static func mock(backgroundColor: UIColor) -> UIView {
+  static func mock(backgroundColor: UIColor = .layeringColor) -> UIView {
     let view = UIView()
     view.backgroundColor = backgroundColor
     view.layer.borderWidth = 3
@@ -17,7 +17,7 @@ extension UIView {
     return view
   }
 
-  static func mock(backgroundColor: UIColor, preferredSize: CGSize) -> UIView {
+  static func mock(backgroundColor: UIColor = .layeringColor, preferredSize: CGSize) -> UIView {
     let view = IntrinsicSizeView(preferredSize: preferredSize)
     view.backgroundColor = backgroundColor
     view.layer.borderWidth = 3
@@ -60,8 +60,19 @@ final class IntrinsicSizeView: UIView {
 
 extension UILabel {
 
-  static func make(text: String) -> UILabel {
+  static func mockSingleline(text: String, textColor: UIColor = .black) -> UILabel {
     let label = UILabel()
+    label.font = .preferredFont(forTextStyle: .headline)
+    label.textColor = textColor
+    label.numberOfLines = 1
+    label.text = text
+    return label
+  }
+
+  static func mockMultiline(text: String, textColor: UIColor = .black) -> UILabel {
+    let label = UILabel()
+    label.font = .preferredFont(forTextStyle: .headline)
+    label.textColor = textColor
     label.numberOfLines = 0
     label.text = text
     return label

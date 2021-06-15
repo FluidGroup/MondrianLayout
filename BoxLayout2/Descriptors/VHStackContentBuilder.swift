@@ -4,7 +4,7 @@ public enum _VHStackContent {
 
   case view(ViewConstraint)
   case relative(RelativeConstraint)
-  case spacer(StackSpacer)
+  case spacer(SpaceConstraint)
   case vStack(VStackConstraint)
   case hStack(HStackConstraint)
   case zStack(ZStackConstraint)
@@ -28,7 +28,7 @@ extension VHStackContentBuilder {
     return .view(.init(view))
   }
 
-  public static func buildExpression(_ spacer: StackSpacer) -> Component {
+  public static func buildExpression(_ spacer: SpaceConstraint) -> Component {
     return .spacer(spacer)
   }
 

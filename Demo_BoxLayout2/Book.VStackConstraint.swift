@@ -1,8 +1,6 @@
-
+import BoxLayout2
 import StorybookKit
 import UIKit
-
-import BoxLayout2
 
 var _book_VStackConstraint: BookView {
 
@@ -41,7 +39,7 @@ var _book_VStackConstraint: BookView {
               preferredSize: .init(width: 28, height: 28)
             )
 
-            StackSpacer(minLength: 4)
+            SpaceConstraint(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -57,5 +55,30 @@ var _book_VStackConstraint: BookView {
       }
     }
     .title("Spacing with additional spacer")
+
+    BookForEach(data: [.center, .leading, .trailing] as [VStackConstraint.HorizontalAlignment]) { alignment in
+      BookPreview {
+        ExampleView(width: nil, height: nil) { (view: UIView) in
+          view.buildSublayersLayout {
+            VStackConstraint(spacing: 4, alignment: alignment) {
+              UILabel.mockMultiline(text: "Hello", textColor: .white)
+                .viewConstraint
+                .padding(8)
+                .background(UIView.mock(backgroundColor: .mondrianYellow))
+              UILabel.mockMultiline(text: "Mondrian", textColor: .white)
+                .viewConstraint
+                .padding(8)
+                .background(UIView.mock(backgroundColor: .mondrianRed))
+              UILabel.mockMultiline(text: "Layout!", textColor: .white)
+                .viewConstraint
+                .padding(8)
+                .background(UIView.mock(backgroundColor: .mondrianBlue))
+            }
+          }
+        }
+      }
+      .title("Labels - align: \(alignment)")
+    }
+
   }
 }

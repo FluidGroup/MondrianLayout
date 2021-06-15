@@ -78,7 +78,7 @@ public struct ViewConstraint: LayoutDescriptorType, _RelativeContentConvertible,
     }
   }
 
-  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
     context.add(
       constraints: [
