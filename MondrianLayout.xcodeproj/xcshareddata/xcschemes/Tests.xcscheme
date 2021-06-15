@@ -9,29 +9,15 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4B40576F2675C51E003B28A1"
-               BuildableName = "Demo_BoxLayout2.app"
-               BlueprintName = "Demo_BoxLayout2"
-               ReferencedContainer = "container:BoxLayout2.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4B64B1AC2675D2AF00460282"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:BoxLayout2.xcodeproj">
+               ReferencedContainer = "container:MondrianLayout.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +35,7 @@
                BlueprintIdentifier = "4B64B1AC2675D2AF00460282"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
-               ReferencedContainer = "container:BoxLayout2.xcodeproj">
+               ReferencedContainer = "container:MondrianLayout.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B40576F2675C51E003B28A1"
-            BuildableName = "Demo_BoxLayout2.app"
-            BlueprintName = "Demo_BoxLayout2"
-            ReferencedContainer = "container:BoxLayout2.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -81,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4B40576F2675C51E003B28A1"
-            BuildableName = "Demo_BoxLayout2.app"
-            BlueprintName = "Demo_BoxLayout2"
-            ReferencedContainer = "container:BoxLayout2.xcodeproj">
+            BlueprintIdentifier = "4B64B1AC2675D2AF00460282"
+            BuildableName = "Tests.xctest"
+            BlueprintName = "Tests"
+            ReferencedContainer = "container:MondrianLayout.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

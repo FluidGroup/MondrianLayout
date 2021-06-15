@@ -14,8 +14,8 @@
 		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */; };
-		4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
-		4B384D8F2675CF47001B0267 /* BoxLayout2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
+		4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4B4057662675C501003B28A1 /* BoxLayout2.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B4057652675C501003B28A1 /* BoxLayout2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
@@ -32,7 +32,7 @@
 		4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6442679095500BDE2DB /* OverlayTests.swift */; };
 		4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
-		4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
+		4B64B1B22675D2AF00460282 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* _LayoutElement.swift */; };
 		4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */; };
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
@@ -84,7 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4B384D8F2675CF47001B0267 /* BoxLayout2.framework in Embed Frameworks */,
+				4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,9 +97,9 @@
 		4B0279A32678804A0078B18A /* BackgroundConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundConstraint.swift; sourceTree = "<group>"; };
 		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
-		4B4057622675C501003B28A1 /* BoxLayout2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoxLayout2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057652675C501003B28A1 /* BoxLayout2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxLayout2.h; sourceTree = "<group>"; };
-		4B4057702675C51E003B28A1 /* Demo_BoxLayout2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_BoxLayout2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_MondrianLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			files = (
 				4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */,
 				4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */,
-				4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */,
+				4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */,
 				4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,7 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */,
+				4B64B1B22675D2AF00460282 /* MondrianLayout.framework in Frameworks */,
 				4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,8 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				4B64B1C026761E0300460282 /* RevealServer.xcframework */,
-				4B4057642675C501003B28A1 /* BoxLayout2 */,
-				4B4057712675C51E003B28A1 /* Demo_BoxLayout2 */,
+				4B4057642675C501003B28A1 /* MondrianLayout */,
+				4B4057712675C51E003B28A1 /* Demo_MondrianLayout */,
 				4B64B1AE2675D2AF00460282 /* Tests */,
 				4B4057632675C501003B28A1 /* Products */,
 				4B384D8D2675CF47001B0267 /* Frameworks */,
@@ -187,14 +187,14 @@
 		4B4057632675C501003B28A1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4B4057622675C501003B28A1 /* BoxLayout2.framework */,
-				4B4057702675C51E003B28A1 /* Demo_BoxLayout2.app */,
+				4B4057622675C501003B28A1 /* MondrianLayout.framework */,
+				4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */,
 				4B64B1AD2675D2AF00460282 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4B4057642675C501003B28A1 /* BoxLayout2 */ = {
+		4B4057642675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
 				4B4057652675C501003B28A1 /* BoxLayout2.h */,
@@ -202,10 +202,10 @@
 				4BFF75D12677CC32003FA7F0 /* Extensions */,
 				4BFF75D02677CC21003FA7F0 /* Internal */,
 			);
-			path = BoxLayout2;
+			path = MondrianLayout;
 			sourceTree = "<group>";
 		};
-		4B4057712675C51E003B28A1 /* Demo_BoxLayout2 */ = {
+		4B4057712675C51E003B28A1 /* Demo_MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
 				4B4057722675C51E003B28A1 /* AppDelegate.swift */,
@@ -224,7 +224,7 @@
 				4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */,
 				4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */,
 			);
-			path = Demo_BoxLayout2;
+			path = Demo_MondrianLayout;
 			sourceTree = "<group>";
 		};
 		4B64B1AE2675D2AF00460282 /* Tests */ = {
@@ -289,9 +289,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4B4057612675C501003B28A1 /* BoxLayout2 */ = {
+		4B4057612675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B4057692675C501003B28A1 /* Build configuration list for PBXNativeTarget "BoxLayout2" */;
+			buildConfigurationList = 4B4057692675C501003B28A1 /* Build configuration list for PBXNativeTarget "MondrianLayout" */;
 			buildPhases = (
 				4B40575D2675C501003B28A1 /* Headers */,
 				4B40575E2675C501003B28A1 /* Sources */,
@@ -302,14 +302,14 @@
 			);
 			dependencies = (
 			);
-			name = BoxLayout2;
+			name = MondrianLayout;
 			productName = BoxLayout2;
-			productReference = 4B4057622675C501003B28A1 /* BoxLayout2.framework */;
+			productReference = 4B4057622675C501003B28A1 /* MondrianLayout.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4B40576F2675C51E003B28A1 /* Demo_BoxLayout2 */ = {
+		4B40576F2675C51E003B28A1 /* Demo_MondrianLayout */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4B4057812675C51F003B28A1 /* Build configuration list for PBXNativeTarget "Demo_BoxLayout2" */;
+			buildConfigurationList = 4B4057812675C51F003B28A1 /* Build configuration list for PBXNativeTarget "Demo_MondrianLayout" */;
 			buildPhases = (
 				4B40576C2675C51E003B28A1 /* Sources */,
 				4B40576D2675C51E003B28A1 /* Frameworks */,
@@ -322,13 +322,13 @@
 				4B384D8C2675CF41001B0267 /* PBXTargetDependency */,
 				4B384D912675CF47001B0267 /* PBXTargetDependency */,
 			);
-			name = Demo_BoxLayout2;
+			name = Demo_MondrianLayout;
 			packageProductDependencies = (
 				4BE4E93F2675CA5700D096DC /* StorybookKit */,
 				4BE4E9412675CA5700D096DC /* StorybookUI */,
 			);
 			productName = Demo_BoxLayout2;
-			productReference = 4B4057702675C51E003B28A1 /* Demo_BoxLayout2.app */;
+			productReference = 4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4B64B1AC2675D2AF00460282 /* Tests */ = {
@@ -374,7 +374,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4B40575C2675C501003B28A1 /* Build configuration list for PBXProject "BoxLayout2" */;
+			buildConfigurationList = 4B40575C2675C501003B28A1 /* Build configuration list for PBXProject "MondrianLayout" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -391,8 +391,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4B4057612675C501003B28A1 /* BoxLayout2 */,
-				4B40576F2675C51E003B28A1 /* Demo_BoxLayout2 */,
+				4B4057612675C501003B28A1 /* MondrianLayout */,
+				4B40576F2675C51E003B28A1 /* Demo_MondrianLayout */,
 				4B64B1AC2675D2AF00460282 /* Tests */,
 			);
 		};
@@ -485,17 +485,17 @@
 /* Begin PBXTargetDependency section */
 		4B384D8C2675CF41001B0267 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4B4057612675C501003B28A1 /* BoxLayout2 */;
+			target = 4B4057612675C501003B28A1 /* MondrianLayout */;
 			targetProxy = 4B384D8B2675CF41001B0267 /* PBXContainerItemProxy */;
 		};
 		4B384D912675CF47001B0267 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4B4057612675C501003B28A1 /* BoxLayout2 */;
+			target = 4B4057612675C501003B28A1 /* MondrianLayout */;
 			targetProxy = 4B384D902675CF47001B0267 /* PBXContainerItemProxy */;
 		};
 		4B64B1B42675D2AF00460282 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4B4057612675C501003B28A1 /* BoxLayout2 */;
+			target = 4B4057612675C501003B28A1 /* MondrianLayout */;
 			targetProxy = 4B64B1B32675D2AF00460282 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -653,7 +653,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.BoxLayout2;
+				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -682,7 +682,7 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.BoxLayout2;
+				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -699,7 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Demo_BoxLayout2/Info.plist;
+				INFOPLIST_FILE = Demo_MondrianLayout/Info.plist;
 				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
 				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -730,7 +730,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Demo_BoxLayout2/Info.plist;
+				INFOPLIST_FILE = Demo_MondrianLayout/Info.plist;
 				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
 				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_CFBundleVersion = 1;
@@ -790,7 +790,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4B40575C2675C501003B28A1 /* Build configuration list for PBXProject "BoxLayout2" */ = {
+		4B40575C2675C501003B28A1 /* Build configuration list for PBXProject "MondrianLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B4057672675C501003B28A1 /* Debug */,
@@ -799,7 +799,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B4057692675C501003B28A1 /* Build configuration list for PBXNativeTarget "BoxLayout2" */ = {
+		4B4057692675C501003B28A1 /* Build configuration list for PBXNativeTarget "MondrianLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B40576A2675C501003B28A1 /* Debug */,
@@ -808,7 +808,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4B4057812675C51F003B28A1 /* Build configuration list for PBXNativeTarget "Demo_BoxLayout2" */ = {
+		4B4057812675C51F003B28A1 /* Build configuration list for PBXNativeTarget "Demo_MondrianLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4B4057822675C51F003B28A1 /* Debug */,
