@@ -6,7 +6,7 @@ import UIKit
  - layout guides
  - tasks apply to view (setting content hugging and compression resistance)
  */
-public final class Context {
+public final class LayoutBuilderContext {
 
   public let targetView: UIView
 
@@ -61,13 +61,3 @@ public final class Context {
   }
 }
 
-public struct StackSpacer {
-
-  public let minLength: CGFloat
-
-  public init(
-    minLength: CGFloat
-  ) {
-    self.minLength = minLength
-  }
-}
