@@ -12,7 +12,7 @@ extension UIView {
   static func mock(backgroundColor: UIColor) -> UIView {
     let view = UIView()
     view.backgroundColor = backgroundColor
-    view.layer.borderWidth = 2
+    view.layer.borderWidth = 3
     view.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
     return view
   }
@@ -20,7 +20,7 @@ extension UIView {
   static func mock(backgroundColor: UIColor, preferredSize: CGSize) -> UIView {
     let view = IntrinsicSizeView(preferredSize: preferredSize)
     view.backgroundColor = backgroundColor
-    view.layer.borderWidth = 2
+    view.layer.borderWidth = 3
     view.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
     return view
   }

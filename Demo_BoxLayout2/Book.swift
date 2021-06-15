@@ -8,7 +8,7 @@ let book = Book(title: "BoxLayout2") {
 
     if #available(iOS 13, *) {
       BookPreview {
-        AnyView(width: nil, height: nil) { (view: UIView) in
+        ExampleView(width: nil, height: nil) { (view: UIView) in
           view.buildSublayersLayout {
             VStackConstraint {
               UIImageView.mock(image: UIImage(systemName: "square.and.pencil")!)
@@ -21,184 +21,15 @@ let book = Book(title: "BoxLayout2") {
       }
     }
 
-    BookNavigationLink(title: "VStackConstraint") {
+    _book_background
 
-      BookPreview {
-        AnyView(width: nil, height: nil) { (view: UIView) in
-          view.buildSublayersLayout {
-            VStackConstraint(spacing: 4) {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
+    _book_overlay
 
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
+    _book_VStackConstraint
 
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-            }
-          }
-        }
-      }
-      .title("Spacing")
+    _book_HStackConstraint
 
-      BookPreview {
-        AnyView(width: nil, height: nil) { (view: UIView) in
-          view.buildSublayersLayout {
-            VStackConstraint(spacing: 4) {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              StackSpacer(minLength: 4)
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-            }
-          }
-        }
-      }
-      .title("Spacing with additional spacer")
-    }
-
-    BookNavigationLink(title: "HStackConstraint") {
-      BookPreview {
-        AnyView(width: nil, height: nil) { (view: UIView) in
-          view.buildSublayersLayout {
-            HStackConstraint(spacing: 4) {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-            }
-          }
-        }
-      }
-      .title("Spacing")
-
-      BookPreview {
-        AnyView(width: nil, height: nil) { (view: UIView) in
-          view.buildSublayersLayout {
-            HStackConstraint(spacing: 4) {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              StackSpacer(minLength: 4)
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-            }
-          }
-        }
-      }
-      .title("Spacing with additional spacer")
-
-    }
-
-    BookPreview {
-      AnyView(width: nil, height: nil) { (view: UIView) in
-        view.buildSublayersLayout {
-          VStackConstraint {
-            ZStackConstraint {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 100, height: 100)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemBlue,
-                preferredSize: .init(width: 10, height: 10)
-              )
-              .viewConstraint()
-              .relative(top: 10, right: 10)
-
-            }
-          }
-        }
-      }
-    }
-
-    BookPreview {
-      AnyView(width: nil, height: nil) { (view: UIView) in
-        view.buildSublayersLayout {
-          VStackConstraint {
-            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-            ZStackConstraint {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 100, height: 100)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemBlue,
-                preferredSize: .init(width: 10, height: 10)
-              )
-              .viewConstraint()
-              .relative(top: 10, right: 10)
-
-            }
-            ZStackConstraint {
-              UIView.mock(
-                backgroundColor: .systemYellow,
-                preferredSize: .init(width: 100, height: 100)
-              )
-
-              UIView.mock(
-                backgroundColor: .systemBlue,
-                preferredSize: .init(width: 10, height: 10)
-              )
-              .viewConstraint()
-              .relative(top: 10, right: 10)
-
-            }
-          }
-        }
-      }
-    }
-
-    BookPreview {
-      AnyView(width: nil, height: nil) { (view: UIView) in
-        view.buildSublayersLayout {
-          VStackConstraint {
-            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-            UIView.mock(backgroundColor: .systemYellow, preferredSize: .init(width: 30, height: 30))
-          }
-        }
-      }
-    }
+    _book_ZStackConstraint
 
     BookPreview(viewBlock: {
       DemoView()
@@ -209,29 +40,29 @@ let book = Book(title: "BoxLayout2") {
 final class DemoView: UIView {
 
   private let profileImageView = UIView.mock(
-    backgroundColor: .systemYellow,
+    backgroundColor: .mondrianYellow,
     preferredSize: .init(width: 32, height: 32)
   )
 
   private let nicknameLabel = UILabel.make(text: "Muukii")
 
-  private let imageView = UIView.mock(backgroundColor: .systemYellow)
+  private let imageView = UIView.mock(backgroundColor: .mondrianYellow)
 
   private let likeButton = UIView.mock(
-    backgroundColor: .systemRed,
+    backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
   private let commentButton = UIView.mock(
-    backgroundColor: .systemRed,
+    backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
   private let messageButton = UIView.mock(
-    backgroundColor: .systemRed,
+    backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
 
-  private let box = UIView.mock(backgroundColor: .systemYellow)
-  private let box2 = UIView.mock(backgroundColor: .systemRed)
+  private let box = UIView.mock(backgroundColor: .mondrianYellow)
+  private let box2 = UIView.mock(backgroundColor: .mondrianRed)
 
   init() {
 

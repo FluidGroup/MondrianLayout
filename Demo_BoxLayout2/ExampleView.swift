@@ -2,7 +2,7 @@
 import UIKit
 import BoxLayout2
 
-final class AnyView: UIView {
+final class ExampleView: UIView {
 
   init(
     width: CGFloat?,

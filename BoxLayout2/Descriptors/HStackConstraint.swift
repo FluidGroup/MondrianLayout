@@ -1,6 +1,6 @@
 import UIKit
 
-public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
 
   public enum VerticalAlignment {
     case top
@@ -10,6 +10,10 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
   }
 
   public var _relativeContent: _RelativeContent {
+    return .hStack(self)
+  }
+
+  public var _backgroundContent: _BackgroundContent {
     return .hStack(self)
   }
 
@@ -58,7 +62,9 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       case .relative(let constraint as LayoutDescriptorType),
            .vStack(let constraint as LayoutDescriptorType),
            .hStack(let constraint as LayoutDescriptorType),
-           .zStack(let constraint as LayoutDescriptorType):
+           .zStack(let constraint as LayoutDescriptorType),
+           .background(let constraint as LayoutDescriptorType),
+           .overlay(let constraint as LayoutDescriptorType):
 
         constraint.setupConstraints(parent: parent, in: context)
 
@@ -73,7 +79,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       var initialSpace: CGFloat = 0
       var previous: _LayoutElement?
       var spaceToPrevious: CGFloat = 0
-      var currentBox: _LayoutElement!
+      var currentLayoutElement: _LayoutElement!
 
       for (i, element) in parsed.enumerated() {
 
@@ -82,8 +88,8 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           hasStartedLayout = true
 
           context.add(constraints: [
-            currentBox.topAnchor.constraint(equalTo: parent.topAnchor),
-            currentBox.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+            currentLayoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+            currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
           ])
 
           if let previous = previous {
@@ -91,19 +97,19 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
             if elements.indices.last == i {
               // last element
               context.add(constraints: [
-                currentBox.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious),
-                currentBox.rightAnchor.constraint(equalTo: parent.rightAnchor),
+                currentLayoutElement.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious),
+                currentLayoutElement.rightAnchor.constraint(equalTo: parent.rightAnchor),
               ])
             } else {
               // middle element
               context.add(constraints: [
-                currentBox.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious)
+                currentLayoutElement.leftAnchor.constraint(equalTo: previous.rightAnchor, constant: spaceToPrevious)
               ])
             }
           } else {
             // first element
             context.add(constraints: [
-              currentBox.leftAnchor.constraint(
+              currentLayoutElement.leftAnchor.constraint(
                 equalTo: parent.leftAnchor,
                 constant: initialSpace
               )
@@ -117,42 +123,58 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
         case .view(let viewConstraint):
 
           let view = viewConstraint.view
-          currentBox = .init(view: view)
+          currentLayoutElement = .init(view: view)
           context.register(view: viewConstraint)
           perform()
-          previous = currentBox
+          previous = currentLayoutElement
+
+        case .background(let backgroundConstraint):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Background")
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          backgroundConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          perform()
+          previous = currentLayoutElement
+
+        case .overlay(let overlayConstraint):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Overlay")
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          overlayConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          perform()
+          previous = currentLayoutElement
 
         case .relative(let relativeConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Relative")
-          currentBox = .init(layoutGuide: newLayoutGuide)
-          relativeConstraint.setupConstraints(parent: currentBox, in: context)
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          relativeConstraint.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
-          previous = currentBox
+          previous = currentLayoutElement
 
         case .vStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.VStack")
-          currentBox = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentBox, in: context)
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
-          previous = currentBox
+          previous = currentLayoutElement
 
         case .hStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.HStack")
-          currentBox = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentBox, in: context)
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
-          previous = currentBox
+          previous = currentLayoutElement
 
         case .zStack(let stackConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.ZStack")
-          currentBox = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentBox, in: context)
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
-          previous = currentBox
+          previous = currentLayoutElement
 
         case .spacer(let spacer):
 

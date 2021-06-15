@@ -31,7 +31,7 @@ extension UIView {
 
   }
 
-  public func viewConstraint() -> ViewConstraint {
+  public var viewConstraint: ViewConstraint {
     .init(self)
   }
 

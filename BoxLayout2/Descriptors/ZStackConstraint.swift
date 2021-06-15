@@ -7,11 +7,17 @@ public enum _ZStackElement {
   case hStack(HStackConstraint)
   case zStack(ZStackConstraint)
   case relative(RelativeConstraint)
+  case background(BackgroundConstraint)
+  case overlay(OverlayConstraint)
 }
 
-public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
 
   public var _relativeContent: _RelativeContent {
+    return .zStack(self)
+  }
+
+  public var _backgroundContent: _BackgroundContent {
     return .zStack(self)
   }
 
@@ -45,6 +51,20 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
         context.register(view: viewConstraint)
 
         perform(current: .init(view: viewConstraint.view))
+
+      case .background(let backgroundConstraint):
+
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.Background")
+        backgroundConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+
+        perform(current: .init(layoutGuide: newLayoutGuide))
+
+      case .overlay(let overlayConstraint):
+
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.Overlay")
+        overlayConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+
+        perform(current: .init(layoutGuide: newLayoutGuide))
 
       case .relative(let relativeConstraint):
 
@@ -114,5 +134,13 @@ extension ZStackElementBuilder {
 
   public static func buildExpression(_ view: ViewConstraint) -> Component {
     return .view(view)
+  }
+
+  public static func buildExpression(_ background: BackgroundConstraint) -> Component {
+    return .background(background)
+  }
+
+  public static func buildExpression(_ overlay: OverlayConstraint) -> Component {
+    return .overlay(overlay)
   }
 }

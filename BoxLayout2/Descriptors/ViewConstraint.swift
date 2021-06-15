@@ -5,7 +5,17 @@ struct DimensionDescriptor {
   let priority: UILayoutPriority
 }
 
-public struct ViewConstraint: _RelativeContentConvertible {
+public struct ViewConstraint: LayoutDescriptorType, _RelativeContentConvertible,
+  _BackgroundContentConvertible, _OverlayContentConvertible
+{
+
+  public var _backgroundContent: _BackgroundContent {
+    return .view(self)
+  }
+
+  public var _overlayContent: _OverlayContent {
+    return .view(self)
+  }
 
   public var _relativeContent: _RelativeContent {
     return .view(self)
@@ -66,6 +76,19 @@ public struct ViewConstraint: _RelativeContentConvertible {
         assertionFailure()
       }
     }
+  }
+
+  public func setupConstraints(parent: _LayoutElement, in context: Context) {
+
+    context.add(
+      constraints: [
+        view.topAnchor.constraint(equalTo: parent.topAnchor),
+        view.rightAnchor.constraint(equalTo: parent.rightAnchor),
+        view.leftAnchor.constraint(equalTo: parent.leftAnchor),
+        view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+      ]
+    )
+
   }
 
   public func aspectRatio(_ ratio: CGFloat, priority: UILayoutPriority = .required) -> Self {

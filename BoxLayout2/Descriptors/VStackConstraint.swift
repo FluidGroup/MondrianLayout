@@ -1,6 +1,6 @@
 import UIKit
 
-public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
 
   public enum HorizontalAlignment {
     case leading
@@ -10,7 +10,11 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
   }
 
   public var _relativeContent: _RelativeContent {
-    .vStack(self)
+    return .vStack(self)
+  }
+
+  public var _backgroundContent: _BackgroundContent {
+    return .vStack(self)
   }
 
   public let spacing: CGFloat
@@ -58,7 +62,9 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       case .relative(let constraint as LayoutDescriptorType),
            .vStack(let constraint as LayoutDescriptorType),
            .hStack(let constraint as LayoutDescriptorType),
-           .zStack(let constraint as LayoutDescriptorType):
+           .zStack(let constraint as LayoutDescriptorType),
+           .background(let constraint as LayoutDescriptorType),
+           .overlay(let constraint as LayoutDescriptorType):
 
         constraint.setupConstraints(parent: parent, in: context)
 
@@ -129,6 +135,22 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           perform()
           previous = currentLayoutElement
 
+        case .background(let backgroundConstraint):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Background")
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          backgroundConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          perform()
+          previous = currentLayoutElement
+
+        case .overlay(let overlayConstraint):
+
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Overlay")
+          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          overlayConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          perform()
+          previous = currentLayoutElement
+
         case .relative(let relativeConstraint):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Relative")
@@ -178,3 +200,5 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
   }
 
 }
+
+// MARK: Modifiers

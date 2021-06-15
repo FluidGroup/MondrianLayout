@@ -8,6 +8,8 @@ public enum _VHStackContent {
   case vStack(VStackConstraint)
   case hStack(HStackConstraint)
   case zStack(ZStackConstraint)
+  case background(BackgroundConstraint)
+  case overlay(OverlayConstraint)
 }
 
 @_functionBuilder
@@ -46,7 +48,15 @@ extension VHStackContentBuilder {
     return .relative(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> _VHStackContent {
+  public static func buildExpression(_ view: ViewConstraint) -> Component {
     return .view(view)
+  }
+
+  public static func buildExpression(_ background: BackgroundConstraint) -> Component {
+    return .background(background)
+  }
+
+  public static func buildExpression(_ overlay: OverlayConstraint) -> Component {
+    return .overlay(overlay)
   }
 }

@@ -6,9 +6,22 @@ public enum _RelativeContent {
   case vStack(VStackConstraint)
   case hStack(HStackConstraint)
   case zStack(ZStackConstraint)
+  case overlay(OverlayConstraint)
+  case background(BackgroundConstraint)
 }
 
-public struct RelativeConstraint: LayoutDescriptorType {
+public typealias PaddingConstraint = RelativeConstraint
+public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConvertible,
+  _OverlayContentConvertible
+{
+
+  public var _backgroundContent: _BackgroundContent {
+    return .relative(self)
+  }
+
+  public var _overlayContent: _OverlayContent {
+    return .relative(self)
+  }
 
   public let content: _RelativeContent
 
@@ -17,7 +30,7 @@ public struct RelativeConstraint: LayoutDescriptorType {
   public var right: CGFloat?
   public var left: CGFloat?
 
-  public init(
+  init(
     top: CGFloat? = nil,
     left: CGFloat? = nil,
     bottom: CGFloat? = nil,
@@ -84,23 +97,36 @@ public struct RelativeConstraint: LayoutDescriptorType {
 
       perform(current: .init(view: viewConstarint.view))
 
-    case .vStack(let stackConstraint):
+    case .vStack(let c):
 
       let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.VStack")
-      stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
       perform(current: .init(layoutGuide: newLayoutGuide))
 
-    case .hStack(let stackConstraint):
+    case .hStack(let c):
 
       let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.HStack")
-      stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
       perform(current: .init(layoutGuide: newLayoutGuide))
 
-    case .zStack(let stackConstraint):
+    case .zStack(let c):
 
       let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.ZStack")
-      stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
       perform(current: .init(layoutGuide: newLayoutGuide))
+
+    case .background(let c):
+
+      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.Background")
+      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+      perform(current: .init(layoutGuide: newLayoutGuide))
+
+    case .overlay(let c):
+
+      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.Overlay")
+      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+      perform(current: .init(layoutGuide: newLayoutGuide))
+
     }
 
   }
@@ -114,7 +140,6 @@ public enum RelativeContentBuilder {
 
 extension RelativeContentBuilder {
 
-  @_disfavoredOverload
   public static func buildBlock(_ components: _RelativeContent) -> Component {
     return components
   }
@@ -139,7 +164,6 @@ extension RelativeContentBuilder {
     return .view(view)
   }
 
-  @_disfavoredOverload
   public static func buildExpression(_ components: _RelativeContent) -> Component {
     return components
   }
@@ -154,7 +178,6 @@ public protocol _RelativeContentConvertible {
 
 extension _RelativeContentConvertible {
 
-  // MARK: - Modifiers
   public func relative(
     top: CGFloat? = nil,
     left: CGFloat? = nil,
@@ -164,6 +187,42 @@ extension _RelativeContentConvertible {
     return .init(top: top, left: left, bottom: bottom, right: right) {
       self._relativeContent
     }
+  }
+
+  // MARK: - Modifiers
+  private func padding(
+    top: CGFloat,
+    left: CGFloat,
+    bottom: CGFloat,
+    right: CGFloat
+  ) -> RelativeConstraint {
+    return .init(top: top, left: left, bottom: bottom, right: right) {
+      self._relativeContent
+    }
+  }
+
+  public func padding(_ value: CGFloat) -> RelativeConstraint {
+    return padding(top: value, left: value, bottom: value, right: value)
+  }
+
+  public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeConstraint {
+    return padding(
+      top: edgeInsets.top,
+      left: edgeInsets.left,
+      bottom: edgeInsets.bottom,
+      right: edgeInsets.right
+    )
+  }
+
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeConstraint {
+
+    return padding(
+      top: edges.contains(.top) ? value : 0,
+      left: edges.contains(.left) ? value : 0,
+      bottom: edges.contains(.bottom) ? value : 0,
+      right: edges.contains(.right) ? value : 0
+    )
+
   }
 
 }

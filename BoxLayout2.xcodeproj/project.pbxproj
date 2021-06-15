@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
+		4B0279A2267880420078B18A /* OverlayConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A1267880420078B18A /* OverlayConstraint.swift */; };
+		4B0279A42678804A0078B18A /* BackgroundConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A32678804A0078B18A /* BackgroundConstraint.swift */; };
 		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
-		4B0941322677C02700E1997B /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* AnyView.swift */; };
+		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutConstraints.swift */; };
 		4B384D8E2675CF47001B0267 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
@@ -17,6 +20,15 @@
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
+		4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6362678DC0000BDE2DB /* Book.Background.swift */; };
+		4B47F6392678DC4000BDE2DB /* Book.VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */; };
+		4B47F63B2678DC6C00BDE2DB /* Book.HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */; };
+		4B47F63D2678DCAC00BDE2DB /* BookZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */; };
+		4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */; };
+		4B47F6412678E51200BDE2DB /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6402678E51200BDE2DB /* Edge.swift */; };
+		4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */; };
+		4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6442679095500BDE2DB /* OverlayTests.swift */; };
+		4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
 		4B64B1B22675D2AF00460282 /* BoxLayout2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* BoxLayout2.framework */; };
 		4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* _LayoutElement.swift */; };
@@ -36,7 +48,7 @@
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
 		4BE4E9462675CABE00D096DC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9452675CABE00D096DC /* Book.swift */; };
-		4BFF75CE2677C91B003FA7F0 /* AnyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* AnyView.swift */; };
+		4BFF75CE2677C91B003FA7F0 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +90,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4B0941312677C02700E1997B /* AnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyView.swift; sourceTree = "<group>"; };
+		4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Mondrian.swift"; sourceTree = "<group>"; };
+		4B0279A1267880420078B18A /* OverlayConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayConstraint.swift; sourceTree = "<group>"; };
+		4B0279A32678804A0078B18A /* BackgroundConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundConstraint.swift; sourceTree = "<group>"; };
+		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraints.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* BoxLayout2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BoxLayout2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057652675C501003B28A1 /* BoxLayout2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoxLayout2.h; sourceTree = "<group>"; };
@@ -86,6 +101,14 @@
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4B47F6362678DC0000BDE2DB /* Book.Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Background.swift; sourceTree = "<group>"; };
+		4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.VStackConstraint.swift; sourceTree = "<group>"; };
+		4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.HStackConstraint.swift; sourceTree = "<group>"; };
+		4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookZStackConstraint.swift; sourceTree = "<group>"; };
+		4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Overlay.swift; sourceTree = "<group>"; };
+		4B47F6402678E51200BDE2DB /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIComparison.swift; sourceTree = "<group>"; };
+		4B47F6442679095500BDE2DB /* OverlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTests.swift; sourceTree = "<group>"; };
 		4B64B1AD2675D2AF00460282 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64B1AF2675D2AF00460282 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4B64B1B12675D2AF00460282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,11 +207,18 @@
 				4B4057722675C51E003B28A1 /* AppDelegate.swift */,
 				4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */,
 				4BE4E9452675CABE00D096DC /* Book.swift */,
+				4B47F6362678DC0000BDE2DB /* Book.Background.swift */,
+				4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */,
+				4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */,
+				4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */,
+				4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */,
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
 				4B64B1BE26761DA800460282 /* Info.plist */,
 				4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */,
-				4B0941312677C02700E1997B /* AnyView.swift */,
+				4B0941312677C02700E1997B /* ExampleView.swift */,
 				4B64B1BC26761BE900460282 /* Extensions.swift */,
+				4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */,
+				4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */,
 			);
 			path = Demo_BoxLayout2;
 			sourceTree = "<group>";
@@ -197,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				4B64B1AF2675D2AF00460282 /* Tests.swift */,
+				4B47F6442679095500BDE2DB /* OverlayTests.swift */,
 				4B64B1B12675D2AF00460282 /* Info.plist */,
 			);
 			path = Tests;
@@ -212,8 +243,11 @@
 				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
 				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
+				4B0279A1267880420078B18A /* OverlayConstraint.swift */,
+				4B0279A32678804A0078B18A /* BackgroundConstraint.swift */,
 				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
 				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
+				4B47F6402678E51200BDE2DB /* Edge.swift */,
 			);
 			path = Descriptors;
 			sourceTree = "<group>";
@@ -391,10 +425,13 @@
 			files = (
 				4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */,
 				4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */,
+				4B0279A42678804A0078B18A /* BackgroundConstraint.swift in Sources */,
 				4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */,
+				4B0279A2267880420078B18A /* OverlayConstraint.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
 				4B9E1A1A267632A100D1E1C9 /* ZStackElementBuilder.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */,
+				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutConstraints.swift in Sources */,
 				4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */,
@@ -408,8 +445,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BFF75CE2677C91B003FA7F0 /* AnyView.swift in Sources */,
+				4B47F6392678DC4000BDE2DB /* Book.VStackConstraint.swift in Sources */,
+				4BFF75CE2677C91B003FA7F0 /* ExampleView.swift in Sources */,
+				4B47F63B2678DC6C00BDE2DB /* Book.HStackConstraint.swift in Sources */,
+				4B47F63D2678DCAC00BDE2DB /* BookZStackConstraint.swift in Sources */,
+				4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */,
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
+				4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */,
+				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
+				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
 				4B64B1BD26761BE900460282 /* Extensions.swift in Sources */,
@@ -422,7 +466,9 @@
 			files = (
 				4B64B1B02675D2AF00460282 /* Tests.swift in Sources */,
 				4B0941332677C1F000E1997B /* Extensions.swift in Sources */,
-				4B0941322677C02700E1997B /* AnyView.swift in Sources */,
+				4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */,
+				4B0941322677C02700E1997B /* ExampleView.swift in Sources */,
+				4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,9 +692,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo_BoxLayout2/Info.plist;
+				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
+				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -656,7 +706,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.muukii.Demo-BoxLayout2";
+				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -673,9 +723,13 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Demo_BoxLayout2/Info.plist;
+				INFOPLIST_KEY_CFBundleExecutable = "$(EXECUTABLE_NAME)";
+				INFOPLIST_KEY_CFBundleName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleVersion = 1;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -683,7 +737,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.muukii.Demo-BoxLayout2";
+				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
