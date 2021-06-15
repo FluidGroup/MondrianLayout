@@ -1,4 +1,4 @@
-import BoxLayout2
+import MondrianLayout
 import StorybookKit
 import UIKit
 

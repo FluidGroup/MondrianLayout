@@ -8,7 +8,7 @@
 import Foundation
 
 import XCTest
-import BoxLayout2
+import MondrianLayout
 import SnapshotTesting
 
 final class OverlayTests: XCTestCase {

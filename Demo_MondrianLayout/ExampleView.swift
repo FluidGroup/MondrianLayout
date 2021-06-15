@@ -1,6 +1,6 @@
 
 import UIKit
-import BoxLayout2
+import MondrianLayout
 
 final class ExampleView: UIView {
 

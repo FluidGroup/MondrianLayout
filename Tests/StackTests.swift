@@ -5,7 +5,7 @@
 //  Created by Muukii on 2021/06/16.
 //
 
-import BoxLayout2
+import MondrianLayout
 import Foundation
 import SnapshotTesting
 import XCTest

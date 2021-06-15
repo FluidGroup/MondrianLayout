@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import BoxLayout2
+import MondrianLayout
 import SnapshotTesting
 
 let _record = ProcessInfo().environment["RECORD"] != nil

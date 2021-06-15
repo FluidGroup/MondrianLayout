@@ -2,7 +2,7 @@
 import StorybookKit
 import UIKit
 
-import BoxLayout2
+import MondrianLayout
 
 var _book_HStackConstraint: BookView {
   BookNavigationLink(title: "HStackConstraint") {
