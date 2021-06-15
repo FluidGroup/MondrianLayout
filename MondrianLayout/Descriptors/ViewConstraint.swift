@@ -91,56 +91,99 @@ public struct ViewConstraint: LayoutDescriptorType, _RelativeContentConvertible,
 
   }
 
-  public func aspectRatio(_ ratio: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func aspectRatio(_ ratio: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.aspectRatio = .init(constant: ratio, priority: priority)
+      $0.aspectRatio = ratio.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func aspectRatio(_ size: CGSize) -> Self {
-    aspectRatio(size.width / size.height)
+  /**
+   Constrains this view’s dimensions to the aspect ratio of the given size.
+
+   - Parameters:
+      - size: Passing nil removes constraints.
+   */
+  public func aspectRatio(_ size: CGSize?) -> Self {
+    aspectRatio(size.map { $0.width / $0.height })
   }
 
-  public func height(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func height(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.height = .init(constant: value, priority: priority)
+      $0.height = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func width(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func width(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.width = .init(constant: value, priority: priority)
+      $0.width = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func minHeight(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func minHeight(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.minHeight = .init(constant: value, priority: priority)
+      $0.minHeight = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func minWidth(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func minWidth(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.minWidth = .init(constant: value, priority: priority)
+      $0.minWidth = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func maxHeight(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func maxHeight(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.maxHeight = .init(constant: value, priority: priority)
+      $0.maxHeight = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func maxWidth(_ value: CGFloat, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func maxWidth(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.maxWidth = .init(constant: value, priority: priority)
+      $0.maxWidth = value.map { .init(constant: $0, priority: priority) }
     }
   }
 
-  public func size(_ size: CGSize, priority: UILayoutPriority = .required) -> Self {
+  /**
+   - Parameters:
+     - value: Passing nil removes constraints.
+   */
+  public func size(_ size: CGSize?, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.height = .init(constant: size.height, priority: priority)
-      $0.width = .init(constant: size.width, priority: priority)
+      if let size = size {
+        $0.height = .init(constant: size.height, priority: priority)
+        $0.width = .init(constant: size.width, priority: priority)
+      } else {
+        $0.height = nil
+        $0.width = nil
+      }
     }
   }
 

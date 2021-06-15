@@ -9,10 +9,13 @@ import UIKit
 public final class LayoutBuilderContext {
 
   public let targetView: UIView
+  public let name: String?
 
   public init(
+    name: String? = nil,
     targetView: UIView
   ) {
+    self.name = name
     self.targetView = targetView
   }
 
@@ -28,7 +31,11 @@ public final class LayoutBuilderContext {
   func makeLayoutGuide(identifier: String) -> UILayoutGuide {
 
     let guide = UILayoutGuide()
-    guide.identifier = identifier
+    if let name = name {
+      guide.identifier = "\(identifier):\(name)"
+    } else {
+      guide.identifier = identifier
+    }
 
     layoutGuides.append(guide)
     return guide
