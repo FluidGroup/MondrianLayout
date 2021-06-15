@@ -23,3 +23,14 @@ jobs:
         run: for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts
       - name: Run test
         run: fastlane test_project
+  pod-lint:
+    runs-on: macos-latest
+
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1.1
+        with:
+          xcode-version: "12.4"
+      - uses: actions/checkout@v2
+      - name: Run lint
+        run: pod lib lint --allow-warnings
+
