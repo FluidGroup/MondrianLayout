@@ -39,4 +39,29 @@ final class OverlayTests: XCTestCase {
 
   }
 
+  func test_2() {
+
+    let view =  ExampleView(width: nil, height: nil) { (view: UIView) in
+      view.buildSublayersLayout {
+        VStackConstraint {
+          UIView.mock(
+            preferredSize: .init(width: 28, height: 28)
+          )
+          UIView.mock(
+            preferredSize: .init(width: 28, height: 28)
+          )
+          UIView.mock(
+            preferredSize: .init(width: 28, height: 28)
+          )
+        }
+        .padding(10)
+        .overlay(UIView.mock(backgroundColor: .layeringColor))
+      }
+    }
+
+    XCTAssertFalse(view.hasAmbiguousLayoutRecursively)
+    assertSnapshot(matching: view, as: .image, record: _record)
+
+  }
+
 }

@@ -35,4 +35,25 @@ extension UIView {
     .init(self)
   }
 
+  public var hasAmbiguousLayoutRecursively: Bool {
+
+    var hasAmbiguous: Bool = false
+
+    func traverse(_ view: UIView) {
+
+      if view.hasAmbiguousLayout {
+        hasAmbiguous = true
+      }
+
+      for subview in view.subviews {
+        traverse(subview)
+      }
+
+    }
+
+    traverse(self)
+
+    return hasAmbiguous
+  }
+
 }

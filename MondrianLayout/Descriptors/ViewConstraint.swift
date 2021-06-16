@@ -1,12 +1,13 @@
 import UIKit
 
-struct DimensionDescriptor {
+struct DimensionDescriptor: Equatable {
   let constant: CGFloat
   let priority: UILayoutPriority
 }
 
-public struct ViewConstraint: LayoutDescriptorType, _RelativeContentConvertible,
-  _BackgroundContentConvertible, _OverlayContentConvertible
+public struct ViewConstraint: _RelativeContentConvertible,
+  _BackgroundContentConvertible, _OverlayContentConvertible,
+  Equatable
 {
 
   public var _backgroundContent: _BackgroundContent {
@@ -77,20 +78,7 @@ public struct ViewConstraint: LayoutDescriptorType, _RelativeContentConvertible,
       }
     }
   }
-
-  public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
-
-    context.add(
-      constraints: [
-        view.topAnchor.constraint(equalTo: parent.topAnchor),
-        view.rightAnchor.constraint(equalTo: parent.rightAnchor),
-        view.leftAnchor.constraint(equalTo: parent.leftAnchor),
-        view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-      ]
-    )
-
-  }
-
+  
   /**
    - Parameters:
      - value: Passing nil removes constraints.

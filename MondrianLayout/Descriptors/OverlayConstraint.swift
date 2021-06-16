@@ -40,8 +40,15 @@ public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertib
 
       switch content {
       case .view(let c):
-        context.register(view: c)
-        c.setupConstraints(parent: parent, in: context)
+        context.register(viewConstraint: c)
+        context.add(
+          constraints: [
+            c.view.topAnchor.constraint(equalTo: parent.topAnchor),
+            c.view.rightAnchor.constraint(equalTo: parent.rightAnchor),
+            c.view.leftAnchor.constraint(equalTo: parent.leftAnchor),
+            c.view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+          ]
+        )
       case .relative(let c):
         c.setupConstraints(parent: parent, in: context)
       case .vStack(let c):
@@ -78,13 +85,19 @@ public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertib
 
       switch overlayContent {
 
-      case .view(let viewConstraint):
+      case .view(let c):
 
-        context.register(view: viewConstraint)
+        context.register(viewConstraint: c)
 
-        viewConstraint.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
+        let guide = _LayoutElement(layoutGuide: overlayLayoutGuide)
+
+        context.add(
+          constraints: [
+            c.view.topAnchor.constraint(equalTo: guide.topAnchor),
+            c.view.rightAnchor.constraint(equalTo: guide.rightAnchor),
+            c.view.leftAnchor.constraint(equalTo: guide.leftAnchor),
+            c.view.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
+          ]
         )
 
       case .relative(let relativeConstraint):

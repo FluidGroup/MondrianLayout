@@ -8,7 +8,7 @@ import UIKit
  */
 public final class LayoutBuilderContext {
 
-  public let targetView: UIView
+  public weak var targetView: UIView?
   public let name: String?
 
   public init(
@@ -41,14 +41,21 @@ public final class LayoutBuilderContext {
     return guide
   }
 
-  func register(view: ViewConstraint) {
-    views.append(view)
-    constraints.append(contentsOf: view.makeConstraints())
-    viewAppliers.append(view.makeApplier())
+  func register(viewConstraint: ViewConstraint) {
+    assert(views.contains(where: { $0.view == viewConstraint.view }) == false)
+
+    views.append(viewConstraint)
+    constraints.append(contentsOf: viewConstraint.makeConstraints())
+    viewAppliers.append(viewConstraint.makeApplier())
   }
 
   /// Add including views to the target view.
   public func prepareViewHierarchy() {
+
+    guard let targetView = targetView else {
+      return
+    }
+
     views.forEach {
       $0.view.translatesAutoresizingMaskIntoConstraints = false
       targetView.addSubview($0.view)
@@ -56,6 +63,10 @@ public final class LayoutBuilderContext {
   }
 
   public func activate() {
+
+    guard let targetView = targetView else {
+      return
+    }
 
     viewAppliers.forEach { $0() }
 

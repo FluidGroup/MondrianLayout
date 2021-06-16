@@ -93,7 +93,7 @@ public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConver
     switch content {
     case .view(let viewConstarint):
 
-      context.register(view: viewConstarint)
+      context.register(viewConstraint: viewConstarint)
 
       perform(current: .init(view: viewConstarint.view))
 

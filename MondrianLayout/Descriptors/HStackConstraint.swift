@@ -49,7 +49,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         let view = viewConstraint.view
 
-        context.register(view: viewConstraint)
+        context.register(viewConstraint: viewConstraint)
 
         // FIXME: case of single element, constraints
 
@@ -157,7 +157,7 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
           let view = viewConstraint.view
           currentLayoutElement = .init(view: view)
-          context.register(view: viewConstraint)
+          context.register(viewConstraint: viewConstraint)
           perform()
           previous = currentLayoutElement
 

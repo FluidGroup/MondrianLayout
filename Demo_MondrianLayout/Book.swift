@@ -74,8 +74,8 @@ final class DemoView: UIView {
           messageButton
         }
         ZStackConstraint {
-          ViewConstraint(box).width(100).aspectRatio(CGSize(width: 3, height: 4))
-          ViewConstraint(box2).width(50).aspectRatio(CGSize(width: 1, height: 2))
+          box.viewConstraint.width(100).aspectRatio(CGSize(width: 3, height: 4))
+          box2.viewConstraint.width(50).aspectRatio(CGSize(width: 1, height: 2))
         }
       }
     }

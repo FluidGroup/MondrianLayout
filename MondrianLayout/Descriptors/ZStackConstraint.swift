@@ -48,7 +48,7 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
       switch element {
       case .view(let viewConstraint):
 
-        context.register(view: viewConstraint)
+        context.register(viewConstraint: viewConstraint)
 
         perform(current: .init(view: viewConstraint.view))
 
