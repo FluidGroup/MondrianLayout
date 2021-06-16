@@ -118,7 +118,7 @@ let book = Book(title: "BoxLayout2") {
 
           }
           .overlay(
-            UILabel.mockMultiline(text: "MondrianLayout", textColor: .mondrianBlue)
+            UILabel.mockMultiline(text: "Mondrian Layout", textColor: .white)
               .viewBlock
               .padding(4)
               .background(
