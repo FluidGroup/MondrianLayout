@@ -17,8 +17,8 @@ final class LayoutSnapshotTests: XCTestCase {
 
     let view = ExampleView(width: 100, height: 100) { view in
       view.buildSublayersLayout {
-        VStackConstraint {
-          ZStackConstraint {
+        VStackBlock {
+          ZStackBlock {
             UIView.mock(
               backgroundColor: .layeringColor,
               preferredSize: .init(width: 100, height: 100)
@@ -28,7 +28,7 @@ final class LayoutSnapshotTests: XCTestCase {
               backgroundColor: .layeringColor,
               preferredSize: .init(width: 10, height: 10)
             )
-            .viewConstraint
+            .viewBlock
             .relative(top: 10, right: 10)
 
           }
@@ -55,13 +55,13 @@ class Tests: XCTestCase {
   func test_pattern_stack() {
 
     _ = layout {
-      HStackConstraint {
+      HStackBlock {
         UIView()
       }
     }
 
     _ = layout {
-      HStackConstraint {
+      HStackBlock {
         UIView()
         StackSpacer(minLength: 0)
       }
@@ -72,8 +72,8 @@ class Tests: XCTestCase {
   func test_pattern1() {
 
     _ = layout {
-      HStackConstraint {
-//        VStackConstraint {
+      HStackBlock {
+//        VStackBlock {
 //          UIView()
 //        }
       }
@@ -84,9 +84,9 @@ class Tests: XCTestCase {
   func test_pattern2() {
 
     _ = layout {
-      HStackConstraint {
+      HStackBlock {
         UIView()
-//        VStackConstraint {}
+//        VStackBlock {}
       }
     }
 
@@ -95,7 +95,7 @@ class Tests: XCTestCase {
   func test_pattern3() {
 
     _ = layout {
-      HStackConstraint {
+      HStackBlock {
         UIView()
         UIView()
       }

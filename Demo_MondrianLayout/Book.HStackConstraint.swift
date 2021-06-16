@@ -4,24 +4,24 @@ import UIKit
 
 import MondrianLayout
 
-var _book_HStackConstraint: BookView {
-  BookNavigationLink(title: "HStackConstraint") {
+var _book_HStackBlock: BookView {
+  BookNavigationLink(title: "HStackBlock") {
 
-    BookForEach(data: [.center, .top, .bottom] as [HStackConstraint.VerticalAlignment]) { alignment in
+    BookForEach(data: [.center, .top, .bottom] as [HStackBlock.VerticalAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
           view.buildSublayersLayout {
-            HStackConstraint(spacing: 4, alignment: alignment) {
+            HStackBlock(spacing: 4, alignment: alignment) {
               UILabel.mockMultiline(text: "Hello\nHello", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianYellow))
               UILabel.mockMultiline(text: "Mondrian Mondrian Mondrian", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianRed))
               UILabel.mockMultiline(text: "Layout!", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianBlue))
             }
@@ -34,7 +34,7 @@ var _book_HStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          HStackConstraint(spacing: 4) {
+          HStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -58,15 +58,15 @@ var _book_HStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          HStackConstraint(spacing: 4) {
+          HStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
             )
-            .viewConstraint
+            .viewBlock
             .alignSelf(.fill)
 
-            SpaceConstraint(minLength: 4)
+            SpaceBlock(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,

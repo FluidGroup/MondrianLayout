@@ -6,79 +6,79 @@ public protocol _LayeringContentConvertible {
 
 public indirect enum _LayeringContent {
 
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case relative(RelativeConstraint)
-  case overlay(OverlayConstraint)
-  case background(BackgroundConstraint)
+  case view(ViewBlock)
+  case vStack(VStackBlock)
+  case hStack(HStackBlock)
+  case zStack(ZStackBlock)
+  case relative(RelativeBlock)
+  case overlay(OverlayBlock)
+  case background(BackgroundBlock)
 }
 
 extension _LayeringContentConvertible {
 
-  public func background(_ view: UIView) -> BackgroundConstraint {
-    return .init(content: _layeringContent, backgroundContent: .view(view.viewConstraint))
+  public func background(_ view: UIView) -> BackgroundBlock {
+    return .init(content: _layeringContent, backgroundContent: .view(view.viewBlock))
   }
 
-  public func background(_ constraint: ViewConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: ViewBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .view(constraint))
   }
 
-  public func background(_ constraint: RelativeConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: RelativeBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .relative(constraint))
   }
 
-  public func background(_ constraint: VStackConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: VStackBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .vStack(constraint))
   }
 
-  public func background(_ constraint: HStackConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: HStackBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .hStack(constraint))
   }
 
-  public func background(_ constraint: ZStackConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: ZStackBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .zStack(constraint))
   }
 
-  public func background(_ constraint: BackgroundConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: BackgroundBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .background(constraint))
   }
 
 
-  public func background(_ constraint: OverlayConstraint) -> BackgroundConstraint {
+  public func background(_ constraint: OverlayBlock) -> BackgroundBlock {
     return .init(content: _layeringContent, backgroundContent: .overlay(constraint))
   }
 
-  public func overlay(_ view: UIView) -> OverlayConstraint {
-    return .init(content: _layeringContent, overlayContent: .view(view.viewConstraint))
+  public func overlay(_ view: UIView) -> OverlayBlock {
+    return .init(content: _layeringContent, overlayContent: .view(view.viewBlock))
   }
 
-  public func overlay(_ constraint: ViewConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: ViewBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .view(constraint))
   }
 
-  public func overlay(_ constraint: RelativeConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: RelativeBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .relative(constraint))
   }
 
-  public func overlay(_ constraint: VStackConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: VStackBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .vStack(constraint))
   }
 
-  public func overlay(_ constraint: HStackConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: HStackBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .hStack(constraint))
   }
 
-  public func overlay(_ constraint: ZStackConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: ZStackBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .zStack(constraint))
   }
 
-  public func overlay(_ constraint: OverlayConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: OverlayBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .overlay(constraint))
   }
 
-  public func overlay(_ constraint: BackgroundConstraint) -> OverlayConstraint {
+  public func overlay(_ constraint: BackgroundBlock) -> OverlayBlock {
     return .init(content: _layeringContent, overlayContent: .background(constraint))
   }
 }
@@ -96,31 +96,31 @@ public enum _LayeringContentBuilder {
     return .view(.init(view))
   }
 
-  public static func buildExpression(_ stack: HStackConstraint) -> Component {
+  public static func buildExpression(_ stack: HStackBlock) -> Component {
     return .hStack(stack)
   }
 
-  public static func buildExpression(_ stack: VStackConstraint) -> Component {
+  public static func buildExpression(_ stack: VStackBlock) -> Component {
     return .vStack(stack)
   }
 
-  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
+  public static func buildExpression(_ stack: ZStackBlock) -> Component {
     return .zStack(stack)
   }
 
-  public static func buildExpression(_ stack: RelativeConstraint) -> Component {
+  public static func buildExpression(_ stack: RelativeBlock) -> Component {
     return .relative(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> Component {
+  public static func buildExpression(_ view: ViewBlock) -> Component {
     return .view(view)
   }
 
-  public static func buildExpression(_ background: BackgroundConstraint) -> Component {
+  public static func buildExpression(_ background: BackgroundBlock) -> Component {
     return .background(background)
   }
 
-  public static func buildExpression(_ overlay: OverlayConstraint) -> Component {
+  public static func buildExpression(_ overlay: OverlayBlock) -> Component {
     return .overlay(overlay)
   }
 }

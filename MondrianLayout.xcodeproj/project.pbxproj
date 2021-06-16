@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
-		4B0279A2267880420078B18A /* OverlayConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A1267880420078B18A /* OverlayConstraint.swift */; };
-		4B0279A42678804A0078B18A /* BackgroundConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A32678804A0078B18A /* BackgroundConstraint.swift */; };
+		4B0279A2267880420078B18A /* OverlayBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A1267880420078B18A /* OverlayBlock.swift */; };
+		4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A32678804A0078B18A /* BackgroundBlock.swift */; };
 		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
 		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
@@ -19,9 +19,9 @@
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
-		4B4693AF267915080079B761 /* SpaceConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693AE267915080079B761 /* SpaceConstraint.swift */; };
+		4B4693AF267915080079B761 /* SpaceBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693AE267915080079B761 /* SpaceBlock.swift */; };
 		4B4693B1267918C60079B761 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B0267918C60079B761 /* StackTests.swift */; };
-		4B4693B326791FA90079B761 /* SafeAreaConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B226791FA90079B761 /* SafeAreaConstraint.swift */; };
+		4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B226791FA90079B761 /* SafeAreaContainer.swift */; };
 		4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6362678DC0000BDE2DB /* Book.Background.swift */; };
 		4B47F6392678DC4000BDE2DB /* Book.VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */; };
 		4B47F63B2678DC6C00BDE2DB /* Book.HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */; };
@@ -37,18 +37,18 @@
 		4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */; };
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
-		4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackConstraint.swift */; };
-		4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackConstraint.swift */; };
+		4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackBlock.swift */; };
+		4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackBlock.swift */; };
 		4B64B1C926762C1400460282 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+.swift */; };
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
 		4B73820C267A0D6900D77986 /* LayeringContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* LayeringContent.swift */; };
 		4B73820E267A188800D77986 /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820D267A188800D77986 /* StackItem.swift */; };
-		4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */; };
+		4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
-		4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */; };
+		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
 		4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */; };
-		4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */; };
+		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
 		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
@@ -96,8 +96,8 @@
 
 /* Begin PBXFileReference section */
 		4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Mondrian.swift"; sourceTree = "<group>"; };
-		4B0279A1267880420078B18A /* OverlayConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayConstraint.swift; sourceTree = "<group>"; };
-		4B0279A32678804A0078B18A /* BackgroundConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundConstraint.swift; sourceTree = "<group>"; };
+		4B0279A1267880420078B18A /* OverlayBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayBlock.swift; sourceTree = "<group>"; };
+		4B0279A32678804A0078B18A /* BackgroundBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlock.swift; sourceTree = "<group>"; };
 		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,9 +105,9 @@
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4B4693AE267915080079B761 /* SpaceConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceConstraint.swift; sourceTree = "<group>"; };
+		4B4693AE267915080079B761 /* SpaceBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceBlock.swift; sourceTree = "<group>"; };
 		4B4693B0267918C60079B761 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
-		4B4693B226791FA90079B761 /* SafeAreaConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaConstraint.swift; sourceTree = "<group>"; };
+		4B4693B226791FA90079B761 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
 		4B47F6362678DC0000BDE2DB /* Book.Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Background.swift; sourceTree = "<group>"; };
 		4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.VStackConstraint.swift; sourceTree = "<group>"; };
 		4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.HStackConstraint.swift; sourceTree = "<group>"; };
@@ -124,18 +124,18 @@
 		4B64B1BC26761BE900460282 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4B64B1BE26761DA800460282 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B64B1C026761E0300460282 /* RevealServer.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RevealServer.xcframework; sourceTree = "<group>"; };
-		4B64B1C426762A6F00460282 /* VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackConstraint.swift; sourceTree = "<group>"; };
-		4B64B1C626762A8200460282 /* HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackConstraint.swift; sourceTree = "<group>"; };
+		4B64B1C426762A6F00460282 /* VStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackBlock.swift; sourceTree = "<group>"; };
+		4B64B1C626762A8200460282 /* HStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackBlock.swift; sourceTree = "<group>"; };
 		4B64B1C826762C1400460282 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
 		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		4B73820B267A0D6900D77986 /* LayeringContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeringContent.swift; sourceTree = "<group>"; };
 		4B73820D267A188800D77986 /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
-		4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
+		4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
-		4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackConstraint.swift; sourceTree = "<group>"; };
+		4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDescriptorType.swift; sourceTree = "<group>"; };
-		4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeConstraint.swift; sourceTree = "<group>"; };
+		4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeBlock.swift; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		4BE4E9452675CABE00D096DC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
+				4B9A1B84267A286D0029907C /* Blocks */,
 				4BFF75D12677CC32003FA7F0 /* Extensions */,
 				4BFF75D02677CC21003FA7F0 /* Internal */,
 			);
@@ -244,25 +245,32 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		4B9A1B84267A286D0029907C /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				4B4693AE267915080079B761 /* SpaceBlock.swift */,
+				4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */,
+				4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */,
+				4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */,
+				4B0279A1267880420078B18A /* OverlayBlock.swift */,
+				4B0279A32678804A0078B18A /* BackgroundBlock.swift */,
+				4B64B1C426762A6F00460282 /* VStackBlock.swift */,
+				4B64B1C626762A8200460282 /* HStackBlock.swift */,
+				4B4693B226791FA90079B761 /* SafeAreaContainer.swift */,
+			);
+			path = Blocks;
+			sourceTree = "<group>";
+		};
 		4BFF75CF2677CC16003FA7F0 /* Descriptors */ = {
 			isa = PBXGroup;
 			children = (
+				4B73820B267A0D6900D77986 /* LayeringContent.swift */,
 				4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */,
 				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */,
-				4B4693AE267915080079B761 /* SpaceConstraint.swift */,
-				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
-				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
-				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
 				4B73820D267A188800D77986 /* StackItem.swift */,
 				4B738209267A067700D77986 /* Dimension.swift */,
-				4B0279A1267880420078B18A /* OverlayConstraint.swift */,
-				4B0279A32678804A0078B18A /* BackgroundConstraint.swift */,
-				4B73820B267A0D6900D77986 /* LayeringContent.swift */,
-				4B64B1C426762A6F00460282 /* VStackConstraint.swift */,
-				4B64B1C626762A8200460282 /* HStackConstraint.swift */,
 				4B47F6402678E51200BDE2DB /* Edge.swift */,
-				4B4693B226791FA90079B761 /* SafeAreaConstraint.swift */,
 			);
 			path = Descriptors;
 			sourceTree = "<group>";
@@ -438,23 +446,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B73820E267A188800D77986 /* StackItem.swift in Sources */,
-				4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */,
-				4B4693AF267915080079B761 /* SpaceConstraint.swift in Sources */,
+				4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */,
+				4B4693AF267915080079B761 /* SpaceBlock.swift in Sources */,
 				4B73820A267A067700D77986 /* Dimension.swift in Sources */,
-				4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */,
-				4B0279A42678804A0078B18A /* BackgroundConstraint.swift in Sources */,
+				4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */,
+				4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */,
 				4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */,
-				4B0279A2267880420078B18A /* OverlayConstraint.swift in Sources */,
+				4B0279A2267880420078B18A /* OverlayBlock.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
-				4B4693B326791FA90079B761 /* SafeAreaConstraint.swift in Sources */,
-				4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */,
+				4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */,
+				4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */,
 				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
-				4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */,
+				4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */,
 				4B73820C267A0D6900D77986 /* LayeringContent.swift in Sources */,
 				4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */,
 				4B64B1C926762C1400460282 /* UIView+.swift in Sources */,
-				4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */,
+				4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */,
 				4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

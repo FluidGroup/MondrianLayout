@@ -1,6 +1,6 @@
 import UIKit
 
-public struct BackgroundConstraint:
+public struct BackgroundBlock:
   LayoutDescriptorType,
   _RelativeContentConvertible
 {

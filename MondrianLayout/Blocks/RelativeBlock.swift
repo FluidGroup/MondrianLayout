@@ -2,16 +2,16 @@ import UIKit
 
 public enum _RelativeContent {
 
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case overlay(OverlayConstraint)
-  case background(BackgroundConstraint)
+  case view(ViewBlock)
+  case vStack(VStackBlock)
+  case hStack(HStackBlock)
+  case zStack(ZStackBlock)
+  case overlay(OverlayBlock)
+  case background(BackgroundBlock)
 }
 
-public typealias PaddingConstraint = RelativeConstraint
-public struct RelativeConstraint: LayoutDescriptorType, _LayeringContentConvertible
+public typealias PaddingBlock = RelativeBlock
+public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible
 {
 
   public var name: String = "Relative"
@@ -142,19 +142,19 @@ public enum RelativeContentBuilder {
     return .view(.init(view))
   }
 
-  public static func buildExpression(_ stack: VStackConstraint) -> Component {
+  public static func buildExpression(_ stack: VStackBlock) -> Component {
     return .vStack(stack)
   }
 
-  public static func buildExpression(_ stack: HStackConstraint) -> Component {
+  public static func buildExpression(_ stack: HStackBlock) -> Component {
     return .hStack(stack)
   }
 
-  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
+  public static func buildExpression(_ stack: ZStackBlock) -> Component {
     return .zStack(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> Component {
+  public static func buildExpression(_ view: ViewBlock) -> Component {
     return .view(view)
   }
 
@@ -177,7 +177,7 @@ extension _RelativeContentConvertible {
     left: CGFloat? = nil,
     bottom: CGFloat? = nil,
     right: CGFloat? = nil
-  ) -> RelativeConstraint {
+  ) -> RelativeBlock {
     return .init(top: top, left: left, bottom: bottom, right: right) {
       self._relativeContent
     }
@@ -189,17 +189,17 @@ extension _RelativeContentConvertible {
     left: CGFloat,
     bottom: CGFloat,
     right: CGFloat
-  ) -> RelativeConstraint {
+  ) -> RelativeBlock {
     return .init(top: top, left: left, bottom: bottom, right: right) {
       self._relativeContent
     }
   }
 
-  public func padding(_ value: CGFloat) -> RelativeConstraint {
+  public func padding(_ value: CGFloat) -> RelativeBlock {
     return padding(top: value, left: value, bottom: value, right: value)
   }
 
-  public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeConstraint {
+  public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return padding(
       top: edgeInsets.top,
       left: edgeInsets.left,
@@ -208,7 +208,7 @@ extension _RelativeContentConvertible {
     )
   }
 
-  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeConstraint {
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
 
     return padding(
       top: edges.contains(.top) ? value : 0,

@@ -1,6 +1,6 @@
 import UIKit
 
-public struct OverlayConstraint:
+public struct OverlayBlock:
   LayoutDescriptorType,
   _RelativeContentConvertible
 {

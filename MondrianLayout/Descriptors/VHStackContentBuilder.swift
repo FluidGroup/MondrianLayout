@@ -2,26 +2,26 @@ import UIKit
 
 public enum _VHStackContent {
 
-  case view(ViewConstraint)
-  case relative(RelativeConstraint)
-  case spacer(SpaceConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case background(BackgroundConstraint)
-  case overlay(OverlayConstraint)
+  case view(ViewBlock)
+  case relative(RelativeBlock)
+  case spacer(SpaceBlock)
+  case vStack(VStackBlock)
+  case hStack(HStackBlock)
+  case zStack(ZStackBlock)
+  case background(BackgroundBlock)
+  case overlay(OverlayBlock)
 }
 
 public struct _VStackItem {
 
   public let content: _VHStackContent
-  public var alignSelf: VStackConstraint.HorizontalAlignment?
+  public var alignSelf: VStackBlock.HorizontalAlignment?
 }
 
 public struct _HStackItem {
 
   public let content: _VHStackContent
-  public var alignSelf: HStackConstraint.VerticalAlignment?
+  public var alignSelf: HStackBlock.VerticalAlignment?
 
 }
 
@@ -31,13 +31,13 @@ public protocol _VHStackItemContentConvertible {
 
 extension _VHStackItemContentConvertible {
 
-  public func alignSelf(_ alignment: VStackConstraint.HorizontalAlignment) -> _VStackItem {
+  public func alignSelf(_ alignment: VStackBlock.HorizontalAlignment) -> _VStackItem {
     var item = _VStackItem(content: vhStackItemContent)
     item.alignSelf = alignment
     return item
   }
 
-  public func alignSelf(_ alignment: HStackConstraint.VerticalAlignment) -> _HStackItem {
+  public func alignSelf(_ alignment: HStackBlock.VerticalAlignment) -> _HStackItem {
     var item = _HStackItem(content: vhStackItemContent)
     item.alignSelf = alignment
     return item
@@ -45,43 +45,43 @@ extension _VHStackItemContentConvertible {
 
 }
 
-extension ViewConstraint: _VHStackItemContentConvertible {
+extension ViewBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .view(self)
   }
 }
 
-extension RelativeConstraint: _VHStackItemContentConvertible {
+extension RelativeBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .relative(self)
   }
 }
 
-extension VStackConstraint: _VHStackItemContentConvertible {
+extension VStackBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .vStack(self)
   }
 }
 
-extension HStackConstraint: _VHStackItemContentConvertible {
+extension HStackBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .hStack(self)
   }
 }
 
-extension ZStackConstraint: _VHStackItemContentConvertible {
+extension ZStackBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .zStack(self)
   }
 }
 
-extension BackgroundConstraint: _VHStackItemContentConvertible {
+extension BackgroundBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .background(self)
   }
 }
 
-extension OverlayConstraint: _VHStackItemContentConvertible {
+extension OverlayBlock: _VHStackItemContentConvertible {
   public var vhStackItemContent: _VHStackContent {
     return .overlay(self)
   }
@@ -108,7 +108,7 @@ public enum VStackContentBuilder {
     return .init(content: source.vhStackItemContent)
   }
 
-  public static func buildExpression(_ spacer: SpaceConstraint) -> Component {
+  public static func buildExpression(_ spacer: SpaceBlock) -> Component {
     return .init(content: .spacer(spacer))
   }
 
@@ -135,7 +135,7 @@ public enum HStackContentBuilder {
     return .init(content: source.vhStackItemContent)
   }
 
-  public static func buildExpression(_ spacer: SpaceConstraint) -> Component {
+  public static func buildExpression(_ spacer: SpaceBlock) -> Component {
     return .init(content: .spacer(spacer))
   }
 

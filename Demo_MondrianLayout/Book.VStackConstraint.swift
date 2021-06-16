@@ -2,14 +2,14 @@ import MondrianLayout
 import StorybookKit
 import UIKit
 
-var _book_VStackConstraint: BookView {
+var _book_VStackBlock: BookView {
 
-  BookNavigationLink(title: "VStackConstraint") {
+  BookNavigationLink(title: "VStackBlock") {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint(spacing: 4) {
+          VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -33,13 +33,13 @@ var _book_VStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint(spacing: 4) {
+          VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
             )
 
-            SpaceConstraint(minLength: 4)
+            SpaceBlock(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -56,21 +56,21 @@ var _book_VStackConstraint: BookView {
     }
     .title("Spacing with additional spacer")
 
-    BookForEach(data: [.center, .leading, .trailing] as [VStackConstraint.HorizontalAlignment]) { alignment in
+    BookForEach(data: [.center, .leading, .trailing] as [VStackBlock.HorizontalAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
           view.buildSublayersLayout {
-            VStackConstraint(spacing: 4, alignment: alignment) {
+            VStackBlock(spacing: 4, alignment: alignment) {
               UILabel.mockMultiline(text: "Hello", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianYellow))
               UILabel.mockMultiline(text: "Mondrian", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianRed))
               UILabel.mockMultiline(text: "Layout!", textColor: .white)
-                .viewConstraint
+                .viewBlock
                 .padding(8)
                 .background(UIView.mock(backgroundColor: .mondrianBlue))
             }

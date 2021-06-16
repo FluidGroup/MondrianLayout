@@ -1,6 +1,6 @@
 import UIKit
 
-public struct SpaceConstraint {
+public struct SpaceBlock {
 
   public let minLength: CGFloat
 

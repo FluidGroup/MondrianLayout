@@ -8,7 +8,7 @@ var _book_background: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -31,7 +31,7 @@ var _book_background: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint(spacing: 2) {
+          VStackBlock(spacing: 2) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -45,7 +45,7 @@ var _book_background: BookView {
               preferredSize: .init(width: 28, height: 28)
             )
 
-            HStackConstraint(spacing: 2) {
+            HStackBlock(spacing: 2) {
               UIView.mock(
                 backgroundColor: .mondrianBlue,
                 preferredSize: .init(width: 28, height: 28)
@@ -70,7 +70,7 @@ var _book_background: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -83,7 +83,7 @@ var _book_background: BookView {
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
             )
-            .viewConstraint
+            .viewBlock
             .padding(10)
             .background(UIView.mock(backgroundColor: .mondrianGray))
           }

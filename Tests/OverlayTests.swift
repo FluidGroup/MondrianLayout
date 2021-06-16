@@ -20,13 +20,13 @@ final class OverlayTests: XCTestCase {
           backgroundColor: .layeringColor,
           preferredSize: .init(width: 100, height: 100)
         )
-        .viewConstraint
+        .viewBlock
         .overlay(
           UIView.mock(backgroundColor: .layeringColor)
-            .viewConstraint
+            .viewBlock
             .overlay(
               UIView.mock(backgroundColor: .layeringColor)
-                .viewConstraint
+                .viewBlock
                 .padding(10)
             )
             .padding(10)
@@ -42,7 +42,7 @@ final class OverlayTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        VStackConstraint {
+        VStackBlock {
           UIView.mock(
             preferredSize: .init(width: 28, height: 28)
           )

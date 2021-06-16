@@ -1,6 +1,6 @@
 import UIKit
 
-public struct ZStackConstraint:
+public struct ZStackBlock:
   LayoutDescriptorType,
   _RelativeContentConvertible,
   _LayeringContentConvertible

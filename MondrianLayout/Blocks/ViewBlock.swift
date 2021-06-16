@@ -1,6 +1,6 @@
 import UIKit
 
-public struct ViewConstraint: _RelativeContentConvertible,
+public struct ViewBlock: _RelativeContentConvertible,
   _LayeringContentConvertible, _DimensionConstraintType,
   Equatable
 {

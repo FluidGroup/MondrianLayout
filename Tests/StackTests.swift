@@ -16,17 +16,17 @@ final class StackTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        VStackConstraint(spacing: 4, alignment: .center) {
+        VStackBlock(spacing: 4, alignment: .center) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Mondrian", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Layout!", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
         }
@@ -41,17 +41,17 @@ final class StackTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        VStackConstraint(spacing: 4, alignment: .leading) {
+        VStackBlock(spacing: 4, alignment: .leading) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Mondrian", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Layout!", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
         }
@@ -66,17 +66,17 @@ final class StackTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        VStackConstraint(spacing: 4, alignment: .trailing) {
+        VStackBlock(spacing: 4, alignment: .trailing) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Mondrian", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
           UILabel.mockMultiline(text: "Layout!", textColor: .white)
-            .viewConstraint
+            .viewBlock
             .padding(8)
             .background(UIView.mock(backgroundColor: .layeringColor))
         }
@@ -91,12 +91,12 @@ final class StackTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        VStackConstraint(spacing: 4) {
+        VStackBlock(spacing: 4) {
           UIView.mock(
             preferredSize: .init(width: 28, height: 28)
           )
 
-          SpaceConstraint(minLength: 4)
+          SpaceBlock(minLength: 4)
 
           UIView.mock(
             preferredSize: .init(width: 28, height: 28)
@@ -116,12 +116,12 @@ final class StackTests: XCTestCase {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
-        HStackConstraint(spacing: 4) {
+        HStackBlock(spacing: 4) {
           UIView.mock(
             preferredSize: .init(width: 28, height: 28)
           )
 
-          SpaceConstraint(minLength: 4)
+          SpaceBlock(minLength: 4)
 
           UIView.mock(
             preferredSize: .init(width: 28, height: 28)

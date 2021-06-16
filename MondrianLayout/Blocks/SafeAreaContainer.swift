@@ -3,25 +3,25 @@ import UIKit
 
 public enum _SafeAreaContent {
 
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case overlay(OverlayConstraint)
-  case background(BackgroundConstraint)
+  case view(ViewBlock)
+  case vStack(VStackBlock)
+  case hStack(HStackBlock)
+  case zStack(ZStackBlock)
+  case overlay(OverlayBlock)
+  case background(BackgroundBlock)
 }
 
-public struct SafeAreaConstraint {
+struct SafeAreaContainer {
 
   let edge: Edge.Set
   let content: _SafeAreaContent
 
-  public init(edge: Edge.Set, @SafeAreaContentBuilder content: () -> _SafeAreaContent) {
+  init(edge: Edge.Set, @SafeAreaContentBuilder content: () -> _SafeAreaContent) {
     self.edge = edge
     self.content = content()
   }
 
-  public func setupConstraints(parent: UIView, in context: LayoutBuilderContext) {
+  func setupConstraints(parent: UIView, in context: LayoutBuilderContext) {
 
     func perfom(container: _LayoutElement) {
       if edge.contains(.top) {
@@ -97,23 +97,31 @@ public enum SafeAreaContentBuilder {
     return .view(.init(view))
   }
 
-  public static func buildExpression(_ stack: VStackConstraint) -> Component {
+  public static func buildExpression(_ stack: VStackBlock) -> Component {
     return .vStack(stack)
   }
 
-  public static func buildExpression(_ stack: HStackConstraint) -> Component {
+  public static func buildExpression(_ stack: HStackBlock) -> Component {
     return .hStack(stack)
   }
 
-  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
+  public static func buildExpression(_ stack: ZStackBlock) -> Component {
     return .zStack(stack)
   }
 
-  public static func buildExpression(_ view: ViewConstraint) -> Component {
+  public static func buildExpression(_ view: ViewBlock) -> Component {
     return .view(view)
   }
 
   public static func buildExpression(_ components: Component) -> Component {
     return components
+  }
+
+  public static func buildExpression(_ stack: BackgroundBlock) -> Component {
+    return .background(stack)
+  }
+
+  public static func buildExpression(_ stack: OverlayBlock) -> Component {
+    return .overlay(stack)
   }
 }

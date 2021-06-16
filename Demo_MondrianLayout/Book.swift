@@ -10,8 +10,8 @@ let book = Book(title: "BoxLayout2") {
       ExampleView(width: 200, height: 200) { (view: UIView) in
         view.buildSublayersLayout {
 
-          HStackConstraint(spacing: 2, alignment: .fill) {
-            VStackConstraint(spacing: 2, alignment: .fill) {
+          HStackBlock(spacing: 2, alignment: .fill) {
+            VStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .mondrianRed,
                 preferredSize: .init(width: 28, height: 28)
@@ -32,7 +32,7 @@ let book = Book(title: "BoxLayout2") {
                 preferredSize: .init(width: 28, height: 28)
               )
 
-              HStackConstraint(alignment: .fill) {
+              HStackBlock(alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
                   preferredSize: .init(width: 28, height: 28)
@@ -44,14 +44,14 @@ let book = Book(title: "BoxLayout2") {
               }
             }
 
-            VStackConstraint(spacing: 2, alignment: .fill) {
-              HStackConstraint(spacing: 2, alignment: .fill) {
+            VStackBlock(spacing: 2, alignment: .fill) {
+              HStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
                   preferredSize: .init(width: 28, height: 28)
                 )
-                VStackConstraint(spacing: 2, alignment: .fill) {
-                  HStackConstraint(spacing: 2, alignment: .fill) {
+                VStackBlock(spacing: 2, alignment: .fill) {
+                  HStackBlock(spacing: 2, alignment: .fill) {
                     UIView.mock(
                       backgroundColor: .mondrianYellow,
                       preferredSize: .init(width: 28, height: 28)
@@ -68,8 +68,8 @@ let book = Book(title: "BoxLayout2") {
                 }
               }
 
-              HStackConstraint(spacing: 2, alignment: .fill) {
-                VStackConstraint(spacing: 2, alignment: .fill) {
+              HStackBlock(spacing: 2, alignment: .fill) {
+                VStackBlock(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -85,7 +85,7 @@ let book = Book(title: "BoxLayout2") {
                   preferredSize: .init(width: 28, height: 28)
                 )
 
-                VStackConstraint(spacing: 2, alignment: .fill) {
+                VStackBlock(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -97,12 +97,12 @@ let book = Book(title: "BoxLayout2") {
                 }
               }
 
-              HStackConstraint(spacing: 2, alignment: .fill) {
+              HStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .mondrianRed,
                   preferredSize: .init(width: 28, height: 28)
                 )
-                VStackConstraint(spacing: 2, alignment: .fill) {
+                VStackBlock(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -119,13 +119,13 @@ let book = Book(title: "BoxLayout2") {
           }
           .overlay(
             UILabel.mockMultiline(text: "MondrianLayout", textColor: .mondrianBlue)
-              .viewConstraint
+              .viewBlock
               .padding(4)
               .background(
                 UIView.mock(
                   backgroundColor: .layeringColor
                 )
-                .viewConstraint
+                .viewBlock
               )
               .relative(bottom: 8, right: 8)
           )
@@ -138,9 +138,9 @@ let book = Book(title: "BoxLayout2") {
 
     _book_overlay
 
-    _book_VStackConstraint
+    _book_VStackBlock
 
-    _book_HStackConstraint
+    _book_HStackBlock
 
     _book_ZStackConstraint
 
@@ -180,31 +180,31 @@ final class DemoView: UIView {
     super.init(frame: .zero)
 
     self.buildSublayersLayout {
-      VStackConstraint {
-        SpaceConstraint(minLength: 10)
-        SpaceConstraint(minLength: 10)
-        HStackConstraint {
-          ViewConstraint(profileImageView)
+      VStackBlock {
+        SpaceBlock(minLength: 10)
+        SpaceBlock(minLength: 10)
+        HStackBlock {
+          ViewBlock(profileImageView)
             .huggingPriority(.horizontal, .required)
-          SpaceConstraint(minLength: 4)
+          SpaceBlock(minLength: 4)
 
           nicknameLabel
         }
-        SpaceConstraint(minLength: 10)
-        SpaceConstraint(minLength: 10)
-        ViewConstraint(imageView)
+        SpaceBlock(minLength: 10)
+        SpaceBlock(minLength: 10)
+        ViewBlock(imageView)
           .aspectRatio(1)
-        SpaceConstraint(minLength: 10)
-        HStackConstraint {
+        SpaceBlock(minLength: 10)
+        HStackBlock {
           likeButton
-          SpaceConstraint(minLength: 2)
+          SpaceBlock(minLength: 2)
           commentButton
-          SpaceConstraint(minLength: 2)
+          SpaceBlock(minLength: 2)
           messageButton
         }
-        ZStackConstraint {
-          box.viewConstraint.width(100).aspectRatio(CGSize(width: 3, height: 4))
-          box2.viewConstraint.width(50).aspectRatio(CGSize(width: 1, height: 2))
+        ZStackBlock {
+          box.viewBlock.width(100).aspectRatio(CGSize(width: 3, height: 4))
+          box2.viewBlock.width(50).aspectRatio(CGSize(width: 1, height: 2))
         }
       }
     }

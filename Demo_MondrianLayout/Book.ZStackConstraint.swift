@@ -9,8 +9,8 @@ var _book_ZStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
-            ZStackConstraint {
+          VStackBlock {
+            ZStackBlock {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
                 preferredSize: .init(width: 100, height: 100)
@@ -20,7 +20,7 @@ var _book_ZStackConstraint: BookView {
                 backgroundColor: .systemBlue,
                 preferredSize: .init(width: 10, height: 10)
               )
-              .viewConstraint
+              .viewBlock
               .relative(top: 10, right: 10)
 
             }
@@ -32,12 +32,12 @@ var _book_ZStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 30, height: 30)
             )
-            ZStackConstraint {
+            ZStackBlock {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
                 preferredSize: .init(width: 100, height: 100)
@@ -47,11 +47,11 @@ var _book_ZStackConstraint: BookView {
                 backgroundColor: .systemBlue,
                 preferredSize: .init(width: 10, height: 10)
               )
-              .viewConstraint
+              .viewBlock
               .relative(top: 10, right: 10)
 
             }
-            ZStackConstraint {
+            ZStackBlock {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
                 preferredSize: .init(width: 100, height: 100)
@@ -61,7 +61,7 @@ var _book_ZStackConstraint: BookView {
                 backgroundColor: .systemBlue,
                 preferredSize: .init(width: 10, height: 10)
               )
-              .viewConstraint
+              .viewBlock
               .relative(top: 10, right: 10)
 
             }
@@ -73,7 +73,7 @@ var _book_ZStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 30, height: 30)
@@ -94,20 +94,20 @@ var _book_ZStackConstraint: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          ZStackConstraint {
+          ZStackBlock {
 
             UIView.mock(
               backgroundColor: .layeringColor,
               preferredSize: .init(width: 100, height: 100)
             )
 
-            ZStackConstraint {
+            ZStackBlock {
               UIView.mock(backgroundColor: .layeringColor)
 
-              ZStackConstraint {
+              ZStackBlock {
                 UIView.mock(backgroundColor: .layeringColor)
 
-                ZStackConstraint {
+                ZStackBlock {
                   UIView.mock(backgroundColor: .layeringColor)
                 }
                 .relative(top: 10, left: 10, bottom: 10, right: 10)

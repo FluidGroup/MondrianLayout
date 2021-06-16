@@ -12,13 +12,13 @@ var _book_overlay: BookView {
             backgroundColor: .mondrianYellow,
             preferredSize: .init(width: 100, height: 100)
           )
-          .viewConstraint
+          .viewBlock
           .overlay(
             UIView.mock(backgroundColor: .layeringColor)
-              .viewConstraint
+              .viewBlock
               .overlay(
                 UIView.mock(backgroundColor: .layeringColor)
-                  .viewConstraint
+                  .viewBlock
                   .padding(10)
               )
               .padding(10)
@@ -30,7 +30,7 @@ var _book_overlay: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -53,7 +53,7 @@ var _book_overlay: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint(spacing: 2) {
+          VStackBlock(spacing: 2) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -67,7 +67,7 @@ var _book_overlay: BookView {
               preferredSize: .init(width: 28, height: 28)
             )
 
-            HStackConstraint(spacing: 2) {
+            HStackBlock(spacing: 2) {
               UIView.mock(
                 backgroundColor: .mondrianBlue,
                 preferredSize: .init(width: 28, height: 28)
@@ -92,7 +92,7 @@ var _book_overlay: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
-          VStackConstraint {
+          VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
@@ -105,7 +105,7 @@ var _book_overlay: BookView {
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
             )
-            .viewConstraint
+            .viewBlock
             .padding(10)
             .overlay(UIView.mock(backgroundColor: .layeringColor))
           }

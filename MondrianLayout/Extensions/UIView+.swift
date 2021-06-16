@@ -7,34 +7,26 @@ extension UIView {
    Adding subviews included in layout
    */
   @discardableResult
-  public func buildSublayersLayout<Descriptor: LayoutDescriptorType>(build: () -> Descriptor) -> LayoutBuilderContext {
+  public func buildSublayersLayout(
+    safeArea: Edge.Set = [],
+    @SafeAreaContentBuilder build: () -> _SafeAreaContent
+  ) -> LayoutBuilderContext {
 
     let context = LayoutBuilderContext(targetView: self)
-    let layout = build()
-    layout.setupConstraints(parent: .init(view: self), in: context)
-
+    let container = SafeAreaContainer(edge: safeArea) {
+      build()
+    }
+    container.setupConstraints(parent: self, in: context)
     context.prepareViewHierarchy()
     context.activate()
 
     return context
   }
 
-  @discardableResult
-  public func buildSublayersLayout(build: () -> SafeAreaConstraint) -> LayoutBuilderContext {
+  /// Applies the layout of the dimension in itself.
+  public func buildSelfSizing(build: (ViewBlock) -> ViewBlock) {
 
-    let context = LayoutBuilderContext(targetView: self)
-    let layout = build()
-    layout.setupConstraints(parent: self, in: context)
-
-    context.prepareViewHierarchy()
-    context.activate()
-
-    return context
-  }
-
-  public func buildSelfSizing(build: (ViewConstraint) -> ViewConstraint) {
-
-    let constraint = ViewConstraint(self)
+    let constraint = ViewBlock(self)
     let modifiedConstraint = build(constraint)
 
     modifiedConstraint.makeApplier()()
@@ -44,7 +36,8 @@ extension UIView {
 
   }
 
-  public var viewConstraint: ViewConstraint {
+  /// Returns an instance of ViewBlock to describe layout.
+  public var viewBlock: ViewBlock {
     .init(self)
   }
 

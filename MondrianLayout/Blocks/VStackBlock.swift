@@ -1,6 +1,6 @@
 import UIKit
 
-public struct VStackConstraint:
+public struct VStackBlock:
   LayoutDescriptorType,
   _RelativeContentConvertible,
   _LayeringContentConvertible
@@ -186,7 +186,7 @@ public struct VStackConstraint:
           .hStack(let c as LayoutDescriptorType),
           .zStack(let c as LayoutDescriptorType):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.\(c.name)")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackBlock.\(c.name)")
           currentLayoutElement = .init(layoutGuide: newLayoutGuide)
           c.setupConstraints(parent: currentLayoutElement, in: context)
           perform()

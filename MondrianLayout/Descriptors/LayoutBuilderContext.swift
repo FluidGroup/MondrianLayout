@@ -21,7 +21,7 @@ public final class LayoutBuilderContext {
 
   public private(set) var layoutGuides: [UILayoutGuide] = []
   public private(set) var constraints: [NSLayoutConstraint] = []
-  public private(set) var views: [ViewConstraint] = []
+  public private(set) var views: [ViewBlock] = []
   public private(set) var viewAppliers: [() -> Void] = []
 
   func add(constraints: [NSLayoutConstraint]) {
@@ -41,7 +41,7 @@ public final class LayoutBuilderContext {
     return guide
   }
 
-  func register(viewConstraint: ViewConstraint) {
+  func register(viewConstraint: ViewBlock) {
     assert(views.contains(where: { $0.view == viewConstraint.view }) == false)
 
     views.append(viewConstraint)
@@ -62,6 +62,9 @@ public final class LayoutBuilderContext {
     }
   }
 
+  /**
+   Activate constraints and layout guides.
+   */
   public func activate() {
 
     guard let targetView = targetView else {
@@ -77,5 +80,22 @@ public final class LayoutBuilderContext {
     NSLayoutConstraint.activate(constraints)
 
   }
+
+  /**
+   Deactivate constraints and layout guides.
+   */
+  public func deactivate() {
+
+    guard let targetView = targetView else {
+      return
+    }
+
+    layoutGuides.forEach {
+      targetView.removeLayoutGuide($0)
+    }
+
+    NSLayoutConstraint.deactivate(constraints)
+  }
+
 }
 
