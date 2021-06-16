@@ -15,6 +15,8 @@ public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConver
   _OverlayContentConvertible
 {
 
+  public var name: String = "Relative"
+
   public var _backgroundContent: _BackgroundContent {
     return .relative(self)
   }
@@ -136,11 +138,8 @@ public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConver
 @_functionBuilder
 public enum RelativeContentBuilder {
   public typealias Component = _RelativeContent
-}
 
-extension RelativeContentBuilder {
-
-  public static func buildBlock(_ components: _RelativeContent) -> Component {
+  public static func buildBlock(_ components: Component) -> Component {
     return components
   }
 
@@ -164,7 +163,7 @@ extension RelativeContentBuilder {
     return .view(view)
   }
 
-  public static func buildExpression(_ components: _RelativeContent) -> Component {
+  public static func buildExpression(_ components: Component) -> Component {
     return components
   }
 }

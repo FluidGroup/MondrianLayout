@@ -10,6 +10,8 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     case bottom
   }
 
+  public var name: String = "HStack"
+
   public var _relativeContent: _RelativeContent {
     return .hStack(self)
   }
@@ -161,51 +163,16 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           perform()
           previous = currentLayoutElement
 
-        case .background(let backgroundConstraint):
+        case .background(let c as LayoutDescriptorType),
+             .overlay(let c as LayoutDescriptorType),
+             .relative(let c as LayoutDescriptorType),
+             .vStack(let c as LayoutDescriptorType),
+             .hStack(let c as LayoutDescriptorType),
+             .zStack(let c as LayoutDescriptorType):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Background")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.\(c.name)")
           currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          backgroundConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .overlay(let overlayConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Overlay")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          overlayConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .relative(let relativeConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.Relative")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          relativeConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .vStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.VStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .hStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.HStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .zStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.ZStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          c.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
           previous = currentLayoutElement
 

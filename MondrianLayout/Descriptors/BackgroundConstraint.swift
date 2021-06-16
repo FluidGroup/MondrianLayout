@@ -17,6 +17,8 @@ public indirect enum _BackgroundContent {
 
 public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConvertible {
 
+  public var name: String = "Background"
+
   public var _relativeContent: _RelativeContent {
     return .background(self)
   }

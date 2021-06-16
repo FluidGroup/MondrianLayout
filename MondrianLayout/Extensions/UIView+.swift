@@ -19,6 +19,19 @@ extension UIView {
     return context
   }
 
+  @discardableResult
+  public func buildSublayersLayout(build: () -> SafeAreaConstraint) -> LayoutBuilderContext {
+
+    let context = LayoutBuilderContext(targetView: self)
+    let layout = build()
+    layout.setupConstraints(parent: self, in: context)
+
+    context.prepareViewHierarchy()
+    context.activate()
+
+    return context
+  }
+
   public func buildSelfSizing(build: (ViewConstraint) -> ViewConstraint) {
 
     let constraint = ViewConstraint(self)

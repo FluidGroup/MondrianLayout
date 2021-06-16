@@ -13,6 +13,8 @@ public enum _ZStackElement {
 
 public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
 
+  public var name: String = "ZStack"
+
   public var _relativeContent: _RelativeContent {
     return .zStack(self)
   }
@@ -52,17 +54,17 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         perform(current: .init(view: viewConstraint.view))
 
-      case .background(let backgroundConstraint):
+      case .background(let c):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.Background")
-        backgroundConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
+        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))
 
-      case .overlay(let overlayConstraint):
+      case .overlay(let c):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.Overlay")
-        overlayConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
+        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))
 
@@ -70,17 +72,17 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
         relativeConstraint.setupConstraints(parent: parent, in: context)
 
-      case .vStack(let stackConstraint):
+      case .vStack(let c):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.VStack")
-        stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
+        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))
 
-      case .hStack(let stackConstraint):
+      case .hStack(let c):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.HStack")
-        stackConstraint.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
+        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))
 

@@ -25,7 +25,7 @@
 		4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6362678DC0000BDE2DB /* Book.Background.swift */; };
 		4B47F6392678DC4000BDE2DB /* Book.VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */; };
 		4B47F63B2678DC6C00BDE2DB /* Book.HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */; };
-		4B47F63D2678DCAC00BDE2DB /* BookZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */; };
+		4B47F63D2678DCAC00BDE2DB /* Book.ZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63C2678DCAC00BDE2DB /* Book.ZStackConstraint.swift */; };
 		4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */; };
 		4B47F6412678E51200BDE2DB /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6402678E51200BDE2DB /* Edge.swift */; };
 		4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */; };
@@ -40,6 +40,7 @@
 		4B64B1C526762A6F00460282 /* VStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackConstraint.swift */; };
 		4B64B1C726762A8200460282 /* HStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackConstraint.swift */; };
 		4B64B1C926762C1400460282 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+.swift */; };
+		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
 		4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */; };
@@ -108,7 +109,7 @@
 		4B47F6362678DC0000BDE2DB /* Book.Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Background.swift; sourceTree = "<group>"; };
 		4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.VStackConstraint.swift; sourceTree = "<group>"; };
 		4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.HStackConstraint.swift; sourceTree = "<group>"; };
-		4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookZStackConstraint.swift; sourceTree = "<group>"; };
+		4B47F63C2678DCAC00BDE2DB /* Book.ZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.ZStackConstraint.swift; sourceTree = "<group>"; };
 		4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Overlay.swift; sourceTree = "<group>"; };
 		4B47F6402678E51200BDE2DB /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIComparison.swift; sourceTree = "<group>"; };
@@ -124,6 +125,7 @@
 		4B64B1C426762A6F00460282 /* VStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackConstraint.swift; sourceTree = "<group>"; };
 		4B64B1C626762A8200460282 /* HStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackConstraint.swift; sourceTree = "<group>"; };
 		4B64B1C826762C1400460282 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
 		4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackConstraint.swift; sourceTree = "<group>"; };
@@ -214,7 +216,8 @@
 				4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */,
 				4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */,
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackConstraint.swift */,
-				4B47F63C2678DCAC00BDE2DB /* BookZStackConstraint.swift */,
+				4B47F63C2678DCAC00BDE2DB /* Book.ZStackConstraint.swift */,
+				4B7382072679EBED00D77986 /* Book.SafeArea.swift */,
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
 				4B64B1BE26761DA800460282 /* Info.plist */,
 				4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */,
@@ -455,10 +458,11 @@
 				4B47F6392678DC4000BDE2DB /* Book.VStackConstraint.swift in Sources */,
 				4BFF75CE2677C91B003FA7F0 /* ExampleView.swift in Sources */,
 				4B47F63B2678DC6C00BDE2DB /* Book.HStackConstraint.swift in Sources */,
-				4B47F63D2678DCAC00BDE2DB /* BookZStackConstraint.swift in Sources */,
+				4B47F63D2678DCAC00BDE2DB /* Book.ZStackConstraint.swift in Sources */,
 				4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */,
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
 				4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */,
+				4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */,
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,

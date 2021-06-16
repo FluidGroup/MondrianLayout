@@ -17,6 +17,8 @@ public indirect enum _OverlayContent {
 
 public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertible {
 
+  public var name: String = "Overlay"
+
   public var _relativeContent: _RelativeContent {
     return .overlay(self)
   }

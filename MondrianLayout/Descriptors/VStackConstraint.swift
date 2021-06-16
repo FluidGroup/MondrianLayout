@@ -4,6 +4,8 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
   _BackgroundContentConvertible
 {
 
+  public let name = "VStack"
+
   public enum HorizontalAlignment {
     case leading
     case center
@@ -101,17 +103,25 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
             case .leading:
               context.add(constraints: [
                 currentLayoutElement.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
-                currentLayoutElement.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor),
+                currentLayoutElement.trailingAnchor.constraint(
+                  lessThanOrEqualTo: parent.trailingAnchor
+                ),
               ])
             case .center:
               context.add(constraints: [
-                currentLayoutElement.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor),
+                currentLayoutElement.leadingAnchor.constraint(
+                  greaterThanOrEqualTo: parent.leadingAnchor
+                ),
                 currentLayoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
-                currentLayoutElement.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor),
+                currentLayoutElement.trailingAnchor.constraint(
+                  lessThanOrEqualTo: parent.trailingAnchor
+                ),
               ])
             case .trailing:
               context.add(constraints: [
-                currentLayoutElement.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor),
+                currentLayoutElement.leadingAnchor.constraint(
+                  greaterThanOrEqualTo: parent.leadingAnchor
+                ),
                 currentLayoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
               ])
             }
@@ -164,51 +174,16 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           perform()
           previous = currentLayoutElement
 
-        case .background(let backgroundConstraint):
+        case .background(let c as LayoutDescriptorType),
+          .overlay(let c as LayoutDescriptorType),
+          .relative(let c as LayoutDescriptorType),
+          .vStack(let c as LayoutDescriptorType),
+          .hStack(let c as LayoutDescriptorType),
+          .zStack(let c as LayoutDescriptorType):
 
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Background")
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.\(c.name)")
           currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          backgroundConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .overlay(let overlayConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Overlay")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          overlayConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .relative(let relativeConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.Relative")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          relativeConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .vStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.VStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .hStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.HStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
-          perform()
-          previous = currentLayoutElement
-
-        case .zStack(let stackConstraint):
-
-          let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackConstraint.ZStack")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          stackConstraint.setupConstraints(parent: currentLayoutElement, in: context)
+          c.setupConstraints(parent: currentLayoutElement, in: context)
           perform()
           previous = currentLayoutElement
 
@@ -219,15 +194,10 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           } else {
             spaceToPrevious += spacer.minLength
           }
-
         }
-
       }
-
     }
-
   }
-
 }
 
 // MARK: Modifiers
