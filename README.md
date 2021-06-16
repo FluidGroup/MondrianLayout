@@ -1,6 +1,135 @@
 # MondrianLayout - (Under development)
 
 <img width="286" alt="CleanShot 2021-06-16 at 21 59 59@2x" src="https://user-images.githubusercontent.com/1888355/122223608-4af46100-ceee-11eb-9bc1-364c9ddec5c6.png">
+This image laied out by MondrianLayout
+
+<details><summary>Layout code</summary>
+<p>
+
+```swift
+HStackBlock(spacing: 2, alignment: .fill) {
+  VStackBlock(spacing: 2, alignment: .fill) {
+    UIView.mock(
+      backgroundColor: .mondrianRed,
+      preferredSize: .init(width: 28, height: 28)
+    )
+
+    UIView.mock(
+      backgroundColor: .layeringColor,
+      preferredSize: .init(width: 28, height: 50)
+    )
+
+    UIView.mock(
+      backgroundColor: .mondrianYellow,
+      preferredSize: .init(width: 28, height: 28)
+    )
+
+    UIView.mock(
+      backgroundColor: .layeringColor,
+      preferredSize: .init(width: 28, height: 28)
+    )
+
+    HStackBlock(alignment: .fill) {
+      UIView.mock(
+        backgroundColor: .layeringColor,
+        preferredSize: .init(width: 28, height: 28)
+      )
+      UIView.mock(
+        backgroundColor: .layeringColor,
+        preferredSize: .init(width: 28, height: 28)
+      )
+    }
+  }
+
+  VStackBlock(spacing: 2, alignment: .fill) {
+    HStackBlock(spacing: 2, alignment: .fill) {
+      UIView.mock(
+        backgroundColor: .layeringColor,
+        preferredSize: .init(width: 28, height: 28)
+      )
+      VStackBlock(spacing: 2, alignment: .fill) {
+        HStackBlock(spacing: 2, alignment: .fill) {
+          UIView.mock(
+            backgroundColor: .mondrianYellow,
+            preferredSize: .init(width: 28, height: 28)
+          )
+          UIView.mock(
+            backgroundColor: .layeringColor,
+            preferredSize: .init(width: 28, height: 28)
+          )
+        }
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+      }
+    }
+
+    HStackBlock(spacing: 2, alignment: .fill) {
+      VStackBlock(spacing: 2, alignment: .fill) {
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+        UIView.mock(
+          backgroundColor: .mondrianBlue,
+          preferredSize: .init(width: 28, height: 28)
+        )
+      }
+
+      UIView.mock(
+        backgroundColor: .layeringColor,
+        preferredSize: .init(width: 28, height: 28)
+      )
+
+      VStackBlock(spacing: 2, alignment: .fill) {
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+      }
+    }
+
+    HStackBlock(spacing: 2, alignment: .fill) {
+      UIView.mock(
+        backgroundColor: .mondrianRed,
+        preferredSize: .init(width: 28, height: 28)
+      )
+      VStackBlock(spacing: 2, alignment: .fill) {
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+        UIView.mock(
+          backgroundColor: .layeringColor,
+          preferredSize: .init(width: 28, height: 28)
+        )
+      }
+    }
+
+  }
+
+}
+.overlay(
+  UILabel.mockMultiline(text: "Mondrian Layout", textColor: .white)
+    .viewBlock
+    .padding(4)
+    .background(
+      UIView.mock(
+        backgroundColor: .layeringColor
+      )
+      .viewBlock
+    )
+    .relative(bottom: 8, right: 8)
+)
+```
+
+</p>
+</details>
 
 A DSL based layout builder with AutoLayout
 
@@ -11,6 +140,12 @@ A DSL based layout builder with AutoLayout
 
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
+
+## Demo app
+
+You can see many layout examples from the demo application.
+
+<img width="375" alt="CleanShot 2021-06-17 at 00 23 00@2x" src="https://user-images.githubusercontent.com/1888355/122247248-2e622400-cf02-11eb-9746-cae1d475142d.png">
 
 ## Overview
 
