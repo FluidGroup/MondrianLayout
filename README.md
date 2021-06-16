@@ -12,7 +12,20 @@ A DSL based layout builder with AutoLayout
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
 
-## Memo
+## Installation
 
-<img width="943" alt="CleanShot 2021-06-14 at 11 28 36@2x" src="https://user-images.githubusercontent.com/1888355/121831930-b8906980-cd03-11eb-80ce-3c4770aec61a.png">
+**CocoaPods**
 
+```ruby
+pod "MondrianLayout"
+```
+
+**SwiftPM**
+
+dependencies: [
+    .package(url: "https://github.com/muukii/MondrianLayout.git", exact: "<VERSION>")
+]
+
+## LICENSE
+
+MondrianLayout is released under the MIT license.
