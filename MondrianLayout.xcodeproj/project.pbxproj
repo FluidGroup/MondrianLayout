@@ -19,7 +19,7 @@
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
-		4B4693AF267915080079B761 /* SpaceBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693AE267915080079B761 /* SpaceBlock.swift */; };
+		4B4693AF267915080079B761 /* SpacerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693AE267915080079B761 /* SpacerBlock.swift */; };
 		4B4693B1267918C60079B761 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B0267918C60079B761 /* StackTests.swift */; };
 		4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B226791FA90079B761 /* SafeAreaContainer.swift */; };
 		4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6362678DC0000BDE2DB /* Book.Background.swift */; };
@@ -105,7 +105,7 @@
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B40577B2675C51F003B28A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4B4693AE267915080079B761 /* SpaceBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceBlock.swift; sourceTree = "<group>"; };
+		4B4693AE267915080079B761 /* SpacerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacerBlock.swift; sourceTree = "<group>"; };
 		4B4693B0267918C60079B761 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		4B4693B226791FA90079B761 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
 		4B47F6362678DC0000BDE2DB /* Book.Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Background.swift; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 		4B9A1B84267A286D0029907C /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				4B4693AE267915080079B761 /* SpaceBlock.swift */,
+				4B4693AE267915080079B761 /* SpacerBlock.swift */,
 				4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */,
 				4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */,
@@ -447,7 +447,7 @@
 			files = (
 				4B73820E267A188800D77986 /* StackItem.swift in Sources */,
 				4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */,
-				4B4693AF267915080079B761 /* SpaceBlock.swift in Sources */,
+				4B4693AF267915080079B761 /* SpacerBlock.swift in Sources */,
 				4B73820A267A067700D77986 /* Dimension.swift in Sources */,
 				4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */,
 				4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */,

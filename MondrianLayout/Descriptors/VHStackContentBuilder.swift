@@ -4,7 +4,7 @@ public enum _VHStackContent {
 
   case view(ViewBlock)
   case relative(RelativeBlock)
-  case spacer(SpaceBlock)
+  case spacer(SpacerBlock)
   case vStack(VStackBlock)
   case hStack(HStackBlock)
   case zStack(ZStackBlock)
@@ -108,7 +108,7 @@ public enum VStackContentBuilder {
     return .init(content: source.vhStackItemContent)
   }
 
-  public static func buildExpression(_ spacer: SpaceBlock) -> Component {
+  public static func buildExpression(_ spacer: SpacerBlock) -> Component {
     return .init(content: .spacer(spacer))
   }
 
@@ -135,7 +135,7 @@ public enum HStackContentBuilder {
     return .init(content: source.vhStackItemContent)
   }
 
-  public static func buildExpression(_ spacer: SpaceBlock) -> Component {
+  public static func buildExpression(_ spacer: SpacerBlock) -> Component {
     return .init(content: .spacer(spacer))
   }
 

@@ -66,7 +66,7 @@ var _book_HStackBlock: BookView {
             .viewBlock
             .alignSelf(.fill)
 
-            SpaceBlock(minLength: 4)
+            SpacerBlock(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,

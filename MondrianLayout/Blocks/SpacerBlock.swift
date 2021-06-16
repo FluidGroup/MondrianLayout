@@ -1,6 +1,6 @@
 import UIKit
 
-public struct SpaceBlock {
+public struct SpacerBlock {
 
   public let minLength: CGFloat
 

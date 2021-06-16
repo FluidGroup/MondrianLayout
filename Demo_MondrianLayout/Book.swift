@@ -178,25 +178,25 @@ final class DemoView: UIView {
 
     self.buildSublayersLayout {
       VStackBlock {
-        SpaceBlock(minLength: 10)
-        SpaceBlock(minLength: 10)
+        SpacerBlock(minLength: 10)
+        SpacerBlock(minLength: 10)
         HStackBlock {
           ViewBlock(profileImageView)
             .huggingPriority(.horizontal, .required)
-          SpaceBlock(minLength: 4)
+          SpacerBlock(minLength: 4)
 
           nicknameLabel
         }
-        SpaceBlock(minLength: 10)
-        SpaceBlock(minLength: 10)
+        SpacerBlock(minLength: 10)
+        SpacerBlock(minLength: 10)
         ViewBlock(imageView)
           .aspectRatio(1)
-        SpaceBlock(minLength: 10)
+        SpacerBlock(minLength: 10)
         HStackBlock {
           likeButton
-          SpaceBlock(minLength: 2)
+          SpacerBlock(minLength: 2)
           commentButton
-          SpaceBlock(minLength: 2)
+          SpacerBlock(minLength: 2)
           messageButton
         }
         ZStackBlock {

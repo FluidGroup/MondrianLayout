@@ -63,7 +63,7 @@ var _book_VStackBlock: BookView {
               preferredSize: .init(width: 28, height: 28)
             )
 
-            SpaceBlock(minLength: 4)
+            SpacerBlock(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
