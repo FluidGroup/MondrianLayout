@@ -10,6 +10,7 @@ public enum _VHStackContent {
   case zStack(ZStackBlock)
   case background(BackgroundBlock)
   case overlay(OverlayBlock)
+
 }
 
 public struct _VStackItem {
@@ -139,4 +140,31 @@ public enum HStackContentBuilder {
     return .init(content: .spacer(spacer))
   }
 
+}
+
+struct DistributingState {
+
+  var hasStartedLayout = false
+  var initialSpace: SpacerBlock = .init(minLength: 0, expands: false)
+  var previous: _LayoutElement?
+  private(set) var spaceToPrevious: [SpacerBlock] = []
+  var currentLayoutElement: _LayoutElement!
+
+  mutating func appendSpacer(_ block: SpacerBlock) {
+    spaceToPrevious.append(block)
+  }
+
+  mutating func resetSpacingInterItem(_ block: SpacerBlock) {
+    spaceToPrevious = [block]
+  }
+
+  func totalSpace() -> CGFloat {
+    spaceToPrevious.reduce(0) { space, block in
+      space + block.minLength
+    }
+  }
+
+  func isEpandableSpace() -> Bool {
+    spaceToPrevious.contains(where: { $0.expands == true })
+  }
 }

@@ -5,14 +5,44 @@
 //  Created by Muukii on 2021/06/16.
 //
 
-import MondrianLayout
 import Foundation
+import MondrianLayout
 import SnapshotTesting
 import XCTest
 
-final class StackTests: XCTestCase {
+final class VStackTests: XCTestCase {
 
-  func test_vstack_center() {
+  func test_mixing_spacer() {
+    let view = ExampleView(width: nil, height: 180) { (view: UIView) in
+      view.buildSublayersLayout {
+        VStackBlock(spacing: 4) {
+          UIView.mock(
+            backgroundColor: .layeringColor,
+            preferredSize: .init(width: 28, height: 28)
+          )
+
+          SpacerBlock(minLength: 20)
+
+          UIView.mock(
+            backgroundColor: .layeringColor,
+            preferredSize: .init(width: 28, height: 28)
+          )
+
+          UIView.mock(
+            backgroundColor: .layeringColor,
+            preferredSize: .init(width: 28, height: 28)
+          )
+
+          SpacerBlock(minLength: 20, expands: false)
+        }
+        .background(UIView.mock(backgroundColor: .layeringColor))
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+  }
+
+  func test_enter() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
@@ -37,7 +67,7 @@ final class StackTests: XCTestCase {
 
   }
 
-  func test_vstack_leading() {
+  func test_leading() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
@@ -62,7 +92,7 @@ final class StackTests: XCTestCase {
 
   }
 
-  func test_vstack_trailing() {
+  func test_trailing() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
@@ -87,7 +117,7 @@ final class StackTests: XCTestCase {
 
   }
 
-  func test_vstack_additional_spacing() {
+  func test_additional_spacing() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
@@ -112,28 +142,4 @@ final class StackTests: XCTestCase {
     assertSnapshot(matching: view, as: .image, record: _record)
   }
 
-  func test_hstack_additional_spacing() {
-
-    let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.buildSublayersLayout {
-        HStackBlock(spacing: 4) {
-          UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
-          )
-
-          SpacerBlock(minLength: 4)
-
-          UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
-          )
-
-          UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
-          )
-        }
-      }
-    }
-
-    assertSnapshot(matching: view, as: .image, record: _record)
-  }
 }

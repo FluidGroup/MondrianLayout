@@ -53,32 +53,32 @@ public struct HStackBlock:
 
     func align(layoutElement: _LayoutElement, alignment: VerticalAlignment) {
       switch alignment {
-        case .top:
-          context.add(constraints: [
-            layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
-            layoutElement.bottomAnchor.constraint(
-              lessThanOrEqualTo: parent.bottomAnchor
-            ),
-          ])
-        case .center:
-          context.add(constraints: [
-            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-            layoutElement.bottomAnchor.constraint(
-              lessThanOrEqualTo: parent.bottomAnchor
-            ),
-            layoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
-          ])
-        case .bottom:
-          context.add(constraints: [
-            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-            layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-          ])
-        case .fill:
-          context.add(constraints: [
-            layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
-            layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-          ])
-        }
+      case .top:
+        context.add(constraints: [
+          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+          layoutElement.bottomAnchor.constraint(
+            lessThanOrEqualTo: parent.bottomAnchor
+          ),
+        ])
+      case .center:
+        context.add(constraints: [
+          layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+          layoutElement.bottomAnchor.constraint(
+            lessThanOrEqualTo: parent.bottomAnchor
+          ),
+          layoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
+        ])
+      case .bottom:
+        context.add(constraints: [
+          layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+        ])
+      case .fill:
+        context.add(constraints: [
+          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+        ])
+      }
     }
 
     if parsed.count == 1 {
@@ -110,61 +110,78 @@ public struct HStackBlock:
 
     } else {
 
-      var hasStartedLayout = false
-      var initialSpace: CGFloat = 0
-      var previous: _LayoutElement?
-      var spaceToPrevious: CGFloat = 0
-      var currentLayoutElement: _LayoutElement!
+      var state: DistributingState = .init()
 
-      for (i, element) in parsed.enumerated() {
+      for element in parsed {
 
         func perform() {
 
-          hasStartedLayout = true
+          state.hasStartedLayout = true
 
-          align(layoutElement: currentLayoutElement, alignment: element.alignSelf ?? alignment)
+          align(
+            layoutElement: state.currentLayoutElement,
+            alignment: element.alignSelf ?? alignment
+          )
 
-          if let previous = previous {
+          stackingLayout: do {
 
-            if elements.indices.last == i {
-              // last element
-              context.add(constraints: [
-                currentLayoutElement.leftAnchor.constraint(
-                  equalTo: previous.rightAnchor,
-                  constant: spaceToPrevious
-                ),
-                currentLayoutElement.rightAnchor.constraint(equalTo: parent.rightAnchor),
-              ])
+            if let previous = state.previous {
+
+              if state.isEpandableSpace() {
+
+                context.add(constraints: [
+                  state.currentLayoutElement.leadingAnchor.constraint(
+                    greaterThanOrEqualTo: previous.trailingAnchor,
+                    constant: state.totalSpace()
+                  )
+                ])
+
+              } else {
+
+                context.add(constraints: [
+                  state.currentLayoutElement.leadingAnchor.constraint(
+                    equalTo: previous.trailingAnchor,
+                    constant: state.totalSpace()
+                  )
+                ])
+              }
+
             } else {
-              // middle element
-              context.add(constraints: [
-                currentLayoutElement.leftAnchor.constraint(
-                  equalTo: previous.rightAnchor,
-                  constant: spaceToPrevious
-                )
-              ])
+              // first element
+
+              if state.initialSpace.expands {
+                context.add(constraints: [
+                  state.currentLayoutElement.leadingAnchor.constraint(
+                    greaterThanOrEqualTo: parent.leadingAnchor,
+                    constant: state.initialSpace.minLength
+                  )
+                ])
+              } else {
+                context.add(constraints: [
+                  state.currentLayoutElement.leadingAnchor.constraint(
+                    equalTo: parent.leadingAnchor,
+                    constant: state.initialSpace.minLength
+                  )
+                ])
+              }
+
             }
-          } else {
-            // first element
-            context.add(constraints: [
-              currentLayoutElement.leftAnchor.constraint(
-                equalTo: parent.leftAnchor,
-                constant: initialSpace
-              )
-            ])
+
           }
 
-          spaceToPrevious = spacing
         }
 
         switch element.content {
         case .view(let viewConstraint):
 
           let view = viewConstraint.view
-          currentLayoutElement = .init(view: view)
+          state.currentLayoutElement = .init(view: view)
           context.register(viewConstraint: viewConstraint)
+
           perform()
-          previous = currentLayoutElement
+
+          state.previous = state.currentLayoutElement
+          state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
 
         case .background(let c as LayoutDescriptorType),
           .overlay(let c as LayoutDescriptorType),
@@ -174,23 +191,46 @@ public struct HStackBlock:
           .zStack(let c as LayoutDescriptorType):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          c.setupConstraints(parent: currentLayoutElement, in: context)
+          state.currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          c.setupConstraints(parent: state.currentLayoutElement, in: context)
           perform()
-          previous = currentLayoutElement
+
+          state.previous = state.currentLayoutElement
+          state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
 
         case .spacer(let spacer):
 
-          if hasStartedLayout == false {
-            initialSpace += spacer.minLength
+          if state.hasStartedLayout == false {
+            state.initialSpace = spacer
           } else {
-            spaceToPrevious += spacer.minLength
+            state.appendSpacer(spacer)
           }
 
         }
 
       }
 
+      finalize: do {
+
+        // last element
+
+        if state.isEpandableSpace() {
+          context.add(constraints: [
+            state.currentLayoutElement.trailingAnchor.constraint(
+              lessThanOrEqualTo: parent.trailingAnchor,
+              constant: -state.totalSpace()
+            )
+          ])
+        } else {
+          context.add(constraints: [
+            state.currentLayoutElement.trailingAnchor.constraint(
+              equalTo: parent.trailingAnchor,
+              constant: -state.totalSpace()
+            )
+          ])
+        }
+
+      }
     }
 
   }

@@ -119,53 +119,59 @@ public struct VStackBlock:
 
     } else {
 
-      var hasStartedLayout = false
-      var initialSpace: CGFloat = 0
-      var previous: _LayoutElement?
-      var spaceToPrevious: CGFloat = 0
-      var currentLayoutElement: _LayoutElement!
+      var state: DistributingState = .init()
 
-      for (i, element) in parsed.enumerated() {
+      for element in parsed {
 
         func perform() {
 
-          hasStartedLayout = true
+          state.hasStartedLayout = true
 
-          align(layoutElement: currentLayoutElement, alignment: element.alignSelf ?? alignment)
+          align(layoutElement: state.currentLayoutElement, alignment: element.alignSelf ?? alignment)
 
           stackingLayout: do {
 
-            if let previous = previous {
+            if let previous = state.previous {
 
-              if elements.indices.last == i {
-                // last element
+              if state.isEpandableSpace() {
+
                 context.add(constraints: [
-                  currentLayoutElement.topAnchor.constraint(
-                    equalTo: previous.bottomAnchor,
-                    constant: spaceToPrevious
-                  ),
-                  currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+                  state.currentLayoutElement.topAnchor.constraint(
+                    greaterThanOrEqualTo: previous.bottomAnchor,
+                    constant: state.totalSpace()
+                  )
                 ])
+
               } else {
-                // middle element
+
                 context.add(constraints: [
-                  currentLayoutElement.topAnchor.constraint(
+                  state.currentLayoutElement.topAnchor.constraint(
                     equalTo: previous.bottomAnchor,
-                    constant: spaceToPrevious
+                    constant: state.totalSpace()
                   )
                 ])
               }
+
             } else {
               // first element
-              context.add(constraints: [
-                currentLayoutElement.topAnchor.constraint(
-                  equalTo: parent.topAnchor,
-                  constant: initialSpace
-                )
-              ])
-            }
 
-            spaceToPrevious = spacing
+              if state.initialSpace.expands {
+                context.add(constraints: [
+                  state.currentLayoutElement.topAnchor.constraint(
+                    greaterThanOrEqualTo: parent.topAnchor,
+                    constant: state.initialSpace.minLength
+                  )
+                ])
+              } else {
+                context.add(constraints: [
+                  state.currentLayoutElement.topAnchor.constraint(
+                    equalTo: parent.topAnchor,
+                    constant: state.initialSpace.minLength
+                  )
+                ])
+              }
+
+            }
 
           }
         }
@@ -174,10 +180,13 @@ public struct VStackBlock:
         case .view(let viewConstraint):
 
           let view = viewConstraint.view
-          currentLayoutElement = .init(view: view)
+          state.currentLayoutElement = .init(view: view)
           context.register(viewConstraint: viewConstraint)
+
           perform()
-          previous = currentLayoutElement
+
+          state.previous = state.currentLayoutElement
+          state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
 
         case .background(let c as LayoutDescriptorType),
           .overlay(let c as LayoutDescriptorType),
@@ -187,22 +196,40 @@ public struct VStackBlock:
           .zStack(let c as LayoutDescriptorType):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackBlock.\(c.name)")
-          currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-          c.setupConstraints(parent: currentLayoutElement, in: context)
+          state.currentLayoutElement = .init(layoutGuide: newLayoutGuide)
+          c.setupConstraints(parent: state.currentLayoutElement, in: context)
+
           perform()
-          previous = currentLayoutElement
+
+          state.previous = state.currentLayoutElement
+          state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
 
         case .spacer(let spacer):
 
-          if hasStartedLayout == false {
-            initialSpace += spacer.minLength
+          if state.hasStartedLayout == false {
+            state.initialSpace = spacer
           } else {
-            spaceToPrevious += spacer.minLength
+            state.appendSpacer(spacer)
           }
         }
       }
+
+      finalize: do {
+
+        // last element
+
+        if state.isEpandableSpace() {
+          context.add(constraints: [
+            state.currentLayoutElement.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor, constant: -state.totalSpace())
+          ])
+        } else {
+          context.add(constraints: [
+            state.currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -state.totalSpace())
+          ])
+        }
+
+      }
+
     }
   }
 }
-
-// MARK: Modifiers

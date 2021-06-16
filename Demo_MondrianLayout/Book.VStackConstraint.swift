@@ -5,6 +5,34 @@ import UIKit
 var _book_VStackBlock: BookView {
 
   BookNavigationLink(title: "VStackBlock") {
+    BookPreview {
+      ExampleView(width: nil, height: 180) { (view: UIView) in
+        view.buildSublayersLayout {
+          VStackBlock(spacing: 4) {
+            UIView.mock(
+              backgroundColor: .mondrianYellow,
+              preferredSize: .init(width: 28, height: 28)
+            )
+
+            SpacerBlock(minLength: 20)
+
+            UIView.mock(
+              backgroundColor: .mondrianYellow,
+              preferredSize: .init(width: 28, height: 28)
+            )
+
+            UIView.mock(
+              backgroundColor: .mondrianYellow,
+              preferredSize: .init(width: 28, height: 28)
+            )
+
+            SpacerBlock(minLength: 20, expands: false)
+          }
+          .background(UIView.mock(backgroundColor: .layeringColor))
+        }
+      }
+    }
+    .title("Spacing")
 
     BookForEach(data: [.center, .leading, .trailing, .fill] as [VStackBlock.HorizontalAlignment]) { alignment in
       BookPreview {

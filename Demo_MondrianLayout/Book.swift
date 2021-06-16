@@ -143,9 +143,13 @@ let book = Book(title: "MondrianLayout") {
   _book_ZStackConstraint
 
   _book_SafeArea
+
+  BookPreview {
+    InstagramPostView()
+  }
 }
 
-final class DemoView: UIView {
+final class InstagramPostView: UIView {
 
   private let profileImageView = UIView.mock(
     backgroundColor: .mondrianYellow,
@@ -176,15 +180,16 @@ final class DemoView: UIView {
 
     super.init(frame: .zero)
 
+    self.buildSelfSizing {
+      $0.width(200)
+    }
+
     self.buildSublayersLayout {
-      VStackBlock {
-        SpacerBlock(minLength: 10)
-        SpacerBlock(minLength: 10)
+      VStackBlock(alignment: .fill) {
         HStackBlock {
           ViewBlock(profileImageView)
             .huggingPriority(.horizontal, .required)
           SpacerBlock(minLength: 4)
-
           nicknameLabel
         }
         SpacerBlock(minLength: 10)
