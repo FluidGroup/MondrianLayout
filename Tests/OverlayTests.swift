@@ -6,10 +6,9 @@
 //
 
 import Foundation
-
-import XCTest
 import MondrianLayout
 import SnapshotTesting
+import XCTest
 
 final class OverlayTests: XCTestCase {
 
@@ -41,7 +40,7 @@ final class OverlayTests: XCTestCase {
 
   func test_2() {
 
-    let view =  ExampleView(width: nil, height: nil) { (view: UIView) in
+    let view = ExampleView(width: nil, height: nil) { (view: UIView) in
       view.buildSublayersLayout {
         VStackConstraint {
           UIView.mock(
