@@ -1,6 +1,8 @@
 import UIKit
 
-public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertible,
+public struct VStackConstraint:
+  LayoutDescriptorType,
+  _RelativeContentConvertible,
   _BackgroundContentConvertible
 {
 
@@ -12,6 +14,8 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     case trailing
   }
 
+  // MARK: - Properties
+
   public var _relativeContent: _RelativeContent {
     return .vStack(self)
   }
@@ -20,9 +24,11 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     return .vStack(self)
   }
 
-  public let spacing: CGFloat
-  public let alignment: HorizontalAlignment
-  public let elements: [_VHStackContent]
+  public var spacing: CGFloat
+  public var alignment: HorizontalAlignment
+  public var elements: [_VHStackContent]
+
+  // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
@@ -33,6 +39,8 @@ public struct VStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.alignment = alignment
     self.elements = elements()
   }
+
+  // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 

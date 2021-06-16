@@ -1,6 +1,8 @@
 import UIKit
 
-public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertible,
+public struct HStackConstraint:
+  LayoutDescriptorType,
+  _RelativeContentConvertible,
   _BackgroundContentConvertible
 {
 
@@ -9,6 +11,8 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     case center
     case bottom
   }
+
+  // MARK: - Properties
 
   public var name: String = "HStack"
 
@@ -20,9 +24,11 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     return .hStack(self)
   }
 
-  public let spacing: CGFloat
-  public let alignment: VerticalAlignment
-  public let elements: [_VHStackContent]
+  public var spacing: CGFloat
+  public var alignment: VerticalAlignment
+  public var elements: [_VHStackContent]
+
+  // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
@@ -33,6 +39,8 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
     self.alignment = alignment
     self.elements = elements()
   }
+
+  // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
@@ -164,11 +172,11 @@ public struct HStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
           previous = currentLayoutElement
 
         case .background(let c as LayoutDescriptorType),
-             .overlay(let c as LayoutDescriptorType),
-             .relative(let c as LayoutDescriptorType),
-             .vStack(let c as LayoutDescriptorType),
-             .hStack(let c as LayoutDescriptorType),
-             .zStack(let c as LayoutDescriptorType):
+          .overlay(let c as LayoutDescriptorType),
+          .relative(let c as LayoutDescriptorType),
+          .vStack(let c as LayoutDescriptorType),
+          .hStack(let c as LayoutDescriptorType),
+          .zStack(let c as LayoutDescriptorType):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackConstraint.\(c.name)")
           currentLayoutElement = .init(layoutGuide: newLayoutGuide)

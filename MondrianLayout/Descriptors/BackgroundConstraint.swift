@@ -15,7 +15,12 @@ public indirect enum _BackgroundContent {
   case background(BackgroundConstraint)
 }
 
-public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct BackgroundConstraint:
+  LayoutDescriptorType,
+  _RelativeContentConvertible
+{
+
+  // MARK: - Properties
 
   public var name: String = "Background"
 
@@ -26,6 +31,8 @@ public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConver
   let content: _BackgroundContent
   let backgroundContent: _BackgroundContent
 
+  // MARK: - Initializers
+
   init(
     content: _BackgroundContent,
     backgroundContent: _BackgroundContent
@@ -34,6 +41,8 @@ public struct BackgroundConstraint: LayoutDescriptorType, _RelativeContentConver
     self.content = content
     self.backgroundContent = backgroundContent
   }
+
+  // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 

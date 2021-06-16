@@ -11,7 +11,13 @@ public enum _ZStackElement {
   case overlay(OverlayConstraint)
 }
 
-public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertible, _BackgroundContentConvertible {
+public struct ZStackConstraint:
+  LayoutDescriptorType,
+  _RelativeContentConvertible,
+  _BackgroundContentConvertible
+{
+
+  // MARK: - Properties
 
   public var name: String = "ZStack"
 
@@ -25,11 +31,15 @@ public struct ZStackConstraint: LayoutDescriptorType, _RelativeContentConvertibl
 
   public let elements: [_ZStackElement]
 
+  // MARK: - Initializers
+
   public init(
     @ZStackElementBuilder elements: () -> [_ZStackElement]
   ) {
     self.elements = elements()
   }
+
+  // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 

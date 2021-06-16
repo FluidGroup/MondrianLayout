@@ -15,7 +15,12 @@ public indirect enum _OverlayContent {
   case background(BackgroundConstraint)
 }
 
-public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertible {
+public struct OverlayConstraint:
+  LayoutDescriptorType,
+  _RelativeContentConvertible
+{
+
+  // MARK: - Properties
 
   public var name: String = "Overlay"
 
@@ -26,6 +31,8 @@ public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertib
   public let content: _OverlayContent
   public let overlayContent: _OverlayContent
 
+  // MARK: - Initializers
+
   init(
     content: _OverlayContent,
     overlayContent: _OverlayContent
@@ -35,6 +42,8 @@ public struct OverlayConstraint: LayoutDescriptorType, _RelativeContentConvertib
     self.overlayContent = overlayContent
 
   }
+
+  // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
