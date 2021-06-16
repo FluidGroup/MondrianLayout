@@ -7,7 +7,7 @@ import MondrianLayout
 var _book_HStackBlock: BookView {
   BookNavigationLink(title: "HStackBlock") {
 
-    BookForEach(data: [.center, .top, .bottom] as [HStackBlock.VerticalAlignment]) { alignment in
+    BookForEach(data: [.center, .top, .bottom, .fill] as [HStackBlock.VerticalAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
           view.buildSublayersLayout {

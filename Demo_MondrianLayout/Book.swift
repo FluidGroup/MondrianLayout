@@ -2,37 +2,105 @@ import MondrianLayout
 import StorybookKit
 import UIKit
 
-let book = Book(title: "BoxLayout2") {
+let book = Book(title: "MondrianLayout") {
 
-  BookSection(title: "Sample") {
+  BookPreview {
+    ExampleView(width: 200, height: 200) { (view: UIView) in
+      view.buildSublayersLayout {
 
-    BookPreview {
-      ExampleView(width: 200, height: 200) { (view: UIView) in
-        view.buildSublayersLayout {
+        HStackBlock(spacing: 2, alignment: .fill) {
+          VStackBlock(spacing: 2, alignment: .fill) {
+            UIView.mock(
+              backgroundColor: .mondrianRed,
+              preferredSize: .init(width: 28, height: 28)
+            )
 
-          HStackBlock(spacing: 2, alignment: .fill) {
-            VStackBlock(spacing: 2, alignment: .fill) {
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .init(width: 28, height: 50)
+            )
+
+            UIView.mock(
+              backgroundColor: .mondrianYellow,
+              preferredSize: .init(width: 28, height: 28)
+            )
+
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .init(width: 28, height: 28)
+            )
+
+            HStackBlock(alignment: .fill) {
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 28, height: 28)
+              )
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 28, height: 28)
+              )
+            }
+          }
+
+          VStackBlock(spacing: 2, alignment: .fill) {
+            HStackBlock(spacing: 2, alignment: .fill) {
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 28, height: 28)
+              )
+              VStackBlock(spacing: 2, alignment: .fill) {
+                HStackBlock(spacing: 2, alignment: .fill) {
+                  UIView.mock(
+                    backgroundColor: .mondrianYellow,
+                    preferredSize: .init(width: 28, height: 28)
+                  )
+                  UIView.mock(
+                    backgroundColor: .layeringColor,
+                    preferredSize: .init(width: 28, height: 28)
+                  )
+                }
+                UIView.mock(
+                  backgroundColor: .layeringColor,
+                  preferredSize: .init(width: 28, height: 28)
+                )
+              }
+            }
+
+            HStackBlock(spacing: 2, alignment: .fill) {
+              VStackBlock(spacing: 2, alignment: .fill) {
+                UIView.mock(
+                  backgroundColor: .layeringColor,
+                  preferredSize: .init(width: 28, height: 28)
+                )
+                UIView.mock(
+                  backgroundColor: .mondrianBlue,
+                  preferredSize: .init(width: 28, height: 28)
+                )
+              }
+
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 28, height: 28)
+              )
+
+              VStackBlock(spacing: 2, alignment: .fill) {
+                UIView.mock(
+                  backgroundColor: .layeringColor,
+                  preferredSize: .init(width: 28, height: 28)
+                )
+                UIView.mock(
+                  backgroundColor: .layeringColor,
+                  preferredSize: .init(width: 28, height: 28)
+                )
+              }
+            }
+
+            HStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .mondrianRed,
                 preferredSize: .init(width: 28, height: 28)
               )
-
-              UIView.mock(
-                backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 50)
-              )
-
-              UIView.mock(
-                backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              UIView.mock(
-                backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
-              )
-
-              HStackBlock(alignment: .fill) {
+              VStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
                   preferredSize: .init(width: 28, height: 28)
@@ -42,110 +110,39 @@ let book = Book(title: "BoxLayout2") {
                   preferredSize: .init(width: 28, height: 28)
                 )
               }
-            }
-
-            VStackBlock(spacing: 2, alignment: .fill) {
-              HStackBlock(spacing: 2, alignment: .fill) {
-                UIView.mock(
-                  backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
-                )
-                VStackBlock(spacing: 2, alignment: .fill) {
-                  HStackBlock(spacing: 2, alignment: .fill) {
-                    UIView.mock(
-                      backgroundColor: .mondrianYellow,
-                      preferredSize: .init(width: 28, height: 28)
-                    )
-                    UIView.mock(
-                      backgroundColor: .layeringColor,
-                      preferredSize: .init(width: 28, height: 28)
-                    )
-                  }
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                }
-              }
-
-              HStackBlock(spacing: 2, alignment: .fill) {
-                VStackBlock(spacing: 2, alignment: .fill) {
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                  UIView.mock(
-                    backgroundColor: .mondrianBlue,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                }
-
-                UIView.mock(
-                  backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
-                )
-
-                VStackBlock(spacing: 2, alignment: .fill) {
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                }
-              }
-
-              HStackBlock(spacing: 2, alignment: .fill) {
-                UIView.mock(
-                  backgroundColor: .mondrianRed,
-                  preferredSize: .init(width: 28, height: 28)
-                )
-                VStackBlock(spacing: 2, alignment: .fill) {
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                  UIView.mock(
-                    backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
-                  )
-                }
-              }
-
             }
 
           }
-          .overlay(
-            UILabel.mockMultiline(text: "Mondrian Layout", textColor: .white)
-              .viewBlock
-              .padding(4)
-              .background(
-                UIView.mock(
-                  backgroundColor: .layeringColor
-                )
-                .viewBlock
-              )
-              .relative(bottom: 8, right: 8)
-          )
 
         }
+        .overlay(
+          UILabel.mockMultiline(text: "Mondrian Layout", textColor: .white)
+            .viewBlock
+            .padding(4)
+            .background(
+              UIView.mock(
+                backgroundColor: .layeringColor
+              )
+              .viewBlock
+            )
+            .relative(bottom: 8, right: 8)
+        )
+
       }
     }
-
-    _book_background
-
-    _book_overlay
-
-    _book_VStackBlock
-
-    _book_HStackBlock
-
-    _book_ZStackConstraint
-
-    _book_SafeArea
   }
+
+  _book_background
+
+  _book_overlay
+
+  _book_VStackBlock
+
+  _book_HStackBlock
+
+  _book_ZStackConstraint
+
+  _book_SafeArea
 }
 
 final class DemoView: UIView {
