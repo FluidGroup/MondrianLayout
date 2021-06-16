@@ -3,7 +3,7 @@ import UIKit
 public struct HStackConstraint:
   LayoutDescriptorType,
   _RelativeContentConvertible,
-  _BackgroundContentConvertible
+  _LayeringContentConvertible
 {
 
   public enum VerticalAlignment {
@@ -20,7 +20,7 @@ public struct HStackConstraint:
     return .hStack(self)
   }
 
-  public var _backgroundContent: _BackgroundContent {
+  public var _layeringContent: _LayeringContent {
     return .hStack(self)
   }
 

@@ -3,7 +3,7 @@ import UIKit
 public struct VStackConstraint:
   LayoutDescriptorType,
   _RelativeContentConvertible,
-  _BackgroundContentConvertible
+  _LayeringContentConvertible
 {
 
   public let name = "VStack"
@@ -20,7 +20,7 @@ public struct VStackConstraint:
     return .vStack(self)
   }
 
-  public var _backgroundContent: _BackgroundContent {
+  public var _layeringContent: _LayeringContent {
     return .vStack(self)
   }
 

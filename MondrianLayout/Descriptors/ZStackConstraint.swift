@@ -1,20 +1,9 @@
 import UIKit
 
-public enum _ZStackElement {
-
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case relative(RelativeConstraint)
-  case background(BackgroundConstraint)
-  case overlay(OverlayConstraint)
-}
-
 public struct ZStackConstraint:
   LayoutDescriptorType,
   _RelativeContentConvertible,
-  _BackgroundContentConvertible
+  _LayeringContentConvertible
 {
 
   // MARK: - Properties
@@ -25,16 +14,16 @@ public struct ZStackConstraint:
     return .zStack(self)
   }
 
-  public var _backgroundContent: _BackgroundContent {
+  public var _layeringContent: _LayeringContent {
     return .zStack(self)
   }
 
-  public let elements: [_ZStackElement]
+  public let elements: [_LayeringContent]
 
   // MARK: - Initializers
 
   public init(
-    @ZStackElementBuilder elements: () -> [_ZStackElement]
+    @_LayeringContentBuilder elements: () -> [_LayeringContent]
   ) {
     self.elements = elements()
   }
@@ -109,50 +98,4 @@ public struct ZStackConstraint:
 
   }
 
-}
-
-@_functionBuilder
-public enum ZStackElementBuilder {
-  public typealias Component = _ZStackElement
-}
-
-extension ZStackElementBuilder {
-
-
-  @_disfavoredOverload
-  public static func buildBlock(_ components: _ZStackElement...) -> [Component] {
-    return components
-  }
-
-  public static func buildExpression<View: UIView>(_ view: View) -> Component {
-    return .view(.init(view))
-  }
-
-  public static func buildExpression(_ stack: HStackConstraint) -> Component {
-    return .hStack(stack)
-  }
-
-  public static func buildExpression(_ stack: VStackConstraint) -> Component {
-    return .vStack(stack)
-  }
-
-  public static func buildExpression(_ stack: ZStackConstraint) -> Component {
-    return .zStack(stack)
-  }
-
-  public static func buildExpression(_ stack: RelativeConstraint) -> Component {
-    return .relative(stack)
-  }
-
-  public static func buildExpression(_ view: ViewConstraint) -> Component {
-    return .view(view)
-  }
-
-  public static func buildExpression(_ background: BackgroundConstraint) -> Component {
-    return .background(background)
-  }
-
-  public static func buildExpression(_ overlay: OverlayConstraint) -> Component {
-    return .overlay(overlay)
-  }
 }

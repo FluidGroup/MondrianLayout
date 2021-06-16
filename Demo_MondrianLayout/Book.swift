@@ -7,7 +7,7 @@ let book = Book(title: "BoxLayout2") {
   BookSection(title: "Sample") {
 
     BookPreview {
-      ExampleView(width: nil, height: nil) { (view: UIView) in
+      ExampleView(width: 200, height: 200) { (view: UIView) in
         view.buildSublayersLayout {
 
           HStackConstraint {
@@ -16,6 +16,7 @@ let book = Book(title: "BoxLayout2") {
                 backgroundColor: .mondrianRed,
                 preferredSize: .init(width: 28, height: 28)
               )
+              .viewConstraint
 
               UIView.mock(
                 backgroundColor: .layeringColor,

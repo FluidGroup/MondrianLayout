@@ -1,20 +1,5 @@
 import UIKit
 
-public protocol _OverlayContentConvertible {
-  var _overlayContent: _OverlayContent { get }
-}
-
-public indirect enum _OverlayContent {
-
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case relative(RelativeConstraint)
-  case overlay(OverlayConstraint)
-  case background(BackgroundConstraint)
-}
-
 public struct OverlayConstraint:
   LayoutDescriptorType,
   _RelativeContentConvertible
@@ -28,14 +13,14 @@ public struct OverlayConstraint:
     return .overlay(self)
   }
 
-  public let content: _OverlayContent
-  public let overlayContent: _OverlayContent
+  public let content: _LayeringContent
+  public let overlayContent: _LayeringContent
 
   // MARK: - Initializers
 
   init(
-    content: _OverlayContent,
-    overlayContent: _OverlayContent
+    content: _LayeringContent,
+    overlayContent: _LayeringContent
   ) {
 
     self.content = content
@@ -159,39 +144,4 @@ public struct OverlayConstraint:
 
   }
 
-}
-
-extension _OverlayContentConvertible {
-
-  public func overlay(_ view: UIView) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .view(view.viewConstraint))
-  }
-
-  public func overlay(_ constraint: ViewConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .view(constraint))
-  }
-
-  public func overlay(_ constraint: RelativeConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .relative(constraint))
-  }
-
-  public func overlay(_ constraint: VStackConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .vStack(constraint))
-  }
-
-  public func overlay(_ constraint: HStackConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .hStack(constraint))
-  }
-
-  public func overlay(_ constraint: ZStackConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .zStack(constraint))
-  }
-
-  public func overlay(_ constraint: OverlayConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .overlay(constraint))
-  }
-
-  public func overlay(_ constraint: BackgroundConstraint) -> OverlayConstraint {
-    return .init(content: _overlayContent, overlayContent: .background(constraint))
-  }
 }

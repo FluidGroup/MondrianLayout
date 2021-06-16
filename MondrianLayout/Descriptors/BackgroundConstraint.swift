@@ -1,20 +1,5 @@
 import UIKit
 
-public protocol _BackgroundContentConvertible {
-  var _backgroundContent: _BackgroundContent { get }
-}
-
-public indirect enum _BackgroundContent {
-
-  case view(ViewConstraint)
-  case vStack(VStackConstraint)
-  case hStack(HStackConstraint)
-  case zStack(ZStackConstraint)
-  case relative(RelativeConstraint)
-  case overlay(OverlayConstraint)
-  case background(BackgroundConstraint)
-}
-
 public struct BackgroundConstraint:
   LayoutDescriptorType,
   _RelativeContentConvertible
@@ -28,14 +13,14 @@ public struct BackgroundConstraint:
     return .background(self)
   }
 
-  let content: _BackgroundContent
-  let backgroundContent: _BackgroundContent
+  let content: _LayeringContent
+  let backgroundContent: _LayeringContent
 
   // MARK: - Initializers
 
   init(
-    content: _BackgroundContent,
-    backgroundContent: _BackgroundContent
+    content: _LayeringContent,
+    backgroundContent: _LayeringContent
   ) {
 
     self.content = content
@@ -155,42 +140,5 @@ public struct BackgroundConstraint:
       }
     }
   }
-}
-
-extension _BackgroundContentConvertible {
-
-  public func background(_ view: UIView) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .view(view.viewConstraint))
-  }
-
-  public func background(_ constraint: ViewConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .view(constraint))
-  }
-
-  public func background(_ constraint: RelativeConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .relative(constraint))
-  }
-
-  public func background(_ constraint: VStackConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .vStack(constraint))
-  }
-
-  public func background(_ constraint: HStackConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .hStack(constraint))
-  }
-
-  public func background(_ constraint: ZStackConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .zStack(constraint))
-  }
-
-  public func background(_ constraint: BackgroundConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .background(constraint))
-  }
-
-
-  public func background(_ constraint: OverlayConstraint) -> BackgroundConstraint {
-    return .init(content: _backgroundContent, backgroundContent: .overlay(constraint))
-  }
-
 }
 

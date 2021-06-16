@@ -11,17 +11,12 @@ public enum _RelativeContent {
 }
 
 public typealias PaddingConstraint = RelativeConstraint
-public struct RelativeConstraint: LayoutDescriptorType, _BackgroundContentConvertible,
-  _OverlayContentConvertible
+public struct RelativeConstraint: LayoutDescriptorType, _LayeringContentConvertible
 {
 
   public var name: String = "Relative"
 
-  public var _backgroundContent: _BackgroundContent {
-    return .relative(self)
-  }
-
-  public var _overlayContent: _OverlayContent {
+  public var _layeringContent: _LayeringContent {
     return .relative(self)
   }
 

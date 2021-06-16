@@ -1,15 +1,11 @@
 import UIKit
 
 public struct ViewConstraint: _RelativeContentConvertible,
-  _BackgroundContentConvertible, _OverlayContentConvertible, _DimensionConstraintType,
+  _LayeringContentConvertible, _DimensionConstraintType,
   Equatable
 {
 
-  public var _backgroundContent: _BackgroundContent {
-    return .view(self)
-  }
-
-  public var _overlayContent: _OverlayContent {
+  public var _layeringContent: _LayeringContent {
     return .view(self)
   }
 
