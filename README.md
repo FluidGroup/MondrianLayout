@@ -12,6 +12,34 @@ A DSL based layout builder with AutoLayout
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
 
+## Overview
+
+```swift
+class MyView: UIView {
+
+  let nameLabel: UILabel
+  let detailLabel: UILabel
+
+  init() {
+    super.init(frame: .zero)
+    
+    // Set constraints, layoutGuides and adding subviews
+    buildSublayersLayout {
+      VStackBlock {
+        nameLabel
+        detailLabel
+      }
+    }
+  }
+}
+```
+
+## Detail
+
+* VStackBlock
+* HStackBlock
+* ZStackBlock
+
 ## Installation
 
 **CocoaPods**
