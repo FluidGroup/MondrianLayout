@@ -10,17 +10,16 @@ let book = Book(title: "BoxLayout2") {
       ExampleView(width: 200, height: 200) { (view: UIView) in
         view.buildSublayersLayout {
 
-          HStackConstraint {
-            VStackConstraint {
+          HStackConstraint(spacing: 2, alignment: .fill) {
+            VStackConstraint(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .mondrianRed,
                 preferredSize: .init(width: 28, height: 28)
               )
-              .viewConstraint
 
               UIView.mock(
                 backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .init(width: 28, height: 50)
               )
 
               UIView.mock(
@@ -33,7 +32,7 @@ let book = Book(title: "BoxLayout2") {
                 preferredSize: .init(width: 28, height: 28)
               )
 
-              HStackConstraint {
+              HStackConstraint(alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
                   preferredSize: .init(width: 28, height: 28)
@@ -45,14 +44,14 @@ let book = Book(title: "BoxLayout2") {
               }
             }
 
-            VStackConstraint {
-              HStackConstraint {
+            VStackConstraint(spacing: 2, alignment: .fill) {
+              HStackConstraint(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
                   preferredSize: .init(width: 28, height: 28)
                 )
-                VStackConstraint {
-                  HStackConstraint {
+                VStackConstraint(spacing: 2, alignment: .fill) {
+                  HStackConstraint(spacing: 2, alignment: .fill) {
                     UIView.mock(
                       backgroundColor: .mondrianYellow,
                       preferredSize: .init(width: 28, height: 28)
@@ -69,8 +68,8 @@ let book = Book(title: "BoxLayout2") {
                 }
               }
 
-              HStackConstraint {
-                VStackConstraint {
+              HStackConstraint(spacing: 2, alignment: .fill) {
+                VStackConstraint(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -86,7 +85,7 @@ let book = Book(title: "BoxLayout2") {
                   preferredSize: .init(width: 28, height: 28)
                 )
 
-                VStackConstraint {
+                VStackConstraint(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -98,12 +97,12 @@ let book = Book(title: "BoxLayout2") {
                 }
               }
 
-              HStackConstraint {
+              HStackConstraint(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .mondrianRed,
                   preferredSize: .init(width: 28, height: 28)
                 )
-                VStackConstraint {
+                VStackConstraint(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .layeringColor,
                     preferredSize: .init(width: 28, height: 28)
@@ -118,6 +117,18 @@ let book = Book(title: "BoxLayout2") {
             }
 
           }
+          .overlay(
+            UILabel.mockMultiline(text: "MondrianLayout", textColor: .mondrianBlue)
+              .viewConstraint
+              .padding(4)
+              .background(
+                UIView.mock(
+                  backgroundColor: .layeringColor
+                )
+                .viewConstraint
+              )
+              .relative(bottom: 8, right: 8)
+          )
 
         }
       }

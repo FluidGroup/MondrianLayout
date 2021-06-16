@@ -12,6 +12,7 @@ public struct VStackConstraint:
     case leading
     case center
     case trailing
+    case fill
   }
 
   // MARK: - Properties
@@ -26,14 +27,14 @@ public struct VStackConstraint:
 
   public var spacing: CGFloat
   public var alignment: HorizontalAlignment
-  public var elements: [_VHStackContent]
+  public var elements: [VStackContentBuilder.Component]
 
   // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
     alignment: HorizontalAlignment = .center,
-    @VHStackContentBuilder elements: () -> [_VHStackContent]
+    @VStackContentBuilder elements: () -> [VStackContentBuilder.Component]
   ) {
     self.spacing = spacing
     self.alignment = alignment
@@ -50,11 +51,47 @@ public struct VStackConstraint:
       return
     }
 
+    func align(layoutElement: _LayoutElement, alignment: HorizontalAlignment) {
+      switch alignment {
+      case .leading:
+        context.add(constraints: [
+          layoutElement.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
+          layoutElement.trailingAnchor.constraint(
+            lessThanOrEqualTo: parent.trailingAnchor
+          ),
+        ])
+      case .center:
+        context.add(constraints: [
+          layoutElement.leadingAnchor.constraint(
+            greaterThanOrEqualTo: parent.leadingAnchor
+          ),
+          layoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
+          layoutElement.trailingAnchor.constraint(
+            lessThanOrEqualTo: parent.trailingAnchor
+          ),
+        ])
+      case .trailing:
+        context.add(constraints: [
+          layoutElement.leadingAnchor.constraint(
+            greaterThanOrEqualTo: parent.leadingAnchor
+          ),
+          layoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
+        ])
+      case .fill:
+        context.add(constraints: [
+          layoutElement.leadingAnchor.constraint(
+            equalTo: parent.leadingAnchor
+          ),
+          layoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
+        ])
+      }
+    }
+
     if parsed.count == 1 {
 
       let first = parsed.first!
 
-      switch first {
+      switch first.content {
       case .view(let viewConstraint):
 
         let view = viewConstraint.view
@@ -63,18 +100,7 @@ public struct VStackConstraint:
 
         // FIXME: case of single element, constraints
 
-        context.add(constraints: [
-          view.topAnchor.constraint(equalTo: parent.topAnchor).withInternalIdentifier("VStack.top"),
-          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier(
-            "VStack.left"
-          ),
-          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier(
-            "VStack.right"
-          ),
-          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier(
-            "VStack.bottom"
-          ),
-        ])
+        align(layoutElement: .init(view: view), alignment: first.alignSelf ?? alignment)
 
       case .relative(let constraint as LayoutDescriptorType),
         .vStack(let constraint as LayoutDescriptorType),
@@ -105,36 +131,7 @@ public struct VStackConstraint:
 
           hasStartedLayout = true
 
-          alignmentLayout: do {
-
-            switch alignment {
-            case .leading:
-              context.add(constraints: [
-                currentLayoutElement.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
-                currentLayoutElement.trailingAnchor.constraint(
-                  lessThanOrEqualTo: parent.trailingAnchor
-                ),
-              ])
-            case .center:
-              context.add(constraints: [
-                currentLayoutElement.leadingAnchor.constraint(
-                  greaterThanOrEqualTo: parent.leadingAnchor
-                ),
-                currentLayoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
-                currentLayoutElement.trailingAnchor.constraint(
-                  lessThanOrEqualTo: parent.trailingAnchor
-                ),
-              ])
-            case .trailing:
-              context.add(constraints: [
-                currentLayoutElement.leadingAnchor.constraint(
-                  greaterThanOrEqualTo: parent.leadingAnchor
-                ),
-                currentLayoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
-              ])
-            }
-
-          }
+          align(layoutElement: currentLayoutElement, alignment: element.alignSelf ?? alignment)
 
           stackingLayout: do {
 
@@ -173,7 +170,7 @@ public struct VStackConstraint:
           }
         }
 
-        switch element {
+        switch element.content {
         case .view(let viewConstraint):
 
           let view = viewConstraint.view

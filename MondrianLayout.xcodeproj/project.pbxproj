@@ -43,6 +43,7 @@
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
 		4B73820C267A0D6900D77986 /* LayeringContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* LayeringContent.swift */; };
+		4B73820E267A188800D77986 /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820D267A188800D77986 /* StackItem.swift */; };
 		4B9E1A1426762D6A00D1E1C9 /* ViewConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
 		4B9E1A182676323600D1E1C9 /* ZStackConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */; };
@@ -129,6 +130,7 @@
 		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
 		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		4B73820B267A0D6900D77986 /* LayeringContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeringContent.swift; sourceTree = "<group>"; };
+		4B73820D267A188800D77986 /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
 		4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstraint.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackConstraint.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				4B9E1A1D26763D0200D1E1C9 /* RelativeConstraint.swift */,
 				4B9E1A172676323600D1E1C9 /* ZStackConstraint.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewConstraint.swift */,
+				4B73820D267A188800D77986 /* StackItem.swift */,
 				4B738209267A067700D77986 /* Dimension.swift */,
 				4B0279A1267880420078B18A /* OverlayConstraint.swift */,
 				4B0279A32678804A0078B18A /* BackgroundConstraint.swift */,
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B73820E267A188800D77986 /* StackItem.swift in Sources */,
 				4B9E1A1E26763D0200D1E1C9 /* RelativeConstraint.swift in Sources */,
 				4B4693AF267915080079B761 /* SpaceConstraint.swift in Sources */,
 				4B73820A267A067700D77986 /* Dimension.swift in Sources */,

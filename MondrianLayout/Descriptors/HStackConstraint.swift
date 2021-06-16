@@ -10,6 +10,7 @@ public struct HStackConstraint:
     case top
     case center
     case bottom
+    case fill
   }
 
   // MARK: - Properties
@@ -26,14 +27,14 @@ public struct HStackConstraint:
 
   public var spacing: CGFloat
   public var alignment: VerticalAlignment
-  public var elements: [_VHStackContent]
+  public var elements: [HStackContentBuilder.Component]
 
   // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
     alignment: VerticalAlignment = .center,
-    @VHStackContentBuilder elements: () -> [_VHStackContent]
+    @HStackContentBuilder elements: () -> [HStackContentBuilder.Component]
   ) {
     self.spacing = spacing
     self.alignment = alignment
@@ -50,31 +51,48 @@ public struct HStackConstraint:
       return
     }
 
+    func align(layoutElement: _LayoutElement, alignment: VerticalAlignment) {
+      switch alignment {
+        case .top:
+          context.add(constraints: [
+            layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(
+              lessThanOrEqualTo: parent.bottomAnchor
+            ),
+          ])
+        case .center:
+          context.add(constraints: [
+            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(
+              lessThanOrEqualTo: parent.bottomAnchor
+            ),
+            layoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
+          ])
+        case .bottom:
+          context.add(constraints: [
+            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+          ])
+        case .fill:
+          context.add(constraints: [
+            layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+          ])
+        }
+    }
+
     if parsed.count == 1 {
 
       let first = parsed.first!
 
-      switch first {
+      switch first.content {
       case .view(let viewConstraint):
 
         let view = viewConstraint.view
 
         context.register(viewConstraint: viewConstraint)
 
-        // FIXME: case of single element, constraints
-
-        context.add(constraints: [
-          view.topAnchor.constraint(equalTo: parent.topAnchor).withInternalIdentifier("HStack.top"),
-          view.leftAnchor.constraint(equalTo: parent.leftAnchor).withInternalIdentifier(
-            "HStack.left"
-          ),
-          view.rightAnchor.constraint(equalTo: parent.rightAnchor).withInternalIdentifier(
-            "HStack.right"
-          ),
-          view.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withInternalIdentifier(
-            "HStack.bottom"
-          ),
-        ])
+        align(layoutElement: .init(view: view), alignment: first.alignSelf ?? alignment)
 
       case .relative(let constraint as LayoutDescriptorType),
         .vStack(let constraint as LayoutDescriptorType),
@@ -104,30 +122,7 @@ public struct HStackConstraint:
 
           hasStartedLayout = true
 
-          alignmentLayout: do {
-            switch alignment {
-            case .top:
-              context.add(constraints: [
-                currentLayoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
-                currentLayoutElement.bottomAnchor.constraint(
-                  lessThanOrEqualTo: parent.bottomAnchor
-                ),
-              ])
-            case .center:
-              context.add(constraints: [
-                currentLayoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-                currentLayoutElement.bottomAnchor.constraint(
-                  lessThanOrEqualTo: parent.bottomAnchor
-                ),
-                currentLayoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
-              ])
-            case .bottom:
-              context.add(constraints: [
-                currentLayoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-                currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-              ])
-            }
-          }
+          align(layoutElement: currentLayoutElement, alignment: element.alignSelf ?? alignment)
 
           if let previous = previous {
 
@@ -162,7 +157,7 @@ public struct HStackConstraint:
           spaceToPrevious = spacing
         }
 
-        switch element {
+        switch element.content {
         case .view(let viewConstraint):
 
           let view = viewConstraint.view

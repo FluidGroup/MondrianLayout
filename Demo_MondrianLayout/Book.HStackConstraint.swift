@@ -63,6 +63,8 @@ var _book_HStackConstraint: BookView {
               backgroundColor: .mondrianYellow,
               preferredSize: .init(width: 28, height: 28)
             )
+            .viewConstraint
+            .alignSelf(.fill)
 
             SpaceConstraint(minLength: 4)
 
