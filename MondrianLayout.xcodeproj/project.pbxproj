@@ -14,6 +14,8 @@
 		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B1F05D0267A6AD000A66CC7 /* HStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */; };
+		4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */; };
+		4B1F05D4267A6D9500A66CC7 /* Book.Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */; };
 		4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -101,6 +103,8 @@
 		4B0279A32678804A0078B18A /* BackgroundBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlock.swift; sourceTree = "<group>"; };
 		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
 		4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackTests.swift; sourceTree = "<group>"; };
+		4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramPostView.swift; sourceTree = "<group>"; };
+		4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Mondrian.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_MondrianLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,6 +223,8 @@
 				4B4057722675C51E003B28A1 /* AppDelegate.swift */,
 				4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */,
 				4BE4E9452675CABE00D096DC /* Book.swift */,
+				4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */,
+				4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */,
 				4B47F6362678DC0000BDE2DB /* Book.Background.swift */,
 				4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */,
 				4B47F6382678DC4000BDE2DB /* Book.VStackConstraint.swift */,
@@ -480,9 +486,11 @@
 				4B47F63D2678DCAC00BDE2DB /* Book.ZStackConstraint.swift in Sources */,
 				4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */,
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
+				4B1F05D4267A6D9500A66CC7 /* Book.Mondrian.swift in Sources */,
 				4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */,
 				4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */,
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
+				4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */,
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
