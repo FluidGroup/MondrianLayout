@@ -44,6 +44,34 @@ extension _VHStackItemContentConvertible {
     return item
   }
 
+  public func spacingBefore(_ spacing: CGFloat) -> [_VStackItem] {
+    return [
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+      .init(content: self.vhStackItemContent, alignSelf: nil),
+    ]
+  }
+
+  public func spacingAfter(_ spacing: CGFloat) -> [_VStackItem] {
+    return [
+      .init(content: self.vhStackItemContent, alignSelf: nil),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+    ]
+  }
+
+  public func spacingBefore(_ spacing: CGFloat) -> [_HStackItem] {
+    return [
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+      .init(content: self.vhStackItemContent, alignSelf: nil),
+    ]
+  }
+
+  public func spacingAfter(_ spacing: CGFloat) -> [_HStackItem] {
+    return [
+      .init(content: self.vhStackItemContent, alignSelf: nil),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+    ]
+  }
+
 }
 
 extension ViewBlock: _VHStackItemContentConvertible {
@@ -92,25 +120,36 @@ extension OverlayBlock: _VHStackItemContentConvertible {
 public enum VStackContentBuilder {
   public typealias Component = _VStackItem
 
-  @_disfavoredOverload
-  public static func buildBlock(_ components: Component...) -> [Component] {
-    return components
+  public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
+    nestedComponents.flatMap { $0 }
   }
 
-  public static func buildExpression<View: UIView>(_ view: View) -> Component {
-    return .init(content: .view(.init(view)))
+  public static func buildExpression(_ views: [UIView]...) -> [Component] {
+    views.flatMap { $0 }.map { .init(content: .view(.init($0)), alignSelf: nil)}
   }
 
-  public static func buildExpression(_ item: Component) -> Component {
-    return item
+  public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
+    return [.init(content: .view(.init(view)))]
   }
 
-  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> Component {
-    return .init(content: source.vhStackItemContent)
+  public static func buildExpression(_ item: Component) -> [Component] {
+    return [item]
   }
 
-  public static func buildExpression(_ spacer: SpacerBlock) -> Component {
-    return .init(content: .spacer(spacer))
+  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> [Component] {
+    return [.init(content: source.vhStackItemContent)]
+  }
+
+  public static func buildExpression(_ source: [_VHStackItemContentConvertible]...) -> [Component] {
+    source.flatMap { $0 }.map { .init(content: $0.vhStackItemContent) }
+  }
+
+  public static func buildExpression(_ source: [Component]...) -> [Component] {
+    source.flatMap { $0 }
+  }
+
+  public static func buildExpression(_ spacer: SpacerBlock) -> [Component] {
+    return [.init(content: .spacer(spacer))]
   }
 
 }
@@ -119,27 +158,37 @@ public enum VStackContentBuilder {
 public enum HStackContentBuilder {
   public typealias Component = _HStackItem
 
-  @_disfavoredOverload
-  public static func buildBlock(_ components: Component...) -> [Component] {
-    return components
+  public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
+    nestedComponents.flatMap { $0 }
   }
 
-  public static func buildExpression<View: UIView>(_ view: View) -> Component {
-    return .init(content: .view(.init(view)))
+  public static func buildExpression(_ views: [UIView]...) -> [Component] {
+    views.flatMap { $0 }.map { .init(content: .view(.init($0)), alignSelf: nil)}
   }
 
-  public static func buildExpression(_ item: Component) -> Component {
-    return item
+  public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
+    return [.init(content: .view(.init(view)))]
   }
 
-  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> Component {
-    return .init(content: source.vhStackItemContent)
+  public static func buildExpression(_ item: Component) -> [Component] {
+    return [item]
   }
 
-  public static func buildExpression(_ spacer: SpacerBlock) -> Component {
-    return .init(content: .spacer(spacer))
+  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> [Component] {
+    return [.init(content: source.vhStackItemContent)]
   }
 
+  public static func buildExpression(_ source: [_VHStackItemContentConvertible]...) -> [Component] {
+    source.flatMap { $0 }.map { .init(content: $0.vhStackItemContent) }
+  }
+
+  public static func buildExpression(_ source: [Component]...) -> [Component] {
+    source.flatMap { $0 }
+  }
+
+  public static func buildExpression(_ spacer: SpacerBlock) -> [Component] {
+    return [.init(content: .spacer(spacer))]
+  }
 }
 
 struct DistributingState {

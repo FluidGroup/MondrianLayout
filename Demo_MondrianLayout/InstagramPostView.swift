@@ -26,6 +26,11 @@ final class InstagramPostView: UIView {
     preferredSize: .init(width: 32, height: 32)
   )
 
+  private let saveButton = UIView.mock(
+    backgroundColor: .mondrianRed,
+    preferredSize: .init(width: 32, height: 32)
+  )
+
   private let box = UIView.mock(backgroundColor: .mondrianYellow)
   private let box2 = UIView.mock(backgroundColor: .mondrianRed)
 
@@ -39,6 +44,10 @@ final class InstagramPostView: UIView {
 
     let views: [UIView] = []
 
+    VStackBlock {
+      views
+    }
+
     self.buildSublayersLayout {
       VStackBlock(alignment: .fill) {
 
@@ -48,26 +57,24 @@ final class InstagramPostView: UIView {
           SpacerBlock(minLength: 4, expands: false)
           nicknameLabel
         }
-
-//        views
-        
-        SpacerBlock(minLength: 10, expands: false)
+        .spacingAfter(10)
 
         ViewBlock(imageView)
           .aspectRatio(1)
+          .spacingAfter(10)
 
-        SpacerBlock(minLength: 10)
         HStackBlock {
-          likeButton
-          SpacerBlock(minLength: 2)
-          commentButton
-          SpacerBlock(minLength: 2)
-          messageButton
+          HStackBlock(spacing: 2) {
+            likeButton
+            commentButton
+            messageButton
+          }
+          SpacerBlock(minLength: 8)
+          saveButton
         }
-        ZStackBlock {
-          box.viewBlock.width(100).aspectRatio(CGSize(width: 3, height: 4))
-          box2.viewBlock.width(50).aspectRatio(CGSize(width: 1, height: 2))
-        }
+
+        .spacingAfter(10)
+
       }
     }
 

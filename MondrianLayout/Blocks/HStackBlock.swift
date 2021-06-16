@@ -218,14 +218,14 @@ public struct HStackBlock:
           context.add(constraints: [
             state.currentLayoutElement.trailingAnchor.constraint(
               lessThanOrEqualTo: parent.trailingAnchor,
-              constant: -state.totalSpace()
+              constant: -(state.totalSpace() - spacing)
             )
           ])
         } else {
           context.add(constraints: [
             state.currentLayoutElement.trailingAnchor.constraint(
               equalTo: parent.trailingAnchor,
-              constant: -state.totalSpace()
+              constant: -(state.totalSpace() - spacing)
             )
           ])
         }

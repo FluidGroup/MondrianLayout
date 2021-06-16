@@ -220,11 +220,11 @@ public struct VStackBlock:
 
         if state.isEpandableSpace() {
           context.add(constraints: [
-            state.currentLayoutElement.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor, constant: -state.totalSpace())
+            state.currentLayoutElement.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor, constant: -(state.totalSpace() - spacing))
           ])
         } else {
           context.add(constraints: [
-            state.currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -state.totalSpace())
+            state.currentLayoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -(state.totalSpace() - spacing))
           ])
         }
 
