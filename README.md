@@ -1,4 +1,4 @@
-# MondrianLayout - (BoxLayout2)
+# MondrianLayout - (Under development)
 
 A layout builder with AutoLayout
 
