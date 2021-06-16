@@ -149,6 +149,13 @@ You can see many layout examples from the demo application.
 
 ## Overview
 
+MondrianLayout enables us to describe layouts of subviews by DSL (powered by `resultBuilders`)  
+It's like describing in SwiftUI, but this behavior differs a bit since laying out by AutoLayout system.
+
+To describe layout, use `buildSublayersLayout` as entrypoint.  
+This method creates a set of NSLayoutConstraint, UILayoutGuide, and modifiers of UIView.  
+Finally, those apply. You don't need to call `addSubview`. that goes automatically according to hierarchy from layout descriptions.
+
 ```swift
 class MyView: UIView {
 
@@ -171,9 +178,7 @@ class MyView: UIView {
 
 ## Detail
 
-* VStackBlock
-* HStackBlock
-* ZStackBlock
+### Vertically and Horizontally Stack layout
 
 **VStackBlock**
 
@@ -217,6 +222,18 @@ label
 ```
 
 <img width="74" alt="CleanShot 2021-06-17 at 00 14 52@2x" src="https://user-images.githubusercontent.com/1888355/122245871-0f16c700-cf01-11eb-91bc-019693736801.png">
+
+**Overlay modifier**
+
+// TODO:
+
+**Related modifier**
+
+// TODO:
+
+**ZStackBlock**
+
+// TODO:
 
 ## Installation
 
