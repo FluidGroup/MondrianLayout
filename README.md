@@ -141,6 +141,35 @@ A DSL based layout builder with AutoLayout
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
 
+like this:
+```swift
+VStackBlock {
+  HStackBlock {
+    profileImageView
+    nicknameLabel
+    
+    SpacerBlock()
+    
+    optionButton
+  }
+  
+  imageView
+    .overlay(
+      captionLabel.related(bottom: 10, right: 10)
+    )
+  
+  HStackBlock {
+    likeButton
+    commentButton
+    messageButton
+    
+    SpacerBlock()
+    
+    saveButton
+  }
+}
+```
+
 ## Demo app
 
 You can see many layout examples from the demo application.
