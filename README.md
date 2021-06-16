@@ -53,9 +53,28 @@ Alignment
 |---|---|---|---|
 |<img width="358" alt="CleanShot 2021-06-17 at 00 09 43@2x" src="https://user-images.githubusercontent.com/1888355/122245037-5486c480-cf00-11eb-872a-e98cfce7262e.png">|<img width="359" alt="CleanShot 2021-06-17 at 00 09 51@2x" src="https://user-images.githubusercontent.com/1888355/122245054-58b2e200-cf00-11eb-9691-607a75060f75.png">|<img width="362" alt="CleanShot 2021-06-17 at 00 09 59@2x" src="https://user-images.githubusercontent.com/1888355/122245073-5d779600-cf00-11eb-856d-0e48712377d7.png">|<img width="355" alt="CleanShot 2021-06-17 at 00 10 06@2x" src="https://user-images.githubusercontent.com/1888355/122245096-62d4e080-cf00-11eb-99f2-2969a3ccc350.png">|
 
+```swift
+buildSublayersLayout {
+  VStackBlock(spacing: 4, alignment: alignment) {
+    UILabel.mockMultiline(text: "Hello", textColor: .white)
+      .viewBlock
+      .padding(8)
+      .background(UIView.mock(backgroundColor: .mondrianYellow))
+    UILabel.mockMultiline(text: "Mondrian", textColor: .white)
+      .viewBlock
+      .padding(8)
+      .background(UIView.mock(backgroundColor: .mondrianRed))
+    UILabel.mockMultiline(text: "Layout!", textColor: .white)
+      .viewBlock
+      .padding(8)
+      .background(UIView.mock(backgroundColor: .mondrianBlue))
+  }
+}
+```
+
 **Background modifier**
 
-```
+```swift
 label
   .viewBlock // To enable view describes layout
   .padding(8)
