@@ -1,6 +1,8 @@
 # MondrianLayout - (Under development)
 
-A layout builder with AutoLayout
+<img width="286" alt="CleanShot 2021-06-16 at 21 59 59@2x" src="https://user-images.githubusercontent.com/1888355/122223608-4af46100-ceee-11eb-9bc1-364c9ddec5c6.png">
+
+A DSL based layout builder with AutoLayout
 
 Another experimental project in favor of BoxLayout  
 [Previous one is here](https://github.com/muukii/BoxLayout)
