@@ -74,7 +74,6 @@ final class InstagramPostView: UIView {
           SpacerBlock(minLength: 8)
           saveButton
         }
-
         .spacingAfter(10)
 
       }
