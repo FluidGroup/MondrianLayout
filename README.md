@@ -1,6 +1,7 @@
 # MondrianLayout - (Under development)
 
-<img width="286" alt="CleanShot 2021-06-16 at 21 59 59@2x" src="https://user-images.githubusercontent.com/1888355/122223608-4af46100-ceee-11eb-9bc1-364c9ddec5c6.png">
+<img width="246" alt="CleanShot 2021-06-17 at 21 12 03@2x" src="https://user-images.githubusercontent.com/1888355/122394225-b1da4e80-cfb0-11eb-9e62-f5627c817b66.png">
+
 This image laied out by MondrianLayout
 
 <details><summary>Layout code</summary>
