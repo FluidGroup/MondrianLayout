@@ -137,6 +137,14 @@ A DSL based layout builder with AutoLayout
 > 🧦 Currently still in development
 > And I'm not sure if my idea goes true.
 
+## Future direction
+
+- Brushing up the DSL - to be stable in describing.
+- Adding more modifiers for fine tuning in layout.
+- Tuning up the stack block's behavior.
+- Adding a way to setting constraints independently besides DSL
+  - AutoLayout is definitely powerful to describe the layout. We might need to set the constraints additionally since DSL can't describe every pattern of the layout.
+
 ## Introduction
 
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
