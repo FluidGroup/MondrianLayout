@@ -17,7 +17,7 @@ final class InstagramPostView: UIView {
     backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
-  
+
   private let commentButton = UIView.mock(
     backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
@@ -50,7 +50,7 @@ final class InstagramPostView: UIView {
         HStackBlock {
           ViewBlock(profileImageView)
             .huggingPriority(.horizontal, .required)
-          SpacerBlock(minLength: 4, expands: false)
+            .spacingAfter(4)
           nicknameLabel
         }
         .spacingAfter(10)
