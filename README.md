@@ -280,9 +280,11 @@ pod "MondrianLayout"
 
 **SwiftPM**
 
+```swift
 dependencies: [
     .package(url: "https://github.com/muukii/MondrianLayout.git", exact: "<VERSION>")
 ]
+```
 
 ## LICENSE
 
