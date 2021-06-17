@@ -81,7 +81,7 @@ public struct HStackBlock:
 
     var boxes: [_LayoutElement] = []
 
-    for (index, element) in elements.enumerated() {
+    for (index, element) in elements.optimized().enumerated() {
 
       func appendSpacingIfNeeded() {
         if spacing > 0, index != elements.indices.last {

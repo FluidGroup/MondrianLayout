@@ -11,19 +11,19 @@ var _book_VStackBlock: BookView {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             SpacerBlock(minLength: 20)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             SpacerBlock(minLength: 20, expands: false)
@@ -64,17 +64,17 @@ var _book_VStackBlock: BookView {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
           }
         }
@@ -88,19 +88,19 @@ var _book_VStackBlock: BookView {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             SpacerBlock(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
           }
         }

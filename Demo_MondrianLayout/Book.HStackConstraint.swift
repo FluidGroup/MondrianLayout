@@ -20,17 +20,17 @@ var _book_HStackBlock: BookView {
 
                   UIView.mock(
                     backgroundColor: .mondrianYellow,
-                    preferredSize: .init(width: 28, height: 28)
+                    preferredSize: .smallSquare
                   )
 
                   UIView.mock(
                     backgroundColor: .mondrianRed,
-                    preferredSize: .init(width: 28, height: 28)
+                    preferredSize: .smallSquare
                   )
 
                   UIView.mock(
                     backgroundColor: .mondrianBlue,
-                    preferredSize: .init(width: 28, height: 28)
+                    preferredSize: .smallSquare
                   )
 
                 }
@@ -55,7 +55,7 @@ var _book_HStackBlock: BookView {
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
 
               }
@@ -92,19 +92,19 @@ var _book_HStackBlock: BookView {
               HStackBlock(spacing: 10) {
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 SpacerBlock(minLength: 20)
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 SpacerBlock(minLength: 20, expands: false)
@@ -114,17 +114,17 @@ var _book_HStackBlock: BookView {
               HStackBlock(spacing: 10) {
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 SpacerBlock(minLength: 20, expands: false)
@@ -134,19 +134,19 @@ var _book_HStackBlock: BookView {
               HStackBlock(spacing: 0) {
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
                 .viewBlock
                 .spacingAfter(10)
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
               }
@@ -155,7 +155,7 @@ var _book_HStackBlock: BookView {
               HStackBlock(spacing: 0) {
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
                 SpacerBlock(minLength: 20, expands: false)
@@ -164,7 +164,7 @@ var _book_HStackBlock: BookView {
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
-                  preferredSize: .init(width: 20, height: 20)
+                  preferredSize: .smallSquare
                 )
 
               }
@@ -206,17 +206,17 @@ var _book_HStackBlock: BookView {
             HStackBlock(spacing: 4) {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
 
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
 
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
             }
           }
@@ -230,7 +230,7 @@ var _book_HStackBlock: BookView {
             HStackBlock(spacing: 4) {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               .viewBlock
               .alignSelf(.fill)
@@ -239,12 +239,12 @@ var _book_HStackBlock: BookView {
 
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
 
               UIView.mock(
                 backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
             }
           }

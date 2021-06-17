@@ -19,19 +19,19 @@ final class HStackTests: XCTestCase {
         HStackBlock(spacing: 4) {
           UIView.mock(
             backgroundColor: .layeringColor,
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
 
           SpacerBlock(minLength: 20)
 
           UIView.mock(
             backgroundColor: .layeringColor,
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
 
           UIView.mock(
             backgroundColor: .layeringColor,
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
 
           SpacerBlock(minLength: 20, expands: false)
@@ -50,17 +50,17 @@ final class HStackTests: XCTestCase {
       view.buildSublayersLayout {
         HStackBlock(spacing: 4) {
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
 
           SpacerBlock(minLength: 4)
 
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
 
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
         }
       }

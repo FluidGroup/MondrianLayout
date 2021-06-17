@@ -52,6 +52,8 @@
 		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
 		4B9E1A1C2676333C00D1E1C9 /* LayoutDescriptorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */; };
 		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
+		4BE163C4267B711C00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
+		4BE163C5267B713F00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
 		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
 		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
@@ -142,6 +144,7 @@
 		4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDescriptorType.swift; sourceTree = "<group>"; };
 		4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeBlock.swift; sourceTree = "<group>"; };
+		4BE163C3267B711C00817483 /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
 		4BE4E9452675CABE00D096DC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -237,6 +240,7 @@
 				4B0941312677C02700E1997B /* ExampleView.swift */,
 				4B64B1BC26761BE900460282 /* Extensions.swift */,
 				4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */,
+				4BE163C3267B711C00817483 /* CGSize+.swift */,
 				4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */,
 			);
 			path = Demo_MondrianLayout;
@@ -488,6 +492,7 @@
 				4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */,
 				4B1F05D4267A6D9500A66CC7 /* Book.Mondrian.swift in Sources */,
 				4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */,
+				4BE163C4267B711C00817483 /* CGSize+.swift in Sources */,
 				4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */,
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
 				4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */,
@@ -502,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BE163C5267B713F00817483 /* CGSize+.swift in Sources */,
 				4B64B1B02675D2AF00460282 /* Tests.swift in Sources */,
 				4B0941332677C1F000E1997B /* Extensions.swift in Sources */,
 				4B4693B1267918C60079B761 /* VStackTests.swift in Sources */,

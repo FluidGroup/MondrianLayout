@@ -13,17 +13,76 @@ public enum _VHStackContent {
 
 }
 
-public struct _VStackItem {
+protocol StackItemType {
+  var content: _VHStackContent { get }
+  init(content: _VHStackContent)
+}
+
+public struct _VStackItem: StackItemType {
 
   public let content: _VHStackContent
   public var alignSelf: VStackBlock.HorizontalAlignment?
+
+  init(content: _VHStackContent) {
+    self.content = content
+  }
+
 }
 
-public struct _HStackItem {
+public struct _HStackItem: StackItemType {
 
   public let content: _VHStackContent
   public var alignSelf: HStackBlock.VerticalAlignment?
 
+  init(content: _VHStackContent) {
+    self.content = content
+  }
+}
+
+extension Array where Element : StackItemType {
+
+  func optimized() -> [Element] {
+
+    var spacing: CGFloat = 0
+    var expands: Bool = false
+
+    /**
+
+     __X__X___X__
+
+     _X_X_X
+
+     */
+
+    var array: [Element] = []
+
+    for element in self {
+
+      if case .spacer(let spaceBlock) = element.content {
+
+        spacing += spaceBlock.minLength
+        expands = spaceBlock.expands ? true : expands
+
+      } else {
+
+        if spacing > 0 || expands {
+          array.append(.init(content: .spacer(.init(minLength: spacing, expands: expands))))
+        }
+        array.append(element)
+
+        spacing = 0
+        expands = false
+      }
+
+    }
+
+    if spacing > 0 || expands {
+      array.append(.init(content: .spacer(.init(minLength: spacing, expands: expands))))
+    }
+
+    return array
+
+  }
 }
 
 public protocol _VHStackItemContentConvertible {
@@ -46,29 +105,29 @@ extension _VHStackItemContentConvertible {
 
   public func spacingBefore(_ spacing: CGFloat) -> [_VStackItem] {
     return [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
-      .init(content: self.vhStackItemContent, alignSelf: nil),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
+      .init(content: self.vhStackItemContent),
     ]
   }
 
   public func spacingAfter(_ spacing: CGFloat) -> [_VStackItem] {
     return [
-      .init(content: self.vhStackItemContent, alignSelf: nil),
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+      .init(content: self.vhStackItemContent),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
     ]
   }
 
   public func spacingBefore(_ spacing: CGFloat) -> [_HStackItem] {
     return [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
-      .init(content: self.vhStackItemContent, alignSelf: nil),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
+      .init(content: self.vhStackItemContent),
     ]
   }
 
   public func spacingAfter(_ spacing: CGFloat) -> [_HStackItem] {
     return [
-      .init(content: self.vhStackItemContent, alignSelf: nil),
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)), alignSelf: nil),
+      .init(content: self.vhStackItemContent),
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
     ]
   }
 
@@ -125,7 +184,7 @@ public enum VStackContentBuilder {
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
-    views.flatMap { $0 }.map { .init(content: .view(.init($0)), alignSelf: nil)}
+    views.flatMap { $0 }.map { .init(content: .view(.init($0)))}
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
@@ -163,7 +222,7 @@ public enum HStackContentBuilder {
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
-    views.flatMap { $0 }.map { .init(content: .view(.init($0)), alignSelf: nil)}
+    views.flatMap { $0 }.map { .init(content: .view(.init($0)))}
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> [Component] {

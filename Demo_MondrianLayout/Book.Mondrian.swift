@@ -12,7 +12,7 @@ var _book_mondrian: BookView {
           VStackBlock(spacing: 2, alignment: .fill) {
             UIView.mock(
               backgroundColor: .mondrianRed,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
@@ -22,22 +22,22 @@ var _book_mondrian: BookView {
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             UIView.mock(
               backgroundColor: .layeringColor,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             HStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               UIView.mock(
                 backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
             }
           }
@@ -46,22 +46,22 @@ var _book_mondrian: BookView {
             HStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               VStackBlock(spacing: 2, alignment: .fill) {
                 HStackBlock(spacing: 2, alignment: .fill) {
                   UIView.mock(
                     backgroundColor: .mondrianYellow,
-                    preferredSize: .init(width: 28, height: 28)
+                    preferredSize: .smallSquare
                   )
                   UIView.mock(
                     backgroundColor: .layeringColor,
-                    preferredSize: .init(width: 28, height: 28)
+                    preferredSize: .smallSquare
                   )
                 }
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
               }
             }
@@ -70,27 +70,27 @@ var _book_mondrian: BookView {
               VStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
                 UIView.mock(
                   backgroundColor: .mondrianBlue,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
               }
 
               UIView.mock(
                 backgroundColor: .layeringColor,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
 
               VStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
               }
             }
@@ -98,16 +98,16 @@ var _book_mondrian: BookView {
             HStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .mondrianRed,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               VStackBlock(spacing: 2, alignment: .fill) {
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
                 UIView.mock(
                   backgroundColor: .layeringColor,
-                  preferredSize: .init(width: 28, height: 28)
+                  preferredSize: .smallSquare
                 )
               }
             }

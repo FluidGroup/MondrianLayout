@@ -11,15 +11,15 @@ var _book_background: BookView {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
           }
           .padding(10)
@@ -34,29 +34,29 @@ var _book_background: BookView {
           VStackBlock(spacing: 2) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
 
             HStackBlock(spacing: 2) {
               UIView.mock(
                 backgroundColor: .mondrianBlue,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               UIView.mock(
                 backgroundColor: .mondrianBlue,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
               UIView.mock(
                 backgroundColor: .mondrianBlue,
-                preferredSize: .init(width: 28, height: 28)
+                preferredSize: .smallSquare
               )
             }
 
@@ -73,15 +73,15 @@ var _book_background: BookView {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             UIView.mock(
               backgroundColor: .mondrianYellow,
-              preferredSize: .init(width: 28, height: 28)
+              preferredSize: .smallSquare
             )
             .viewBlock
             .padding(10)

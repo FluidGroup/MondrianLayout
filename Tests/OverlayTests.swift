@@ -44,13 +44,13 @@ final class OverlayTests: XCTestCase {
       view.buildSublayersLayout {
         VStackBlock {
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
           UIView.mock(
-            preferredSize: .init(width: 28, height: 28)
+            preferredSize: .smallSquare
           )
         }
         .padding(10)
