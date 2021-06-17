@@ -45,9 +45,12 @@ public struct VStackBlock:
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
 
-    let parsed = elements
+    let startAnchorKeyPath = \_LayoutElement.topAnchor
+    let endAnchorKeyPath = \_LayoutElement.bottomAnchor
+    let trailingEdgeKeyPath = \_LayoutElement.trailingAnchor
+    let leadingEdgeKeyPath = \_LayoutElement.leadingAnchor
 
-    guard parsed.isEmpty == false else {
+    guard elements.isEmpty == false else {
       return
     }
 
@@ -55,92 +58,50 @@ public struct VStackBlock:
       switch alignment {
       case .leading:
         context.add(constraints: [
-          layoutElement.leadingAnchor.constraint(equalTo: parent.leadingAnchor),
-          layoutElement.trailingAnchor.constraint(
-            lessThanOrEqualTo: parent.trailingAnchor
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(equalTo: parent[keyPath: leadingEdgeKeyPath]),
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+            lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
           ),
         ])
       case .center:
         context.add(constraints: [
-          layoutElement.leadingAnchor.constraint(
-            greaterThanOrEqualTo: parent.leadingAnchor
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+            greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
           ),
           layoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
-          layoutElement.trailingAnchor.constraint(
-            lessThanOrEqualTo: parent.trailingAnchor
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+            lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
           ),
         ])
       case .trailing:
         context.add(constraints: [
-          layoutElement.leadingAnchor.constraint(
-            greaterThanOrEqualTo: parent.leadingAnchor
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+            greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
           ),
-          layoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(equalTo: parent[keyPath: trailingEdgeKeyPath]),
         ])
       case .fill:
         context.add(constraints: [
-          layoutElement.leadingAnchor.constraint(
-            equalTo: parent.leadingAnchor
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: leadingEdgeKeyPath]
           ),
-          layoutElement.trailingAnchor.constraint(equalTo: parent.trailingAnchor),
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(equalTo: parent[keyPath: trailingEdgeKeyPath]),
         ])
       }
     }
 
-    var state: DistributingState = .init()
+    var boxes: [_LayoutElement] = []
 
-    for element in parsed {
+    for (index, element) in elements.enumerated() {
 
-      func perform() {
-
-        state.hasStartedLayout = true
-
-        align(layoutElement: state.currentLayoutElement, alignment: element.alignSelf ?? alignment)
-
-        stackingLayout: do {
-
-          if let previous = state.previous {
-
-            if state.isEpandableSpace() {
-
-              context.add(constraints: [
-                state.currentLayoutElement.topAnchor.constraint(
-                  greaterThanOrEqualTo: previous.bottomAnchor,
-                  constant: state.totalSpace()
-                )
-              ])
-
-            } else {
-
-              context.add(constraints: [
-                state.currentLayoutElement.topAnchor.constraint(
-                  equalTo: previous.bottomAnchor,
-                  constant: state.totalSpace()
-                )
-              ])
-            }
-
-          } else {
-            // first element
-
-            if state.initialSpace.expands {
-              context.add(constraints: [
-                state.currentLayoutElement.topAnchor.constraint(
-                  greaterThanOrEqualTo: parent.topAnchor,
-                  constant: state.initialSpace.minLength
-                )
-              ])
-            } else {
-              context.add(constraints: [
-                state.currentLayoutElement.topAnchor.constraint(
-                  equalTo: parent.topAnchor,
-                  constant: state.initialSpace.minLength
-                )
-              ])
-            }
-
-          }
-
+      func appendSpacingIfNeeded() {
+        if spacing > 0, index != elements.indices.last {
+          let spacingGuide = context.makeLayoutGuide(identifier: "HStackBlock.Spacing")
+          boxes.append(.init(layoutGuide: spacingGuide))
+          context.add(constraints: [
+            spacingGuide.heightAnchor.constraint(equalToConstant: spacing)
+          ])
+          align(layoutElement: .init(layoutGuide: spacingGuide), alignment: alignment)
         }
       }
 
@@ -148,60 +109,76 @@ public struct VStackBlock:
       case .view(let viewConstraint):
 
         let view = viewConstraint.view
-        state.currentLayoutElement = .init(view: view)
         context.register(viewConstraint: viewConstraint)
+        boxes.append(.init(view: view))
 
-        perform()
-
-        state.previous = state.currentLayoutElement
-        state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
+        align(layoutElement: .init(view: view), alignment: element.alignSelf ?? alignment)
+        appendSpacingIfNeeded()
 
       case .background(let c as LayoutDescriptorType),
-        .overlay(let c as LayoutDescriptorType),
-        .relative(let c as LayoutDescriptorType),
-        .vStack(let c as LayoutDescriptorType),
-        .hStack(let c as LayoutDescriptorType),
-        .zStack(let c as LayoutDescriptorType):
+           .overlay(let c as LayoutDescriptorType),
+           .relative(let c as LayoutDescriptorType),
+           .vStack(let c as LayoutDescriptorType),
+           .hStack(let c as LayoutDescriptorType),
+           .zStack(let c as LayoutDescriptorType):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "VStackBlock.\(c.name)")
-        state.currentLayoutElement = .init(layoutGuide: newLayoutGuide)
-        c.setupConstraints(parent: state.currentLayoutElement, in: context)
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
+        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+        boxes.append(.init(layoutGuide: newLayoutGuide))
 
-        perform()
-
-        state.previous = state.currentLayoutElement
-        state.resetSpacingInterItem(SpacerBlock(minLength: spacing, expands: false))
+        align(layoutElement: .init(layoutGuide: newLayoutGuide), alignment: element.alignSelf ?? alignment)
+        appendSpacingIfNeeded()
 
       case .spacer(let spacer):
 
-        if state.hasStartedLayout == false {
-          state.initialSpace = spacer
+        // TODO: optimize spacing, accumulating continuous spacing.
+
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.Spacer")
+        boxes.append(.init(layoutGuide: newLayoutGuide))
+
+        if spacer.expands {
+          context.add(constraints: [
+            newLayoutGuide.heightAnchor.constraint(greaterThanOrEqualToConstant: spacer.minLength)
+          ])
         } else {
-          state.appendSpacer(spacer)
+          context.add(constraints: [
+            newLayoutGuide.heightAnchor.constraint(equalToConstant: spacer.minLength)
+          ])
         }
-      }
-    }
 
-    finalize: do {
+        align(layoutElement: .init(layoutGuide: newLayoutGuide), alignment: alignment)
 
-      // last element
-
-      if state.isEpandableSpace() {
-        context.add(constraints: [
-          state.currentLayoutElement.bottomAnchor.constraint(
-            lessThanOrEqualTo: parent.bottomAnchor,
-            constant: -(state.totalSpace() - spacing)
-          )
-        ])
-      } else {
-        context.add(constraints: [
-          state.currentLayoutElement.bottomAnchor.constraint(
-            equalTo: parent.bottomAnchor,
-            constant: -(state.totalSpace() - spacing)
-          )
-        ])
       }
 
     }
+
+    let firstBox = boxes.first!
+
+    let lastBox = boxes.dropFirst().reduce(firstBox) { previousBox, box in
+
+      context.add(constraints: [
+        box.topAnchor.constraint(
+          equalTo: previousBox.bottomAnchor,
+          constant: 0
+        )
+      ])
+
+      return box
+    }
+
+    context.add(constraints: [
+      firstBox[keyPath: startAnchorKeyPath].constraint(
+        equalTo: parent[keyPath: startAnchorKeyPath],
+        constant: 0
+      )
+    ])
+
+    context.add(constraints: [
+      lastBox[keyPath: endAnchorKeyPath].constraint(
+        equalTo: parent[keyPath: endAnchorKeyPath],
+        constant: 0
+      )
+    ])
+
   }
 }

@@ -65,21 +65,21 @@ var _book_HStackBlock: BookView {
         }
       }
 
-//      BookForEach(data: [VStackBlock.HorizontalAlignment]([.leading, .center, .trailing])) {
-//        alignment in
-//        BookPreview {
-//          ExampleView(width: 60, height: nil) { (view: UIView) in
-//            view.buildSublayersLayout {
-//              VStackBlock(alignment: alignment) {
-//
-//                SpacerBlock(minLength: 10)
-//
-//              }
-//              .background(UIView.mock(backgroundColor: .layeringColor))
-//            }
-//          }
-//        }
-//      }
+      BookForEach(data: [VStackBlock.HorizontalAlignment]([.leading, .center, .trailing])) {
+        alignment in
+        BookPreview {
+          ExampleView(width: 60, height: nil) { (view: UIView) in
+            view.buildSublayersLayout {
+              VStackBlock(alignment: alignment) {
+
+                SpacerBlock(minLength: 10)
+
+              }
+              .background(UIView.mock(backgroundColor: .layeringColor))
+            }
+          }
+        }
+      }
 
     }
 
@@ -88,31 +88,92 @@ var _book_HStackBlock: BookView {
       BookPreview {
         ExampleView(width: 180, height: nil) { (view: UIView) in
           view.buildSublayersLayout {
-            HStackBlock(spacing: 4) {
-              UIView.mock(
-                backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
+            VStackBlock {
+              HStackBlock(spacing: 10) {
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
 
-              SpacerBlock(minLength: 20)
+                SpacerBlock(minLength: 20)
 
-              UIView.mock(
-                backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
 
-              UIView.mock(
-                backgroundColor: .mondrianYellow,
-                preferredSize: .init(width: 28, height: 28)
-              )
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
 
-              SpacerBlock(minLength: 20, expands: false)
+                SpacerBlock(minLength: 20, expands: false)
+              }
+              .background(UIView.mock(backgroundColor: .layeringColor))
+
+              HStackBlock(spacing: 10) {
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+                SpacerBlock(minLength: 20, expands: false)
+              }
+              .background(UIView.mock(backgroundColor: .layeringColor))
+
+              HStackBlock(spacing: 0) {
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+                .viewBlock
+                .spacingAfter(10)
+
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+              }
+              .background(UIView.mock(backgroundColor: .layeringColor))
+
+              HStackBlock(spacing: 0) {
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+                SpacerBlock(minLength: 20, expands: false)
+                SpacerBlock(minLength: 20, expands: false)
+                SpacerBlock(minLength: 20, expands: false)
+
+                UIView.mock(
+                  backgroundColor: .mondrianYellow,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+
+              }
+              .background(UIView.mock(backgroundColor: .layeringColor))
             }
-            .background(UIView.mock(backgroundColor: .layeringColor))
           }
         }
       }
-      .title("Spacing")
+      .title("Spacing and additional space")
 
       BookForEach(data: [.center, .top, .bottom, .fill] as [HStackBlock.VerticalAlignment]) {
         alignment in
