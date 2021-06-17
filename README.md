@@ -142,7 +142,7 @@ A DSL based layout builder with AutoLayout
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
 
-like this:
+like this (simplified from actual code)
 ```swift
 VStackBlock {
   HStackBlock {
@@ -170,6 +170,11 @@ VStackBlock {
   }
 }
 ```
+
+<img width="250" alt="CleanShot 2021-06-17 at 21 13 11@2x" src="https://user-images.githubusercontent.com/1888355/122394356-d9311b80-cfb0-11eb-8c8c-f5117593ffbe.png">
+
+<img width="1280" alt="CleanShot 2021-06-17 at 21 14 10@2x" src="https://user-images.githubusercontent.com/1888355/122394462-f9f97100-cfb0-11eb-9838-91f22c148bd9.png">
+
 
 ## Demo app
 
