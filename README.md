@@ -200,13 +200,19 @@ class MyView: UIView {
   init() {
     super.init(frame: .zero)
     
-    // Set constraints, layoutGuides and adding subviews
+    // Seting up constraints constraints, layoutGuides and adding subviews
     buildSublayersLayout {
       VStackBlock {
         nameLabel
         detailLabel
       }
     }
+    
+    // Seting up constraints for the view itself.
+    buildSelfSizing {
+      $0.width(200).maxHeight(...)... // can be method cain.
+    }
+    
   }
 }
 ```
