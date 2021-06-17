@@ -5,7 +5,7 @@ import UIKit
 final class InstagramPostView: UIView {
 
   private let profileImageView = UIView.mock(
-    backgroundColor: .mondrianYellow,
+    backgroundColor: .mondrianBlue,
     preferredSize: .init(width: 32, height: 32)
   )
 
@@ -17,22 +17,24 @@ final class InstagramPostView: UIView {
     backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
+  
   private let commentButton = UIView.mock(
     backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
+
   private let messageButton = UIView.mock(
     backgroundColor: .mondrianRed,
     preferredSize: .init(width: 32, height: 32)
   )
 
   private let saveButton = UIView.mock(
-    backgroundColor: .mondrianRed,
+    backgroundColor: .mondrianCyan,
     preferredSize: .init(width: 32, height: 32)
   )
 
-  private let box = UIView.mock(backgroundColor: .mondrianYellow)
-  private let box2 = UIView.mock(backgroundColor: .mondrianRed)
+  private let captionBackground = UIView.mock(backgroundColor: .layeringColor)
+  private let captionLabel = UILabel.mockMultiline(text: "Caption", textColor: .white)
 
   init() {
 
@@ -40,12 +42,6 @@ final class InstagramPostView: UIView {
 
     self.buildSelfSizing {
       $0.width(200)
-    }
-
-    let views: [UIView] = []
-
-    VStackBlock {
-      views
     }
 
     self.buildSublayersLayout {
@@ -61,6 +57,12 @@ final class InstagramPostView: UIView {
 
         ViewBlock(imageView)
           .aspectRatio(1)
+          .overlay(
+            captionLabel.viewBlock
+              .padding(10)
+              .background(captionBackground)
+              .relative(bottom: 8, right: 8)
+          )
           .spacingAfter(10)
 
         HStackBlock {
