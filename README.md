@@ -139,6 +139,7 @@ A DSL based layout builder with AutoLayout
 
 ## Future direction
 
+- Optimize the code - still verbose implementation because we're not sure if the API can be stable.
 - Brushing up the DSL - to be stable in describing.
 - Adding more modifiers for fine tuning in layout.
 - Tuning up the stack block's behavior.
