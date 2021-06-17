@@ -30,7 +30,7 @@ var _book_mondrian: BookView {
               preferredSize: .init(width: 28, height: 28)
             )
 
-            HStackBlock(alignment: .fill) {
+            HStackBlock(spacing: 2, alignment: .fill) {
               UIView.mock(
                 backgroundColor: .layeringColor,
                 preferredSize: .init(width: 28, height: 28)
