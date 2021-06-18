@@ -43,6 +43,40 @@ var _book_SafeArea: BookView {
       }
     }
 
+    BookPush(title: "Bottom Buttons") {
+      AnyViewController { view in
+        view.buildSublayersLayout(safeArea: .vertical) {
+          ZStackBlock {
+
+            VStackBlock(alignment: .center) {
+              HStackBlock {
+                UIView.mock(
+                  backgroundColor: .mondrianBlue,
+                  preferredSize: .init(width: 20, height: 30)
+                )
+                UIView.mock(
+                  backgroundColor: .mondrianBlue,
+                  preferredSize: .init(width: 20, height: 10)
+                )
+                UIView.mock(
+                  backgroundColor: .mondrianBlue,
+                  preferredSize: .init(width: 20, height: 20)
+                )
+              }
+            }
+            .padding(20)
+            .background(
+              UIView.mock(
+                backgroundColor: .layeringColor
+              )
+            )
+            .relative([.horizontal, .bottom], 0)
+
+          }
+        }
+      }
+    }
+
   }
 }
 
