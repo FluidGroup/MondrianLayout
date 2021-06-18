@@ -35,4 +35,22 @@ final class ZStackTests: XCTestCase {
     assertSnapshot(matching: view, as: .image, record: _record)
 
   }
+
+  func test_expandsElementWithRelative() {
+
+    let view = ExampleView(width: 100, height: 100) { view in
+      view.buildSublayersLayout(safeArea: .vertical) {
+        ZStackBlock {
+          UIView.mock(
+            backgroundColor: .layeringColor,
+            preferredSize: .smallSquare
+          )
+          .viewBlock
+          .relative(0)
+        }
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+  }
 }

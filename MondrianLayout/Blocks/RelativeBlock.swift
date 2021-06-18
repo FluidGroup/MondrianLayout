@@ -183,23 +183,46 @@ extension _RelativeContentConvertible {
     }
   }
 
-  // MARK: - Modifiers
+  public func relative(_ value: CGFloat) -> PaddingBlock {
+    return relative(top: value, left: value, bottom: value, right: value)
+  }
+
+  public func relative(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
+    return relative(
+      top: edgeInsets.top,
+      left: edgeInsets.left,
+      bottom: edgeInsets.bottom,
+      right: edgeInsets.right
+    )
+  }
+
+  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
+
+    return relative(
+      top: edges.contains(.top) ? value : nil,
+      left: edges.contains(.left) ? value : nil,
+      bottom: edges.contains(.bottom) ? value : nil,
+      right: edges.contains(.right) ? value : nil
+    )
+
+  }
+
   private func padding(
     top: CGFloat,
     left: CGFloat,
     bottom: CGFloat,
     right: CGFloat
-  ) -> RelativeBlock {
+  ) -> PaddingBlock {
     return .init(top: top, left: left, bottom: bottom, right: right) {
       self._relativeContent
     }
   }
 
-  public func padding(_ value: CGFloat) -> RelativeBlock {
+  public func padding(_ value: CGFloat) -> PaddingBlock {
     return padding(top: value, left: value, bottom: value, right: value)
   }
 
-  public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
+  public func padding(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
     return padding(
       top: edgeInsets.top,
       left: edgeInsets.left,
@@ -208,7 +231,7 @@ extension _RelativeContentConvertible {
     )
   }
 
-  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
 
     return padding(
       top: edges.contains(.top) ? value : 0,
