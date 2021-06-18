@@ -186,6 +186,8 @@ extension _DimensionConstraintType {
   }
 
   /**
+   Set size constraints as specified CGSize
+
    - Parameters:
    - value: Passing nil removes constraints.
    */
@@ -194,6 +196,24 @@ extension _DimensionConstraintType {
       if let size = size {
         $0.height = .init(constant: size.height, priority: priority)
         $0.width = .init(constant: size.width, priority: priority)
+      } else {
+        $0.height = nil
+        $0.width = nil
+      }
+    }
+  }
+
+  /**
+   Set size constraints as square
+
+   - Parameters:
+   - value: Passing nil removes constraints.
+   */
+  public func size(_ length: CGFloat?, priority: UILayoutPriority = .required) -> Self {
+    _modify {
+      if let length = length {
+        $0.height = .init(constant: length, priority: priority)
+        $0.width = .init(constant: length, priority: priority)
       } else {
         $0.height = nil
         $0.width = nil
