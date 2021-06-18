@@ -18,6 +18,8 @@ let book = Book(title: "MondrianLayout") {
 
   _book_SafeArea
 
+  _book_ViewController
+
   BookNavigationLink(title: "Instagram Post") {
     BookPreview {
       InstagramPostView()

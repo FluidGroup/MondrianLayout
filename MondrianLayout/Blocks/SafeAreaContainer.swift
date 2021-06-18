@@ -74,9 +74,14 @@ struct SafeAreaContainer {
          .overlay(let c as LayoutDescriptorType),
          .background(let c as LayoutDescriptorType):
 
-      let containerLayoutGuide = context.makeLayoutGuide(identifier: "SafeArea.\(c.name)")
-      perfom(container: .init(layoutGuide: containerLayoutGuide))
-      c.setupConstraints(parent: .init(layoutGuide: containerLayoutGuide), in: context)
+      if edge.isEmpty {
+        perfom(container: .init(view: parent))
+        c.setupConstraints(parent: .init(view: parent), in: context)
+      } else {
+        let containerLayoutGuide = context.makeLayoutGuide(identifier: "SafeArea.\(c.name)")
+        perfom(container: .init(layoutGuide: containerLayoutGuide))
+        c.setupConstraints(parent: .init(layoutGuide: containerLayoutGuide), in: context)
+      }
 
     }
 

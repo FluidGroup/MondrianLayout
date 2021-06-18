@@ -13,6 +13,7 @@
 		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
 		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
+		4B1256BE267CA74700FE9612 /* Book.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1256BD267CA74700FE9612 /* Book.ViewController.swift */; };
 		4B1F05D0267A6AD000A66CC7 /* HStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */; };
 		4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */; };
 		4B1F05D4267A6D9500A66CC7 /* Book.Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */; };
@@ -105,6 +106,7 @@
 		4B0279A1267880420078B18A /* OverlayBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayBlock.swift; sourceTree = "<group>"; };
 		4B0279A32678804A0078B18A /* BackgroundBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundBlock.swift; sourceTree = "<group>"; };
 		4B0941312677C02700E1997B /* ExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleView.swift; sourceTree = "<group>"; };
+		4B1256BD267CA74700FE9612 /* Book.ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.ViewController.swift; sourceTree = "<group>"; };
 		4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackTests.swift; sourceTree = "<group>"; };
 		4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramPostView.swift; sourceTree = "<group>"; };
 		4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Mondrian.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */,
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
 				4B7382072679EBED00D77986 /* Book.SafeArea.swift */,
+				4B1256BD267CA74700FE9612 /* Book.ViewController.swift */,
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
 				4B64B1BE26761DA800460282 /* Info.plist */,
 				4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */,
@@ -487,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B1256BE267CA74700FE9612 /* Book.ViewController.swift in Sources */,
 				4B47F6392678DC4000BDE2DB /* Book.VStackBlock.swift in Sources */,
 				4BFF75CE2677C91B003FA7F0 /* ExampleView.swift in Sources */,
 				4B47F63B2678DC6C00BDE2DB /* Book.HStackBlock.swift in Sources */,

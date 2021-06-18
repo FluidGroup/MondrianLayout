@@ -80,7 +80,7 @@ var _book_SafeArea: BookView {
   }
 }
 
-private final class AnyViewController: UIViewController {
+final class AnyViewController: UIViewController {
 
   private let onViewDidLoad: (UIView) -> Void
 
