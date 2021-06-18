@@ -8,7 +8,7 @@ var _book_ViewController: BookView {
 
     BookPush(title: "Push") {
 
-      let subview = ExampleView(width: nil, height: nil) { view in
+      let body = ExampleView(width: nil, height: nil) { view in
         view.buildSublayersLayout {
           HStackBlock {
             UIView.mock(
@@ -27,10 +27,18 @@ var _book_ViewController: BookView {
         }
       }
 
+      let container = ExampleView(width: nil, height: nil) { view in
+        view.buildSublayersLayout {
+          ZStackBlock {
+            body.viewBlock.padding(10)
+          }
+        }
+      }
+
       return AnyViewController { view in
         view.buildSublayersLayout(safeArea: .all) {
           ZStackBlock {
-            subview
+            container
               .viewBlock
               .padding(20)
               .background(UIView.mock(backgroundColor: .layeringColor))

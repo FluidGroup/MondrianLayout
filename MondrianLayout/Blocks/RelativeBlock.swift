@@ -160,10 +160,10 @@ extension RelativeBlock {
 
     var new = self
 
-    new.top = (new.top ?? 0) + (top ?? 0)
-    new.left = (new.left ?? 0) + (left ?? 0)
-    new.bottom = (new.bottom ?? 0) + (bottom ?? 0)
-    new.right = (new.right ?? 0) + (right ?? 0)
+    new.top = top.map { (new.top ?? 0) + $0 }
+    new.left = left.map { (new.left ?? 0) + $0 }
+    new.bottom = bottom.map { (new.bottom ?? 0) + $0 }
+    new.right = right.map { (new.right ?? 0) + $0 }
 
     return new
 
