@@ -26,6 +26,23 @@ var _book_SafeArea: BookView {
       }
     }
 
+    BookPush(title: "Push") {
+      AnyViewController { view in
+        view.buildSublayersLayout(safeArea: .vertical) {
+          ZStackBlock {
+            UIView.mock(
+              backgroundColor: .layeringColor
+            )
+
+            UIView.mock(
+              backgroundColor: .mondrianBlue,
+              preferredSize: .smallSquare
+            )
+          }
+        }
+      }
+    }
+
   }
 }
 

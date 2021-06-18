@@ -37,12 +37,23 @@ public struct ZStackBlock:
       func perform(current: _LayoutElement) {
 
         context.add(constraints: [
-          current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor).withInternalIdentifier("ZStack.left"),
-          current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor).withInternalIdentifier("ZStack.top"),
-          current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor).withInternalIdentifier("ZStack.right"),
-          current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor).withInternalIdentifier("ZStack.bottom"),
-          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh).withInternalIdentifier("ZStack.centerX"),
-          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh).withInternalIdentifier("ZStack.cenretY"),
+          current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor)
+            .withInternalIdentifier("ZStack.left"),
+          current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor)
+            .withInternalIdentifier("ZStack.top"),
+          current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor)
+            .withInternalIdentifier("ZStack.right"),
+          current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor)
+            .withInternalIdentifier("ZStack.bottom"),
+          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh)
+            .withInternalIdentifier("ZStack.centerX"),
+          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh)
+            .withInternalIdentifier("ZStack.cenretY"),
+
+          current.widthAnchor.constraint(equalTo: parent.widthAnchor).withPriority(.fittingSizeLevel)
+            .withInternalIdentifier("ZStack.width"),
+          current.heightAnchor.constraint(equalTo: parent.heightAnchor).withPriority(.fittingSizeLevel)
+            .withInternalIdentifier("ZStack.height"),
         ])
       }
 
@@ -53,32 +64,14 @@ public struct ZStackBlock:
 
         perform(current: .init(view: viewConstraint.view))
 
-      case .background(let c):
-
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
-        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-
-        perform(current: .init(layoutGuide: newLayoutGuide))
-
-      case .overlay(let c):
-
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
-        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-
-        perform(current: .init(layoutGuide: newLayoutGuide))
-
       case .relative(let relativeConstraint):
 
         relativeConstraint.setupConstraints(parent: parent, in: context)
 
-      case .vStack(let c):
-
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
-        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-
-        perform(current: .init(layoutGuide: newLayoutGuide))
-
-      case .hStack(let c):
+      case .background(let c as LayoutDescriptorType),
+           .overlay(let c as LayoutDescriptorType),
+           .vStack(let c as LayoutDescriptorType),
+           .hStack(let c as LayoutDescriptorType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
