@@ -118,7 +118,7 @@ extension Array where Element : _StackElementNodeType {
 
       if let content = element._content {
 
-        spacing = content.spacingBefore ?? 0
+        spacing += content.spacingBefore ?? 0
 
         if spacing > 0 || expands {
           array.append(.spacer(.init(minLength: spacing, expands: expands)))
@@ -155,13 +155,13 @@ extension _VStackItemConvertible {
 
   public func spacingBefore(_ spacing: CGFloat) -> _VStackItem {
     var item = _vStackItem
-    item.spacingBefore = spacing
+    item.spacingBefore = (item.spacingBefore ?? 0) + spacing
     return item
   }
 
   public func spacingAfter(_ spacing: CGFloat) -> _VStackItem {
     var item = _vStackItem
-    item.spacingBefore = spacing
+    item.spacingAfter = (item.spacingAfter ?? 0) + spacing
     return item
   }
 }
