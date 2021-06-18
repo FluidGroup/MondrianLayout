@@ -42,7 +42,7 @@ final class SyntaxTests: XCTestCase {
     }
 
     XCTAssertEqual(view.frame.height, 90)
-    assertSnapshot(matching: view, as: .image, record: true)
+    assertSnapshot(matching: view, as: .image, record: _record)
 
   }
 
@@ -76,7 +76,7 @@ final class SyntaxTests: XCTestCase {
     }
 
     XCTAssertEqual(view.frame.width, 90)
-    assertSnapshot(matching: view, as: .image, record: true)
+    assertSnapshot(matching: view, as: .image, record: _record)
 
   }
 
