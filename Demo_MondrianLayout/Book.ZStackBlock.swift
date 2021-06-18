@@ -7,6 +7,7 @@ import MondrianLayout
 var _book_ZStackConstraint: BookView {
   BookNavigationLink(title: "ZStackBlock") {
 
+    BookParagraph("ZStackBlock expands view to fill that if don't have exact intrinsic content size")
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
         view.buildSublayersLayout(safeArea: .vertical) {
@@ -19,6 +20,22 @@ var _book_ZStackConstraint: BookView {
               backgroundColor: .mondrianBlue,
               preferredSize: .smallSquare
             )
+          }
+        }
+      }
+    }
+
+    BookParagraph("The view has intrinsicContentSize but expanded by relative modifier")
+    BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.buildSublayersLayout(safeArea: .vertical) {
+          ZStackBlock {
+            UIView.mock(
+              backgroundColor: .mondrianBlue,
+              preferredSize: .smallSquare
+            )
+            .viewBlock
+            .relative(0)
           }
         }
       }
