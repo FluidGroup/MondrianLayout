@@ -77,7 +77,9 @@ struct SafeAreaContainer {
       if edge.isEmpty {
         perfom(container: .init(view: parent))
         c.setupConstraints(parent: .init(view: parent), in: context)
-      } else {
+      } else if edge.contains(.all) {
+        c.setupConstraints(parent: .init(layoutGuide: parent.safeAreaLayoutGuide), in: context)
+      }else {
         let containerLayoutGuide = context.makeLayoutGuide(identifier: "SafeArea.\(c.name)")
         perfom(container: .init(layoutGuide: containerLayoutGuide))
         c.setupConstraints(parent: .init(layoutGuide: containerLayoutGuide), in: context)

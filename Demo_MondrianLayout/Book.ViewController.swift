@@ -28,7 +28,7 @@ var _book_ViewController: BookView {
       }
 
       return AnyViewController { view in
-        view.buildSublayersLayout(safeArea: .vertical) {
+        view.buildSublayersLayout(safeArea: .all) {
           ZStackBlock {
             subview
               .viewBlock
