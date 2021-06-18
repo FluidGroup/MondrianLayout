@@ -13,7 +13,7 @@ public enum _VHStackContent {
 
 }
 
-protocol StackItemType {
+public protocol StackItemType {
   var content: _VHStackContent { get }
   init(content: _VHStackContent)
 }
@@ -23,7 +23,7 @@ public struct _VStackItem: StackItemType {
   public let content: _VHStackContent
   public var alignSelf: VStackBlock.HorizontalAlignment?
 
-  init(content: _VHStackContent) {
+  public init(content: _VHStackContent) {
     self.content = content
   }
 
@@ -34,12 +34,24 @@ public struct _HStackItem: StackItemType {
   public let content: _VHStackContent
   public var alignSelf: HStackBlock.VerticalAlignment?
 
-  init(content: _VHStackContent) {
+  public init(content: _VHStackContent) {
     self.content = content
   }
 }
 
 extension Array where Element : StackItemType {
+
+  public func spacingBefore(_ spacing: CGFloat) -> Self {
+    return [
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)))
+    ] + self
+  }
+
+  public func spacingAfter(_ spacing: CGFloat) -> Self {
+    return self + [
+      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)))
+    ]
+  }
 
   func optimized() -> [Element] {
 
