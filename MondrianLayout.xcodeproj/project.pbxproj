@@ -47,7 +47,7 @@
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
 		4B73820C267A0D6900D77986 /* LayeringContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* LayeringContent.swift */; };
-		4B73820E267A188800D77986 /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820D267A188800D77986 /* StackItem.swift */; };
+		4B9B07E9267CF60000818A40 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07E8267CF60000818A40 /* SyntaxTests.swift */; };
 		4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
 		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
@@ -141,7 +141,7 @@
 		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
 		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		4B73820B267A0D6900D77986 /* LayeringContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayeringContent.swift; sourceTree = "<group>"; };
-		4B73820D267A188800D77986 /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
+		4B9B07E8267CF60000818A40 /* SyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackBlock.swift; sourceTree = "<group>"; };
@@ -259,6 +259,7 @@
 				4B4693B0267918C60079B761 /* VStackTests.swift */,
 				4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */,
 				4BE16570267C5D0800817483 /* ZStackTests.swift */,
+				4B9B07E8267CF60000818A40 /* SyntaxTests.swift */,
 				4B64B1B12675D2AF00460282 /* Info.plist */,
 			);
 			path = Tests;
@@ -287,7 +288,6 @@
 				4B9E1A1B2676333C00D1E1C9 /* LayoutDescriptorType.swift */,
 				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */,
-				4B73820D267A188800D77986 /* StackItem.swift */,
 				4B738209267A067700D77986 /* Dimension.swift */,
 				4B47F6402678E51200BDE2DB /* Edge.swift */,
 			);
@@ -464,7 +464,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B73820E267A188800D77986 /* StackItem.swift in Sources */,
 				4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */,
 				4B4693AF267915080079B761 /* SpacerBlock.swift in Sources */,
 				4B73820A267A067700D77986 /* Dimension.swift in Sources */,
@@ -514,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B9B07E9267CF60000818A40 /* SyntaxTests.swift in Sources */,
 				4BE163C5267B713F00817483 /* CGSize+.swift in Sources */,
 				4B64B1B02675D2AF00460282 /* Tests.swift in Sources */,
 				4B0941332677C1F000E1997B /* Extensions.swift in Sources */,
