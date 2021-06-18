@@ -1,9 +1,7 @@
 import UIKit
 
 public struct VStackBlock:
-  _LayoutBlockType,
-  _RelativeContentConvertible,
-  _LayoutBlockNodeConvertible
+  _LayoutBlockType
 {
 
   public let name = "VStack"
@@ -16,10 +14,6 @@ public struct VStackBlock:
   }
 
   // MARK: - Properties
-
-  public var _relativeContent: _RelativeContent {
-    return .vStack(self)
-  }
 
   public var _layoutBlockNode: _LayoutBlockNode {
     return .vStack(self)

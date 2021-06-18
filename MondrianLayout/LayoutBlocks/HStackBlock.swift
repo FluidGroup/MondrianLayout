@@ -2,7 +2,6 @@ import UIKit
 
 public struct HStackBlock:
   _LayoutBlockType,
-  _RelativeContentConvertible,
   _LayoutBlockNodeConvertible
 {
 
@@ -16,10 +15,6 @@ public struct HStackBlock:
   // MARK: - Properties
 
   public var name: String = "HStack"
-
-  public var _relativeContent: _RelativeContent {
-    return .hStack(self)
-  }
 
   public var _layoutBlockNode: _LayoutBlockNode {
     return .hStack(self)

@@ -1,8 +1,7 @@
 import UIKit
 
 public struct BackgroundBlock:
-  _LayoutBlockType,
-  _RelativeContentConvertible
+  _LayoutBlockType
 {
 
   // MARK: - Properties
@@ -11,10 +10,6 @@ public struct BackgroundBlock:
 
   public var _layoutBlockNode: _LayoutBlockNode {
     .background(self)
-  }
-
-  public var _relativeContent: _RelativeContent {
-    return .background(self)
   }
 
   let content: _LayoutBlockNode

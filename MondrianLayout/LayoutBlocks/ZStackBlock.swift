@@ -1,18 +1,12 @@
 import UIKit
 
 public struct ZStackBlock:
-  _LayoutBlockType,
-  _RelativeContentConvertible,
-  _LayoutBlockNodeConvertible
+  _LayoutBlockType
 {
 
   // MARK: - Properties
 
   public var name: String = "ZStack"
-
-  public var _relativeContent: _RelativeContent {
-    return .zStack(self)
-  }
 
   public var _layoutBlockNode: _LayoutBlockNode {
     return .zStack(self)

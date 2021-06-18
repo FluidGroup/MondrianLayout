@@ -1,8 +1,7 @@
 import UIKit
 
 public struct OverlayBlock:
-  _LayoutBlockType,
-  _RelativeContentConvertible
+  _LayoutBlockType
 {
 
   // MARK: - Properties
@@ -11,10 +10,6 @@ public struct OverlayBlock:
 
   public var _layoutBlockNode: _LayoutBlockNode {
     .overlay(self)
-  }
-
-  public var _relativeContent: _RelativeContent {
-    return .overlay(self)
   }
 
   public let content: _LayoutBlockNode

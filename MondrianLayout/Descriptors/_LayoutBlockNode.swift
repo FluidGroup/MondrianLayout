@@ -14,7 +14,7 @@ extension _LayoutBlockNodeConvertible {
   }
 }
 
-public indirect enum _LayoutBlockNode {
+public indirect enum _LayoutBlockNode: _LayoutBlockNodeConvertible {
 
   case view(ViewBlock)
   case vStack(VStackBlock)
@@ -23,6 +23,8 @@ public indirect enum _LayoutBlockNode {
   case relative(RelativeBlock)
   case overlay(OverlayBlock)
   case background(BackgroundBlock)
+
+  public var _layoutBlockNode: _LayoutBlockNode { self }
 }
 
 extension _LayoutBlockNodeConvertible {
@@ -48,7 +50,6 @@ extension _LayoutBlockNodeConvertible {
 public enum _LayeringContentBuilder {
   public typealias Component = _LayoutBlockNode
 
-  @_disfavoredOverload
   public static func buildBlock(_ components: Component...) -> [Component] {
     return components
   }

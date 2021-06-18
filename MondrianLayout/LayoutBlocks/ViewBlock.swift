@@ -1,15 +1,10 @@
 import UIKit
 
-public struct ViewBlock: _RelativeContentConvertible,
-  _LayoutBlockNodeConvertible, _DimensionConstraintType,
+public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
   Equatable
 {
 
   public var _layoutBlockNode: _LayoutBlockNode {
-    return .view(self)
-  }
-
-  public var _relativeContent: _RelativeContent {
     return .view(self)
   }
 
