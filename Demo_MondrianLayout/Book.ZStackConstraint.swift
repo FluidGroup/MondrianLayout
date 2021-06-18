@@ -5,7 +5,25 @@ import UIKit
 import MondrianLayout
 
 var _book_ZStackConstraint: BookView {
-  BookNavigationLink(title: "ZStackConstraint") {
+  BookNavigationLink(title: "ZStackBlock") {
+
+    BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.buildSublayersLayout(safeArea: .vertical) {
+          ZStackBlock {
+            UIView.mock(
+              backgroundColor: .layeringColor
+            )
+
+            UIView.mock(
+              backgroundColor: .mondrianBlue,
+              preferredSize: .smallSquare
+            )
+          }
+        }
+      }
+    }
+
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.buildSublayersLayout {
