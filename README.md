@@ -226,6 +226,40 @@ class MyView: UIView {
 }
 ```
 
+### Examples
+
+Sample code assumes run in `UIView`. (self is `UIView`)  
+You can replace it with `UIViewController.view`.
+
+**Layout subviews inside safe-area**
+
+Attaching to top and bottom safe-area.
+
+```swift
+self.buildSublayersLayout(safeArea: .vertical) {
+  ...
+}
+```
+
+**Put a view snapping to edge**
+
+```swift
+self.buildSublayersLayout {
+  ZStackBlock {
+    backgroundView.viewBlock.relative(0)    
+  }
+}
+```
+
+**Add constraints to view itself**
+
+```swift
+self.buildSelfSizing {
+  $0.width(...)
+    .height(...)          
+}
+```
+
 ## Detail
 
 ### Vertically and Horizontally Stack layout
