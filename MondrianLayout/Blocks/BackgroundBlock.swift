@@ -67,42 +67,12 @@ public struct BackgroundBlock:
           ]
         )
 
-      case .relative(let relativeConstraint):
-
-        relativeConstraint.setupConstraints(
-          parent: .init(layoutGuide: backgroundLayoutGuide),
-          in: context
-        )
-
-      case .vStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: backgroundLayoutGuide),
-          in: context
-        )
-
-      case .hStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: backgroundLayoutGuide),
-          in: context
-        )
-
-      case .zStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: backgroundLayoutGuide),
-          in: context
-        )
-
-      case .overlay(let c):
-
-        c.setupConstraints(
-          parent: .init(layoutGuide: backgroundLayoutGuide),
-          in: context
-        )
-
-      case .background(let c):
+      case .relative(let c as LayoutDescriptorType),
+           .vStack(let c as LayoutDescriptorType),
+           .hStack(let c as LayoutDescriptorType),
+           .zStack(let c as LayoutDescriptorType),
+           .overlay(let c as LayoutDescriptorType),
+           .background(let c as LayoutDescriptorType):
 
         c.setupConstraints(
           parent: .init(layoutGuide: backgroundLayoutGuide),
@@ -125,20 +95,14 @@ public struct BackgroundBlock:
             c.view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
           ]
         )
-      case .relative(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .vStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .hStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .zStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .overlay(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .background(let c):
+      case .relative(let c as LayoutDescriptorType),
+           .vStack(let c as LayoutDescriptorType),
+           .hStack(let c as LayoutDescriptorType),
+           .zStack(let c as LayoutDescriptorType),
+           .overlay(let c as LayoutDescriptorType),
+           .background(let c as LayoutDescriptorType):
         c.setupConstraints(parent: parent, in: context)
       }
     }
   }
 }
-

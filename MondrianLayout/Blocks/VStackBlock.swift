@@ -55,14 +55,33 @@ public struct VStackBlock:
     }
 
     func align(layoutElement: _LayoutElement, alignment: HorizontalAlignment) {
+
+      /// When leading, center, trailing. to shrink itself to minimum fitting size.
+      func makeShrinkingWeakConstraints() -> [NSLayoutConstraint] {
+        return [
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: leadingEdgeKeyPath]
+          ).withPriority(
+            .fittingSizeLevel
+          ),
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: trailingEdgeKeyPath]
+          ).withPriority(
+            .fittingSizeLevel
+          ),
+        ]
+      }
+
       switch alignment {
       case .leading:
         context.add(constraints: [
-          layoutElement[keyPath: leadingEdgeKeyPath].constraint(equalTo: parent[keyPath: leadingEdgeKeyPath]),
+          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: leadingEdgeKeyPath]
+          ),
           layoutElement[keyPath: trailingEdgeKeyPath].constraint(
             lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
           ),
-        ])
+        ] + makeShrinkingWeakConstraints())
       case .center:
         context.add(constraints: [
           layoutElement[keyPath: leadingEdgeKeyPath].constraint(
@@ -72,20 +91,24 @@ public struct VStackBlock:
           layoutElement[keyPath: trailingEdgeKeyPath].constraint(
             lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
           ),
-        ])
+        ] + makeShrinkingWeakConstraints())
       case .trailing:
         context.add(constraints: [
           layoutElement[keyPath: leadingEdgeKeyPath].constraint(
             greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
           ),
-          layoutElement[keyPath: trailingEdgeKeyPath].constraint(equalTo: parent[keyPath: trailingEdgeKeyPath]),
-        ])
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: trailingEdgeKeyPath]
+          ),
+        ] + makeShrinkingWeakConstraints())
       case .fill:
         context.add(constraints: [
           layoutElement[keyPath: leadingEdgeKeyPath].constraint(
             equalTo: parent[keyPath: leadingEdgeKeyPath]
           ),
-          layoutElement[keyPath: trailingEdgeKeyPath].constraint(equalTo: parent[keyPath: trailingEdgeKeyPath]),
+          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+            equalTo: parent[keyPath: trailingEdgeKeyPath]
+          ),
         ])
       }
     }
@@ -96,7 +119,7 @@ public struct VStackBlock:
 
       func appendSpacingIfNeeded() {
         if spacing > 0, index != elements.indices.last {
-          let spacingGuide = context.makeLayoutGuide(identifier: "HStackBlock.Spacing")
+          let spacingGuide = context.makeLayoutGuide(identifier: "\(name).Spacing")
           boxes.append(.init(layoutGuide: spacingGuide))
           context.add(constraints: [
             spacingGuide.heightAnchor.constraint(equalToConstant: spacing)
@@ -116,24 +139,27 @@ public struct VStackBlock:
         appendSpacingIfNeeded()
 
       case .background(let c as LayoutDescriptorType),
-           .overlay(let c as LayoutDescriptorType),
-           .relative(let c as LayoutDescriptorType),
-           .vStack(let c as LayoutDescriptorType),
-           .hStack(let c as LayoutDescriptorType),
-           .zStack(let c as LayoutDescriptorType):
+        .overlay(let c as LayoutDescriptorType),
+        .relative(let c as LayoutDescriptorType),
+        .vStack(let c as LayoutDescriptorType),
+        .hStack(let c as LayoutDescriptorType),
+        .zStack(let c as LayoutDescriptorType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
         boxes.append(.init(layoutGuide: newLayoutGuide))
 
-        align(layoutElement: .init(layoutGuide: newLayoutGuide), alignment: element.alignSelf ?? alignment)
+        align(
+          layoutElement: .init(layoutGuide: newLayoutGuide),
+          alignment: element.alignSelf ?? alignment
+        )
         appendSpacingIfNeeded()
 
       case .spacer(let spacer):
 
         // TODO: optimize spacing, accumulating continuous spacing.
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.Spacer")
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "\(name).Spacer")
         boxes.append(.init(layoutGuide: newLayoutGuide))
 
         if spacer.expands {

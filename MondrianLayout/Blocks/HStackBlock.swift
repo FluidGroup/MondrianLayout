@@ -50,27 +50,48 @@ public struct HStackBlock:
     }
 
     func align(layoutElement: _LayoutElement, alignment: VerticalAlignment) {
+
+      /// When top, center, bottom. to shrink itself to minimum fitting size.
+      func makeShrinkingWeakConstraints() -> [NSLayoutConstraint] {
+        return [
+          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor).withPriority(
+            .fittingSizeLevel
+          ),
+          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withPriority(
+            .fittingSizeLevel
+          ),
+        ]
+      }
+
       switch alignment {
       case .top:
-        context.add(constraints: [
-          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
-          layoutElement.bottomAnchor.constraint(
-            lessThanOrEqualTo: parent.bottomAnchor
-          ),
-        ])
+        context.add(
+          constraints: [
+            layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(
+              lessThanOrEqualTo: parent.bottomAnchor
+            ),
+
+          ] + makeShrinkingWeakConstraints()
+        )
       case .center:
-        context.add(constraints: [
-          layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-          layoutElement.bottomAnchor.constraint(
-            lessThanOrEqualTo: parent.bottomAnchor
-          ),
-          layoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
-        ])
+        context.add(
+          constraints: [
+            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(
+              lessThanOrEqualTo: parent.bottomAnchor
+            ),
+            layoutElement.centerYAnchor.constraint(equalTo: parent.centerYAnchor),
+          ] + makeShrinkingWeakConstraints()
+        )
       case .bottom:
-        context.add(constraints: [
-          layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-        ])
+        context.add(
+          constraints: [
+            layoutElement.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
+            layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
+
+          ] + makeShrinkingWeakConstraints()
+        )
       case .fill:
         context.add(constraints: [
           layoutElement.topAnchor.constraint(equalTo: parent.topAnchor),
@@ -105,17 +126,20 @@ public struct HStackBlock:
         appendSpacingIfNeeded()
 
       case .background(let c as LayoutDescriptorType),
-           .overlay(let c as LayoutDescriptorType),
-           .relative(let c as LayoutDescriptorType),
-           .vStack(let c as LayoutDescriptorType),
-           .hStack(let c as LayoutDescriptorType),
-           .zStack(let c as LayoutDescriptorType):
+        .overlay(let c as LayoutDescriptorType),
+        .relative(let c as LayoutDescriptorType),
+        .vStack(let c as LayoutDescriptorType),
+        .hStack(let c as LayoutDescriptorType),
+        .zStack(let c as LayoutDescriptorType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
         boxes.append(.init(layoutGuide: newLayoutGuide))
 
-        align(layoutElement: .init(layoutGuide: newLayoutGuide), alignment: element.alignSelf ?? alignment)
+        align(
+          layoutElement: .init(layoutGuide: newLayoutGuide),
+          alignment: element.alignSelf ?? alignment
+        )
         appendSpacingIfNeeded()
 
       case .spacer(let spacer):

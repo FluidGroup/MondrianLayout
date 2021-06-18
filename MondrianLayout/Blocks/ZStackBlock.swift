@@ -73,7 +73,7 @@ public struct ZStackBlock:
            .vStack(let c as LayoutDescriptorType),
            .hStack(let c as LayoutDescriptorType):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackConstraint.\(c.name)")
+        let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
         perform(current: .init(layoutGuide: newLayoutGuide))

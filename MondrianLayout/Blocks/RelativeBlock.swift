@@ -11,8 +11,7 @@ public enum _RelativeContent {
 }
 
 public typealias PaddingBlock = RelativeBlock
-public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible
-{
+public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
 
   public var name: String = "Relative"
 
@@ -94,33 +93,13 @@ public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible
 
       perform(current: .init(view: viewConstarint.view))
 
-    case .vStack(let c):
+    case .vStack(let c as LayoutDescriptorType),
+      .hStack(let c as LayoutDescriptorType),
+      .zStack(let c as LayoutDescriptorType),
+      .background(let c as LayoutDescriptorType),
+      .overlay(let c as LayoutDescriptorType):
 
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.VStack")
-      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-      perform(current: .init(layoutGuide: newLayoutGuide))
-
-    case .hStack(let c):
-
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.HStack")
-      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-      perform(current: .init(layoutGuide: newLayoutGuide))
-
-    case .zStack(let c):
-
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.ZStack")
-      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-      perform(current: .init(layoutGuide: newLayoutGuide))
-
-    case .background(let c):
-
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.Background")
-      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-      perform(current: .init(layoutGuide: newLayoutGuide))
-
-    case .overlay(let c):
-
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeConstraint.Overlay")
+      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeBlock.\(c.name)")
       c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
       perform(current: .init(layoutGuide: newLayoutGuide))
 
