@@ -22,7 +22,7 @@ final class HStackTests: XCTestCase {
             preferredSize: .smallSquare
           )
 
-          SpacerBlock(minLength: 20)
+          StackingSpacer(minLength: 20)
 
           UIView.mock(
             backgroundColor: .layeringColor,
@@ -34,7 +34,7 @@ final class HStackTests: XCTestCase {
             preferredSize: .smallSquare
           )
 
-          SpacerBlock(minLength: 20, expands: false)
+          StackingSpacer(minLength: 20, expands: false)
         }
         .background(UIView.mock(backgroundColor: .layeringColor))
       }
@@ -53,7 +53,7 @@ final class HStackTests: XCTestCase {
             preferredSize: .smallSquare
           )
 
-          SpacerBlock(minLength: 4)
+          StackingSpacer(minLength: 4)
 
           UIView.mock(
             preferredSize: .smallSquare

@@ -68,11 +68,11 @@ struct SafeAreaContainer {
       context.register(viewConstraint: c)
       perfom(container: .init(view: c.view))
 
-    case .vStack(let c as LayoutDescriptorType),
-         .hStack(let c as LayoutDescriptorType),
-         .zStack(let c as LayoutDescriptorType),
-         .overlay(let c as LayoutDescriptorType),
-         .background(let c as LayoutDescriptorType):
+    case .vStack(let c as _LayoutBlockType),
+         .hStack(let c as _LayoutBlockType),
+         .zStack(let c as _LayoutBlockType),
+         .overlay(let c as _LayoutBlockType),
+         .background(let c as _LayoutBlockType):
 
       if edge.isEmpty {
         perfom(container: .init(view: parent))

@@ -1,26 +1,25 @@
 import UIKit
 
 public struct OverlayBlock:
-  LayoutDescriptorType,
-  _RelativeContentConvertible
+  _LayoutBlockType
 {
 
   // MARK: - Properties
 
   public var name: String = "Overlay"
 
-  public var _relativeContent: _RelativeContent {
-    return .overlay(self)
+  public var _layoutBlockNode: _LayoutBlockNode {
+    .overlay(self)
   }
 
-  public let content: _LayeringContent
-  public let overlayContent: _LayeringContent
+  public let content: _LayoutBlockNode
+  public let overlayContent: _LayoutBlockNode
 
   // MARK: - Initializers
 
   init(
-    content: _LayeringContent,
-    overlayContent: _LayeringContent
+    content: _LayoutBlockNode,
+    overlayContent: _LayoutBlockNode
   ) {
 
     self.content = content

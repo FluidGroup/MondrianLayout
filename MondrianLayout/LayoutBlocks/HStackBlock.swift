@@ -1,9 +1,8 @@
 import UIKit
 
 public struct HStackBlock:
-  LayoutDescriptorType,
-  _RelativeContentConvertible,
-  _LayeringContentConvertible
+  _LayoutBlockType,
+  _LayoutBlockNodeConvertible
 {
 
   public enum VerticalAlignment {
@@ -17,11 +16,7 @@ public struct HStackBlock:
 
   public var name: String = "HStack"
 
-  public var _relativeContent: _RelativeContent {
-    return .hStack(self)
-  }
-
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .hStack(self)
   }
 
@@ -115,32 +110,35 @@ public struct HStackBlock:
         }
       }
 
-      switch element.content {
-      case .view(let viewConstraint):
+      switch element {
+      case .content(let content):
+        switch content.node {
+        case .view(let viewConstraint):
 
-        let view = viewConstraint.view
-        context.register(viewConstraint: viewConstraint)
-        boxes.append(.init(view: view))
+          let view = viewConstraint.view
+          context.register(viewConstraint: viewConstraint)
+          boxes.append(.init(view: view))
 
-        align(layoutElement: .init(view: view), alignment: element.alignSelf ?? alignment)
-        appendSpacingIfNeeded()
+          align(layoutElement: .init(view: view), alignment: content.alignSelf ?? alignment)
+          appendSpacingIfNeeded()
 
-      case .background(let c as LayoutDescriptorType),
-        .overlay(let c as LayoutDescriptorType),
-        .relative(let c as LayoutDescriptorType),
-        .vStack(let c as LayoutDescriptorType),
-        .hStack(let c as LayoutDescriptorType),
-        .zStack(let c as LayoutDescriptorType):
+        case .background(let c as _LayoutBlockType),
+          .overlay(let c as _LayoutBlockType),
+          .relative(let c as _LayoutBlockType),
+          .vStack(let c as _LayoutBlockType),
+          .hStack(let c as _LayoutBlockType),
+          .zStack(let c as _LayoutBlockType):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
-        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-        boxes.append(.init(layoutGuide: newLayoutGuide))
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
+          c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+          boxes.append(.init(layoutGuide: newLayoutGuide))
 
-        align(
-          layoutElement: .init(layoutGuide: newLayoutGuide),
-          alignment: element.alignSelf ?? alignment
-        )
-        appendSpacingIfNeeded()
+          align(
+            layoutElement: .init(layoutGuide: newLayoutGuide),
+            alignment: content.alignSelf ?? alignment
+          )
+          appendSpacingIfNeeded()
+        }
 
       case .spacer(let spacer):
 

@@ -1,9 +1,7 @@
 import UIKit
 
 public struct VStackBlock:
-  LayoutDescriptorType,
-  _RelativeContentConvertible,
-  _LayeringContentConvertible
+  _LayoutBlockType
 {
 
   public let name = "VStack"
@@ -17,11 +15,7 @@ public struct VStackBlock:
 
   // MARK: - Properties
 
-  public var _relativeContent: _RelativeContent {
-    return .vStack(self)
-  }
-
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .vStack(self)
   }
 
@@ -74,33 +68,39 @@ public struct VStackBlock:
 
       switch alignment {
       case .leading:
-        context.add(constraints: [
-          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
-            equalTo: parent[keyPath: leadingEdgeKeyPath]
-          ),
-          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
-            lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
-          ),
-        ] + makeShrinkingWeakConstraints())
+        context.add(
+          constraints: [
+            layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+              equalTo: parent[keyPath: leadingEdgeKeyPath]
+            ),
+            layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+              lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
+            ),
+          ] + makeShrinkingWeakConstraints()
+        )
       case .center:
-        context.add(constraints: [
-          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
-            greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
-          ),
-          layoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
-          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
-            lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
-          ),
-        ] + makeShrinkingWeakConstraints())
+        context.add(
+          constraints: [
+            layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+              greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
+            ),
+            layoutElement.centerXAnchor.constraint(equalTo: parent.centerXAnchor),
+            layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+              lessThanOrEqualTo: parent[keyPath: trailingEdgeKeyPath]
+            ),
+          ] + makeShrinkingWeakConstraints()
+        )
       case .trailing:
-        context.add(constraints: [
-          layoutElement[keyPath: leadingEdgeKeyPath].constraint(
-            greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
-          ),
-          layoutElement[keyPath: trailingEdgeKeyPath].constraint(
-            equalTo: parent[keyPath: trailingEdgeKeyPath]
-          ),
-        ] + makeShrinkingWeakConstraints())
+        context.add(
+          constraints: [
+            layoutElement[keyPath: leadingEdgeKeyPath].constraint(
+              greaterThanOrEqualTo: parent[keyPath: leadingEdgeKeyPath]
+            ),
+            layoutElement[keyPath: trailingEdgeKeyPath].constraint(
+              equalTo: parent[keyPath: trailingEdgeKeyPath]
+            ),
+          ] + makeShrinkingWeakConstraints()
+        )
       case .fill:
         context.add(constraints: [
           layoutElement[keyPath: leadingEdgeKeyPath].constraint(
@@ -128,32 +128,35 @@ public struct VStackBlock:
         }
       }
 
-      switch element.content {
-      case .view(let viewConstraint):
+      switch element {
+      case .content(let content):
+        switch content.node {
+        case .view(let viewConstraint):
 
-        let view = viewConstraint.view
-        context.register(viewConstraint: viewConstraint)
-        boxes.append(.init(view: view))
+          let view = viewConstraint.view
+          context.register(viewConstraint: viewConstraint)
+          boxes.append(.init(view: view))
 
-        align(layoutElement: .init(view: view), alignment: element.alignSelf ?? alignment)
-        appendSpacingIfNeeded()
+          align(layoutElement: .init(view: view), alignment: content.alignSelf ?? alignment)
+          appendSpacingIfNeeded()
 
-      case .background(let c as LayoutDescriptorType),
-        .overlay(let c as LayoutDescriptorType),
-        .relative(let c as LayoutDescriptorType),
-        .vStack(let c as LayoutDescriptorType),
-        .hStack(let c as LayoutDescriptorType),
-        .zStack(let c as LayoutDescriptorType):
+        case .background(let c as _LayoutBlockType),
+          .overlay(let c as _LayoutBlockType),
+          .relative(let c as _LayoutBlockType),
+          .vStack(let c as _LayoutBlockType),
+          .hStack(let c as _LayoutBlockType),
+          .zStack(let c as _LayoutBlockType):
 
-        let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
-        c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
-        boxes.append(.init(layoutGuide: newLayoutGuide))
+          let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(c.name)")
+          c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+          boxes.append(.init(layoutGuide: newLayoutGuide))
 
-        align(
-          layoutElement: .init(layoutGuide: newLayoutGuide),
-          alignment: element.alignSelf ?? alignment
-        )
-        appendSpacingIfNeeded()
+          align(
+            layoutElement: .init(layoutGuide: newLayoutGuide),
+            alignment: content.alignSelf ?? alignment
+          )
+          appendSpacingIfNeeded()
+        }
 
       case .spacer(let spacer):
 

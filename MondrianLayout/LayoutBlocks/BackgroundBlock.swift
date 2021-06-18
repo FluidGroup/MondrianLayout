@@ -1,26 +1,25 @@
 import UIKit
 
 public struct BackgroundBlock:
-  LayoutDescriptorType,
-  _RelativeContentConvertible
+  _LayoutBlockType
 {
 
   // MARK: - Properties
 
   public var name: String = "Background"
 
-  public var _relativeContent: _RelativeContent {
-    return .background(self)
+  public var _layoutBlockNode: _LayoutBlockNode {
+    .background(self)
   }
 
-  let content: _LayeringContent
-  let backgroundContent: _LayeringContent
+  let content: _LayoutBlockNode
+  let backgroundContent: _LayoutBlockNode
 
   // MARK: - Initializers
 
   init(
-    content: _LayeringContent,
-    backgroundContent: _LayeringContent
+    content: _LayoutBlockNode,
+    backgroundContent: _LayoutBlockNode
   ) {
 
     self.content = content
@@ -67,12 +66,12 @@ public struct BackgroundBlock:
           ]
         )
 
-      case .relative(let c as LayoutDescriptorType),
-           .vStack(let c as LayoutDescriptorType),
-           .hStack(let c as LayoutDescriptorType),
-           .zStack(let c as LayoutDescriptorType),
-           .overlay(let c as LayoutDescriptorType),
-           .background(let c as LayoutDescriptorType):
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType):
 
         c.setupConstraints(
           parent: .init(layoutGuide: backgroundLayoutGuide),
@@ -95,12 +94,12 @@ public struct BackgroundBlock:
             c.view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
           ]
         )
-      case .relative(let c as LayoutDescriptorType),
-           .vStack(let c as LayoutDescriptorType),
-           .hStack(let c as LayoutDescriptorType),
-           .zStack(let c as LayoutDescriptorType),
-           .overlay(let c as LayoutDescriptorType),
-           .background(let c as LayoutDescriptorType):
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType):
         c.setupConstraints(parent: parent, in: context)
       }
     }

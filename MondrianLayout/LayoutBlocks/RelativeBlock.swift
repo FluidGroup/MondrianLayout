@@ -1,25 +1,15 @@
 import UIKit
 
-public enum _RelativeContent {
-
-  case view(ViewBlock)
-  case vStack(VStackBlock)
-  case hStack(HStackBlock)
-  case zStack(ZStackBlock)
-  case overlay(OverlayBlock)
-  case background(BackgroundBlock)
-}
-
 public typealias PaddingBlock = RelativeBlock
-public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
+public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public var name: String = "Relative"
 
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .relative(self)
   }
 
-  public let content: _RelativeContent
+  public let content: _LayoutBlockNode
 
   public var top: CGFloat?
   public var bottom: CGFloat?
@@ -31,7 +21,7 @@ public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
     left: CGFloat? = nil,
     bottom: CGFloat? = nil,
     right: CGFloat? = nil,
-    @RelativeContentBuilder content: () -> _RelativeContent
+    content: () -> _LayoutBlockNode
   ) {
 
     self.top = top
@@ -93,11 +83,12 @@ public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
 
       perform(current: .init(view: viewConstarint.view))
 
-    case .vStack(let c as LayoutDescriptorType),
-      .hStack(let c as LayoutDescriptorType),
-      .zStack(let c as LayoutDescriptorType),
-      .background(let c as LayoutDescriptorType),
-      .overlay(let c as LayoutDescriptorType):
+    case .vStack(let c as _LayoutBlockType),
+      .hStack(let c as _LayoutBlockType),
+      .zStack(let c as _LayoutBlockType),
+      .background(let c as _LayoutBlockType),
+      .relative(let c as _LayoutBlockType),
+      .overlay(let c as _LayoutBlockType):
 
       let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeBlock.\(c.name)")
       c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
@@ -107,46 +98,6 @@ public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
 
   }
 
-}
-
-@_functionBuilder
-public enum RelativeContentBuilder {
-  public typealias Component = _RelativeContent
-
-  public static func buildBlock(_ components: Component) -> Component {
-    return components
-  }
-
-  public static func buildExpression<View: UIView>(_ view: View) -> Component {
-    return .view(.init(view))
-  }
-
-  public static func buildExpression(_ stack: VStackBlock) -> Component {
-    return .vStack(stack)
-  }
-
-  public static func buildExpression(_ stack: HStackBlock) -> Component {
-    return .hStack(stack)
-  }
-
-  public static func buildExpression(_ stack: ZStackBlock) -> Component {
-    return .zStack(stack)
-  }
-
-  public static func buildExpression(_ view: ViewBlock) -> Component {
-    return .view(view)
-  }
-
-  public static func buildExpression(_ components: Component) -> Component {
-    return components
-  }
-}
-
-public protocol _RelativeContentConvertible {
-
-  var _relativeContent: _RelativeContent {
-    get
-  }
 }
 
 extension RelativeBlock {
@@ -235,7 +186,7 @@ extension RelativeBlock {
 
 }
 
-extension _RelativeContentConvertible {
+extension _LayoutBlockNodeConvertible {
 
   public func relative(
     top: CGFloat? = nil,
@@ -244,7 +195,7 @@ extension _RelativeContentConvertible {
     right: CGFloat? = nil
   ) -> RelativeBlock {
     return .init(top: top, left: left, bottom: bottom, right: right) {
-      self._relativeContent
+      self._layoutBlockNode
     }
   }
 
@@ -279,7 +230,7 @@ extension _RelativeContentConvertible {
     right: CGFloat
   ) -> PaddingBlock {
     return .init(top: top, left: left, bottom: bottom, right: right) {
-      self._relativeContent
+      self._layoutBlockNode
     }
   }
 
