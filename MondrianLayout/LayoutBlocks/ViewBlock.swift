@@ -1,11 +1,11 @@
 import UIKit
 
 public struct ViewBlock: _RelativeContentConvertible,
-  _LayeringContentConvertible, _DimensionConstraintType,
+  _LayoutBlockNodeConvertible, _DimensionConstraintType,
   Equatable
 {
 
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .view(self)
   }
 

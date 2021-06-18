@@ -11,11 +11,11 @@ public enum _RelativeContent {
 }
 
 public typealias PaddingBlock = RelativeBlock
-public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
+public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public var name: String = "Relative"
 
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .relative(self)
   }
 
@@ -93,11 +93,11 @@ public struct RelativeBlock: LayoutDescriptorType, _LayeringContentConvertible {
 
       perform(current: .init(view: viewConstarint.view))
 
-    case .vStack(let c as LayoutDescriptorType),
-      .hStack(let c as LayoutDescriptorType),
-      .zStack(let c as LayoutDescriptorType),
-      .background(let c as LayoutDescriptorType),
-      .overlay(let c as LayoutDescriptorType):
+    case .vStack(let c as _LayoutBlockType),
+      .hStack(let c as _LayoutBlockType),
+      .zStack(let c as _LayoutBlockType),
+      .background(let c as _LayoutBlockType),
+      .overlay(let c as _LayoutBlockType):
 
       let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeBlock.\(c.name)")
       c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)

@@ -1,9 +1,9 @@
 import UIKit
 
 public struct ZStackBlock:
-  LayoutDescriptorType,
+  _LayoutBlockType,
   _RelativeContentConvertible,
-  _LayeringContentConvertible
+  _LayoutBlockNodeConvertible
 {
 
   // MARK: - Properties
@@ -14,16 +14,16 @@ public struct ZStackBlock:
     return .zStack(self)
   }
 
-  public var _layeringContent: _LayeringContent {
+  public var _layoutBlockNode: _LayoutBlockNode {
     return .zStack(self)
   }
 
-  public let elements: [_LayeringContent]
+  public let elements: [_LayoutBlockNode]
 
   // MARK: - Initializers
 
   public init(
-    @_LayeringContentBuilder elements: () -> [_LayeringContent]
+    @_LayeringContentBuilder elements: () -> [_LayoutBlockNode]
   ) {
     self.elements = elements()
   }
@@ -68,10 +68,10 @@ public struct ZStackBlock:
 
         relativeConstraint.setupConstraints(parent: parent, in: context)
 
-      case .background(let c as LayoutDescriptorType),
-           .overlay(let c as LayoutDescriptorType),
-           .vStack(let c as LayoutDescriptorType),
-           .hStack(let c as LayoutDescriptorType):
+      case .background(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)

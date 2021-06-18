@@ -72,7 +72,7 @@ var _book_HStackBlock: BookView {
             view.buildSublayersLayout {
               VStackBlock(alignment: alignment) {
 
-                SpacerBlock(minLength: 10)
+                StackingSpacer(minLength: 10)
 
               }
               .background(UIView.mock(backgroundColor: .layeringColor))
@@ -95,7 +95,7 @@ var _book_HStackBlock: BookView {
                   preferredSize: .smallSquare
                 )
 
-                SpacerBlock(minLength: 20)
+                StackingSpacer(minLength: 20)
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
@@ -107,7 +107,7 @@ var _book_HStackBlock: BookView {
                   preferredSize: .smallSquare
                 )
 
-                SpacerBlock(minLength: 20, expands: false)
+                StackingSpacer(minLength: 20, expands: false)
               }
               .background(UIView.mock(backgroundColor: .layeringColor))
 
@@ -127,7 +127,7 @@ var _book_HStackBlock: BookView {
                   preferredSize: .smallSquare
                 )
 
-                SpacerBlock(minLength: 20, expands: false)
+                StackingSpacer(minLength: 20, expands: false)
               }
               .background(UIView.mock(backgroundColor: .layeringColor))
 
@@ -158,9 +158,9 @@ var _book_HStackBlock: BookView {
                   preferredSize: .smallSquare
                 )
 
-                SpacerBlock(minLength: 20, expands: false)
-                SpacerBlock(minLength: 20, expands: false)
-                SpacerBlock(minLength: 20, expands: false)
+                StackingSpacer(minLength: 20, expands: false)
+                StackingSpacer(minLength: 20, expands: false)
+                StackingSpacer(minLength: 20, expands: false)
 
                 UIView.mock(
                   backgroundColor: .mondrianYellow,
@@ -235,7 +235,7 @@ var _book_HStackBlock: BookView {
               .viewBlock
               .alignSelf(.fill)
 
-              SpacerBlock(minLength: 4)
+              StackingSpacer(minLength: 4)
 
               UIView.mock(
                 backgroundColor: .mondrianYellow,

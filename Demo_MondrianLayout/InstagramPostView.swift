@@ -71,7 +71,7 @@ final class InstagramPostView: UIView {
             commentButton
             messageButton
           }
-          SpacerBlock(minLength: 8)
+          StackingSpacer(minLength: 8)
           saveButton
         }
         .spacingAfter(10)

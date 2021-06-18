@@ -1,58 +1,96 @@
 import UIKit
 
-public enum _VHStackContent {
+protocol _StackElementNodeType {
 
-  case view(ViewBlock)
-  case relative(RelativeBlock)
-  case spacer(SpacerBlock)
-  case vStack(VStackBlock)
-  case hStack(HStackBlock)
-  case zStack(ZStackBlock)
-  case background(BackgroundBlock)
-  case overlay(OverlayBlock)
+  associatedtype ItemType: StackItemType
+
+  static func spacer(_ spacer: StackingSpacer) -> Self
+  static func content(_ item: ItemType) -> Self
+
+  var _content: ItemType? { get }
+  var _spacer: StackingSpacer? { get }
+}
+
+public enum _VStackElementNode: _StackElementNodeType {
+
+  case content(_VStackItem)
+  case spacer(StackingSpacer)
+
+  var _content: _VStackItem? {
+    guard case .content(let value) = self else {
+      return nil
+    }
+    return value
+  }
+
+  var _spacer: StackingSpacer? {
+    guard case .spacer(let value) = self else {
+      return nil
+    }
+    return value
+  }
+
+}
+
+public enum _HStackElementNode: _StackElementNodeType {
+
+  case content(_HStackItem)
+  case spacer(StackingSpacer)
+
+  var _content: _HStackItem? {
+    guard case .content(let value) = self else {
+      return nil
+    }
+    return value
+  }
+
+  var _spacer: StackingSpacer? {
+    guard case .spacer(let value) = self else {
+      return nil
+    }
+    return value
+  }
 
 }
 
 public protocol StackItemType {
-  var content: _VHStackContent { get }
-  init(content: _VHStackContent)
+  var spacingBefore: CGFloat? { get }
+  var spacingAfter: CGFloat? { get }
 }
 
-public struct _VStackItem: StackItemType {
+public protocol _VStackItemConvertible {
+  var _vStackItem: _VStackItem { get }
+}
 
-  public let content: _VHStackContent
-  public var alignSelf: VStackBlock.HorizontalAlignment?
+public protocol _HStackItemConvertible {
+  var _hStackItem: _HStackItem { get }
+}
 
-  public init(content: _VHStackContent) {
-    self.content = content
-  }
+public struct _VStackItem: _VStackItemConvertible, StackItemType {
+
+  public var _vStackItem: _VStackItem { self }
+
+  public let node: _LayoutBlockNode
+  public var alignSelf: VStackBlock.HorizontalAlignment? = nil
+  public var spacingBefore: CGFloat? = nil
+  public var spacingAfter: CGFloat? = nil
 
 }
 
-public struct _HStackItem: StackItemType {
+public struct _HStackItem: _HStackItemConvertible, StackItemType {
 
-  public let content: _VHStackContent
-  public var alignSelf: HStackBlock.VerticalAlignment?
+  public var _hStackItem: _HStackItem { self }
 
-  public init(content: _VHStackContent) {
-    self.content = content
-  }
+  public let node: _LayoutBlockNode
+  public var alignSelf: HStackBlock.VerticalAlignment? = nil
+  public var spacingBefore: CGFloat? = nil
+  public var spacingAfter: CGFloat? = nil
+
 }
 
-extension Array where Element : StackItemType {
+extension Array where Element : _StackElementNodeType {
 
-  public func spacingBefore(_ spacing: CGFloat) -> Self {
-    return [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)))
-    ] + self
-  }
-
-  public func spacingAfter(_ spacing: CGFloat) -> Self {
-    return self + [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false)))
-    ]
-  }
-
+  /// merging continuous spacing into one
   func optimized() -> [Element] {
 
     var spacing: CGFloat = 0
@@ -60,7 +98,7 @@ extension Array where Element : StackItemType {
 
     /**
 
-     __X__X___X__
+     __X_ _X___X__
 
      _X_X_X
 
@@ -70,26 +108,35 @@ extension Array where Element : StackItemType {
 
     for element in self {
 
-      if case .spacer(let spaceBlock) = element.content {
+      if let spacer = element._spacer {
 
-        spacing += spaceBlock.minLength
-        expands = spaceBlock.expands ? true : expands
+        spacing += spacer.minLength
+        expands = spacer.expands ? true : expands
 
-      } else {
+        continue
+      }
+
+      if let content = element._content {
+
+        spacing = content.spacingBefore ?? 0
 
         if spacing > 0 || expands {
-          array.append(.init(content: .spacer(.init(minLength: spacing, expands: expands))))
+          array.append(.spacer(.init(minLength: spacing, expands: expands)))
         }
         array.append(element)
 
-        spacing = 0
+        spacing = content.spacingAfter ?? 0
         expands = false
+
+        continue
       }
+
+      preconditionFailure()
 
     }
 
     if spacing > 0 || expands {
-      array.append(.init(content: .spacer(.init(minLength: spacing, expands: expands))))
+      array.append(.spacer(.init(minLength: spacing, expands: expands)))
     }
 
     return array
@@ -97,167 +144,139 @@ extension Array where Element : StackItemType {
   }
 }
 
-public protocol _VHStackItemContentConvertible {
-  var vhStackItemContent: _VHStackContent { get }
-}
 
-extension _VHStackItemContentConvertible {
+extension _VStackItemConvertible {
 
   public func alignSelf(_ alignment: VStackBlock.HorizontalAlignment) -> _VStackItem {
-    var item = _VStackItem(content: vhStackItemContent)
+    var item = _vStackItem
     item.alignSelf = alignment
     return item
   }
+
+  public func spacingBefore(_ spacing: CGFloat) -> _VStackItem {
+    var item = _vStackItem
+    item.spacingBefore = spacing
+    return item
+  }
+
+  public func spacingAfter(_ spacing: CGFloat) -> _VStackItem {
+    var item = _vStackItem
+    item.spacingBefore = spacing
+    return item
+  }
+}
+
+extension _HStackItemConvertible {
 
   public func alignSelf(_ alignment: HStackBlock.VerticalAlignment) -> _HStackItem {
-    var item = _HStackItem(content: vhStackItemContent)
+    var item = _hStackItem
     item.alignSelf = alignment
     return item
   }
 
-  public func spacingBefore(_ spacing: CGFloat) -> [_VStackItem] {
-    return [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
-      .init(content: self.vhStackItemContent),
-    ]
+  public func spacingBefore(_ spacing: CGFloat) -> _HStackItem {
+    var item = _hStackItem
+    item.spacingBefore = (item.spacingBefore ?? 0) + spacing
+    return item
   }
 
-  public func spacingAfter(_ spacing: CGFloat) -> [_VStackItem] {
-    return [
-      .init(content: self.vhStackItemContent),
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
-    ]
-  }
-
-  public func spacingBefore(_ spacing: CGFloat) -> [_HStackItem] {
-    return [
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
-      .init(content: self.vhStackItemContent),
-    ]
-  }
-
-  public func spacingAfter(_ spacing: CGFloat) -> [_HStackItem] {
-    return [
-      .init(content: self.vhStackItemContent),
-      .init(content: .spacer(SpacerBlock(minLength: spacing, expands: false))),
-    ]
-  }
-
-}
-
-extension ViewBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .view(self)
-  }
-}
-
-extension RelativeBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .relative(self)
-  }
-}
-
-extension VStackBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .vStack(self)
-  }
-}
-
-extension HStackBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .hStack(self)
-  }
-}
-
-extension ZStackBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .zStack(self)
-  }
-}
-
-extension BackgroundBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .background(self)
-  }
-}
-
-extension OverlayBlock: _VHStackItemContentConvertible {
-  public var vhStackItemContent: _VHStackContent {
-    return .overlay(self)
+  public func spacingAfter(_ spacing: CGFloat) -> _HStackItem {
+    var item = _hStackItem
+    item.spacingAfter = (item.spacingAfter ?? 0) + spacing
+    return item
   }
 }
 
 @_functionBuilder
 public enum VStackContentBuilder {
-  public typealias Component = _VStackItem
+  public typealias Component = _VStackElementNode
 
   public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
-    nestedComponents.flatMap { $0 }
+    return nestedComponents.flatMap { $0 }
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
-    views.flatMap { $0 }.map { .init(content: .view(.init($0)))}
+    return views.flatMap { $0 }.map {
+      .content(.init(node: .view(.init($0))))
+    }
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
-    return [.init(content: .view(.init(view)))]
+    return [
+      .content(.init(node: .view(.init(view))))
+    ]
   }
 
-  public static func buildExpression(_ item: Component) -> [Component] {
-    return [item]
+  public static func buildExpression<Block: _VStackItemConvertible>(
+    _ block: Block
+  ) -> [Component] {
+    return [.content(block._vStackItem)]
   }
 
-  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> [Component] {
-    return [.init(content: source.vhStackItemContent)]
+  public static func buildExpression(_ blocks: [_VStackItemConvertible]...) -> [Component] {
+    return blocks.flatMap { $0 }.map { .content($0._vStackItem) }
   }
 
-  public static func buildExpression(_ source: [_VHStackItemContentConvertible]...) -> [Component] {
-    source.flatMap { $0 }.map { .init(content: $0.vhStackItemContent) }
+  public static func buildExpression(_ spacer: StackingSpacer) -> [Component] {
+    return [.spacer(spacer)]
   }
 
-  public static func buildExpression(_ source: [Component]...) -> [Component] {
-    source.flatMap { $0 }
-  }
+  //  public static func buildExpression(_ item: Component) -> [Component] {
+  //    return [item]
+  //  }
 
-  public static func buildExpression(_ spacer: SpacerBlock) -> [Component] {
-    return [.init(content: .spacer(spacer))]
-  }
+  //  public static func buildExpression(_ source: [Component]...) -> [Component] {
+  //    return source.flatMap { $0 }
+  //  }
 
+  //  public static func buildExpression(_ source: [_HStackItem]...) -> [Component] {
+  //    return source.flatMap { $0 }.map { .content($0) }
+  //  }
 }
 
 @_functionBuilder
 public enum HStackContentBuilder {
-  public typealias Component = _HStackItem
+  public typealias Component = _HStackElementNode
 
   public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
-    nestedComponents.flatMap { $0 }
+    return nestedComponents.flatMap { $0 }
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
-    views.flatMap { $0 }.map { .init(content: .view(.init($0)))}
+    return views.flatMap { $0 }.map {
+      .content(.init(node: .view(.init($0))))
+    }
   }
 
   public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
-    return [.init(content: .view(.init(view)))]
+    return [
+      .content(.init(node: .view(.init(view))))
+    ]
   }
 
-  public static func buildExpression(_ item: Component) -> [Component] {
-    return [item]
+  public static func buildExpression<Block: _HStackItemConvertible>(
+    _ block: Block
+  ) -> [Component] {
+    return [.content(block._hStackItem)]
   }
 
-  public static func buildExpression<Source: _VHStackItemContentConvertible>(_ source: Source) -> [Component] {
-    return [.init(content: source.vhStackItemContent)]
+  public static func buildExpression(_ blocks: [_HStackItemConvertible]...) -> [Component] {
+    return blocks.flatMap { $0 }.map { .content($0._hStackItem) }
   }
 
-  public static func buildExpression(_ source: [_VHStackItemContentConvertible]...) -> [Component] {
-    source.flatMap { $0 }.map { .init(content: $0.vhStackItemContent) }
+  public static func buildExpression(_ spacer: StackingSpacer) -> [Component] {
+    return [.spacer(spacer)]
   }
 
-  public static func buildExpression(_ source: [Component]...) -> [Component] {
-    source.flatMap { $0 }
-  }
+  //  public static func buildExpression(_ item: Component) -> [Component] {
+  //    return [item]
+  //  }
 
-  public static func buildExpression(_ spacer: SpacerBlock) -> [Component] {
-    return [.init(content: .spacer(spacer))]
-  }
+  //  public static func buildExpression(_ source: [Component]...) -> [Component] {
+  //    return source.flatMap { $0 }
+  //  }
+
+  //  public static func buildExpression(_ source: [_HStackItem]...) -> [Component] {
+  //    return source.flatMap { $0 }.map { .content($0) }
+  //  }
 }

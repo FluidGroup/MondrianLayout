@@ -14,7 +14,7 @@ var _book_VStackBlock: BookView {
               preferredSize: .smallSquare
             )
 
-            SpacerBlock(minLength: 20)
+            StackingSpacer(minLength: 20)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -26,7 +26,7 @@ var _book_VStackBlock: BookView {
               preferredSize: .smallSquare
             )
 
-            SpacerBlock(minLength: 20, expands: false)
+            StackingSpacer(minLength: 20, expands: false)
           }
           .background(UIView.mock(backgroundColor: .layeringColor))
         }
@@ -91,7 +91,7 @@ var _book_VStackBlock: BookView {
               preferredSize: .smallSquare
             )
 
-            SpacerBlock(minLength: 4)
+            StackingSpacer(minLength: 4)
 
             UIView.mock(
               backgroundColor: .mondrianYellow,
