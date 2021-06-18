@@ -170,6 +170,92 @@ public protocol _RelativeContentConvertible {
   }
 }
 
+extension RelativeBlock {
+
+  public func relative(
+    top: CGFloat? = nil,
+    left: CGFloat? = nil,
+    bottom: CGFloat? = nil,
+    right: CGFloat? = nil
+  ) -> RelativeBlock {
+
+    var new = self
+
+    new.top = (new.top ?? 0) + (top ?? 0)
+    new.left = (new.left ?? 0) + (left ?? 0)
+    new.bottom = (new.bottom ?? 0) + (bottom ?? 0)
+    new.right = (new.right ?? 0) + (right ?? 0)
+
+    return new
+
+  }
+
+  public func relative(_ value: CGFloat) -> PaddingBlock {
+    return relative(top: value, left: value, bottom: value, right: value)
+  }
+
+  public func relative(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
+    return relative(
+      top: edgeInsets.top,
+      left: edgeInsets.left,
+      bottom: edgeInsets.bottom,
+      right: edgeInsets.right
+    )
+  }
+
+  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
+
+    return relative(
+      top: edges.contains(.top) ? value : nil,
+      left: edges.contains(.left) ? value : nil,
+      bottom: edges.contains(.bottom) ? value : nil,
+      right: edges.contains(.right) ? value : nil
+    )
+
+  }
+
+  private func padding(
+    top: CGFloat,
+    left: CGFloat,
+    bottom: CGFloat,
+    right: CGFloat
+  ) -> PaddingBlock {
+    var new = self
+
+    new.top = (new.top ?? 0) + (top)
+    new.left = (new.left ?? 0) + (left)
+    new.bottom = (new.bottom ?? 0) + (bottom)
+    new.right = (new.right ?? 0) + (right)
+
+    return new
+  }
+
+  public func padding(_ value: CGFloat) -> PaddingBlock {
+    return padding(top: value, left: value, bottom: value, right: value)
+  }
+
+  public func padding(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
+    return padding(
+      top: edgeInsets.top,
+      left: edgeInsets.left,
+      bottom: edgeInsets.bottom,
+      right: edgeInsets.right
+    )
+  }
+
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
+
+    return padding(
+      top: edges.contains(.top) ? value : 0,
+      left: edges.contains(.left) ? value : 0,
+      bottom: edges.contains(.bottom) ? value : 0,
+      right: edges.contains(.right) ? value : 0
+    )
+
+  }
+
+}
+
 extension _RelativeContentConvertible {
 
   public func relative(
