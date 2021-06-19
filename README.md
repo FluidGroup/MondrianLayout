@@ -1,4 +1,4 @@
-# MondrianLayout
+# MondrianLayout - describing structured layout for AutoLayout
 
 <img width="246" alt="CleanShot 2021-06-17 at 21 12 03@2x" src="https://user-images.githubusercontent.com/1888355/122394225-b1da4e80-cfb0-11eb-9e62-f5627c817b66.png">
 
@@ -132,21 +132,18 @@ HStackBlock(spacing: 2, alignment: .fill) {
 </p>
 </details>
 
-A DSL based layout builder with AutoLayout
+## Strucutured layout API and Classical layout API
 
-> 🧦 Currently still in development
-> And I'm not sure if my idea goes true.
-
-## Future direction
-
-- Optimize the code - still verbose implementation because we're not sure if the API can be stable.
-- Brushing up the DSL - to be stable in describing.
-- Adding more modifiers for fine tuning in layout.
-- Tuning up the stack block's behavior.
-- Adding a way to setting constraints independently besides DSL
-  - AutoLayout is definitely powerful to describe the layout. We might need to set the constraints additionally since DSL can't describe every pattern of the layout.
+- 🌟 Enables us to describe layout by DSL (like SwiftUI's layout).
+- 🌟 Automatic adding subviews according to layout representation.
+- 🌟 Supports integeration with system AutoLayout API.
+- 🌟 Provides classical layout API that describing constraints each view.
 
 ## Introduction
+
+A DSL based layout builder with AutoLayout
+
+<img width="364" src="https://user-images.githubusercontent.com/1888355/122650919-75555100-d170-11eb-8edf-834497dec211.png" />
 
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
@@ -184,6 +181,14 @@ VStackBlock {
 
 <img width="649" alt="CleanShot 2021-06-17 at 21 14 10@2x" src="https://user-images.githubusercontent.com/1888355/122394462-f9f97100-cfb0-11eb-9838-91f22c148bd9.png">
 
+## Future direction
+
+- Optimize the code - still verbose implementation because we're not sure if the API can be stable.
+- Brushing up the DSL - to be stable in describing.
+- Adding more modifiers for fine tuning in layout.
+- Tuning up the stack block's behavior.
+- Adding a way to setting constraints independently besides DSL
+  - AutoLayout is definitely powerful to describe the layout. We might need to set the constraints additionally since DSL can't describe every pattern of the layout.
 
 ## Demo app
 
