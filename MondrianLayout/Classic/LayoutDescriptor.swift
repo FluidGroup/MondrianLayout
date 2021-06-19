@@ -103,7 +103,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     self.target = .init(layoutGuide: layoutGuide)
   }
 
-  public var dimensionConstraints: DimensionConstraints = .init()
+  public var dimensionConstraints: DimensionDescriptor = .init()
 
   private func takeParentLayoutElementWithAssertion() -> _LayoutElement? {
     assert(target.owningView != nil, "\(target.view ?? target.layoutGuide as Any) must have parent view.") 
@@ -292,11 +292,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   @discardableResult
   public func activate() -> ConstraintGroup {
 
-    let dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
+    let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
 
     target.view?.translatesAutoresizingMaskIntoConstraints = false
 
-    let group = ConstraintGroup(constraints: constraints + dimensionConstraints)
+    let group = ConstraintGroup(constraints: constraints + _dimensionConstraints)
     group.activate()
     return group
 

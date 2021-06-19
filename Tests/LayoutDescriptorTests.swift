@@ -16,7 +16,7 @@ final class LayoutDescriptorTests: XCTestCase {
       .width(10)
       .topToSuperview()
       .rightToSuperview()
-      .leading()
+      .leadingToSuperview()
       .activate()
 
     XCTAssertEqual(g.constraints.count, 4)
