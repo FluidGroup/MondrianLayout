@@ -10,7 +10,7 @@ public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
 
   public let view: UIView
 
-  public var dimensionConstraints: DimensionConstraints = .init()
+  public var dimensionConstraints: DimensionDescriptor = .init()
 
   var verticalHuggingPriority: UILayoutPriority?
   var horizontalHuggingPriority: UILayoutPriority?

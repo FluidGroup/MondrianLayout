@@ -1,7 +1,41 @@
 
 import UIKit
 
-public struct _LayoutElement {
+public protocol __LayoutElementConvertible {
+  var _layoutElement: _LayoutElement { get }
+}
+
+extension UIView: __LayoutElementConvertible {
+  public var _layoutElement: _LayoutElement {
+    return .init(view: self)
+  }
+}
+
+extension UILayoutGuide: __LayoutElementConvertible {
+  public var _layoutElement: _LayoutElement {
+    return .init(layoutGuide: self)
+  }
+}
+
+public struct _LayoutElement: __LayoutElementConvertible {
+
+  public enum XAxis {
+    case right
+    case left
+    case leading
+    case trailing
+    case centerX
+  }
+
+  public enum YAxis {
+    case top
+    case bottom
+    case centerY
+  }
+
+  public var _layoutElement: _LayoutElement {
+    self
+  }
 
   let leadingAnchor: NSLayoutXAxisAnchor
   let trailingAnchor: NSLayoutXAxisAnchor
@@ -13,6 +47,10 @@ public struct _LayoutElement {
   let heightAnchor: NSLayoutDimension
   let centerXAnchor: NSLayoutXAxisAnchor
   let centerYAnchor: NSLayoutYAxisAnchor
+
+  var owningView: UIView? {
+    return view?.superview ?? layoutGuide?.owningView
+  }
 
   let view: UIView?
   let layoutGuide: UILayoutGuide?
@@ -52,4 +90,29 @@ public struct _LayoutElement {
 
   }
 
+  func anchor(_ type: XAxis) -> NSLayoutXAxisAnchor {
+    switch type {
+    case .right:
+      return rightAnchor
+    case .left:
+      return leftAnchor
+    case .leading:
+      return leadingAnchor
+    case .trailing:
+      return trailingAnchor
+    case .centerX:
+      return centerXAnchor
+    }
+  }
+
+  func anchor(_ type: YAxis) -> NSLayoutYAxisAnchor {
+    switch type {
+    case .top:
+      return topAnchor
+    case .bottom:
+      return bottomAnchor
+    case .centerY:
+      return centerYAnchor
+    }
+  }
 }

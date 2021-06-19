@@ -1,11 +1,12 @@
 import UIKit
 
-public struct ConstraintValue: Equatable {
-  public var constant: CGFloat
-  public var priority: UILayoutPriority
-}
+public struct DimensionDescriptor: Equatable {
 
-public struct DimensionConstraints: Equatable {
+  public struct ConstraintValue: Equatable {
+    public var constant: CGFloat
+    public var priority: UILayoutPriority
+  }
+  
   public var aspectRatio: ConstraintValue?
 
   public var minHeight: ConstraintValue?
@@ -94,12 +95,12 @@ public struct DimensionConstraints: Equatable {
 }
 
 public protocol _DimensionConstraintType {
-  var dimensionConstraints: DimensionConstraints { get set }
+  var dimensionConstraints: DimensionDescriptor { get set }
 }
 
 extension _DimensionConstraintType {
 
-  private func _modify(_ modifier: (inout DimensionConstraints) -> Void) -> Self {
+  private func _modify(_ modifier: (inout DimensionDescriptor) -> Void) -> Self {
     var new = self
     modifier(&new.dimensionConstraints)
     return new
