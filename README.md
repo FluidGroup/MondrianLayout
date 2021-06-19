@@ -149,9 +149,10 @@ What if we get a more ergonomic interface to declare the constraints.
 
 like this
 
-<img width="364" src="https://user-images.githubusercontent.com/1888355/122650919-75555100-d170-11eb-8edf-834497dec211.png" />
+| | |
+|---|---|
+|<img width="364" src="https://user-images.githubusercontent.com/1888355/122650919-75555100-d170-11eb-8edf-834497dec211.png" />|<img width="364" alt="CleanShot 2021-06-17 at 21 13 11@2x" src="https://user-images.githubusercontent.com/1888355/122394356-d9311b80-cfb0-11eb-8c8c-f5117593ffbe.png">|
 
-<img width="120" alt="CleanShot 2021-06-17 at 21 13 11@2x" src="https://user-images.githubusercontent.com/1888355/122394356-d9311b80-cfb0-11eb-8c8c-f5117593ffbe.png">
 
 <img width="649" alt="CleanShot 2021-06-17 at 21 14 10@2x" src="https://user-images.githubusercontent.com/1888355/122394462-f9f97100-cfb0-11eb-9838-91f22c148bd9.png">
 
@@ -168,7 +169,9 @@ like this
 
 You can see many layout examples from the demo application.
 
-<img width="120" alt="CleanShot 2021-06-17 at 00 23 00@2x" src="https://user-images.githubusercontent.com/1888355/122247248-2e622400-cf02-11eb-9746-cae1d475142d.png">
+
+https://user-images.githubusercontent.com/1888355/122651186-142e7d00-d172-11eb-8bde-f4432d0a0ac9.mp4
+
 
 ## Overview
 
