@@ -319,6 +319,43 @@ label
 
 // TODO:
 
+## Classic Layout API
+
+Structured layout API(DSL) does not cover the all of use-cases.  
+Sometimes we still need a way to describe constraints for a complicated layout.
+
+MondrianLayout provides it as well other AutoLayout libraries.
+
+**Activate constraints independently**
+
+```swift
+view.layout
+  .width(10)
+  .topToSuperview()
+  .rightToSuperview()
+  .leadingToSuperview()
+  .activate() // activate constraints and returns `ConstraintGroup`
+```
+
+**Batch layout*
+
+```swift
+// returns `ConstraintGroup`
+batchLayout {
+
+  box1.layout
+    .topToSuperview()
+    .leftToSuperview()
+    .right(to: box2, .left)
+    .bottomToSuperview()
+
+  box2.layout
+    .topToSuperview(.top, .constant(10))
+    .rightToSuperview()
+    .bottomToSuperview()
+}
+```
+
 ## Installation
 
 **CocoaPods**
