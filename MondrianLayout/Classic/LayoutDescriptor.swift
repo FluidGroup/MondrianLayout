@@ -1,5 +1,54 @@
 import UIKit
 
+@discardableResult
+public func batchLayout(@MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]) -> ConstraintGroup {
+
+  let descriptors = closure()
+
+  let group = ConstraintGroup(constraints: [])
+
+  descriptors.forEach {
+    let g = $0.activate()
+    group.append(g)
+  }
+
+  return group
+
+}
+
+public final class ConstraintGroup {
+
+  public private(set) var constraints: [NSLayoutConstraint]
+
+  public init(
+    constraints: [NSLayoutConstraint]
+  ) {
+    self.constraints = constraints
+  }
+
+  public func append(_ constraint: NSLayoutConstraint) {
+    self.constraints.append(constraint)
+  }
+
+  public func append(_ otherGroup: ConstraintGroup) {
+    self.constraints.append(contentsOf: otherGroup.constraints)
+  }
+
+  public func activate() {
+
+    NSLayoutConstraint.activate(constraints)
+  }
+
+  public func deactivate() {
+
+    NSLayoutConstraint.deactivate(constraints)
+  }
+
+}
+
+/**
+ A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
+ */
 public struct LayoutDescriptor: _DimensionConstraintType {
 
   public struct ConstraintValue {
@@ -38,24 +87,27 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
   }
 
-  private let owner: _LayoutElement
+  private let target: _LayoutElement
 
+  /// Creates an instance from `UIView`.
   public init(
     view: UIView
   ) {
-    self.owner = .init(view: view)
+    self.target = .init(view: view)
   }
 
+  /// Creates an instance from `UILayoutGuide`.
   public init(
     layoutGuide: UILayoutGuide
   ) {
-    self.owner = .init(layoutGuide: layoutGuide)
+    self.target = .init(layoutGuide: layoutGuide)
   }
 
   public var dimensionConstraints: DimensionConstraints = .init()
 
   private func takeParentLayoutElementWithAssertion() -> _LayoutElement? {
-    owner.owningView.map { .init(view: $0) }
+    assert(target.owningView != nil, "\(target.view ?? target.layoutGuide as Any) must have parent view.") 
+    return target.owningView.map { .init(view: $0) }
   }
 
   private var constraints: [NSLayoutConstraint] = []
@@ -71,7 +123,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     to element: __LayoutElementConvertible,
     _ closure: (_LayoutElement, _LayoutElement) -> NSLayoutConstraint
   ) -> NSLayoutConstraint {
-    let constraint = closure(owner, element._layoutElement)
+    let constraint = closure(target, element._layoutElement)
     constraints.append(constraint)
     return constraint
   }
@@ -144,27 +196,42 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _anchor(.centerX, to: element, target, condition)
   }
 
-  public func leading(_ target: _LayoutElement.XAxis = .leading, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func leadingToSuperview(
+    _ target: _LayoutElement.XAxis = .leading,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.leading, to: parent, target, condition)
   }
 
-  public func trailing(_ target: _LayoutElement.XAxis = .trailing, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func trailingToSuperview(
+    _ target: _LayoutElement.XAxis = .trailing,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.trailing, to: parent, target, condition)
   }
 
-  public func left(_ target: _LayoutElement.XAxis = .left, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func leftToSuperview(
+    _ target: _LayoutElement.XAxis = .left,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.left, to: parent, target, condition)
   }
 
-  public func right(_ target: _LayoutElement.XAxis = .right, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func rightToSuperview(
+    _ target: _LayoutElement.XAxis = .right,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.right, to: parent, target, condition)
   }
 
-  public func centerX(_ target: _LayoutElement.XAxis = .centerX, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func centerXToSuperview(
+    _ target: _LayoutElement.XAxis = .centerX,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.centerX, to: parent, target, condition)
   }
@@ -195,19 +262,44 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _anchor(.centerY, to: element, target, condition)
   }
 
-  public func top(_ target: _LayoutElement.YAxis = .top, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func topToSuperview(
+    _ target: _LayoutElement.YAxis = .top,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.top, to: parent, target, condition)
   }
 
-  public func bottom(_ target: _LayoutElement.YAxis = .bottom, _ condition: ConstraintValue = .constant(0)) -> Self {
+  public func bottomToSuperview(
+    _ target: _LayoutElement.YAxis = .bottom,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.bottom, to: parent, target, condition)
   }
 
-  public func centerY(_ target: _LayoutElement.YAxis, _ condition: ConstraintValue) -> Self {
+  public func centerYToSuperView(
+    _ target: _LayoutElement.YAxis = .centerY,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.centerY, to: parent, target, condition)
+  }
+
+  /**
+   Activates layout constraints
+   */
+  @discardableResult
+  public func activate() -> ConstraintGroup {
+
+    let dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
+
+    target.view?.translatesAutoresizingMaskIntoConstraints = false
+
+    let group = ConstraintGroup(constraints: constraints + dimensionConstraints)
+    group.activate()
+    return group
+
   }
 
 }
@@ -237,30 +329,26 @@ extension NSLayoutXAxisAnchor {
 
 extension NSLayoutYAxisAnchor {
 
-  func constraint(
+  fileprivate func constraint(
     value: LayoutDescriptor.ConstraintValue,
-    to: NSLayoutYAxisAnchor
+    to anchor: NSLayoutYAxisAnchor
   ) -> NSLayoutConstraint {
-    constraint(equalTo: to)
+
+    switch value.condition {
+    case .min:
+      return constraint(greaterThanOrEqualTo: anchor, constant: value.value).withPriority(
+        value.priority
+      )
+    case .constant:
+      return constraint(equalTo: anchor, constant: value.value).withPriority(value.priority)
+    case .max:
+      return constraint(lessThanOrEqualTo: anchor, constant: value.value).withPriority(
+        value.priority
+      )
+    }
+
   }
 }
-
-#if DEBUG
-
-func test() {
-
-  let target = UIView()
-  let view = UIView()
-
-  view.layout
-    .width(10)
-    .top()
-    .right()
-    .leading()
-
-}
-
-#endif
 
 extension UIView {
 
