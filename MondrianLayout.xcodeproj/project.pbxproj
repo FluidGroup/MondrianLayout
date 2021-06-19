@@ -48,6 +48,7 @@
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
 		4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* _LayoutBlockNode.swift */; };
 		4B9B07E9267CF60000818A40 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07E8267CF60000818A40 /* SyntaxTests.swift */; };
+		4B9B07EB267E045600818A40 /* LayoutDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07EA267E045600818A40 /* LayoutDescriptor.swift */; };
 		4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */; };
 		4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */; };
 		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
@@ -142,6 +143,7 @@
 		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
 		4B73820B267A0D6900D77986 /* _LayoutBlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LayoutBlockNode.swift; sourceTree = "<group>"; };
 		4B9B07E8267CF60000818A40 /* SyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
+		4B9B07EA267E045600818A40 /* LayoutDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDescriptor.swift; sourceTree = "<group>"; };
 		4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+.swift"; sourceTree = "<group>"; };
 		4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackBlock.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		4B4057642675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
+				4B9B07EE267E1C2900818A40 /* Classic */,
 				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
 				4B9A1B84267A286D0029907C /* LayoutBlocks */,
 				4BFF75D12677CC32003FA7F0 /* Extensions */,
@@ -279,6 +282,14 @@
 				4B4693B226791FA90079B761 /* SafeAreaContainer.swift */,
 			);
 			path = LayoutBlocks;
+			sourceTree = "<group>";
+		};
+		4B9B07EE267E1C2900818A40 /* Classic */ = {
+			isa = PBXGroup;
+			children = (
+				4B9B07EA267E045600818A40 /* LayoutDescriptor.swift */,
+			);
+			path = Classic;
 			sourceTree = "<group>";
 		};
 		4BFF75CF2677CC16003FA7F0 /* Descriptors */ = {
@@ -471,6 +482,7 @@
 				4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */,
 				4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */,
 				4B0279A2267880420078B18A /* OverlayBlock.swift in Sources */,
+				4B9B07EB267E045600818A40 /* LayoutDescriptor.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
 				4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */,
