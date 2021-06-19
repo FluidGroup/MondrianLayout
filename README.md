@@ -158,7 +158,7 @@ VStackBlock {
     profileImageView
     nicknameLabel
     
-    SpacerBlock()
+    StackingSpacer()
     
     optionButton
   }
@@ -173,7 +173,7 @@ VStackBlock {
     commentButton
     messageButton
     
-    SpacerBlock()
+    StackingSpacer()
     
     saveButton
   }
