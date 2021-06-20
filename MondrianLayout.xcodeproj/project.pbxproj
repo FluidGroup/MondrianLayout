@@ -10,7 +10,6 @@
 		4B0279A026787AD30078B18A /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
 		4B0279A2267880420078B18A /* OverlayBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A1267880420078B18A /* OverlayBlock.swift */; };
 		4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0279A32678804A0078B18A /* BackgroundBlock.swift */; };
-		4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4B09412F2677BDB700E1997B /* SnapshotTesting */; };
 		4B0941322677C02700E1997B /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
 		4B0941332677C1F000E1997B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B1256BE267CA74700FE9612 /* Book.ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1256BD267CA74700FE9612 /* Book.ViewController.swift */; };
@@ -57,11 +56,12 @@
 		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
 		4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1B2676333C00D1E1C9 /* _LayoutBlockType.swift */; };
 		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
+		4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE8F267F28720035A66D /* StorybookKit */; };
+		4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE91267F28720035A66D /* StorybookUI */; };
+		4BD5FE95267F28970035A66D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE94267F28970035A66D /* SnapshotTesting */; };
 		4BE163C4267B711C00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
 		4BE163C5267B713F00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
 		4BE16571267C5D0800817483 /* ZStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE16570267C5D0800817483 /* ZStackTests.swift */; };
-		4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E93F2675CA5700D096DC /* StorybookKit */; };
-		4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BE4E9412675CA5700D096DC /* StorybookUI */; };
 		4BE4E9442675CAB100D096DC /* RootContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */; };
 		4BE4E9462675CABE00D096DC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE4E9452675CABE00D096DC /* Book.swift */; };
 		4BFF75CE2677C91B003FA7F0 /* ExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0941312677C02700E1997B /* ExampleView.swift */; };
@@ -166,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BD5FE95267F28970035A66D /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,10 +174,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BE4E9402675CA5700D096DC /* StorybookKit in Frameworks */,
+				4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */,
+				4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */,
 				4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */,
 				4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */,
-				4BE4E9422675CA5700D096DC /* StorybookUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B64B1B22675D2AF00460282 /* MondrianLayout.framework in Frameworks */,
-				4B0941302677BDB700E1997B /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +358,9 @@
 			dependencies = (
 			);
 			name = MondrianLayout;
+			packageProductDependencies = (
+				4BD5FE94267F28970035A66D /* SnapshotTesting */,
+			);
 			productName = BoxLayout2;
 			productReference = 4B4057622675C501003B28A1 /* MondrianLayout.framework */;
 			productType = "com.apple.product-type.framework";
@@ -379,8 +382,8 @@
 			);
 			name = Demo_MondrianLayout;
 			packageProductDependencies = (
-				4BE4E93F2675CA5700D096DC /* StorybookKit */,
-				4BE4E9412675CA5700D096DC /* StorybookUI */,
+				4BD5FE8F267F28720035A66D /* StorybookKit */,
+				4BD5FE91267F28720035A66D /* StorybookUI */,
 			);
 			productName = Demo_BoxLayout2;
 			productReference = 4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */;
@@ -401,7 +404,6 @@
 			);
 			name = Tests;
 			packageProductDependencies = (
-				4B09412F2677BDB700E1997B /* SnapshotTesting */,
 			);
 			productName = Tests;
 			productReference = 4B64B1AD2675D2AF00460282 /* Tests.xctest */;
@@ -439,8 +441,8 @@
 			);
 			mainGroup = 4B4057582675C501003B28A1;
 			packageReferences = (
-				4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */,
-				4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */,
+				4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 4B4057632675C501003B28A1 /* Products */;
 			projectDirPath = "";
@@ -899,39 +901,39 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+		4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:pointfreeco/swift-snapshot-testing.git";
+			repositoryURL = "https://github.com/eure/Storybook-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
+		4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.9.0;
 			};
 		};
-		4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:eure/Storybook-ios.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4B09412F2677BDB700E1997B /* SnapshotTesting */ = {
+		4BD5FE8F267F28720035A66D /* StorybookKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4B09412E2677BDB700E1997B /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
-		};
-		4BE4E93F2675CA5700D096DC /* StorybookKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */;
+			package = 4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */;
 			productName = StorybookKit;
 		};
-		4BE4E9412675CA5700D096DC /* StorybookUI */ = {
+		4BD5FE91267F28720035A66D /* StorybookUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4BE4E93E2675CA5700D096DC /* XCRemoteSwiftPackageReference "Storybook-ios" */;
+			package = 4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */;
 			productName = StorybookUI;
+		};
+		4BD5FE94267F28970035A66D /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

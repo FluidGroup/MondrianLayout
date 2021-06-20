@@ -3,16 +3,16 @@
     "pins": [
       {
         "package": "Storybook",
-        "repositoryURL": "git@github.com:eure/Storybook-ios.git",
+        "repositoryURL": "https://github.com/eure/Storybook-ios.git",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "f617d48f143bc697a54f5de8c664f1aaa8c0ad36",
-          "version": null
+          "version": "1.7.1"
         }
       },
       {
         "package": "SnapshotTesting",
-        "repositoryURL": "git@github.com:pointfreeco/swift-snapshot-testing.git",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
           "revision": "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
