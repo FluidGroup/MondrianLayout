@@ -47,7 +47,7 @@ extension _LayoutBlockNodeConvertible {
 }
 
 @_functionBuilder
-public enum _LayeringContentBuilder {
+public enum _LayoutBlockArrayBuilder {
   public typealias Component = _LayoutBlockNode
 
   public static func buildBlock(_ components: Component...) -> [Component] {

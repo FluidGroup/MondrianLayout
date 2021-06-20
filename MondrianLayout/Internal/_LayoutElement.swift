@@ -19,7 +19,7 @@ extension UILayoutGuide: __LayoutElementConvertible {
 
 public struct _LayoutElement: __LayoutElementConvertible {
 
-  public enum XAxis {
+  public enum XAxisAnchor: Equatable {
     case right
     case left
     case leading
@@ -27,7 +27,7 @@ public struct _LayoutElement: __LayoutElementConvertible {
     case centerX
   }
 
-  public enum YAxis {
+  public enum YAxisAnchor: Equatable {
     case top
     case bottom
     case centerY
@@ -90,7 +90,7 @@ public struct _LayoutElement: __LayoutElementConvertible {
 
   }
 
-  func anchor(_ type: XAxis) -> NSLayoutXAxisAnchor {
+  func anchor(_ type: XAxisAnchor) -> NSLayoutXAxisAnchor {
     switch type {
     case .right:
       return rightAnchor
@@ -105,7 +105,7 @@ public struct _LayoutElement: __LayoutElementConvertible {
     }
   }
 
-  func anchor(_ type: YAxis) -> NSLayoutYAxisAnchor {
+  func anchor(_ type: YAxisAnchor) -> NSLayoutYAxisAnchor {
     switch type {
     case .top:
       return topAnchor

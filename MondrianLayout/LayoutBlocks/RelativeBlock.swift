@@ -137,9 +137,9 @@ extension RelativeBlock {
 
     return relative(
       top: edges.contains(.top) ? value : nil,
-      left: edges.contains(.left) ? value : nil,
+      left: edges.contains(.leading) ? value : nil,
       bottom: edges.contains(.bottom) ? value : nil,
-      right: edges.contains(.right) ? value : nil
+      right: edges.contains(.trailing) ? value : nil
     )
 
   }
@@ -177,9 +177,9 @@ extension RelativeBlock {
 
     return padding(
       top: edges.contains(.top) ? value : 0,
-      left: edges.contains(.left) ? value : 0,
+      left: edges.contains(.leading) ? value : 0,
       bottom: edges.contains(.bottom) ? value : 0,
-      right: edges.contains(.right) ? value : 0
+      right: edges.contains(.trailing) ? value : 0
     )
 
   }
@@ -216,9 +216,9 @@ extension _LayoutBlockNodeConvertible {
 
     return relative(
       top: edges.contains(.top) ? value : nil,
-      left: edges.contains(.left) ? value : nil,
+      left: edges.contains(.leading) ? value : nil,
       bottom: edges.contains(.bottom) ? value : nil,
-      right: edges.contains(.right) ? value : nil
+      right: edges.contains(.trailing) ? value : nil
     )
 
   }
@@ -251,9 +251,9 @@ extension _LayoutBlockNodeConvertible {
 
     return padding(
       top: edges.contains(.top) ? value : 0,
-      left: edges.contains(.left) ? value : 0,
+      left: edges.contains(.leading) ? value : 0,
       bottom: edges.contains(.bottom) ? value : 0,
-      right: edges.contains(.right) ? value : 0
+      right: edges.contains(.trailing) ? value : 0
     )
 
   }

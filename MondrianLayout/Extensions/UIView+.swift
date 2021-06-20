@@ -7,15 +7,26 @@ extension UIView {
    Adding subviews included in layout
    */
   @discardableResult
-  public func buildSublayersLayout(
-    safeArea: Edge.Set = [],
-    @SafeAreaContentBuilder build: () -> _SafeAreaContent
+  public func buildSublayersLayout<Block: _LayoutBlockType>(
+    build: () -> Block
   ) -> LayoutBuilderContext {
 
     let context = LayoutBuilderContext(targetView: self)
-    let container = SafeAreaContainer(edge: safeArea) {
-      build()
-    }
+    let container = build()
+    container.setupConstraints(parent: .init(view: self), in: context)
+    context.prepareViewHierarchy()
+    context.activate()
+
+    return context
+  }
+
+  @discardableResult
+  public func buildSublayersLayout<Block: _LayoutBlockNodeConvertible>(
+    build: () -> LayoutContainer<Block>
+  ) -> LayoutBuilderContext {
+
+    let context = LayoutBuilderContext(targetView: self)
+    let container = build()
     container.setupConstraints(parent: self, in: context)
     context.prepareViewHierarchy()
     context.activate()
