@@ -4,6 +4,8 @@ import UIKit
 
 let book = Book(title: "MondrianLayout") {
 
+  _book_neonGrid
+
   _book_mondrian
 
   _book_background

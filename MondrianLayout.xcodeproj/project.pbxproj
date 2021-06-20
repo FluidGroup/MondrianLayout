@@ -46,6 +46,7 @@
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
 		4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* _LayoutBlockNode.swift */; };
+		4B8A4834267F36F100609D3E /* Ne in Frameworks */ = {isa = PBXBuildFile; productRef = 4B8A4833267F36F100609D3E /* Ne */; };
 		4B9B07E9267CF60000818A40 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07E8267CF60000818A40 /* SyntaxTests.swift */; };
 		4B9B07EB267E045600818A40 /* LayoutDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07EA267E045600818A40 /* LayoutDescriptor.swift */; };
 		4B9B07F0267E532500818A40 /* MondrianArrayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07EF267E532500818A40 /* MondrianArrayBuilder.swift */; };
@@ -173,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8A4834267F36F100609D3E /* Ne in Frameworks */,
 				4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */,
 				4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */,
 				4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */,
@@ -383,6 +385,7 @@
 			packageProductDependencies = (
 				4BD5FE8F267F28720035A66D /* StorybookKit */,
 				4BD5FE91267F28720035A66D /* StorybookUI */,
+				4B8A4833267F36F100609D3E /* Ne */,
 			);
 			productName = Demo_BoxLayout2;
 			productReference = 4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */;
@@ -443,6 +446,7 @@
 			packageReferences = (
 				4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */,
 				4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				4B8A4832267F36F100609D3E /* XCRemoteSwiftPackageReference "Ne" */,
 			);
 			productRefGroup = 4B4057632675C501003B28A1 /* Products */;
 			projectDirPath = "";
@@ -901,6 +905,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4B8A4832267F36F100609D3E /* XCRemoteSwiftPackageReference "Ne" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/muukii/Ne.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 		4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/eure/Storybook-ios.git";
@@ -920,6 +932,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4B8A4833267F36F100609D3E /* Ne */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B8A4832267F36F100609D3E /* XCRemoteSwiftPackageReference "Ne" */;
+			productName = Ne;
+		};
 		4BD5FE8F267F28720035A66D /* StorybookKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */;

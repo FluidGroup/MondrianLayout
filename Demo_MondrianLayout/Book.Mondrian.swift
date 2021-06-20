@@ -1,7 +1,7 @@
+import MondrianLayout
+import Ne
 import StorybookKit
 import UIKit
-
-import MondrianLayout
 
 var _book_mondrian: BookView {
   BookPreview {
@@ -128,6 +128,64 @@ var _book_mondrian: BookView {
             .relative(bottom: 8, right: 8)
         )
 
+      }
+    }
+  }
+}
+
+var _book_neonGrid: BookView {
+  BookPreview {
+    ExampleView(width: nil, height: nil) { (view: UIView) in
+      view.buildSublayersLayout {
+
+        VStackBlock(spacing: 2, alignment: .fill) {
+
+          UIView.mock(backgroundColor: .neon(.red, .normal), preferredSize: .smallSquare)
+
+          UIView.mock(backgroundColor: .neon(.cyan, .normal), preferredSize: .smallSquare)
+
+          UIView.mock(backgroundColor: .neon(.yellow, .normal), preferredSize: .smallSquare)
+
+          UIView.mock(backgroundColor: .neon(.purple, .normal), preferredSize: .smallSquare)
+
+          UIView.mock(backgroundColor: .neon(.violet, .normal), preferredSize: .smallSquare)
+
+          UIView.mock(backgroundColor: .neon(.pink, .normal), preferredSize: .smallSquare)
+
+          HStackBlock(spacing: 2, alignment: .fill) {
+
+            UIView.mock(backgroundColor: .neon(.red, .brighter), preferredSize: .smallSquare)
+
+            UIView.mock(backgroundColor: .neon(.cyan, .brighter), preferredSize: .smallSquare)
+
+            UIView.mock(backgroundColor: .neon(.yellow, .brighter), preferredSize: .smallSquare)
+
+            UIView.mock(backgroundColor: .neon(.purple, .brighter), preferredSize: .smallSquare)
+
+            UIView.mock(backgroundColor: .neon(.violet, .brighter), preferredSize: .smallSquare)
+
+            UIView.mock(backgroundColor: .neon(.pink, .brighter), preferredSize: .smallSquare)
+
+            VStackBlock(spacing: 2, alignment: .fill) {
+
+              UIView.mock(backgroundColor: .neon(.red, .darker), preferredSize: .smallSquare)
+
+              UIView.mock(backgroundColor: .neon(.cyan, .darker), preferredSize: .smallSquare)
+
+              UIView.mock(backgroundColor: .neon(.yellow, .darker), preferredSize: .smallSquare)
+
+              UIView.mock(backgroundColor: .neon(.purple, .darker), preferredSize: .smallSquare)
+
+              UIView.mock(backgroundColor: .neon(.violet, .darker), preferredSize: .smallSquare)
+
+              UIView.mock(backgroundColor: .neon(.pink, .darker), preferredSize: .smallSquare)
+              
+            }
+
+            
+          }
+
+        }
       }
     }
   }

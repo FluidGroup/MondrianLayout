@@ -2,7 +2,7 @@ import UIKit
 
 extension UIColor {
 
-  static var mondrianRed: UIColor = #colorLiteral(red: 1, green: 0.2253824174, blue: 0.140440017, alpha: 1)
+  static var mondrianRed: UIColor = #colorLiteral(red: 1, green: 0.5661777854, blue: 0.3006193042, alpha: 1)
   static var mondrianBlue: UIColor = #colorLiteral(red: 0.09076789767, green: 0.3224385977, blue: 0.9202803969, alpha: 1)
   static var mondrianCyan: UIColor = #colorLiteral(red: 0, green: 0.856479466, blue: 1, alpha: 1)
   static var mondrianYellow: UIColor = #colorLiteral(red: 1, green: 0.4053340554, blue: 0, alpha: 1)
