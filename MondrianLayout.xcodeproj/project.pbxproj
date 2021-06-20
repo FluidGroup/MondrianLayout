@@ -58,7 +58,7 @@
 		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
 		4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE8F267F28720035A66D /* StorybookKit */; };
 		4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE91267F28720035A66D /* StorybookUI */; };
-		4BD5FE95267F28970035A66D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE94267F28970035A66D /* SnapshotTesting */; };
+		4BD5FE9E267F2CF60035A66D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE9D267F2CF60035A66D /* SnapshotTesting */; };
 		4BE163C4267B711C00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
 		4BE163C5267B713F00817483 /* CGSize+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE163C3267B711C00817483 /* CGSize+.swift */; };
 		4BE16571267C5D0800817483 /* ZStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BE16570267C5D0800817483 /* ZStackTests.swift */; };
@@ -166,7 +166,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BD5FE95267F28970035A66D /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B64B1B22675D2AF00460282 /* MondrianLayout.framework in Frameworks */,
+				4BD5FE9E267F2CF60035A66D /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +359,6 @@
 			);
 			name = MondrianLayout;
 			packageProductDependencies = (
-				4BD5FE94267F28970035A66D /* SnapshotTesting */,
 			);
 			productName = BoxLayout2;
 			productReference = 4B4057622675C501003B28A1 /* MondrianLayout.framework */;
@@ -404,6 +403,7 @@
 			);
 			name = Tests;
 			packageProductDependencies = (
+				4BD5FE9D267F2CF60035A66D /* SnapshotTesting */,
 			);
 			productName = Tests;
 			productReference = 4B64B1AD2675D2AF00460282 /* Tests.xctest */;
@@ -930,7 +930,7 @@
 			package = 4BD5FE8E267F28720035A66D /* XCRemoteSwiftPackageReference "Storybook-ios" */;
 			productName = StorybookUI;
 		};
-		4BD5FE94267F28970035A66D /* SnapshotTesting */ = {
+		4BD5FE9D267F2CF60035A66D /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
