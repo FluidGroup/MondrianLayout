@@ -218,8 +218,12 @@ You can replace it with `UIViewController.view`.
 Attaching to top and bottom safe-area.
 
 ```swift
-self.buildSublayersLayout(safeArea: .vertical) {
-  ...
+self.buildSublayersLayout {
+  LayoutContainer(attachedSafeAreaEdges: .vertical) {
+    VStackBlock {
+      ...
+    }
+  }
 }
 ```
 

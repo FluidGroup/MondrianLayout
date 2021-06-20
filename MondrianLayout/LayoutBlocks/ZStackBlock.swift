@@ -17,7 +17,7 @@ public struct ZStackBlock:
   // MARK: - Initializers
 
   public init(
-    @_LayeringContentBuilder elements: () -> [_LayoutBlockNode]
+    @_LayoutBlockArrayBuilder elements: () -> [_LayoutBlockNode]
   ) {
     self.elements = elements()
   }

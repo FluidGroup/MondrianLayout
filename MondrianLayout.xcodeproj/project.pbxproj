@@ -24,7 +24,7 @@
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
 		4B4693AF267915080079B761 /* StackingSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693AE267915080079B761 /* StackingSpacer.swift */; };
 		4B4693B1267918C60079B761 /* VStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B0267918C60079B761 /* VStackTests.swift */; };
-		4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B226791FA90079B761 /* SafeAreaContainer.swift */; };
+		4B4693B326791FA90079B761 /* LayoutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4693B226791FA90079B761 /* LayoutContainer.swift */; };
 		4B47F6372678DC0000BDE2DB /* Book.Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6362678DC0000BDE2DB /* Book.Background.swift */; };
 		4B47F6392678DC4000BDE2DB /* Book.VStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6382678DC4000BDE2DB /* Book.VStackBlock.swift */; };
 		4B47F63B2678DC6C00BDE2DB /* Book.HStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */; };
@@ -123,7 +123,7 @@
 		4B40577E2675C51F003B28A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B4693AE267915080079B761 /* StackingSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackingSpacer.swift; sourceTree = "<group>"; };
 		4B4693B0267918C60079B761 /* VStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackTests.swift; sourceTree = "<group>"; };
-		4B4693B226791FA90079B761 /* SafeAreaContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaContainer.swift; sourceTree = "<group>"; };
+		4B4693B226791FA90079B761 /* LayoutContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutContainer.swift; sourceTree = "<group>"; };
 		4B47F6362678DC0000BDE2DB /* Book.Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Background.swift; sourceTree = "<group>"; };
 		4B47F6382678DC4000BDE2DB /* Book.VStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.VStackBlock.swift; sourceTree = "<group>"; };
 		4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.HStackBlock.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 				4B0279A32678804A0078B18A /* BackgroundBlock.swift */,
 				4B64B1C426762A6F00460282 /* VStackBlock.swift */,
 				4B64B1C626762A8200460282 /* HStackBlock.swift */,
-				4B4693B226791FA90079B761 /* SafeAreaContainer.swift */,
+				4B4693B226791FA90079B761 /* LayoutContainer.swift */,
 			);
 			path = LayoutBlocks;
 			sourceTree = "<group>";
@@ -500,7 +500,7 @@
 				4B9B07F0267E532500818A40 /* MondrianArrayBuilder.swift in Sources */,
 				4B9B07EB267E045600818A40 /* LayoutDescriptor.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
-				4B4693B326791FA90079B761 /* SafeAreaContainer.swift in Sources */,
+				4B4693B326791FA90079B761 /* LayoutContainer.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */,
 				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */,

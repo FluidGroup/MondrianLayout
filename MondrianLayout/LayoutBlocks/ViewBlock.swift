@@ -62,6 +62,17 @@ public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
     }
   }
 
+  func makeConstraintsToEdge(_ element: _LayoutElement) -> [NSLayoutConstraint] {
+    return
+      [
+        view.topAnchor.constraint(equalTo: element.topAnchor),
+        view.leadingAnchor.constraint(equalTo: element.leadingAnchor),
+        view.bottomAnchor.constraint(equalTo: element.bottomAnchor),
+        view.trailingAnchor.constraint(equalTo: element.trailingAnchor),
+    ]
+
+  }
+
   func makeApplier() -> () -> Void {
 
     return { [weak view] in

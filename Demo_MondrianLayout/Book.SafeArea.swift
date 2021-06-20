@@ -7,37 +7,69 @@ var _book_SafeArea: BookView {
 
     BookPush(title: "Push") {
       AnyViewController { view in
-        view.buildSublayersLayout(safeArea: .vertical) {
-          VStackBlock {
-            UIView.mock(
-              backgroundColor: .layeringColor,
-              preferredSize: .init(width: 100, height: 100)
-            )
-            UIView.mock(
-              backgroundColor: .layeringColor,
-              preferredSize: .init(width: 100, height: 100)
-            )
-            UIView.mock(
-              backgroundColor: .layeringColor,
-              preferredSize: .init(width: 100, height: 100)
-            )
+        view.buildSublayersLayout {
+          LayoutContainer(attachedSafeAreaEdges: .vertical) {
+            VStackBlock {
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 100, height: 100)
+              )
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 100, height: 100)
+              )
+              UIView.mock(
+                backgroundColor: .layeringColor,
+                preferredSize: .init(width: 100, height: 100)
+              )
+            }
           }
+
+        }
+      }
+    }
+
+    BookPush(title: "Push custom") {
+      AnyViewController { view in
+
+        view.buildSublayersLayout {
+          LayoutContainer(top: .view(.top), leading: .view(.leading), bottom: .safeArea(.top), trailing: .view(.trailing)) {
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .init(width: 100, height: 100)
+            )
+            .viewBlock
+          }
+
+        }
+
+        view.buildSublayersLayout {
+          LayoutContainer(attachedSafeAreaEdges: .vertical) {
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .init(width: 100, height: 100)
+            )
+            .viewBlock
+          }
+
         }
       }
     }
 
     BookPush(title: "Push") {
       AnyViewController { view in
-        view.buildSublayersLayout(safeArea: .vertical) {
-          ZStackBlock {
-            UIView.mock(
-              backgroundColor: .layeringColor
-            )
+        view.buildSublayersLayout {
+          LayoutContainer(attachedSafeAreaEdges: .vertical) {
+            ZStackBlock {
+              UIView.mock(
+                backgroundColor: .layeringColor
+              )
 
-            UIView.mock(
-              backgroundColor: .mondrianBlue,
-              preferredSize: .smallSquare
-            )
+              UIView.mock(
+                backgroundColor: .mondrianBlue,
+                preferredSize: .smallSquare
+              )
+            }
           }
         }
       }
@@ -45,33 +77,35 @@ var _book_SafeArea: BookView {
 
     BookPush(title: "Bottom Buttons") {
       AnyViewController { view in
-        view.buildSublayersLayout(safeArea: .vertical) {
-          ZStackBlock {
+        view.buildSublayersLayout {
+          LayoutContainer(attachedSafeAreaEdges: .vertical) {
+            ZStackBlock {
 
-            VStackBlock(alignment: .center) {
-              HStackBlock {
-                UIView.mock(
-                  backgroundColor: .mondrianBlue,
-                  preferredSize: .init(width: 20, height: 30)
-                )
-                UIView.mock(
-                  backgroundColor: .mondrianBlue,
-                  preferredSize: .init(width: 20, height: 10)
-                )
-                UIView.mock(
-                  backgroundColor: .mondrianBlue,
-                  preferredSize: .init(width: 20, height: 20)
-                )
+              VStackBlock(alignment: .center) {
+                HStackBlock {
+                  UIView.mock(
+                    backgroundColor: .mondrianBlue,
+                    preferredSize: .init(width: 20, height: 30)
+                  )
+                  UIView.mock(
+                    backgroundColor: .mondrianBlue,
+                    preferredSize: .init(width: 20, height: 10)
+                  )
+                  UIView.mock(
+                    backgroundColor: .mondrianBlue,
+                    preferredSize: .init(width: 20, height: 20)
+                  )
+                }
               }
-            }
-            .padding(20)
-            .background(
-              UIView.mock(
-                backgroundColor: .layeringColor
+              .padding(20)
+              .background(
+                UIView.mock(
+                  backgroundColor: .layeringColor
+                )
               )
-            )
-            .relative([.horizontal, .bottom], 0)
+              .relative([.horizontal, .bottom], 0)
 
+            }
           }
         }
       }
@@ -96,6 +130,8 @@ final class AnyViewController: UIViewController {
     } else {
       view.backgroundColor = .white
     }
+
+    additionalSafeAreaInsets = .init(top: 60, left: 60, bottom: 60, right: 60)
   }
 
   required init?(

@@ -15,19 +15,21 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementIfCanBeExpanding() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.buildSublayersLayout(safeArea: .vertical) {
-        ZStackBlock {
+      view.buildSublayersLayout {
+        LayoutContainer(attachedSafeAreaEdges: .vertical) {
+          ZStackBlock {
 
-          /// this view must be expanded to parent view
-          UIView.mock(
-            backgroundColor: .layeringColor
-          )
+            /// this view must be expanded to parent view
+            UIView.mock(
+              backgroundColor: .layeringColor
+            )
 
-          /// this view must be sized with intrinsic content size.
-          UIView.mock(
-            backgroundColor: .layeringColor,
-            preferredSize: .smallSquare
-          )
+            /// this view must be sized with intrinsic content size.
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .smallSquare
+            )
+          }
         }
       }
     }
@@ -39,14 +41,16 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementWithRelative() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.buildSublayersLayout(safeArea: .vertical) {
-        ZStackBlock {
-          UIView.mock(
-            backgroundColor: .layeringColor,
-            preferredSize: .smallSquare
-          )
-          .viewBlock
-          .relative(0)
+      view.buildSublayersLayout {
+        LayoutContainer(attachedSafeAreaEdges: .vertical) {
+          ZStackBlock {
+            UIView.mock(
+              backgroundColor: .layeringColor,
+              preferredSize: .smallSquare
+            )
+            .viewBlock
+            .relative(0)
+          }
         }
       }
     }

@@ -15,29 +15,31 @@ final class SyntaxTests: XCTestCase {
   func test_vStack() {
 
     let view = ExampleView(width: 20, height: nil) { view in
-      view.buildSublayersLayout(safeArea: .vertical) {
-        VStackBlock {
+      view.buildSublayersLayout {
+        LayoutContainer(attachedSafeAreaEdges: .vertical) {
+          VStackBlock {
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .height(10)
-            .spacingBefore(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .height(10)
+              .spacingBefore(10)
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .height(10)
-            .spacingAfter(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .height(10)
+              .spacingAfter(10)
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .height(10)
-            .spacingAfter(10)
-            .spacingAfter(10)
-            .spacingBefore(10)
-            .spacingBefore(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .height(10)
+              .spacingAfter(10)
+              .spacingAfter(10)
+              .spacingBefore(10)
+              .spacingBefore(10)
 
+          }
+          .background(UIView.mock(backgroundColor: .layeringColor))
         }
-        .background(UIView.mock(backgroundColor: .layeringColor))
       }
     }
 
@@ -49,29 +51,31 @@ final class SyntaxTests: XCTestCase {
   func test_hStack() {
 
     let view = ExampleView(width: nil, height: 20) { view in
-      view.buildSublayersLayout(safeArea: .vertical) {
-        HStackBlock {
+      view.buildSublayersLayout {
+        LayoutContainer(attachedSafeAreaEdges: .vertical) {
+          HStackBlock {
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .width(10)
-            .spacingBefore(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .width(10)
+              .spacingBefore(10)
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .width(10)
-            .spacingAfter(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .width(10)
+              .spacingAfter(10)
 
-          UIView.mock(backgroundColor: .layeringColor)
-            .viewBlock
-            .width(10)
-            .spacingAfter(10)
-            .spacingAfter(10)
-            .spacingBefore(10)
-            .spacingBefore(10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .width(10)
+              .spacingAfter(10)
+              .spacingAfter(10)
+              .spacingBefore(10)
+              .spacingBefore(10)
 
+          }
+          .background(UIView.mock(backgroundColor: .layeringColor))
         }
-        .background(UIView.mock(backgroundColor: .layeringColor))
       }
     }
 

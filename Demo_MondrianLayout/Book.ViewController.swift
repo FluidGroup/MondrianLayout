@@ -36,13 +36,15 @@ var _book_ViewController: BookView {
       }
 
       return AnyViewController { view in
-        view.buildSublayersLayout(safeArea: .all) {
-          ZStackBlock {
-            container
-              .viewBlock
-              .padding(20)
-              .background(UIView.mock(backgroundColor: .layeringColor))
-              .relative([.bottom, .horizontal], 0)
+        view.buildSublayersLayout {
+          LayoutContainer(attachedSafeAreaEdges: .all) {
+            ZStackBlock {
+              container
+                .viewBlock
+                .padding(20)
+                .background(UIView.mock(backgroundColor: .layeringColor))
+                .relative([.bottom, .horizontal], 0)
+            }
           }
         }
       }
