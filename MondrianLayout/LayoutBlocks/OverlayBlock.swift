@@ -37,24 +37,14 @@ public struct OverlayBlock:
       case .view(let c):
         context.register(viewConstraint: c)
         context.add(
-          constraints: [
-            c.view.topAnchor.constraint(equalTo: parent.topAnchor),
-            c.view.rightAnchor.constraint(equalTo: parent.rightAnchor),
-            c.view.leftAnchor.constraint(equalTo: parent.leftAnchor),
-            c.view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-          ]
+          constraints: c.makeConstraintsToEdge(parent)
         )
-      case .relative(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .vStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .hStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .zStack(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .overlay(let c):
-        c.setupConstraints(parent: parent, in: context)
-      case .background(let c):
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType):
         c.setupConstraints(parent: parent, in: context)
       }
     }
@@ -87,50 +77,15 @@ public struct OverlayBlock:
         let guide = _LayoutElement(layoutGuide: overlayLayoutGuide)
 
         context.add(
-          constraints: [
-            c.view.topAnchor.constraint(equalTo: guide.topAnchor),
-            c.view.rightAnchor.constraint(equalTo: guide.rightAnchor),
-            c.view.leftAnchor.constraint(equalTo: guide.leftAnchor),
-            c.view.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
-          ]
+          constraints: c.makeConstraintsToEdge(guide)
         )
 
-      case .relative(let relativeConstraint):
-
-        relativeConstraint.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
-        )
-
-      case .vStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
-        )
-
-      case .hStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
-        )
-
-      case .zStack(let stackConstraint):
-
-        stackConstraint.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
-        )
-
-      case .overlay(let c):
-
-        c.setupConstraints(
-          parent: .init(layoutGuide: overlayLayoutGuide),
-          in: context
-        )
-
-      case .background(let c):
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType):
 
         c.setupConstraints(
           parent: .init(layoutGuide: overlayLayoutGuide),

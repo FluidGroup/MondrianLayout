@@ -58,12 +58,7 @@ public struct BackgroundBlock:
         let guide = _LayoutElement(layoutGuide: backgroundLayoutGuide)
 
         context.add(
-          constraints: [
-            c.view.topAnchor.constraint(equalTo: guide.topAnchor),
-            c.view.rightAnchor.constraint(equalTo: guide.rightAnchor),
-            c.view.leftAnchor.constraint(equalTo: guide.leftAnchor),
-            c.view.bottomAnchor.constraint(equalTo: guide.bottomAnchor),
-          ]
+          constraints: c.makeConstraintsToEdge(guide)
         )
 
       case .relative(let c as _LayoutBlockType),
@@ -87,12 +82,7 @@ public struct BackgroundBlock:
       case .view(let c):
         context.register(viewConstraint: c)
         context.add(
-          constraints: [
-            c.view.topAnchor.constraint(equalTo: parent.topAnchor),
-            c.view.rightAnchor.constraint(equalTo: parent.rightAnchor),
-            c.view.leftAnchor.constraint(equalTo: parent.leftAnchor),
-            c.view.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-          ]
+          constraints: c.makeConstraintsToEdge(parent)
         )
       case .relative(let c as _LayoutBlockType),
            .vStack(let c as _LayoutBlockType),
