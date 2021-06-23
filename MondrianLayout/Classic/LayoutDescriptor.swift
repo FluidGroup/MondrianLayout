@@ -128,6 +128,17 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     return constraint
   }
 
+  @discardableResult
+  private mutating func makeConstraints(
+    to element: __LayoutElementConvertible,
+    _ closures:
+    [(_LayoutElement, _LayoutElement) -> NSLayoutConstraint]
+  ) -> [NSLayoutConstraint] {
+    let constraints = closures.map { $0(target, element._layoutElement) }
+    self.constraints.append(contentsOf: constraints)
+    return constraints
+  }
+
   // MARK: X axis
 
   private func _anchor(
@@ -284,6 +295,44 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _anchor(.centerY, to: parent, target, condition)
+  }
+
+  /// Sugars
+
+  public func centerToSuperView(
+    _ targetX: _LayoutElement.XAxisAnchor = .centerX,
+    _ targetY: _LayoutElement.YAxisAnchor = .centerY,
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
+    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
+    return _modify {
+      $0.makeConstraints(to: parent, [
+        {
+          $0.anchor(.centerY).constraint(value: condition, to: $1.anchor(targetY))
+        }, {
+          $0.anchor(.centerX).constraint(value: condition, to: $1.anchor(targetX))
+        }
+      ])
+    }
+  }
+
+  public func edgesToSuperView(
+    _ condition: ConstraintValue = .constant(0)
+  ) -> Self {
+    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
+    return _modify {
+      $0.makeConstraints(to: parent, [
+        {
+          $0.anchor(.top).constraint(value: condition, to: $1.topAnchor)
+        }, {
+          $1.anchor(.bottom).constraint(value: condition, to: $0.bottomAnchor)
+        }, {
+          $0.anchor(.left).constraint(value: condition, to: $1.leftAnchor)
+        }, {
+          $1.anchor(.right).constraint(value: condition, to: $0.rightAnchor)
+        }
+      ])
+    }
   }
 
   /**
