@@ -13,4 +13,7 @@ extension CGSize {
     .init(width: 20, height: 20)
   }
 
+  static var largeSquare: Self {
+    .init(width: 60, height: 60)
+  }
 }
