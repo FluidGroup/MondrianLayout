@@ -218,7 +218,7 @@ You can replace it with `UIViewController.view`.
 Attaching to top and bottom safe-area.
 
 ```swift
-self.buildSublayersLayout {
+self.mondrian.buildSublayersLayout {
   LayoutContainer(attachedSafeAreaEdges: .vertical) {
     VStackBlock {
       ...
@@ -230,7 +230,7 @@ self.buildSublayersLayout {
 **Put a view snapping to edge**
 
 ```swift
-self.buildSublayersLayout {
+self.mondrian.buildSublayersLayout {
   ZStackBlock {
     backgroundView.viewBlock.relative(0)    
   }
@@ -240,7 +240,7 @@ self.buildSublayersLayout {
 **Add constraints to view itself**
 
 ```swift
-self.buildSelfSizing {
+self.mondrian.buildSelfSizing {
   $0.width(...)
     .height(...)          
 }
@@ -251,7 +251,7 @@ self.buildSelfSizing {
 `relative(0)` fills to the edges of `ZStackBlock`.
 
 ```swift
-buildSublayersLayout {
+self.mondrian.buildSublayersLayout {
   ZStackBlock {
     profileImageView.viewBlock.relative(0)
     textOverlayView.viewBlock.relative(0)
@@ -277,7 +277,7 @@ Alignment
 |<img width="358" alt="CleanShot 2021-06-17 at 00 09 43@2x" src="https://user-images.githubusercontent.com/1888355/122245037-5486c480-cf00-11eb-872a-e98cfce7262e.png">|<img width="359" alt="CleanShot 2021-06-17 at 00 09 51@2x" src="https://user-images.githubusercontent.com/1888355/122245054-58b2e200-cf00-11eb-9691-607a75060f75.png">|<img width="362" alt="CleanShot 2021-06-17 at 00 09 59@2x" src="https://user-images.githubusercontent.com/1888355/122245073-5d779600-cf00-11eb-856d-0e48712377d7.png">|<img width="355" alt="CleanShot 2021-06-17 at 00 10 06@2x" src="https://user-images.githubusercontent.com/1888355/122245096-62d4e080-cf00-11eb-99f2-2969a3ccc350.png">|
 
 ```swift
-buildSublayersLayout {
+self.mondrian.buildSublayersLayout {
   VStackBlock(spacing: 4, alignment: alignment) {
     UILabel.mockMultiline(text: "Hello", textColor: .white)
       .viewBlock
@@ -328,7 +328,7 @@ MondrianLayout provides it as well other AutoLayout libraries.
 **Activate constraints independently**
 
 ```swift
-view.layout
+view.mondrian.layout
   .width(10)
   .topToSuperview()
   .rightToSuperview()
@@ -340,15 +340,15 @@ view.layout
 
 ```swift
 // returns `ConstraintGroup`
-batchLayout {
+mondrianBatchLayout {
 
-  box1.layout
+  box1.mondrian.layout
     .topToSuperview()
     .leftToSuperview()
     .right(to: box2, .left)
     .bottomToSuperview()
 
-  box2.layout
+  box2.mondrian.layout
     .topToSuperview(.top, .constant(10))
     .rightToSuperview()
     .bottomToSuperview()
