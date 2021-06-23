@@ -14,15 +14,15 @@ var _book_classic: BookView {
         view.addSubview(box1)
         view.addSubview(box2)
 
-        batchLayout {
+        mondrianBatchLayout {
 
-          box1.layout
+          box1.mondrian.layout
             .topToSuperview()
             .leftToSuperview()
             .right(to: box2, .left)
             .bottomToSuperview()
 
-          box2.layout
+          box2.mondrian.layout
             .topToSuperview(.top, .constant(10))
             .rightToSuperview()
             .bottomToSuperview()

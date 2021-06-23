@@ -16,7 +16,7 @@ final class LayoutSnapshotTests: XCTestCase {
   func test_1() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.buildSublayersLayout {
+      view.mondrian.buildSublayersLayout {
         VStackBlock {
           ZStackBlock {
             UIView.mock(
@@ -43,7 +43,7 @@ final class LayoutSnapshotTests: XCTestCase {
   func test_mondrian() {
 
     let view = ExampleView(width: 200, height: 200) { (view: UIView) in
-      view.buildSublayersLayout {
+      view.mondrian.buildSublayersLayout {
 
         HStackBlock(spacing: 2, alignment: .fill) {
           VStackBlock(spacing: 2, alignment: .fill) {

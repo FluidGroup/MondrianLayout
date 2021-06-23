@@ -15,7 +15,7 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementIfCanBeExpanding() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.buildSublayersLayout {
+      view.mondrian.buildSublayersLayout {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           ZStackBlock {
 
@@ -41,7 +41,7 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementWithRelative() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.buildSublayersLayout {
+      view.mondrian.buildSublayersLayout {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           ZStackBlock {
             UIView.mock(

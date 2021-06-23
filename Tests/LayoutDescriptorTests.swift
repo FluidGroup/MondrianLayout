@@ -12,7 +12,7 @@ final class LayoutDescriptorTests: XCTestCase {
 
     container.addSubview(view)
 
-    let g = view.layout
+    let g = view.mondrian.layout
       .width(10)
       .topToSuperview()
       .rightToSuperview()
@@ -32,9 +32,9 @@ final class LayoutDescriptorTests: XCTestCase {
     container.addSubview(parent)
     container.addSubview(view)
 
-    let group = batchLayout {
-      view.layout.width(10)
-      view.layout.top(to: parent)
+    let group = mondrianBatchLayout {
+      view.mondrian.layout.width(10)
+      view.mondrian.layout.top(to: parent)
     }
 
     XCTAssertEqual(group.constraints.count, 2)
