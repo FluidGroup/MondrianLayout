@@ -187,7 +187,7 @@ extension _HStackItemConvertible {
   }
 }
 
-@_functionBuilder
+@resultBuilder
 public enum VStackContentBuilder {
   public typealias Component = _VStackElementNode
 
@@ -234,7 +234,7 @@ public enum VStackContentBuilder {
   //  }
 }
 
-@_functionBuilder
+@resultBuilder
 public enum HStackContentBuilder {
   public typealias Component = _HStackElementNode
 

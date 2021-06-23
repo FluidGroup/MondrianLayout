@@ -46,7 +46,7 @@ extension _LayoutBlockNodeConvertible {
   }
 }
 
-@_functionBuilder
+@resultBuilder
 public enum _LayoutBlockArrayBuilder {
   public typealias Component = _LayoutBlockNode
 
