@@ -1,5 +1,5 @@
 
-@resultBuilder
+@_functionBuilder
 public struct MondrianArrayBuilder<Element> {
 
   public static func buildBlock() -> [Element] {
