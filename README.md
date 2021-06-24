@@ -336,7 +336,7 @@ view.mondrian.layout
   .activate() // activate constraints and returns `ConstraintGroup`
 ```
 
-**Batch layout*
+**Batch layout**
 
 ```swift
 // returns `ConstraintGroup`
