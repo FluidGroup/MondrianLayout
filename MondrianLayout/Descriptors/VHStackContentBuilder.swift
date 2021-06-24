@@ -221,17 +221,6 @@ public enum VStackContentBuilder {
     return [.spacer(spacer)]
   }
 
-  //  public static func buildExpression(_ item: Component) -> [Component] {
-  //    return [item]
-  //  }
-
-  //  public static func buildExpression(_ source: [Component]...) -> [Component] {
-  //    return source.flatMap { $0 }
-  //  }
-
-  //  public static func buildExpression(_ source: [_HStackItem]...) -> [Component] {
-  //    return source.flatMap { $0 }.map { .content($0) }
-  //  }
 }
 
 @_functionBuilder
@@ -268,15 +257,4 @@ public enum HStackContentBuilder {
     return [.spacer(spacer)]
   }
 
-  //  public static func buildExpression(_ item: Component) -> [Component] {
-  //    return [item]
-  //  }
-
-  //  public static func buildExpression(_ source: [Component]...) -> [Component] {
-  //    return source.flatMap { $0 }
-  //  }
-
-  //  public static func buildExpression(_ source: [_HStackItem]...) -> [Component] {
-  //    return source.flatMap { $0 }.map { .content($0) }
-  //  }
 }
