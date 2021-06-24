@@ -7,12 +7,12 @@ public struct ZStackBlock:
   // MARK: - Properties
 
   public enum XYAxisAlignment {
-    /// still development
+
+    /// Anchors in the center with respecting the intrinsic content size each content.
     case center
-//    case top
-//    case center
-//    case bottom
-//    case fill
+
+    /// Attaches the specified edge with respecting the intrinsic content size each content.
+    case attach(Edge.Set)
   }
 
   public var name: String = "ZStack"
@@ -54,22 +54,69 @@ public struct ZStackBlock:
           current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor)
             .withInternalIdentifier("ZStack.bottom"),
 
-          current.widthAnchor.constraint(equalTo: parent.widthAnchor).withPriority(.fittingSizeLevel)
-            .withInternalIdentifier("ZStack.width"),
-          current.heightAnchor.constraint(equalTo: parent.heightAnchor).withPriority(.fittingSizeLevel)
-            .withInternalIdentifier("ZStack.height"),
+          current.widthAnchor.constraint(equalTo: parent.widthAnchor).withPriority(
+            .fittingSizeLevel
+          )
+          .withInternalIdentifier("ZStack.width"),
+          current.heightAnchor.constraint(equalTo: parent.heightAnchor).withPriority(
+            .fittingSizeLevel
+          )
+          .withInternalIdentifier("ZStack.height"),
         ]
 
         switch alignment {
         case .center:
 
           constraints += [
-            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh)
-              .withInternalIdentifier("ZStack.centerX"),
-            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh)
-              .withInternalIdentifier("ZStack.cenretY"),
+            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+              .defaultHigh
+            )
+            .withInternalIdentifier("ZStack.centerX"),
+            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+              .defaultHigh
+            )
+            .withInternalIdentifier("ZStack.cenretY"),
           ]
 
+        case .attach(let edges):
+
+          if edges.isEmpty {
+            constraints += [
+              current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+                .defaultHigh
+              )
+              .withInternalIdentifier("ZStack.centerX"),
+              current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+                .defaultHigh
+              )
+              .withInternalIdentifier("ZStack.cenretY"),
+            ]
+          } else {
+
+            if edges.contains(.top) {
+              constraints.append(
+                current.topAnchor.constraint(equalTo: parent.topAnchor)
+              )
+            }
+
+            if edges.contains(.leading) {
+              constraints.append(
+                current.leadingAnchor.constraint(equalTo: parent.leadingAnchor)
+              )
+            }
+
+            if edges.contains(.bottom) {
+              constraints.append(
+                current.bottomAnchor.constraint(equalTo: parent.bottomAnchor)
+              )
+            }
+
+            if edges.contains(.trailing) {
+              constraints.append(
+                current.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
+              )
+            }
+          }
         }
 
         context.add(constraints: constraints)
@@ -80,21 +127,27 @@ public struct ZStackBlock:
 
         context.register(viewConstraint: viewConstraint)
 
-        perform(current: .init(view: viewConstraint.view), alignment: element.alignSelf ?? alignment)
+        perform(
+          current: .init(view: viewConstraint.view),
+          alignment: element.alignSelf ?? alignment
+        )
 
       case .relative(let relativeConstraint):
 
         relativeConstraint.setupConstraints(parent: parent, in: context)
 
       case .background(let c as _LayoutBlockType),
-           .overlay(let c as _LayoutBlockType),
-           .vStack(let c as _LayoutBlockType),
-           .hStack(let c as _LayoutBlockType):
+        .overlay(let c as _LayoutBlockType),
+        .vStack(let c as _LayoutBlockType),
+        .hStack(let c as _LayoutBlockType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
-        perform(current: .init(layoutGuide: newLayoutGuide), alignment: element.alignSelf ?? alignment)
+        perform(
+          current: .init(layoutGuide: newLayoutGuide),
+          alignment: element.alignSelf ?? alignment
+        )
 
       case .zStack(let stackConstraint):
 
@@ -103,16 +156,20 @@ public struct ZStackBlock:
       }
     }
 
-    // FIXME:
-    //    setContentHuggingPriority(.defaultHigh, for: .horizontal)
-    //    setContentHuggingPriority(.defaultHigh, for: .vertical)
-
   }
 
 }
 
 public protocol _ZStackItemConvertible {
   var _zStackItem: _ZStackItem { get }
+}
+
+extension _ZStackItemConvertible {
+  public func alignSelf(_ alignment: ZStackBlock.XYAxisAlignment) -> _ZStackItem {
+    var item = _zStackItem
+    item.alignSelf = alignment
+    return item
+  }
 }
 
 public struct _ZStackItem: _ZStackItemConvertible {
