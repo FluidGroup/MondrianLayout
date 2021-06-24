@@ -8,7 +8,7 @@ public struct ZStackBlock:
 
   public enum XYAxisAlignment {
     /// still development
-    case nop
+    case center
 //    case top
 //    case center
 //    case bottom
@@ -27,7 +27,7 @@ public struct ZStackBlock:
   // MARK: - Initializers
 
   public init(
-    alignment: XYAxisAlignment = .nop,
+    alignment: XYAxisAlignment = .center,
     @ZStackContentBuilder elements: () -> [ZStackContentBuilder.Component]
   ) {
     self.alignment = alignment
@@ -42,7 +42,9 @@ public struct ZStackBlock:
 
       func perform(current: _LayoutElement, alignment: XYAxisAlignment) {
 
-        context.add(constraints: [
+        var constraints: [NSLayoutConstraint]
+
+        constraints = [
           current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor)
             .withInternalIdentifier("ZStack.left"),
           current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor)
@@ -51,16 +53,26 @@ public struct ZStackBlock:
             .withInternalIdentifier("ZStack.right"),
           current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor)
             .withInternalIdentifier("ZStack.bottom"),
-          current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh)
-            .withInternalIdentifier("ZStack.centerX"),
-          current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh)
-            .withInternalIdentifier("ZStack.cenretY"),
 
           current.widthAnchor.constraint(equalTo: parent.widthAnchor).withPriority(.fittingSizeLevel)
             .withInternalIdentifier("ZStack.width"),
           current.heightAnchor.constraint(equalTo: parent.heightAnchor).withPriority(.fittingSizeLevel)
             .withInternalIdentifier("ZStack.height"),
-        ])
+        ]
+
+        switch alignment {
+        case .center:
+
+          constraints += [
+            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(.defaultHigh)
+              .withInternalIdentifier("ZStack.centerX"),
+            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(.defaultHigh)
+              .withInternalIdentifier("ZStack.cenretY"),
+          ]
+
+        }
+
+        context.add(constraints: constraints)
       }
 
       switch element.node {
