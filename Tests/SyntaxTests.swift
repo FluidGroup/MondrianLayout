@@ -15,7 +15,7 @@ final class SyntaxTests: XCTestCase {
   func test_vStack() {
 
     let view = ExampleView(width: 20, height: nil) { view in
-      view.mondrian.buildSublayersLayout {
+      view.mondrian.buildSubviews {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           VStackBlock {
 
@@ -51,7 +51,7 @@ final class SyntaxTests: XCTestCase {
   func test_hStack() {
 
     let view = ExampleView(width: nil, height: 20) { view in
-      view.mondrian.buildSublayersLayout {
+      view.mondrian.buildSubviews {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           HStackBlock {
 

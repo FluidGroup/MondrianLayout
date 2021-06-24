@@ -7,7 +7,27 @@ extension MondrianNamespace where Base : UIView {
    Adding subviews included in layout
    */
   @discardableResult
+  @available(*, deprecated, renamed: "buildSubviews")
   public func buildSublayersLayout<Block: _LayoutBlockType>(
+    build: () -> Block
+  ) -> LayoutBuilderContext {
+    buildSubviews(build: build)
+  }
+
+  @discardableResult
+  @available(*, deprecated, renamed: "buildSubviews")
+  public func buildSublayersLayout<Block: _LayoutBlockNodeConvertible>(
+    build: () -> LayoutContainer<Block>
+  ) -> LayoutBuilderContext {
+    buildSubviews(build: build)
+  }
+
+  /**
+   Applies the layout constraints
+   Adding subviews included in layout
+   */
+  @discardableResult
+  public func buildSubviews<Block: _LayoutBlockType>(
     build: () -> Block
   ) -> LayoutBuilderContext {
 
@@ -21,7 +41,7 @@ extension MondrianNamespace where Base : UIView {
   }
 
   @discardableResult
-  public func buildSublayersLayout<Block: _LayoutBlockNodeConvertible>(
+  public func buildSubviews<Block: _LayoutBlockNodeConvertible>(
     build: () -> LayoutContainer<Block>
   ) -> LayoutBuilderContext {
 
