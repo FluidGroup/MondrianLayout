@@ -1,5 +1,34 @@
 import UIKit
 
+/**
+ A block that overlays its children, aligning them in both axes as default behavior.
+
+ Examples:
+
+ **Put a view snapping to edge**
+
+ ```swift
+ self.mondrian.buildSubviews {
+   ZStackBlock {
+     backgroundView.viewBlock.relative(0)
+   }
+ }
+ ```
+
+ synonyms:
+
+ ```swift
+ ZStackBlock(alignment: .attach(.all)) {
+   backgroundView
+ }
+ ```
+
+ ```swift
+ ZStackBlock {
+   backgroundView.viewBlock.alignSelf(.attach(.all))
+ }
+ ```
+ */
 public struct ZStackBlock:
   _LayoutBlockType
 {
