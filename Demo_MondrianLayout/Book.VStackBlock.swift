@@ -7,7 +7,7 @@ var _book_VStackBlock: BookView {
   BookNavigationLink(title: "VStackBlock") {
     BookPreview {
       ExampleView(width: nil, height: 180) { (view: UIView) in
-        view.mondrian.buildSublayersLayout {
+        view.mondrian.buildSubviews {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -37,7 +37,7 @@ var _book_VStackBlock: BookView {
     BookForEach(data: [.center, .leading, .trailing, .fill] as [VStackBlock.HorizontalAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
-          view.mondrian.buildSublayersLayout {
+          view.mondrian.buildSubviews {
             VStackBlock(spacing: 4, alignment: alignment) {
               UILabel.mockMultiline(text: "Hello", textColor: .white)
                 .viewBlock
@@ -60,7 +60,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSublayersLayout {
+        view.mondrian.buildSubviews {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -84,7 +84,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSublayersLayout {
+        view.mondrian.buildSubviews {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
