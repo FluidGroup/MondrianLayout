@@ -34,12 +34,13 @@
 		4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */; };
 		4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6442679095500BDE2DB /* OverlayTests.swift */; };
 		4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
+		4B5AF7BA2685195A008C51A1 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
+		4B5AF7BB2685195A008C51A1 /* RevealServer.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
 		4B64B1B22675D2AF00460282 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1B82675F7AB00460282 /* _LayoutElement.swift */; };
 		4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */; };
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
-		4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
 		4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackBlock.swift */; };
 		4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackBlock.swift */; };
 		4B64B1C926762C1400460282 /* Mondrian+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* Mondrian+UIView.swift */; };
@@ -101,6 +102,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */,
+				4B5AF7BB2685195A008C51A1 /* RevealServer.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,9 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B8A4834267F36F100609D3E /* Ne in Frameworks */,
+				4B5AF7BA2685195A008C51A1 /* RevealServer.xcframework in Frameworks */,
 				4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */,
 				4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */,
-				4B64B1C126761E0700460282 /* RevealServer.xcframework in Frameworks */,
 				4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
