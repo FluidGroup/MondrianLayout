@@ -38,18 +38,18 @@ var _book_classic: BookView {
             .topToSuperview(.top, .constant(10))
             .rightToSuperview()
 
-          containerCenterDemo.layout
+          containerCenterDemo.mondrian.layout
             .top(to: box2, .bottom, .constant(20))
             .bottomToSuperview()
 
-          containeeCenterDemo.layout
+          containeeCenterDemo.mondrian.layout
             .centerToSuperView()
 
-          containerEdgesDemo.layout
+          containerEdgesDemo.mondrian.layout
             .top(to: containerCenterDemo, .top, .constant(0))
             .leading(to: containerCenterDemo, .trailing, .constant(5))
 
-          containeeEdgesDemo.layout
+          containeeEdgesDemo.mondrian.layout
             .edgesToSuperView(.constant(8))
         }
       }
