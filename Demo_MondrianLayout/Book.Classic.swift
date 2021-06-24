@@ -26,15 +26,15 @@ var _book_classic: BookView {
         containerEdgesDemo.addSubview(containeeEdgesDemo)
 
 
-        batchLayout {
+        mondrianBatchLayout {
 
-          box1.layout
+          box1.mondrian.layout
             .topToSuperview()
             .leftToSuperview()
             .right(to: box2, .left)
             .bottom(to: box2, .bottom)
 
-          box2.layout
+          box2.mondrian.layout
             .topToSuperview(.top, .constant(10))
             .rightToSuperview()
 

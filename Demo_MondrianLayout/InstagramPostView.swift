@@ -40,11 +40,11 @@ final class InstagramPostView: UIView {
 
     super.init(frame: .zero)
 
-    self.buildSelfSizing {
+    self.mondrian.buildSelfSizing {
       $0.width(200)
     }
 
-    self.buildSublayersLayout {
+    self.mondrian.buildSublayersLayout {
       VStackBlock(alignment: .fill) {
 
         HStackBlock {

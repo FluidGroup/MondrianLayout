@@ -1,7 +1,7 @@
 import UIKit
 
 @discardableResult
-public func batchLayout(@MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]) -> ConstraintGroup {
+public func mondrianBatchLayout(@MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]) -> ConstraintGroup {
 
   let descriptors = closure()
 
@@ -399,18 +399,18 @@ extension NSLayoutYAxisAnchor {
   }
 }
 
-extension UIView {
+extension MondrianNamespace where Base : UIView {
 
   public var layout: LayoutDescriptor {
-    .init(view: self)
+    .init(view: base)
   }
 
 }
 
-extension UILayoutGuide {
+extension MondrianNamespace where Base : UILayoutGuide {
 
   public var layout: LayoutDescriptor {
-    .init(layoutGuide: self)
+    .init(layoutGuide: base)
   }
 
 }

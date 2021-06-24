@@ -1,6 +1,6 @@
 import UIKit
 
-extension UIView {
+extension MondrianNamespace where Base : UIView {
 
   /**
    Applies the layout constraints
@@ -11,9 +11,9 @@ extension UIView {
     build: () -> Block
   ) -> LayoutBuilderContext {
 
-    let context = LayoutBuilderContext(targetView: self)
+    let context = LayoutBuilderContext(targetView: base)
     let container = build()
-    container.setupConstraints(parent: .init(view: self), in: context)
+    container.setupConstraints(parent: .init(view: base), in: context)
     context.prepareViewHierarchy()
     context.activate()
 
@@ -25,9 +25,9 @@ extension UIView {
     build: () -> LayoutContainer<Block>
   ) -> LayoutBuilderContext {
 
-    let context = LayoutBuilderContext(targetView: self)
+    let context = LayoutBuilderContext(targetView: base)
     let container = build()
-    container.setupConstraints(parent: self, in: context)
+    container.setupConstraints(parent: base, in: context)
     context.prepareViewHierarchy()
     context.activate()
 
@@ -37,7 +37,7 @@ extension UIView {
   /// Applies the layout of the dimension in itself.
   public func buildSelfSizing(build: (ViewBlock) -> ViewBlock) {
 
-    let constraint = ViewBlock(self)
+    let constraint = ViewBlock(base)
     let modifiedConstraint = build(constraint)
 
     modifiedConstraint.makeApplier()()
@@ -46,6 +46,10 @@ extension UIView {
     )
 
   }
+
+}
+
+extension UIView {
 
   /// Returns an instance of ViewBlock to describe layout.
   public var viewBlock: ViewBlock {
