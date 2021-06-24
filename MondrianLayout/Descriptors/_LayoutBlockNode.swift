@@ -1,6 +1,6 @@
 import UIKit
 
-public protocol _LayoutBlockNodeConvertible: _VStackItemConvertible, _HStackItemConvertible {
+public protocol _LayoutBlockNodeConvertible: _VStackItemConvertible, _HStackItemConvertible, _ZStackItemConvertible {
   var _layoutBlockNode: _LayoutBlockNode { get }
 }
 
@@ -10,6 +10,10 @@ extension _LayoutBlockNodeConvertible {
   }
 
   public var _hStackItem: _HStackItem {
+    return .init(node: _layoutBlockNode)
+  }
+
+  public var _zStackItem: _ZStackItem {
     return .init(node: _layoutBlockNode)
   }
 }

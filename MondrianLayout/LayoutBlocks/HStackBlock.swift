@@ -5,7 +5,7 @@ public struct HStackBlock:
   _LayoutBlockNodeConvertible
 {
 
-  public enum VerticalAlignment {
+  public enum YAxisAlignment {
     case top
     case center
     case bottom
@@ -21,14 +21,14 @@ public struct HStackBlock:
   }
 
   public var spacing: CGFloat
-  public var alignment: VerticalAlignment
+  public var alignment: YAxisAlignment
   public var elements: [HStackContentBuilder.Component]
 
   // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
-    alignment: VerticalAlignment = .center,
+    alignment: YAxisAlignment = .center,
     @HStackContentBuilder elements: () -> [HStackContentBuilder.Component]
   ) {
     self.spacing = spacing
@@ -44,7 +44,7 @@ public struct HStackBlock:
       return
     }
 
-    func align(layoutElement: _LayoutElement, alignment: VerticalAlignment) {
+    func align(layoutElement: _LayoutElement, alignment: YAxisAlignment) {
 
       /// When top, center, bottom. to shrink itself to minimum fitting size.
       func makeShrinkingWeakConstraints() -> [NSLayoutConstraint] {

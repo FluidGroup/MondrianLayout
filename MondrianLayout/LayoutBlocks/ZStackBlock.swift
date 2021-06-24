@@ -6,19 +6,31 @@ public struct ZStackBlock:
 
   // MARK: - Properties
 
+  public enum XYAxisAlignment {
+    /// still development
+    case nop
+//    case top
+//    case center
+//    case bottom
+//    case fill
+  }
+
   public var name: String = "ZStack"
 
   public var _layoutBlockNode: _LayoutBlockNode {
     return .zStack(self)
   }
 
-  public let elements: [_LayoutBlockNode]
+  public let alignment: XYAxisAlignment
+  public let elements: [ZStackContentBuilder.Component]
 
   // MARK: - Initializers
 
   public init(
-    @_LayoutBlockArrayBuilder elements: () -> [_LayoutBlockNode]
+    alignment: XYAxisAlignment = .nop,
+    @ZStackContentBuilder elements: () -> [ZStackContentBuilder.Component]
   ) {
+    self.alignment = alignment
     self.elements = elements()
   }
 
@@ -28,7 +40,7 @@ public struct ZStackBlock:
 
     elements.forEach { element in
 
-      func perform(current: _LayoutElement) {
+      func perform(current: _LayoutElement, alignment: XYAxisAlignment) {
 
         context.add(constraints: [
           current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor)
@@ -51,12 +63,12 @@ public struct ZStackBlock:
         ])
       }
 
-      switch element {
+      switch element.node {
       case .view(let viewConstraint):
 
         context.register(viewConstraint: viewConstraint)
 
-        perform(current: .init(view: viewConstraint.view))
+        perform(current: .init(view: viewConstraint.view), alignment: element.alignSelf ?? alignment)
 
       case .relative(let relativeConstraint):
 
@@ -70,7 +82,7 @@ public struct ZStackBlock:
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
 
-        perform(current: .init(layoutGuide: newLayoutGuide))
+        perform(current: .init(layoutGuide: newLayoutGuide), alignment: element.alignSelf ?? alignment)
 
       case .zStack(let stackConstraint):
 
@@ -83,6 +95,50 @@ public struct ZStackBlock:
     //    setContentHuggingPriority(.defaultHigh, for: .horizontal)
     //    setContentHuggingPriority(.defaultHigh, for: .vertical)
 
+  }
+
+}
+
+public protocol _ZStackItemConvertible {
+  var _zStackItem: _ZStackItem { get }
+}
+
+public struct _ZStackItem: _ZStackItemConvertible {
+
+  public var _zStackItem: _ZStackItem { self }
+
+  public let node: _LayoutBlockNode
+  public var alignSelf: ZStackBlock.XYAxisAlignment? = nil
+}
+
+@_functionBuilder
+public enum ZStackContentBuilder {
+  public typealias Component = _ZStackItem
+
+  public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
+    return nestedComponents.flatMap { $0 }
+  }
+
+  public static func buildExpression(_ views: [UIView]...) -> [Component] {
+    return views.flatMap { $0 }.map {
+      return .init(node: .view(.init($0)))
+    }
+  }
+
+  public static func buildExpression<View: UIView>(_ view: View) -> [Component] {
+    return [
+      .init(node: .view(.init(view)))
+    ]
+  }
+
+  public static func buildExpression<Block: _ZStackItemConvertible>(
+    _ block: Block
+  ) -> [Component] {
+    return [block._zStackItem]
+  }
+
+  public static func buildExpression(_ blocks: [_ZStackItemConvertible]...) -> [Component] {
+    return blocks.flatMap { $0 }.map { $0._zStackItem }
   }
 
 }

@@ -9,7 +9,7 @@ var _book_HStackBlock: BookView {
 
       BookParagraph("Wrapping with VStack")
 
-      BookForEach(data: [VStackBlock.HorizontalAlignment]([.leading, .center, .trailing])) {
+      BookForEach(data: [VStackBlock.XAxisAlignment]([.leading, .center, .trailing])) {
         alignment in
         BookPreview {
           ExampleView(width: 180, height: nil) { (view: UIView) in
@@ -46,7 +46,7 @@ var _book_HStackBlock: BookView {
     }
 
     BookSection(title: "1 element") {
-      BookForEach(data: [VStackBlock.HorizontalAlignment]([.leading, .center, .trailing])) {
+      BookForEach(data: [VStackBlock.XAxisAlignment]([.leading, .center, .trailing])) {
         alignment in
         BookPreview {
           ExampleView(width: 60, height: nil) { (view: UIView) in
@@ -65,7 +65,7 @@ var _book_HStackBlock: BookView {
         }
       }
 
-      BookForEach(data: [VStackBlock.HorizontalAlignment]([.leading, .center, .trailing])) {
+      BookForEach(data: [VStackBlock.XAxisAlignment]([.leading, .center, .trailing])) {
         alignment in
         BookPreview {
           ExampleView(width: 60, height: nil) { (view: UIView) in
@@ -175,7 +175,7 @@ var _book_HStackBlock: BookView {
       }
       .title("Spacing and additional space")
 
-      BookForEach(data: [.center, .top, .bottom, .fill] as [HStackBlock.VerticalAlignment]) {
+      BookForEach(data: [.center, .top, .bottom, .fill] as [HStackBlock.YAxisAlignment]) {
         alignment in
         BookPreview {
           ExampleView(width: nil, height: nil) { (view: UIView) in
