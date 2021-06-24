@@ -91,12 +91,21 @@ public struct ZStackBlock:
               )
               .withInternalIdentifier("ZStack.cenretY"),
             ]
+
           } else {
 
             if edges.contains(.top) {
               constraints.append(
                 current.topAnchor.constraint(equalTo: parent.topAnchor)
               )
+
+            }
+
+            if edges.contains(.trailing) {
+              constraints.append(
+                current.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
+              )
+
             }
 
             if edges.contains(.leading) {
@@ -111,11 +120,18 @@ public struct ZStackBlock:
               )
             }
 
-            if edges.contains(.trailing) {
+            if edges.isDisjoint(with: [.leading, .trailing]) {
               constraints.append(
-                current.trailingAnchor.constraint(equalTo: parent.trailingAnchor)
+                current.centerXAnchor.constraint(equalTo: parent.centerXAnchor)
               )
             }
+
+            if edges.isDisjoint(with: [.top, .bottom]) {
+              constraints.append(
+                current.centerYAnchor.constraint(equalTo: parent.centerYAnchor)
+              )
+            }
+
           }
         }
 
