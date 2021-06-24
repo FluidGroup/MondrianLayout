@@ -4,9 +4,7 @@ public struct VStackBlock:
   _LayoutBlockType
 {
 
-  public let name = "VStack"
-
-  public enum HorizontalAlignment {
+  public enum XAxisAlignment {
     case leading
     case center
     case trailing
@@ -15,19 +13,21 @@ public struct VStackBlock:
 
   // MARK: - Properties
 
+  public let name = "VStack"
+
   public var _layoutBlockNode: _LayoutBlockNode {
     return .vStack(self)
   }
 
   public var spacing: CGFloat
-  public var alignment: HorizontalAlignment
+  public var alignment: XAxisAlignment
   public var elements: [VStackContentBuilder.Component]
 
   // MARK: - Initializers
 
   public init(
     spacing: CGFloat = 0,
-    alignment: HorizontalAlignment = .center,
+    alignment: XAxisAlignment = .center,
     @VStackContentBuilder elements: () -> [VStackContentBuilder.Component]
   ) {
     self.spacing = spacing
@@ -48,7 +48,7 @@ public struct VStackBlock:
       return
     }
 
-    func align(layoutElement: _LayoutElement, alignment: HorizontalAlignment) {
+    func align(layoutElement: _LayoutElement, alignment: XAxisAlignment) {
 
       /// When leading, center, trailing. to shrink itself to minimum fitting size.
       func makeShrinkingWeakConstraints() -> [NSLayoutConstraint] {

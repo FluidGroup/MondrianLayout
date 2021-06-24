@@ -71,7 +71,7 @@ public struct _VStackItem: _VStackItemConvertible, StackItemType {
   public var _vStackItem: _VStackItem { self }
 
   public let node: _LayoutBlockNode
-  public var alignSelf: VStackBlock.HorizontalAlignment? = nil
+  public var alignSelf: VStackBlock.XAxisAlignment? = nil
   public var spacingBefore: CGFloat? = nil
   public var spacingAfter: CGFloat? = nil
 
@@ -82,7 +82,7 @@ public struct _HStackItem: _HStackItemConvertible, StackItemType {
   public var _hStackItem: _HStackItem { self }
 
   public let node: _LayoutBlockNode
-  public var alignSelf: HStackBlock.VerticalAlignment? = nil
+  public var alignSelf: HStackBlock.YAxisAlignment? = nil
   public var spacingBefore: CGFloat? = nil
   public var spacingAfter: CGFloat? = nil
 
@@ -147,7 +147,7 @@ extension Array where Element : _StackElementNodeType {
 
 extension _VStackItemConvertible {
 
-  public func alignSelf(_ alignment: VStackBlock.HorizontalAlignment) -> _VStackItem {
+  public func alignSelf(_ alignment: VStackBlock.XAxisAlignment) -> _VStackItem {
     var item = _vStackItem
     item.alignSelf = alignment
     return item
@@ -168,7 +168,7 @@ extension _VStackItemConvertible {
 
 extension _HStackItemConvertible {
 
-  public func alignSelf(_ alignment: HStackBlock.VerticalAlignment) -> _HStackItem {
+  public func alignSelf(_ alignment: HStackBlock.YAxisAlignment) -> _HStackItem {
     var item = _hStackItem
     item.alignSelf = alignment
     return item

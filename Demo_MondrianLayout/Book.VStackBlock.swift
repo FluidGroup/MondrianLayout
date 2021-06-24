@@ -34,7 +34,7 @@ var _book_VStackBlock: BookView {
     }
     .title("Spacing")
 
-    BookForEach(data: [.center, .leading, .trailing, .fill] as [VStackBlock.HorizontalAlignment]) { alignment in
+    BookForEach(data: [.center, .leading, .trailing, .fill] as [VStackBlock.XAxisAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
           view.mondrian.buildSubviews {

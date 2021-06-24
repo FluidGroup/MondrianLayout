@@ -178,7 +178,7 @@ https://user-images.githubusercontent.com/1888355/122651186-142e7d00-d172-11eb-8
 MondrianLayout enables us to describe layouts of subviews by DSL (powered by `resultBuilders`)  
 It's like describing in SwiftUI, but this behavior differs a bit since laying out by AutoLayout system.
 
-To describe layout, use `buildSublayersLayout` as entrypoint.  
+To describe layout, use `buildSubviews` as entrypoint.  
 This method creates a set of NSLayoutConstraint, UILayoutGuide, and modifiers of UIView.  
 Finally, those apply. You don't need to call `addSubview`. that goes automatically according to hierarchy from layout descriptions.
 
@@ -192,7 +192,7 @@ class MyView: UIView {
     super.init(frame: .zero)
     
     // Seting up constraints constraints, layoutGuides and adding subviews
-    buildSublayersLayout {
+    buildSubviews {
       VStackBlock {
         nameLabel
         detailLabel
@@ -218,7 +218,7 @@ You can replace it with `UIViewController.view`.
 Attaching to top and bottom safe-area.
 
 ```swift
-self.mondrian.buildSublayersLayout {
+self.mondrian.buildSubviews {
   LayoutContainer(attachedSafeAreaEdges: .vertical) {
     VStackBlock {
       ...
@@ -230,10 +230,24 @@ self.mondrian.buildSublayersLayout {
 **Put a view snapping to edge**
 
 ```swift
-self.mondrian.buildSublayersLayout {
+self.mondrian.buildSubviews {
   ZStackBlock {
     backgroundView.viewBlock.relative(0)    
   }
+}
+```
+
+synonyms:
+
+```swift
+ZStackBlock(alignment: .attach(.all)) {
+  backgroundView
+}
+```
+
+```swift
+ZStackBlock {
+  backgroundView.viewBlock.alignSelf(.attach(.all))
 }
 ```
 
@@ -251,7 +265,7 @@ self.mondrian.buildSelfSizing {
 `relative(0)` fills to the edges of `ZStackBlock`.
 
 ```swift
-self.mondrian.buildSublayersLayout {
+self.mondrian.buildSubviews {
   ZStackBlock {
     profileImageView.viewBlock.relative(0)
     textOverlayView.viewBlock.relative(0)
@@ -277,7 +291,7 @@ Alignment
 |<img width="358" alt="CleanShot 2021-06-17 at 00 09 43@2x" src="https://user-images.githubusercontent.com/1888355/122245037-5486c480-cf00-11eb-872a-e98cfce7262e.png">|<img width="359" alt="CleanShot 2021-06-17 at 00 09 51@2x" src="https://user-images.githubusercontent.com/1888355/122245054-58b2e200-cf00-11eb-9691-607a75060f75.png">|<img width="362" alt="CleanShot 2021-06-17 at 00 09 59@2x" src="https://user-images.githubusercontent.com/1888355/122245073-5d779600-cf00-11eb-856d-0e48712377d7.png">|<img width="355" alt="CleanShot 2021-06-17 at 00 10 06@2x" src="https://user-images.githubusercontent.com/1888355/122245096-62d4e080-cf00-11eb-99f2-2969a3ccc350.png">|
 
 ```swift
-self.mondrian.buildSublayersLayout {
+self.mondrian.buildSubviews {
   VStackBlock(spacing: 4, alignment: alignment) {
     UILabel.mockMultiline(text: "Hello", textColor: .white)
       .viewBlock
@@ -316,7 +330,38 @@ label
 
 **ZStackBlock**
 
-// TODO:
+Stacking views in Z axis (aligns in center)
+
+```swift
+ZStackBlock {
+  view1
+  view2
+  view3
+}
+```
+
+Expands to specified edges each view
+
+```swift
+ZStackBlock(alignment: .attach(.all)) {
+  view1
+  view2
+  view3
+}
+```
+
+Specifying alignment each view
+
+```swift
+ZStackBlock {
+
+  view1.viewBlock.alignSelf(.attach(.all))
+
+  view2.viewBlock.alignSelf(.attach([.top, .bottom]))
+  
+  view3.viewBlock.alignSelf(.attach(.top))
+}
+```
 
 ## Classic Layout API
 
