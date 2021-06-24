@@ -924,7 +924,7 @@
 			repositoryURL = "https://github.com/eure/Storybook-ios.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.1;
+				minimumVersion = 1.8.0;
 			};
 		};
 		4BD5FE93267F28970035A66D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
