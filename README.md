@@ -213,7 +213,7 @@ class MyView: UIView {
 Sample code assumes run in `UIView`. (self is `UIView`)  
 You can replace it with `UIViewController.view`.
 
-**Layout subviews inside safe-area**
+#### Layout subviews inside safe-area
 
 Attaching to top and bottom safe-area.
 
@@ -227,7 +227,7 @@ self.mondrian.buildSubviews {
 }
 ```
 
-**Put a view snapping to edge**
+#### Put a view snapping to edge
 
 ```swift
 self.mondrian.buildSubviews {
@@ -251,7 +251,7 @@ ZStackBlock {
 }
 ```
 
-**Add constraints to view itself**
+#### Add constraints to view itself
 
 ```swift
 self.mondrian.buildSelfSizing {
@@ -260,7 +260,7 @@ self.mondrian.buildSelfSizing {
 }
 ```
 
-**Stacking views on Z axis**
+#### Stacking views on Z axis
 
 `relative(0)` fills to the edges of `ZStackBlock`.
 
@@ -277,14 +277,14 @@ self.mondrian.buildSubviews {
 
 ### Vertically and Horizontally Stack layout
 
-**VStackBlock**
+#### VStackBlock
 
 Alignment 
 | center(default) | leading | trailing | fill |
 |---|---|---|---|
 |<img width="155" alt="CleanShot 2021-06-17 at 00 06 10@2x" src="https://user-images.githubusercontent.com/1888355/122244438-d75b4f80-ceff-11eb-90ea-8982758ed0b0.png">|<img width="151" alt="CleanShot 2021-06-17 at 00 05 19@2x" src="https://user-images.githubusercontent.com/1888355/122244276-b7c42700-ceff-11eb-90d0-492c3fbc5076.png">|<img width="159" alt="CleanShot 2021-06-17 at 00 05 33@2x" src="https://user-images.githubusercontent.com/1888355/122244312-c01c6200-ceff-11eb-888d-0a37b63f666a.png">|<img width="159" alt="CleanShot 2021-06-17 at 00 05 42@2x" src="https://user-images.githubusercontent.com/1888355/122244341-c6124300-ceff-11eb-9da8-dcbb4425909a.png">|
 
-**HStackBlock**
+#### HStackBlock
 
 | center(default) | top | bottom | fill |
 |---|---|---|---|
@@ -309,7 +309,7 @@ self.mondrian.buildSubviews {
 }
 ```
 
-**Background modifier**
+#### Background modifier
 
 ```swift
 label
@@ -320,15 +320,15 @@ label
 
 <img width="74" alt="CleanShot 2021-06-17 at 00 14 52@2x" src="https://user-images.githubusercontent.com/1888355/122245871-0f16c700-cf01-11eb-91bc-019693736801.png">
 
-**Overlay modifier**
+#### Overlay modifier
 
 // TODO:
 
-**Related modifier**
+#### Related modifier
 
 // TODO:
 
-**ZStackBlock**
+#### ZStackBlock
 
 | | |
 |---|---|
@@ -385,7 +385,7 @@ view.mondrian.layout
   .activate() // activate constraints and returns `ConstraintGroup`
 ```
 
-**Batch layout**
+Batch layout**
 
 ```swift
 // returns `ConstraintGroup`
