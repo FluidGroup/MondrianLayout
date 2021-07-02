@@ -145,11 +145,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ from: _LayoutElement.XAxisAnchor,
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor,
-    _ condition: ConstraintValue
+    _ value: ConstraintValue
   ) -> Self {
     return _modify {
       $0.makeConstraint(to: element) {
-        $0.anchor(from).constraint(value: condition, to: $1.anchor(target))
+        $0.anchor(from).constraint(value: value, to: $1.anchor(target))
       }
     }
   }
@@ -158,11 +158,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ from: _LayoutElement.YAxisAnchor,
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.YAxisAnchor,
-    _ condition: ConstraintValue
+    _ value: ConstraintValue
   ) -> Self {
     return _modify {
       $0.makeConstraint(to: element) {
-        $0.anchor(from).constraint(value: condition, to: $1.anchor(target))
+        $0.anchor(from).constraint(value: value, to: $1.anchor(target))
       }
     }
   }
@@ -170,81 +170,81 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func leading(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor = .leading,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.leading, to: element, target, condition)
+    _anchor(.leading, to: element, target, value)
   }
 
   public func trailing(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor = .trailing,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.trailing, to: element, target, condition)
+    _anchor(.trailing, to: element, target, value)
   }
 
   public func left(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor = .left,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.left, to: element, target, condition)
+    _anchor(.left, to: element, target, value)
   }
 
   public func right(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor = .right,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.right, to: element, target, condition)
+    _anchor(.right, to: element, target, value)
   }
 
   public func centerX(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.XAxisAnchor = .centerX,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerX, to: element, target, condition)
+    _anchor(.centerX, to: element, target, value)
   }
 
   public func leadingToSuperview(
     _ target: _LayoutElement.XAxisAnchor = .leading,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.leading, to: parent, target, condition)
+    return _anchor(.leading, to: parent, target, value)
   }
 
   public func trailingToSuperview(
     _ target: _LayoutElement.XAxisAnchor = .trailing,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.trailing, to: parent, target, condition)
+    return _anchor(.trailing, to: parent, target, value)
   }
 
   public func leftToSuperview(
     _ target: _LayoutElement.XAxisAnchor = .left,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.left, to: parent, target, condition)
+    return _anchor(.left, to: parent, target, value)
   }
 
   public func rightToSuperview(
     _ target: _LayoutElement.XAxisAnchor = .right,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.right, to: parent, target, condition)
+    return _anchor(.right, to: parent, target, value)
   }
 
   public func centerXToSuperview(
     _ target: _LayoutElement.XAxisAnchor = .centerX,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.centerX, to: parent, target, condition)
+    return _anchor(.centerX, to: parent, target, value)
   }
 
   // MARK: Y axis
@@ -252,49 +252,49 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func top(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.YAxisAnchor = .top,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.top, to: element, target, condition)
+    _anchor(.top, to: element, target, value)
   }
 
   public func bottom(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.YAxisAnchor = .bottom,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.bottom, to: element, target, condition)
+    _anchor(.bottom, to: element, target, value)
   }
 
   public func centerY(
     to element: __LayoutElementConvertible,
     _ target: _LayoutElement.YAxisAnchor = .centerY,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerY, to: element, target, condition)
+    _anchor(.centerY, to: element, target, value)
   }
 
   public func topToSuperview(
     _ target: _LayoutElement.YAxisAnchor = .top,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.top, to: parent, target, condition)
+    return _anchor(.top, to: parent, target, value)
   }
 
   public func bottomToSuperview(
     _ target: _LayoutElement.YAxisAnchor = .bottom,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.bottom, to: parent, target, condition)
+    return _anchor(.bottom, to: parent, target, value)
   }
 
   public func centerYToSuperView(
     _ target: _LayoutElement.YAxisAnchor = .centerY,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.centerY, to: parent, target, condition)
+    return _anchor(.centerY, to: parent, target, value)
   }
 
   /// Sugars
@@ -302,15 +302,15 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func centerToSuperView(
     _ targetX: _LayoutElement.XAxisAnchor = .centerX,
     _ targetY: _LayoutElement.YAxisAnchor = .centerY,
-    _ condition: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
     guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _modify {
       $0.makeConstraints(to: parent, [
         {
-          $0.anchor(.centerY).constraint(value: condition, to: $1.anchor(targetY))
+          $0.anchor(.centerY).constraint(value: value, to: $1.anchor(targetY))
         }, {
-          $0.anchor(.centerX).constraint(value: condition, to: $1.anchor(targetX))
+          $0.anchor(.centerX).constraint(value: value, to: $1.anchor(targetX))
         }
       ])
     }
