@@ -192,7 +192,7 @@ class MyView: UIView {
     super.init(frame: .zero)
     
     // Seting up constraints constraints, layoutGuides and adding subviews
-    buildSubviews {
+    mondrian.buildSubviews {
       VStackBlock {
         nameLabel
         detailLabel
@@ -200,7 +200,7 @@ class MyView: UIView {
     }
     
     // Seting up constraints for the view itself.
-    buildSelfSizing {
+    mondrian.buildSelfSizing {
       $0.width(200).maxHeight(...)... // can be method cain.
     }
     
