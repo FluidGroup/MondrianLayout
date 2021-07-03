@@ -2,7 +2,7 @@
 
 <img width="246" alt="CleanShot 2021-06-17 at 21 12 03@2x" src="https://user-images.githubusercontent.com/1888355/122394225-b1da4e80-cfb0-11eb-9e62-f5627c817b66.png">
 
-This image laied out by MondrianLayout
+This image laid out by MondrianLayout
 
 <details><summary>Layout code</summary>
 <p>
