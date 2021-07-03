@@ -1,16 +1,16 @@
 import UIKit
 
+public enum LayoutContainerBoundary<Anchor: Equatable>: Equatable {
+  case safeArea(Anchor)
+  case view(Anchor)
+}
+
 public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
 
-  public enum Boundary<Anchor: Equatable>: Equatable {
-    case safeArea(Anchor)
-    case view(Anchor)
-  }
-
-  let top: Boundary<_LayoutElement.YAxisAnchor>
-  let leading: Boundary<_LayoutElement.XAxisAnchor>
-  let bottom: Boundary<_LayoutElement.YAxisAnchor>
-  let trailing: Boundary<_LayoutElement.XAxisAnchor>
+  let top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
+  let leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
+  let bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
+  let trailing: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
 
   let content: _LayoutBlockNode
 
@@ -30,10 +30,10 @@ public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
   }
 
   public init(
-    top: Boundary<_LayoutElement.YAxisAnchor>,
-    leading: Boundary<_LayoutElement.XAxisAnchor>,
-    bottom: Boundary<_LayoutElement.YAxisAnchor>,
-    trailing: Boundary<_LayoutElement.XAxisAnchor>,
+    top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
+    leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>,
+    bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
+    trailing: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>,
     content: () -> Block
   ) {
 
