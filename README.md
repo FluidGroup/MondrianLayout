@@ -147,14 +147,17 @@ A DSL based layout builder with AutoLayout
 AutoLayout is super powerful to describe the layout and how it changes according to the bounding box.  
 What if we get a more ergonomic interface to declare the constraints.
 
-like this
+### Structured layout API
 
 | | |
 |---|---|
 |<img width="364" src="https://user-images.githubusercontent.com/1888355/122650919-75555100-d170-11eb-8edf-834497dec211.png" />|<img width="364" alt="CleanShot 2021-06-17 at 21 13 11@2x" src="https://user-images.githubusercontent.com/1888355/122394356-d9311b80-cfb0-11eb-8c8c-f5117593ffbe.png">|
 
-
 <img width="649" alt="CleanShot 2021-06-17 at 21 14 10@2x" src="https://user-images.githubusercontent.com/1888355/122394462-f9f97100-cfb0-11eb-9838-91f22c148bd9.png">
+
+### Unstctured layout API (classic style)
+
+<img width="330" alt="classic@2x" src="https://user-images.githubusercontent.com/1888355/124358722-84ea9480-dc5c-11eb-95f7-e0250779b65c.png">
 
 ## Future direction
 
