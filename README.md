@@ -394,11 +394,11 @@ mondrianBatchLayout {
   box1.mondrian.layout
     .top(.toSuperview)
     .left(.toSuperview)
-    .right(to: box2, .left)
+    .right(.to(box2).left)
     .bottom(.toSuperview)
 
   box2.mondrian.layout
-    .top(.toSuperview, .top, .constant(10))
+    .top(.toSuperview.top, .constant(10))
     .right(.toSuperview)
     .bottom(.toSuperview)
 }

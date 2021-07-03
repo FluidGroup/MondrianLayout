@@ -1,6 +1,7 @@
 
 import Foundation
 import MondrianLayout
+import SnapshotTesting
 import XCTest
 
 final class LayoutDescriptorTests: XCTestCase {
@@ -38,5 +39,86 @@ final class LayoutDescriptorTests: XCTestCase {
     }
 
     XCTAssertEqual(group.constraints.count, 2)
+  }
+
+  func test_layout_0() {
+
+    let view =  ExampleView(width: nil, height: nil) { view in
+
+      let box1 = UIView.mock(backgroundColor: .layeringColor, preferredSize: .smallSquare)
+      let box2 = UIView.mock(backgroundColor: .layeringColor, preferredSize: .smallSquare)
+
+      view.addSubview(box1)
+      view.addSubview(box2)
+
+      mondrianBatchLayout {
+
+        box1.mondrian.layout
+          .top(.toSuperview)
+          .left(.toSuperview)
+          .right(.to(box2).left)
+          .bottom(.to(box2).bottom)
+
+        box2.mondrian.layout
+          .top(.toSuperview.top, .constant(10))
+          .right(.toSuperview)
+          .bottom(.toSuperview)
+
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+
+  }
+
+  func test_layout_center() {
+
+    let view =  ExampleView(width: nil, height: nil) { view in
+
+      let containerCenterDemo = UIView.mock(backgroundColor: .layeringColor, preferredSize: .largeSquare)
+      let containeeCenterDemo = UIView.mock(backgroundColor: .layeringColor, preferredSize: .smallSquare)
+
+      view.addSubview(containerCenterDemo)
+
+      containerCenterDemo.addSubview(containeeCenterDemo)
+
+      mondrianBatchLayout {
+
+        containerCenterDemo.mondrian.layout
+          .edges(.toSuperview)
+
+        containeeCenterDemo.mondrian.layout
+          .center(.toSuperview)
+
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+
+  }
+
+  func test_layout_edge() {
+
+    let view =  ExampleView(width: nil, height: nil) { view in
+
+      let containerEdgesDemo = UIView.mock(backgroundColor: .layeringColor, preferredSize: .largeSquare)
+      let containeeEdgesDemo = UIView.mock(backgroundColor: .layeringColor)
+
+      view.addSubview(containerEdgesDemo)
+
+      containerEdgesDemo.addSubview(containeeEdgesDemo)
+
+      mondrianBatchLayout {
+
+        containerEdgesDemo.mondrian.layout
+          .edges(.toSuperview)
+
+        containeeEdgesDemo.mondrian.layout
+          .edges(.toSuperview, .constant(8))
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+
   }
 }

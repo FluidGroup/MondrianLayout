@@ -48,27 +48,96 @@ public final class ConstraintGroup {
 
 }
 
+public enum EdgeAttaching {}
+public enum CenterPositioning {}
+
+public struct LayoutDescriptorElement<Trait> {
+
+  let usesSuperview: Bool
+  let layoutElement: _LayoutElement?
+
+  var anchorXAxis: _LayoutElement.XAxisAnchor?
+  var anchorYAxis: _LayoutElement.YAxisAnchor?
+
+  public static func to(_ view: UIView) -> LayoutDescriptorElement {
+    return .init(usesSuperview: false, layoutElement: .init(view: view))
+  }
+
+  public static func to(_ layoutGuide: UILayoutGuide) -> LayoutDescriptorElement {
+    return .init(usesSuperview: false, layoutElement: .init(layoutGuide: layoutGuide))
+  }
+
+  public static var toSuperview: LayoutDescriptorElement {
+    return .init(usesSuperview: true, layoutElement: nil)
+  }
+
+}
+
+extension LayoutDescriptorElement where Trait == CenterPositioning {
+
+  public func positioned(x: _LayoutElement.XAxisAnchor, y: _LayoutElement.YAxisAnchor) -> Self {
+    modified(self) {
+      $0.anchorXAxis = x
+      $0.anchorYAxis = y
+    }
+  }
+
+}
+
+extension LayoutDescriptorElement where Trait == _LayoutElement.XAxisAnchor {
+  public var left: Self {
+    modified(self) {
+      $0.anchorXAxis = .left
+    }
+  }
+
+  public var right: Self {
+    modified(self) {
+      $0.anchorXAxis = .right
+    }
+  }
+
+  public var centerX: Self {
+    modified(self) {
+      $0.anchorXAxis = .centerX
+    }
+  }
+
+  public var leading: Self {
+    modified(self) {
+      $0.anchorXAxis = .leading
+    }
+  }
+
+  public var trailing: Self {
+    modified(self) {
+      $0.anchorXAxis = .trailing
+    }
+  }
+}
+
+extension LayoutDescriptorElement where Trait == _LayoutElement.YAxisAnchor {
+  public var top: Self {
+    modified(self) {
+      $0.anchorYAxis = .top
+    }
+  }
+
+  public var bottom: Self {
+    modified(self) {
+      $0.anchorYAxis = .bottom
+    }
+  }
+
+  public var centerY: Self {
+    modified(self) {
+      $0.anchorYAxis = .centerY
+    }
+  }
+}
+
 /// A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
 public struct LayoutDescriptor: _DimensionConstraintType {
-
-  public struct Element {
-
-    let usesSuperview: Bool
-    let layoutElement: _LayoutElement?
-
-    public static func to(_ view: UIView) -> Element {
-      return .init(usesSuperview: false, layoutElement: .init(view: view))
-    }
-
-    public static func to(_ layoutGuide: UILayoutGuide) -> Element {
-      return .init(usesSuperview: false, layoutElement: .init(layoutGuide: layoutGuide))
-    }
-
-    public static var toSuperview: Element {
-      return .init(usesSuperview: true, layoutElement: nil)
-    }
-
-  }
 
   public struct ConstraintValue {
 
@@ -134,7 +203,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   @inline(__always)
-  private func takeLayoutElement(_ element: Element) -> _LayoutElement? {
+  private func takeLayoutElement<T>(_ element: LayoutDescriptorElement<T>) -> _LayoutElement? {
 
     guard element.usesSuperview == false else {
       return takeParentLayoutElementWithAssertion()
@@ -154,8 +223,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   @inline(__always)
   @discardableResult
-  private mutating func makeConstraint(
-    _ element: Element,
+  private mutating func makeConstraint<T>(
+    _ element: LayoutDescriptorElement<T>,
     _ closure: (_LayoutElement, _LayoutElement) -> NSLayoutConstraint
   ) -> NSLayoutConstraint? {
 
@@ -170,8 +239,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   @inline(__always)
   @discardableResult
-  private mutating func makeConstraints(
-    _ element: Element,
+  private mutating func makeConstraints<T>(
+    _ element: LayoutDescriptorElement<T>,
     _ closure: (_LayoutElement, _LayoutElement) -> [NSLayoutConstraint]
   ) -> [NSLayoutConstraint]? {
 
@@ -187,105 +256,104 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   // MARK: - X axis
 
   @inline(__always)
-  private func _anchor(
-    _ from: _LayoutElement.XAxisAnchor,
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor,
-    _ value: ConstraintValue
+  private func _anchor<T>(
+    from: _LayoutElement.XAxisAnchor,
+    element: LayoutDescriptorElement<T>,
+    defaultAnchor anchor: _LayoutElement.XAxisAnchor,
+    value: ConstraintValue
   ) -> Self {
     return _modify {
       $0.makeConstraint(element) {
-        $0.anchor(from).constraint(value: value, to: $1.anchor(anchor))
+        $0.anchor(from).constraint(value: value, to: $1.anchor(element.anchorXAxis ?? anchor))
       }
     }
   }
 
   @inline(__always)
-  private func _anchor(
-    _ from: _LayoutElement.YAxisAnchor,
-    _ element: Element,
-    _ anchor: _LayoutElement.YAxisAnchor,
-    _ value: ConstraintValue
+  private func _anchor<T>(
+    from: _LayoutElement.YAxisAnchor,
+    element: LayoutDescriptorElement<T>,
+    defaultAnchor anchor: _LayoutElement.YAxisAnchor,
+    value: ConstraintValue
   ) -> Self {
     return _modify {
       $0.makeConstraint(element) {
-        $0.anchor(from).constraint(value: value, to: $1.anchor(anchor))
+        $0.anchor(from).constraint(value: value, to: $1.anchor(element.anchorYAxis ?? anchor))
       }
     }
   }
 
+  /// Describes a single constraint
   public func leading(
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor = .leading,
+    _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.leading, element, anchor, value)
+    _anchor(from: .leading, element: element, defaultAnchor: .leading, value: value)
   }
 
+  /// Describes a single constraint
   public func trailing(
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor = .trailing,
+    _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.trailing, element, anchor, value)
+    _anchor(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
   }
 
+  /// Describes a single constraint
   public func left(
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor = .left,
+    _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.left, element, anchor, value)
+    _anchor(from: .left, element: element, defaultAnchor: .left, value: value)
   }
 
+  /// Describes a single constraint
   public func right(
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor = .right,
+    _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.right, element, anchor, value)
+    _anchor(from: .right, element: element, defaultAnchor: .right, value: value)
   }
 
+  /// Describes a single constraint
   public func centerX(
-    _ element: Element,
-    _ anchor: _LayoutElement.XAxisAnchor = .centerX,
+    _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerX, element, anchor, value)
+    _anchor(from: .centerX, element: element, defaultAnchor: .centerX, value: value)
   }
 
   // MARK: - Y axis
 
+  /// Describes a single constraint
   public func top(
-    _ element: Element,
-    _ anchor: _LayoutElement.YAxisAnchor = .top,
+    _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.top, element, anchor, value)
+    _anchor(from: .top, element: element, defaultAnchor: .top, value: value)
   }
 
+  /// Describes a single constraint
   public func bottom(
-    _ element: Element,
-    _ anchor: _LayoutElement.YAxisAnchor = .bottom,
+    _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.bottom, element, anchor, value)
+    _anchor(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
   }
 
+  /// Describes a single constraint
   public func centerY(
-    _ element: Element,
-    _ anchor: _LayoutElement.YAxisAnchor = .centerY,
+    _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerY, element, anchor, value)
+    _anchor(from: .centerY, element: element, defaultAnchor: .centerY, value: value)
   }
 
   // MARK: - Sugars
 
+  /// Describes multiple constraints
   public func center(
-    _ element: Element,
-    _ anchorX: _LayoutElement.XAxisAnchor = .centerX,
-    _ anchorY: _LayoutElement.YAxisAnchor = .centerY,
+    _ element: LayoutDescriptorElement<CenterPositioning>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
     return _modify {
@@ -293,16 +361,23 @@ public struct LayoutDescriptor: _DimensionConstraintType {
         element,
         {
           [
-            $0.anchor(.centerY).constraint(value: value, to: $1.anchor(anchorY)),
-            $0.anchor(.centerX).constraint(value: value, to: $1.anchor(anchorX)),
+            $0.anchor(.centerY).constraint(
+              value: value,
+              to: $1.anchor(element.anchorYAxis ?? .centerY)
+            ),
+            $0.anchor(.centerX).constraint(
+              value: value,
+              to: $1.anchor(element.anchorXAxis ?? .centerX)
+            ),
           ]
         }
       )
     }
   }
 
+  /// Describes multiple constraints
   public func edges(
-    _ element: Element,
+    _ element: LayoutDescriptorElement<EdgeAttaching>,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
     return _modify {
