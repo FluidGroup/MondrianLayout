@@ -379,9 +379,9 @@ MondrianLayout provides it as well other AutoLayout libraries.
 ```swift
 view.mondrian.layout
   .width(10)
-  .topToSuperview()
-  .rightToSuperview()
-  .leadingToSuperview()
+  .top(.toSuperview)
+  .right(.toSuperview)
+  .leading(.toSuperview)
   .activate() // activate constraints and returns `ConstraintGroup`
 ```
 
@@ -392,15 +392,15 @@ Batch layout**
 mondrianBatchLayout {
 
   box1.mondrian.layout
-    .topToSuperview()
-    .leftToSuperview()
+    .top(.toSuperview)
+    .left(.toSuperview)
     .right(to: box2, .left)
-    .bottomToSuperview()
+    .bottom(.toSuperview)
 
   box2.mondrian.layout
-    .topToSuperview(.top, .constant(10))
-    .rightToSuperview()
-    .bottomToSuperview()
+    .top(.toSuperview, .top, .constant(10))
+    .right(.toSuperview)
+    .bottom(.toSuperview)
 }
 ```
 
