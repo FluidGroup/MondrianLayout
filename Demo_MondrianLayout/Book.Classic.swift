@@ -19,11 +19,11 @@ var _book_classic: BookView {
           box1.mondrian.layout
             .top(.toSuperview)
             .left(.toSuperview)
-            .right(.to(box2), .left)
-            .bottom(.to(box2), .bottom)
+            .right(.to(box2).left)
+            .bottom(.to(box2).bottom)
 
           box2.mondrian.layout
-            .top(.toSuperview, .top, .constant(10))
+            .top(.toSuperview.top, .constant(10))
             .right(.toSuperview)
             .bottom(.toSuperview)
 
