@@ -51,9 +51,23 @@ public final class ConstraintGroup {
 /// A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
 public struct LayoutDescriptor: _DimensionConstraintType {
 
-  public enum Element {
-    case to(__LayoutElementConvertible)
-    case toSuperview
+  public struct Element {
+
+    let usesSuperview: Bool
+    let layoutElement: _LayoutElement?
+
+    public static func to(_ view: UIView) -> Element {
+      return .init(usesSuperview: false, layoutElement: .init(view: view))
+    }
+
+    public static func to(_ layoutGuide: UILayoutGuide) -> Element {
+      return .init(usesSuperview: false, layoutElement: .init(layoutGuide: layoutGuide))
+    }
+
+    public static var toSuperview: Element {
+      return .init(usesSuperview: true, layoutElement: nil)
+    }
+
   }
 
   public struct ConstraintValue {
@@ -121,10 +135,12 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   @inline(__always)
   private func takeLayoutElement(_ element: Element) -> _LayoutElement? {
-    switch element {
-    case .to(let element): return element._layoutElement
-    case .toSuperview: return takeParentLayoutElementWithAssertion()
+
+    guard element.usesSuperview == false else {
+      return takeParentLayoutElementWithAssertion()
     }
+
+    return element.layoutElement
   }
 
   private var constraints: [NSLayoutConstraint] = []

@@ -1,17 +1,20 @@
 
 import UIKit
 
+/// MondrianLayout internal protocol
 public protocol __LayoutElementConvertible {
   var _layoutElement: _LayoutElement { get }
 }
 
 extension UIView: __LayoutElementConvertible {
+  /// MondrianLayout internal property
   public var _layoutElement: _LayoutElement {
     return .init(view: self)
   }
 }
 
 extension UILayoutGuide: __LayoutElementConvertible {
+  /// MondrianLayout internal property
   public var _layoutElement: _LayoutElement {
     return .init(layoutGuide: self)
   }
