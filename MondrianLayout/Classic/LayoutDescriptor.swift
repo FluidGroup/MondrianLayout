@@ -1,7 +1,9 @@
 import UIKit
 
 @discardableResult
-public func mondrianBatchLayout(@MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]) -> ConstraintGroup {
+public func mondrianBatchLayout(
+  @MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]
+) -> ConstraintGroup {
 
   let descriptors = closure()
 
@@ -46,10 +48,27 @@ public final class ConstraintGroup {
 
 }
 
-/**
- A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
- */
+/// A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
 public struct LayoutDescriptor: _DimensionConstraintType {
+
+  public struct Element {
+
+    let usesSuperview: Bool
+    let layoutElement: _LayoutElement?
+
+    public static func to(_ view: UIView) -> Element {
+      return .init(usesSuperview: false, layoutElement: .init(view: view))
+    }
+
+    public static func to(_ layoutGuide: UILayoutGuide) -> Element {
+      return .init(usesSuperview: false, layoutElement: .init(layoutGuide: layoutGuide))
+    }
+
+    public static var toSuperview: Element {
+      return .init(usesSuperview: true, layoutElement: nil)
+    }
+
+  }
 
   public struct ConstraintValue {
 
@@ -105,233 +124,199 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   public var dimensionConstraints: DimensionDescriptor = .init()
 
+  @inline(__always)
   private func takeParentLayoutElementWithAssertion() -> _LayoutElement? {
-    assert(target.owningView != nil, "\(target.view ?? target.layoutGuide as Any) must have parent view.") 
+    assert(
+      target.owningView != nil,
+      "\(target.view ?? target.layoutGuide as Any) must have parent view."
+    )
     return target.owningView.map { .init(view: $0) }
+  }
+
+  @inline(__always)
+  private func takeLayoutElement(_ element: Element) -> _LayoutElement? {
+
+    guard element.usesSuperview == false else {
+      return takeParentLayoutElementWithAssertion()
+    }
+
+    return element.layoutElement
   }
 
   private var constraints: [NSLayoutConstraint] = []
 
+  @inline(__always)
   private func _modify(_ modifier: (inout Self) -> Void) -> Self {
     var new = self
     modifier(&new)
     return new
   }
 
+  @inline(__always)
   @discardableResult
   private mutating func makeConstraint(
-    to element: __LayoutElementConvertible,
+    _ element: Element,
     _ closure: (_LayoutElement, _LayoutElement) -> NSLayoutConstraint
-  ) -> NSLayoutConstraint {
-    let constraint = closure(target, element._layoutElement)
+  ) -> NSLayoutConstraint? {
+
+    guard let secondItem = takeLayoutElement(element) else {
+      return nil
+    }
+
+    let constraint = closure(target, secondItem)
     constraints.append(constraint)
     return constraint
   }
 
+  @inline(__always)
   @discardableResult
   private mutating func makeConstraints(
-    to element: __LayoutElementConvertible,
-    _ closures:
-    [(_LayoutElement, _LayoutElement) -> NSLayoutConstraint]
-  ) -> [NSLayoutConstraint] {
-    let constraints = closures.map { $0(target, element._layoutElement) }
+    _ element: Element,
+    _ closure: (_LayoutElement, _LayoutElement) -> [NSLayoutConstraint]
+  ) -> [NSLayoutConstraint]? {
+
+    guard let secondItem = takeLayoutElement(element) else {
+      return nil
+    }
+
+    let constraints = closure(target, secondItem)
     self.constraints.append(contentsOf: constraints)
     return constraints
   }
 
-  // MARK: X axis
+  // MARK: - X axis
 
+  @inline(__always)
   private func _anchor(
     _ from: _LayoutElement.XAxisAnchor,
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor,
     _ value: ConstraintValue
   ) -> Self {
     return _modify {
-      $0.makeConstraint(to: element) {
-        $0.anchor(from).constraint(value: value, to: $1.anchor(target))
+      $0.makeConstraint(element) {
+        $0.anchor(from).constraint(value: value, to: $1.anchor(anchor))
       }
     }
   }
 
+  @inline(__always)
   private func _anchor(
     _ from: _LayoutElement.YAxisAnchor,
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.YAxisAnchor,
+    _ element: Element,
+    _ anchor: _LayoutElement.YAxisAnchor,
     _ value: ConstraintValue
   ) -> Self {
     return _modify {
-      $0.makeConstraint(to: element) {
-        $0.anchor(from).constraint(value: value, to: $1.anchor(target))
+      $0.makeConstraint(element) {
+        $0.anchor(from).constraint(value: value, to: $1.anchor(anchor))
       }
     }
   }
 
   public func leading(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor = .leading,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor = .leading,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.leading, to: element, target, value)
+    _anchor(.leading, element, anchor, value)
   }
 
   public func trailing(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor = .trailing,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor = .trailing,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.trailing, to: element, target, value)
+    _anchor(.trailing, element, anchor, value)
   }
 
   public func left(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor = .left,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor = .left,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.left, to: element, target, value)
+    _anchor(.left, element, anchor, value)
   }
 
   public func right(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor = .right,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor = .right,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.right, to: element, target, value)
+    _anchor(.right, element, anchor, value)
   }
 
   public func centerX(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.XAxisAnchor = .centerX,
+    _ element: Element,
+    _ anchor: _LayoutElement.XAxisAnchor = .centerX,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerX, to: element, target, value)
+    _anchor(.centerX, element, anchor, value)
   }
 
-  public func leadingToSuperview(
-    _ target: _LayoutElement.XAxisAnchor = .leading,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.leading, to: parent, target, value)
-  }
-
-  public func trailingToSuperview(
-    _ target: _LayoutElement.XAxisAnchor = .trailing,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.trailing, to: parent, target, value)
-  }
-
-  public func leftToSuperview(
-    _ target: _LayoutElement.XAxisAnchor = .left,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.left, to: parent, target, value)
-  }
-
-  public func rightToSuperview(
-    _ target: _LayoutElement.XAxisAnchor = .right,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.right, to: parent, target, value)
-  }
-
-  public func centerXToSuperview(
-    _ target: _LayoutElement.XAxisAnchor = .centerX,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.centerX, to: parent, target, value)
-  }
-
-  // MARK: Y axis
+  // MARK: - Y axis
 
   public func top(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.YAxisAnchor = .top,
+    _ element: Element,
+    _ anchor: _LayoutElement.YAxisAnchor = .top,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.top, to: element, target, value)
+    _anchor(.top, element, anchor, value)
   }
 
   public func bottom(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.YAxisAnchor = .bottom,
+    _ element: Element,
+    _ anchor: _LayoutElement.YAxisAnchor = .bottom,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.bottom, to: element, target, value)
+    _anchor(.bottom, element, anchor, value)
   }
 
   public func centerY(
-    to element: __LayoutElementConvertible,
-    _ target: _LayoutElement.YAxisAnchor = .centerY,
+    _ element: Element,
+    _ anchor: _LayoutElement.YAxisAnchor = .centerY,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    _anchor(.centerY, to: element, target, value)
+    _anchor(.centerY, element, anchor, value)
   }
 
-  public func topToSuperview(
-    _ target: _LayoutElement.YAxisAnchor = .top,
+  // MARK: - Sugars
+
+  public func center(
+    _ element: Element,
+    _ anchorX: _LayoutElement.XAxisAnchor = .centerX,
+    _ anchorY: _LayoutElement.YAxisAnchor = .centerY,
     _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.top, to: parent, target, value)
-  }
-
-  public func bottomToSuperview(
-    _ target: _LayoutElement.YAxisAnchor = .bottom,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.bottom, to: parent, target, value)
-  }
-
-  public func centerYToSuperView(
-    _ target: _LayoutElement.YAxisAnchor = .centerY,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
-    return _anchor(.centerY, to: parent, target, value)
-  }
-
-  /// Sugars
-
-  public func centerToSuperView(
-    _ targetX: _LayoutElement.XAxisAnchor = .centerX,
-    _ targetY: _LayoutElement.YAxisAnchor = .centerY,
-    _ value: ConstraintValue = .constant(0)
-  ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _modify {
-      $0.makeConstraints(to: parent, [
+      $0.makeConstraints(
+        element,
         {
-          $0.anchor(.centerY).constraint(value: value, to: $1.anchor(targetY))
-        }, {
-          $0.anchor(.centerX).constraint(value: value, to: $1.anchor(targetX))
+          [
+            $0.anchor(.centerY).constraint(value: value, to: $1.anchor(anchorY)),
+            $0.anchor(.centerX).constraint(value: value, to: $1.anchor(anchorX)),
+          ]
         }
-      ])
+      )
     }
   }
 
-  public func edgesToSuperView(
-    _ condition: ConstraintValue = .constant(0)
+  public func edges(
+    _ element: Element,
+    _ value: ConstraintValue = .constant(0)
   ) -> Self {
-    guard let parent = takeParentLayoutElementWithAssertion() else { return self }
     return _modify {
-      $0.makeConstraints(to: parent, [
+      $0.makeConstraints(
+        element,
         {
-          $0.anchor(.top).constraint(value: condition, to: $1.topAnchor)
-        }, {
-          $1.anchor(.bottom).constraint(value: condition, to: $0.bottomAnchor)
-        }, {
-          $0.anchor(.left).constraint(value: condition, to: $1.leftAnchor)
-        }, {
-          $1.anchor(.right).constraint(value: condition, to: $0.rightAnchor)
+          [
+            $0.anchor(.top).constraint(value: value, to: $1.topAnchor),
+            $1.anchor(.bottom).constraint(value: value, to: $0.bottomAnchor),
+            $0.anchor(.left).constraint(value: value, to: $1.leftAnchor),
+            $1.anchor(.right).constraint(value: value, to: $0.rightAnchor),
+          ]
         }
-      ])
+      )
     }
   }
 
@@ -399,16 +384,42 @@ extension NSLayoutYAxisAnchor {
   }
 }
 
-extension MondrianNamespace where Base : UIView {
+extension MondrianNamespace where Base: UIView {
 
+  /**
+   Entry point to describe layout constraints
+   Activates by calling `activate()` or using `mondrianBatchLayout`
+
+   ```swift
+   view.mondrian.layout
+     .top(.toSuperview)
+     .left(.toSuperview)
+     .right(.to(box2), .left)
+     .bottom(.to(box2), .bottom)
+     .activate()
+   ```
+   */
   public var layout: LayoutDescriptor {
     .init(view: base)
   }
 
 }
 
-extension MondrianNamespace where Base : UILayoutGuide {
+extension MondrianNamespace where Base: UILayoutGuide {
 
+  /**
+   Entry point to describe layout constraints
+   Activates by calling `activate()` or using `mondrianBatchLayout`
+
+   ```swift
+   view.mondrian.layout
+     .top(.toSuperview)
+     .left(.toSuperview)
+     .right(.to(box2), .left)
+     .bottom(.to(box2), .bottom)
+     .activate()
+   ```
+   */
   public var layout: LayoutDescriptor {
     .init(layoutGuide: base)
   }

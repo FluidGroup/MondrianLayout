@@ -14,9 +14,9 @@ final class LayoutDescriptorTests: XCTestCase {
 
     let g = view.mondrian.layout
       .width(10)
-      .topToSuperview()
-      .rightToSuperview()
-      .leadingToSuperview()
+      .top(.toSuperview)
+      .right(.toSuperview)
+      .leading(.toSuperview)
       .activate()
 
     XCTAssertEqual(g.constraints.count, 4)
@@ -34,7 +34,7 @@ final class LayoutDescriptorTests: XCTestCase {
 
     let group = mondrianBatchLayout {
       view.mondrian.layout.width(10)
-      view.mondrian.layout.top(to: parent)
+      view.mondrian.layout.top(.to(parent))
     }
 
     XCTAssertEqual(group.constraints.count, 2)
