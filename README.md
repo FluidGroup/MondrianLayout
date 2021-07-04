@@ -437,10 +437,30 @@ mondrianBatchLayout {
     .bottom(.toSuperview)
 
   box2.mondrian.layout
-    .top(.toSuperview.top, .constant(10))
+    .top(.toSuperview.top, .exact(10))
     .right(.toSuperview)
     .bottom(.toSuperview)
 }
+```
+
+### Examples
+
+#### Attach in horizontally
+
+```swift
+view.layout.horizontal(.toSuperview, .exact(10))
+```
+
+#### Attach in vertically
+
+```swift
+view.layout.vertical(.toSuperview, .exact(10))
+```
+
+#### Edge attaches to other edge
+
+```swift
+view.layout.edge(.toSuperview)
 ```
 
 ## Installation
