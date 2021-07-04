@@ -141,37 +141,49 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   public struct ConstraintValue {
 
-    public enum Condition {
+    public enum Relation {
+      /// greater than or equal
       case min
-      case constant
+      /// equal
+      case exact
+      /// less than or equal
       case max
     }
 
-    public var condition: Condition
-    public var value: CGFloat
+    public var relation: Relation
+    public var constant: CGFloat
     public var priority: UILayoutPriority
 
     public init(
-      condition: Condition,
-      value: CGFloat,
+      relation: Relation,
+      constant: CGFloat,
       priority: UILayoutPriority
     ) {
-      self.condition = condition
-      self.value = value
+      self.relation = relation
+      self.constant = constant
       self.priority = priority
     }
 
+    /// greater than or equal
     public static func min(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self {
-      return .init(condition: .min, value: value, priority: priority)
+      return .init(relation: .min, constant: value, priority: priority)
     }
 
+    /// equal
+    public static func exact(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self
+    {
+      return .init(relation: .exact, constant: value, priority: priority)
+    }
+
+    @available(*, deprecated, renamed: "exact")
     public static func constant(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self
     {
-      return .init(condition: .constant, value: value, priority: priority)
+      return .init(relation: .exact, constant: value, priority: priority)
     }
 
+    /// less than or equal
     public static func max(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self {
-      return .init(condition: .max, value: value, priority: priority)
+      return .init(relation: .max, constant: value, priority: priority)
     }
   }
 
@@ -286,7 +298,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func leading(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .leading, element: element, defaultAnchor: .leading, value: value)
   }
@@ -294,7 +306,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func trailing(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
   }
@@ -302,7 +314,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func left(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .left, element: element, defaultAnchor: .left, value: value)
   }
@@ -310,7 +322,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func right(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .right, element: element, defaultAnchor: .right, value: value)
   }
@@ -318,7 +330,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func centerX(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .centerX, element: element, defaultAnchor: .centerX, value: value)
   }
@@ -328,7 +340,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func top(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .top, element: element, defaultAnchor: .top, value: value)
   }
@@ -336,7 +348,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func bottom(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
   }
@@ -344,7 +356,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes a single constraint
   public func centerY(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     _anchor(from: .centerY, element: element, defaultAnchor: .centerY, value: value)
   }
@@ -354,7 +366,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func center(
     _ element: LayoutDescriptorElement<CenterPositioning>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
       $0.makeConstraints(
@@ -378,7 +390,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func edges(
     _ element: LayoutDescriptorElement<EdgeAttaching>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
       $0.makeConstraints(
@@ -420,15 +432,15 @@ extension NSLayoutXAxisAnchor {
     to anchor: NSLayoutXAxisAnchor
   ) -> NSLayoutConstraint {
 
-    switch value.condition {
+    switch value.relation {
     case .min:
-      return constraint(greaterThanOrEqualTo: anchor, constant: value.value).withPriority(
+      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).withPriority(
         value.priority
       )
-    case .constant:
-      return constraint(equalTo: anchor, constant: value.value).withPriority(value.priority)
+    case .exact:
+      return constraint(equalTo: anchor, constant: value.constant).withPriority(value.priority)
     case .max:
-      return constraint(lessThanOrEqualTo: anchor, constant: value.value).withPriority(
+      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).withPriority(
         value.priority
       )
     }
@@ -443,15 +455,15 @@ extension NSLayoutYAxisAnchor {
     to anchor: NSLayoutYAxisAnchor
   ) -> NSLayoutConstraint {
 
-    switch value.condition {
+    switch value.relation {
     case .min:
-      return constraint(greaterThanOrEqualTo: anchor, constant: value.value).withPriority(
+      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).withPriority(
         value.priority
       )
-    case .constant:
-      return constraint(equalTo: anchor, constant: value.value).withPriority(value.priority)
+    case .exact:
+      return constraint(equalTo: anchor, constant: value.constant).withPriority(value.priority)
     case .max:
-      return constraint(lessThanOrEqualTo: anchor, constant: value.value).withPriority(
+      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).withPriority(
         value.priority
       )
     }
