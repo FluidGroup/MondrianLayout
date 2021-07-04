@@ -1,6 +1,7 @@
 import UIKit
 
 /**
+ [MondrianLayout]
  A block that overlays its children, aligning them in both axes as default behavior.
 
  Examples:

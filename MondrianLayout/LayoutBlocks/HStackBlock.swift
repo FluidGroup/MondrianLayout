@@ -1,14 +1,26 @@
 import UIKit
 
+/// [MondrianLayout]
+///
+/// A descriptor that lays out the contents horizontally.
 public struct HStackBlock:
   _LayoutBlockType,
   _LayoutBlockNodeConvertible
 {
 
+  /// Alignment option for ``HStackBlock``
   public enum YAxisAlignment {
+    
+    /// In ``HStackBlock``
     case top
+
+    /// In ``HStackBlock``
     case center
+
+    /// In ``HStackBlock``
     case bottom
+
+    /// In ``HStackBlock``
     case fill
   }
 

@@ -9,6 +9,7 @@ public struct VStackBlock:
 
   /// Alignment option for ``VStackBlock``
   public enum XAxisAlignment {
+    
     /// In ``VStackBlock``
     case leading
 
