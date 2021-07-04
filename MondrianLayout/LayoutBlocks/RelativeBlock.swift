@@ -16,7 +16,7 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
   public var bottom: CGFloat?
   public var right: CGFloat?
   public var left: CGFloat?
-
+  
   init(
     top: CGFloat? = nil,
     left: CGFloat? = nil,
