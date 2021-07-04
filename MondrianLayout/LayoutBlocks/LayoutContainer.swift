@@ -5,6 +5,10 @@ public enum LayoutContainerBoundary<Anchor: Equatable>: Equatable {
   case view(Anchor)
 }
 
+/**
+ [MondrianLayout]
+ A descriptor that makes a layout guide that attaches to safe area each edge.
+ */
 public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
 
   let top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>

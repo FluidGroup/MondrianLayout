@@ -1,6 +1,7 @@
 import UIKit
 
 public typealias PaddingBlock = RelativeBlock
+
 public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public var name: String = "Relative"

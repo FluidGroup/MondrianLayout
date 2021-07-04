@@ -1,5 +1,10 @@
 import UIKit
 
+/**
+ [MondrianLayout]
+
+ A descriptor that lays out the contents vertically.
+ */
 public struct VStackBlock:
   _LayoutBlockType
 {
