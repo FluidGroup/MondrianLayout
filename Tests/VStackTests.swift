@@ -142,4 +142,24 @@ final class VStackTests: XCTestCase {
     assertSnapshot(matching: view, as: .image, record: _record)
   }
 
+  func test_label_alignment() {
+
+    let view = ExampleView(width: 200, height: 200) { (view: UIView) in
+      view.mondrian.buildSubviews {
+        VStackBlock(alignment: .leading) {
+          UILabel.mockMultiline(text: "Hello")
+            .viewBlock
+            .padding(.horizontal, 10)
+          UIView.mock(backgroundColor: .layeringColor)
+            .viewBlock
+            .alignSelf(.fill)
+        }
+        .background(UIView.mock(backgroundColor: .layeringColor))
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+
+  }
+
 }

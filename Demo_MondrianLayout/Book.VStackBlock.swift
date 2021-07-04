@@ -5,6 +5,24 @@ import UIKit
 var _book_VStackBlock: BookView {
 
   BookNavigationLink(title: "VStackBlock") {
+
+    BookPreview {
+      ExampleView(width: 200, height: 200) { (view: UIView) in
+        view.mondrian.buildSubviews {
+          VStackBlock(alignment: .leading) {
+            UILabel.mockMultiline(text: BookGenerator.loremIpsum(length: 10))
+              .viewBlock
+              .padding(.horizontal, 10)
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock
+              .alignSelf(.fill)
+          }
+          .background(UIView.mock(backgroundColor: .layeringColor))
+        }
+      }
+    }
+    .title("Spacing")
+
     BookPreview {
       ExampleView(width: nil, height: 180) { (view: UIView) in
         view.mondrian.buildSubviews {

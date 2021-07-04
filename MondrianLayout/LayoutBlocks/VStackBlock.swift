@@ -1,18 +1,24 @@
 import UIKit
 
-/**
- [MondrianLayout]
-
- A descriptor that lays out the contents vertically.
- */
+/// [MondrianLayout]
+///
+/// A descriptor that lays out the contents vertically.
 public struct VStackBlock:
   _LayoutBlockType
 {
 
+  /// Alignment option for ``VStackBlock``
   public enum XAxisAlignment {
+    /// In ``VStackBlock``
     case leading
+
+    /// In ``VStackBlock``
     case center
+
+    /// In ``VStackBlock``
     case trailing
+
+    /// In ``VStackBlock``
     case fill
   }
 
