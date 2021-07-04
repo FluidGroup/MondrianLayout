@@ -463,6 +463,10 @@ view.layout.vertical(.toSuperview, .exact(10))
 view.layout.edge(.toSuperview)
 ```
 
+```swift
+view.layout.edge(.to(myLayoutGuide))
+```
+
 ## Installation
 
 **CocoaPods**
