@@ -407,6 +407,42 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
   }
 
+  /// Describes multiple constraints
+  public func horizontal(
+    _ element: LayoutDescriptorElement<EdgeAttaching>,
+    _ value: ConstraintValue = .constant(0)
+  ) -> Self {
+    return _modify {
+      $0.makeConstraints(
+        element,
+        {
+          [
+            $0.anchor(.left).constraint(value: value, to: $1.leftAnchor),
+            $1.anchor(.right).constraint(value: value, to: $0.rightAnchor),
+          ]
+        }
+      )
+    }
+  }
+
+  /// Describes multiple constraints
+  public func vertical(
+    _ element: LayoutDescriptorElement<EdgeAttaching>,
+    _ value: ConstraintValue = .constant(0)
+  ) -> Self {
+    return _modify {
+      $0.makeConstraints(
+        element,
+        {
+          [
+            $0.anchor(.top).constraint(value: value, to: $1.topAnchor),
+            $1.anchor(.bottom).constraint(value: value, to: $0.bottomAnchor),
+          ]
+        }
+      )
+    }
+  }
+
   /**
    Activates layout constraints
    */
