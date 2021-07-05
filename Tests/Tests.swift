@@ -29,7 +29,7 @@ final class LayoutSnapshotTests: XCTestCase {
               preferredSize: .init(width: 10, height: 10)
             )
             .viewBlock
-            .relative(top: 10, right: 10)
+            .relative([.top, .trailing], 10)
 
           }
         }
@@ -162,7 +162,7 @@ final class LayoutSnapshotTests: XCTestCase {
               )
               .viewBlock
             )
-            .relative(bottom: 8, right: 8)
+            .relative([.top, .trailing], 10)
         )
 
       }

@@ -61,7 +61,7 @@ final class InstagramPostView: UIView {
             captionLabel.viewBlock
               .padding(10)
               .background(captionBackground)
-              .relative(bottom: 8, right: 8)
+              .relative([.bottom, .trailing], 8)
           )
           .spacingAfter(10)
 

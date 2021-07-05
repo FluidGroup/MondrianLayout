@@ -105,157 +105,6 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
 }
 
-extension RelativeBlock {
-
-   /**
-   `.relative` modifier describes that the content attaches to specified edges with padding.
-   Not specified edges do not have constraints to the edge. so the sizing depends on intrinsic content size.
-
-   You might use this modifier to pin to edge as an overlay content.
-
-   ```swift
-   ZStackBlock {
-     VStackBlock {
-       ...
-     }
-     .relative(bottom: 8, right: 8)
-   }
-   ```
-
-   - Attention: This method accumulates values
-   */
-  public func relative(
-    top: CGFloat? = nil,
-    left: CGFloat? = nil,
-    bottom: CGFloat? = nil,
-    right: CGFloat? = nil
-  ) -> RelativeBlock {
-
-    var new = self
-
-    new.top = top.map { (new.top ?? 0) + $0 }
-    new.left = left.map { (new.left ?? 0) + $0 }
-    new.bottom = bottom.map { (new.bottom ?? 0) + $0 }
-    new.right = right.map { (new.right ?? 0) + $0 }
-
-    return new
-
-  }
-
-  /**
-   `.relative` modifier describes that the content attaches to specified edges with padding.
-   Not specified edges do not have constraints to the edge. so the sizing depends on intrinsic content size.
-
-   You might use this modifier to pin to edge as an overlay content.
-
-   - Attention: This method accumulates values
-   */
-  public func relative(_ value: CGFloat) -> PaddingBlock {
-    return relative(top: value, left: value, bottom: value, right: value)
-  }
-
-  /**
-   `.relative` modifier describes that the content attaches to specified edges with padding.
-   Not specified edges do not have constraints to the edge. so the sizing depends on intrinsic content size.
-
-   You might use this modifier to pin to edge as an overlay content.
-
-   - Attention: This method accumulates values
-   */
-  public func relative(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
-    return relative(
-      top: edgeInsets.top,
-      left: edgeInsets.left,
-      bottom: edgeInsets.bottom,
-      right: edgeInsets.right
-    )
-  }
-
-  /**
-   `.relative` modifier describes that the content attaches to specified edges with padding.
-   Not specified edges do not have constraints to the edge. so the sizing depends on intrinsic content size.
-
-   You might use this modifier to pin to edge as an overlay content.
-
-   - Attention: This method accumulates values
-   */
-  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
-
-    return relative(
-      top: edges.contains(.top) ? value : nil,
-      left: edges.contains(.leading) ? value : nil,
-      bottom: edges.contains(.bottom) ? value : nil,
-      right: edges.contains(.trailing) ? value : nil
-    )
-
-  }
-
-  /**
-   .padding modifier is similar with .relative but something different.
-   Different with that, Not specified edges pin to edge with 0 padding.
-
-   - Attention: This method accumulates values
-   */
-  private func padding(
-    top: CGFloat,
-    left: CGFloat,
-    bottom: CGFloat,
-    right: CGFloat
-  ) -> PaddingBlock {
-    var new = self
-
-    new.top = (new.top ?? 0) + (top)
-    new.left = (new.left ?? 0) + (left)
-    new.bottom = (new.bottom ?? 0) + (bottom)
-    new.right = (new.right ?? 0) + (right)
-
-    return new
-  }
-
-  /**
-   .padding modifier is similar with .relative but something different.
-   Different with that, Not specified edges pin to edge with 0 padding.
-
-   - Attention: This method accumulates values
-   */
-  public func padding(_ value: CGFloat) -> PaddingBlock {
-    return padding(top: value, left: value, bottom: value, right: value)
-  }
-
-  /**
-   .padding modifier is similar with .relative but something different.
-   Different with that, Not specified edges pin to edge with 0 padding.
-
-   - Attention: This method accumulates values
-   */
-  public func padding(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
-    return padding(
-      top: edgeInsets.top,
-      left: edgeInsets.left,
-      bottom: edgeInsets.bottom,
-      right: edgeInsets.right
-    )
-  }
-
-  /**
-   .padding modifier is similar with .relative but something different.
-   Different with that, Not specified edges pin to edge with 0 padding.
-
-   - Attention: This method accumulates values
-   */
-  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
-
-    return padding(
-      top: edges.contains(.top) ? value : 0,
-      left: edges.contains(.leading) ? value : 0,
-      bottom: edges.contains(.bottom) ? value : 0,
-      right: edges.contains(.trailing) ? value : 0
-    )
-
-  }
-
-}
-
 extension _LayoutBlockNodeConvertible {
 
   /**
@@ -273,14 +122,26 @@ extension _LayoutBlockNodeConvertible {
    }
    ```
    */
-  public func relative(
+  private func relative(
     top: CGFloat? = nil,
     left: CGFloat? = nil,
     bottom: CGFloat? = nil,
     right: CGFloat? = nil
   ) -> RelativeBlock {
-    return .init(top: top, left: left, bottom: bottom, right: right) {
-      self._layoutBlockNode
+
+    if case .relative(let relativeBlock) = self._layoutBlockNode {
+      var new = relativeBlock
+
+      new.top = top.map { (new.top ?? 0) + $0 }
+      new.left = left.map { (new.left ?? 0) + $0 }
+      new.bottom = bottom.map { (new.bottom ?? 0) + $0 }
+      new.right = right.map { (new.right ?? 0) + $0 }
+
+      return new
+    } else {
+      return .init(top: top, left: left, bottom: bottom, right: right) {
+        self._layoutBlockNode
+      }
     }
   }
 
@@ -336,9 +197,22 @@ extension _LayoutBlockNodeConvertible {
     bottom: CGFloat,
     right: CGFloat
   ) -> PaddingBlock {
-    return .init(top: top, left: left, bottom: bottom, right: right) {
-      self._layoutBlockNode
+
+    if case .relative(let relativeBlock) = self._layoutBlockNode {
+      var new = relativeBlock
+
+      new.top = (new.top ?? 0) + (top)
+      new.left = (new.left ?? 0) + (left)
+      new.bottom = (new.bottom ?? 0) + (bottom)
+      new.right = (new.right ?? 0) + (right)
+
+      return new
+    } else {
+      return .init(top: top, left: left, bottom: bottom, right: right) {
+        self._layoutBlockNode
+      }
     }
+
   }
 
   /**
