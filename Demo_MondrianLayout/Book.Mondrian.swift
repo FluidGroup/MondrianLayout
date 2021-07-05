@@ -125,7 +125,8 @@ var _book_mondrian: BookView {
               )
               .viewBlock
             )
-            .relative(bottom: 8, right: 8)
+            .relative(.bottom, 8)
+            .relative(.trailing, 8)
         )
 
       }

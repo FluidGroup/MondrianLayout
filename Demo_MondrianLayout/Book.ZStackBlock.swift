@@ -74,7 +74,6 @@ var _book_ZStackConstraint: BookView {
               .viewBlock
               .alignSelf(.attach([.bottom, .trailing]))
 
-
               UIView.mock(
                 backgroundColor: .layeringColor,
                 preferredSize: .smallSquare
@@ -192,7 +191,7 @@ var _book_ZStackConstraint: BookView {
                 preferredSize: .init(width: 10, height: 10)
               )
               .viewBlock
-              .relative(top: 10, right: 10)
+              .relative([.top, .trailing], 10)
 
             }
           }
@@ -219,7 +218,7 @@ var _book_ZStackConstraint: BookView {
                 preferredSize: .init(width: 10, height: 10)
               )
               .viewBlock
-              .relative(top: 10, right: 10)
+              .relative([.top, .trailing], 10)
 
             }
             ZStackBlock {
@@ -233,7 +232,7 @@ var _book_ZStackConstraint: BookView {
                 preferredSize: .init(width: 10, height: 10)
               )
               .viewBlock
-              .relative(top: 10, right: 10)
+              .relative([.top, .trailing], 10)
 
             }
           }
@@ -281,12 +280,11 @@ var _book_ZStackConstraint: BookView {
                 ZStackBlock {
                   UIView.mock(backgroundColor: .layeringColor)
                 }
-                .relative(top: 10, left: 10, bottom: 10, right: 10)
+                .relative(10)
               }
-              .relative(top: 10, left: 10, bottom: 10, right: 10)
+              .relative(10)
             }
-            .relative(top: 10, left: 10, bottom: 10, right: 10)
-
+            .relative(10)
           }
         }
       }
