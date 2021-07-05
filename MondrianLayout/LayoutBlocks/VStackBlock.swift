@@ -1,8 +1,7 @@
 import UIKit
 
 /// [MondrianLayout]
-///
-/// A descriptor that lays out the contents vertically.
+/// A descriptor that lays out the contents vertically in parent layout element.
 public struct VStackBlock:
   _LayoutBlockType
 {

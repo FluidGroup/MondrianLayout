@@ -2,6 +2,10 @@ import UIKit
 
 public typealias PaddingBlock = RelativeBlock
 
+/**
+ [MondrianLayout]
+ A descriptor that lays out a single content and positions within the parent according to vertical and horizontal positional length.
+ */
 public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public var name: String = "Relative"
