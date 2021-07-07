@@ -18,8 +18,13 @@ public enum Edge: Int8, CaseIterable {
     }
 
     public static let top: Set = .init(rawValue: 1 << 1)
+
+    /// In LTR - meaning `left`
     public static let leading: Set = .init(rawValue: 1 << 2)
+
     public static let bottom: Set = .init(rawValue: 1 << 3)
+
+    /// In LTR - meaning `right`
     public static let trailing: Set = .init(rawValue: 1 << 4)
 
     public static var horizontal: Set {
