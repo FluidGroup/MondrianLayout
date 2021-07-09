@@ -5,6 +5,21 @@ import XCTest
 
 final class RelateiveTests: XCTestCase {
 
+  func test_centering_in_ambiguous() {
+    let view = ExampleView(width: 100, height: 100) { view in
+      view.mondrian.buildSubviews {
+        ZStackBlock {
+          UILabel.mockSingleline(text: "A")
+            .viewBlock
+            .background(UIView.mock())
+            .relative(.all, .min(20))
+        }
+        .background(UIView.mock())
+      }
+    }
+    assertSnapshot(matching: view, as: .image, record: _record)
+  }
+
   func test_accumulate_padding() {
 
     let view = ExampleView(width: 100, height: 100) { view in

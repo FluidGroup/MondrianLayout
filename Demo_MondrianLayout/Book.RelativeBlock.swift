@@ -9,6 +9,20 @@ var _book_RelativeBlock: BookView {
       ExampleView(width: 100, height: 100) { view in
         view.mondrian.buildSubviews {
           ZStackBlock {
+            UILabel.mockSingleline(text: "A")
+              .viewBlock
+              .background(UIView.mock())
+              .relative(.all, .min(20))
+          }
+          .background(UIView.mock())
+        }
+      }
+    }
+
+    BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.mondrian.buildSubviews {
+          ZStackBlock {
             ZStackBlock {
               UILabel.mockSingleline(text: "Hello Hello Hello")
                 .viewBlock
