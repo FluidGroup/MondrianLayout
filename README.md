@@ -276,6 +276,17 @@ self.mondrian.buildSubviews {
 }
 ```
 
+#### Centering a label with minimum padding
+
+```swift
+ZStackBlock {
+  ZStackBlock {
+    myLabel
+  }
+  .padding(20) /// a minimum padding for the label in the container
+}
+```
+
 ## Detail
 
 ### Vertically and Horizontally Stack layout
