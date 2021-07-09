@@ -1,12 +1,32 @@
 import UIKit
 
-public typealias PaddingBlock = RelativeBlock
-
 /**
  [MondrianLayout]
  A descriptor that lays out a single content and positions within the parent according to vertical and horizontal positional length.
  */
 public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
+
+  public struct ConstrainedValue: Equatable {
+    public var min: CGFloat?
+    public var exact: CGFloat?
+    public var max: CGFloat?
+
+    public init(min: CGFloat? = nil, exact: CGFloat? = nil, max: CGFloat? = nil) {
+      self.min = min
+      self.exact = exact
+      self.max = max
+    }
+
+    public mutating func accumulate(keyPath: WritableKeyPath<Self, CGFloat?>, _ other: CGFloat?) {
+      self[keyPath: keyPath] = other.map { (self[keyPath: keyPath] ?? 0) + $0 } ?? self[keyPath: keyPath]
+    }
+
+    public mutating func accumulate(_ other: Self) {
+      accumulate(keyPath: \.min, other.min)
+      accumulate(keyPath: \.exact, other.exact)
+      accumulate(keyPath: \.max, other.max)
+    }
+  }
 
   public var name: String = "Relative"
 
@@ -16,10 +36,10 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public let content: _LayoutBlockNode
 
-  public var top: CGFloat?
-  public var bottom: CGFloat?
-  public var right: CGFloat?
-  public var left: CGFloat?
+  public var top: ConstrainedValue = .init()
+  public var bottom: ConstrainedValue = .init()
+  public var right: ConstrainedValue = .init()
+  public var left: ConstrainedValue = .init()
   
   init(
     top: CGFloat? = nil,
@@ -29,10 +49,10 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
     content: () -> _LayoutBlockNode
   ) {
 
-    self.top = top
-    self.left = left
-    self.bottom = bottom
-    self.right = right
+    self.top.exact = top
+    self.left.exact = left
+    self.bottom.exact = bottom
+    self.right.exact = right
     self.content = content()
   }
 
@@ -42,16 +62,16 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
       context.add(
         constraints: [
-          top.map {
+          top.exact.map {
             current.topAnchor.constraint(equalTo: parent.topAnchor, constant: $0)
           },
-          right.map {
+          right.exact.map {
             current.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: -$0)
           },
-          left.map {
+          left.exact.map {
             current.leftAnchor.constraint(equalTo: parent.leftAnchor, constant: $0)
           },
-          bottom.map {
+          bottom.exact.map {
             current.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -$0)
           },
         ].compactMap { $0 }
@@ -66,7 +86,7 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
         ]
       )
 
-      if top != nil, right != nil, left != nil, bottom != nil {
+      if top.exact != nil, right.exact != nil, left.exact != nil, bottom.exact != nil {
         context.add(
           constraints: [
             current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
@@ -132,10 +152,10 @@ extension _LayoutBlockNodeConvertible {
     if case .relative(let relativeBlock) = self._layoutBlockNode {
       var new = relativeBlock
 
-      new.top = top.map { (new.top ?? 0) + $0 }
-      new.left = left.map { (new.left ?? 0) + $0 }
-      new.bottom = bottom.map { (new.bottom ?? 0) + $0 }
-      new.right = right.map { (new.right ?? 0) + $0 }
+      new.top.accumulate(keyPath: \.exact, top)
+      new.left.accumulate(keyPath: \.exact, left)
+      new.right.accumulate(keyPath: \.exact, right)
+      new.bottom.accumulate(keyPath: \.exact, bottom)
 
       return new
     } else {
@@ -151,7 +171,7 @@ extension _LayoutBlockNodeConvertible {
 
    You might use this modifier to pin to edge as an overlay content.
    */
-  public func relative(_ value: CGFloat) -> PaddingBlock {
+  public func relative(_ value: CGFloat) -> RelativeBlock {
     return relative(top: value, left: value, bottom: value, right: value)
   }
 
@@ -161,7 +181,7 @@ extension _LayoutBlockNodeConvertible {
 
    You might use this modifier to pin to edge as an overlay content.
    */
-  public func relative(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
+  public func relative(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return relative(
       top: edgeInsets.top,
       left: edgeInsets.left,
@@ -176,7 +196,7 @@ extension _LayoutBlockNodeConvertible {
 
    You might use this modifier to pin to edge as an overlay content.
    */
-  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
+  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
 
     return relative(
       top: edges.contains(.top) ? value : nil,
@@ -196,15 +216,15 @@ extension _LayoutBlockNodeConvertible {
     left: CGFloat,
     bottom: CGFloat,
     right: CGFloat
-  ) -> PaddingBlock {
+  ) -> RelativeBlock {
 
     if case .relative(let relativeBlock) = self._layoutBlockNode {
       var new = relativeBlock
 
-      new.top = (new.top ?? 0) + (top)
-      new.left = (new.left ?? 0) + (left)
-      new.bottom = (new.bottom ?? 0) + (bottom)
-      new.right = (new.right ?? 0) + (right)
+      new.top.accumulate(keyPath: \.exact, top)
+      new.left.accumulate(keyPath: \.exact, left)
+      new.right.accumulate(keyPath: \.exact, right)
+      new.bottom.accumulate(keyPath: \.exact, bottom)
 
       return new
     } else {
@@ -219,7 +239,7 @@ extension _LayoutBlockNodeConvertible {
    .padding modifier is similar with .relative but something different.
    Different with that, Not specified edges pin to edge with 0 padding.
    */
-  public func padding(_ value: CGFloat) -> PaddingBlock {
+  public func padding(_ value: CGFloat) -> RelativeBlock {
     return padding(top: value, left: value, bottom: value, right: value)
   }
 
@@ -227,7 +247,7 @@ extension _LayoutBlockNodeConvertible {
    .padding modifier is similar with .relative but something different.
    Different with that, Not specified edges pin to edge with 0 padding.
    */
-  public func padding(_ edgeInsets: UIEdgeInsets) -> PaddingBlock {
+  public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return padding(
       top: edgeInsets.top,
       left: edgeInsets.left,
@@ -240,7 +260,7 @@ extension _LayoutBlockNodeConvertible {
    .padding modifier is similar with .relative but something different.
    Different with that, Not specified edges pin to edge with 0 padding.
    */
-  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> PaddingBlock {
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
 
     return padding(
       top: edges.contains(.top) ? value : 0,
