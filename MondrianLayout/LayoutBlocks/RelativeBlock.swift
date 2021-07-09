@@ -36,23 +36,23 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public let content: _LayoutBlockNode
 
-  public var top: ConstrainedValue = .init()
-  public var bottom: ConstrainedValue = .init()
-  public var right: ConstrainedValue = .init()
-  public var left: ConstrainedValue = .init()
+  var top: ConstrainedValue = .init()
+  var bottom: ConstrainedValue = .init()
+  var trailing: ConstrainedValue = .init()
+  var leading: ConstrainedValue = .init()
   
   init(
     top: CGFloat? = nil,
-    left: CGFloat? = nil,
+    leading: CGFloat? = nil,
     bottom: CGFloat? = nil,
-    right: CGFloat? = nil,
+    trailing: CGFloat? = nil,
     content: () -> _LayoutBlockNode
   ) {
 
     self.top.exact = top
-    self.left.exact = left
+    self.leading.exact = leading
     self.bottom.exact = bottom
-    self.right.exact = right
+    self.trailing.exact = trailing
     self.content = content()
   }
 
@@ -65,10 +65,10 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
           top.exact.map {
             current.topAnchor.constraint(equalTo: parent.topAnchor, constant: $0)
           },
-          right.exact.map {
+          trailing.exact.map {
             current.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: -$0)
           },
-          left.exact.map {
+          leading.exact.map {
             current.leftAnchor.constraint(equalTo: parent.leftAnchor, constant: $0)
           },
           bottom.exact.map {
@@ -86,7 +86,7 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
         ]
       )
 
-      if top.exact != nil, right.exact != nil, left.exact != nil, bottom.exact != nil {
+      if top.exact != nil, trailing.exact != nil, leading.exact != nil, bottom.exact != nil {
         context.add(
           constraints: [
             current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
@@ -144,22 +144,22 @@ extension _LayoutBlockNodeConvertible {
    */
   private func relative(
     top: CGFloat? = nil,
-    left: CGFloat? = nil,
+    leading: CGFloat? = nil,
     bottom: CGFloat? = nil,
-    right: CGFloat? = nil
+    trailing: CGFloat? = nil
   ) -> RelativeBlock {
 
     if case .relative(let relativeBlock) = self._layoutBlockNode {
       var new = relativeBlock
 
       new.top.accumulate(keyPath: \.exact, top)
-      new.left.accumulate(keyPath: \.exact, left)
-      new.right.accumulate(keyPath: \.exact, right)
+      new.leading.accumulate(keyPath: \.exact, leading)
+      new.trailing.accumulate(keyPath: \.exact, trailing)
       new.bottom.accumulate(keyPath: \.exact, bottom)
 
       return new
     } else {
-      return .init(top: top, left: left, bottom: bottom, right: right) {
+      return .init(top: top, leading: leading, bottom: bottom, trailing: trailing) {
         self._layoutBlockNode
       }
     }
@@ -172,7 +172,7 @@ extension _LayoutBlockNodeConvertible {
    You might use this modifier to pin to edge as an overlay content.
    */
   public func relative(_ value: CGFloat) -> RelativeBlock {
-    return relative(top: value, left: value, bottom: value, right: value)
+    return relative(top: value, leading: value, bottom: value, trailing: value)
   }
 
   /**
@@ -184,9 +184,9 @@ extension _LayoutBlockNodeConvertible {
   public func relative(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return relative(
       top: edgeInsets.top,
-      left: edgeInsets.left,
+      leading: edgeInsets.left,
       bottom: edgeInsets.bottom,
-      right: edgeInsets.right
+      trailing: edgeInsets.right
     )
   }
 
@@ -200,9 +200,9 @@ extension _LayoutBlockNodeConvertible {
 
     return relative(
       top: edges.contains(.top) ? value : nil,
-      left: edges.contains(.leading) ? value : nil,
+      leading: edges.contains(.leading) ? value : nil,
       bottom: edges.contains(.bottom) ? value : nil,
-      right: edges.contains(.trailing) ? value : nil
+      trailing: edges.contains(.trailing) ? value : nil
     )
 
   }
@@ -213,22 +213,22 @@ extension _LayoutBlockNodeConvertible {
    */
   private func padding(
     top: CGFloat,
-    left: CGFloat,
+    leading: CGFloat,
     bottom: CGFloat,
-    right: CGFloat
+    trailing: CGFloat
   ) -> RelativeBlock {
 
     if case .relative(let relativeBlock) = self._layoutBlockNode {
       var new = relativeBlock
 
       new.top.accumulate(keyPath: \.exact, top)
-      new.left.accumulate(keyPath: \.exact, left)
-      new.right.accumulate(keyPath: \.exact, right)
+      new.leading.accumulate(keyPath: \.exact, leading)
+      new.trailing.accumulate(keyPath: \.exact, trailing)
       new.bottom.accumulate(keyPath: \.exact, bottom)
 
       return new
     } else {
-      return .init(top: top, left: left, bottom: bottom, right: right) {
+      return .init(top: top, leading: leading, bottom: bottom, trailing: trailing) {
         self._layoutBlockNode
       }
     }
@@ -240,7 +240,7 @@ extension _LayoutBlockNodeConvertible {
    Different with that, Not specified edges pin to edge with 0 padding.
    */
   public func padding(_ value: CGFloat) -> RelativeBlock {
-    return padding(top: value, left: value, bottom: value, right: value)
+    return padding(top: value, leading: value, bottom: value, trailing: value)
   }
 
   /**
@@ -250,9 +250,9 @@ extension _LayoutBlockNodeConvertible {
   public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return padding(
       top: edgeInsets.top,
-      left: edgeInsets.left,
+      leading: edgeInsets.left,
       bottom: edgeInsets.bottom,
-      right: edgeInsets.right
+      trailing: edgeInsets.right
     )
   }
 
@@ -264,9 +264,9 @@ extension _LayoutBlockNodeConvertible {
 
     return padding(
       top: edges.contains(.top) ? value : 0,
-      left: edges.contains(.leading) ? value : 0,
+      leading: edges.contains(.leading) ? value : 0,
       bottom: edges.contains(.bottom) ? value : 0,
-      right: edges.contains(.trailing) ? value : 0
+      trailing: edges.contains(.trailing) ? value : 0
     )
 
   }
