@@ -32,60 +32,60 @@ public struct DimensionDescriptor: Equatable {
     if let height = height {
       constraint.append(
         view.heightAnchor.constraint(equalToConstant: height.constant)
-          .withPriority(height.priority)
-          .withInternalIdentifier("ViewConstraints.height")
+          .setPriority(height.priority)
+          .setInternalIdentifier("ViewConstraints.height")
       )
     }
 
     if let width = width {
       constraint.append(
         view.widthAnchor.constraint(equalToConstant: width.constant)
-          .withPriority(width.priority)
-          .withInternalIdentifier("ViewConstraints.width")
+          .setPriority(width.priority)
+          .setInternalIdentifier("ViewConstraints.width")
       )
     }
 
     if let minHeight = minHeight {
       constraint.append(
-        view.heightAnchor.constraint(greaterThanOrEqualToConstant: minHeight.constant).withPriority(
+        view.heightAnchor.constraint(greaterThanOrEqualToConstant: minHeight.constant).setPriority(
           minHeight.priority
         )
-        .withInternalIdentifier("ViewConstraints.minHeight")
+        .setInternalIdentifier("ViewConstraints.minHeight")
       )
     }
 
     if let width = minWidth {
       constraint.append(
-        view.widthAnchor.constraint(greaterThanOrEqualToConstant: width.constant).withPriority(
+        view.widthAnchor.constraint(greaterThanOrEqualToConstant: width.constant).setPriority(
           width.priority
         )
-        .withInternalIdentifier("ViewConstraints.minWidth")
+        .setInternalIdentifier("ViewConstraints.minWidth")
       )
     }
 
     if let height = maxHeight {
       constraint.append(
-        view.heightAnchor.constraint(lessThanOrEqualToConstant: height.constant).withPriority(
+        view.heightAnchor.constraint(lessThanOrEqualToConstant: height.constant).setPriority(
           height.priority
         )
-        .withInternalIdentifier("ViewConstraints.maxHeight")
+        .setInternalIdentifier("ViewConstraints.maxHeight")
       )
     }
 
     if let width = maxWidth {
       constraint.append(
-        view.widthAnchor.constraint(lessThanOrEqualToConstant: width.constant).withPriority(
+        view.widthAnchor.constraint(lessThanOrEqualToConstant: width.constant).setPriority(
           width.priority
         )
-        .withInternalIdentifier("ViewConstraints.maxWdith")
+        .setInternalIdentifier("ViewConstraints.maxWdith")
       )
     }
 
     if let aspectRatio = aspectRatio {
       constraint.append(
         view.widthAnchor.constraint(equalTo: view.heightAnchor, multiplier: aspectRatio.constant)
-          .withPriority(aspectRatio.priority)
-          .withInternalIdentifier("ViewConstraints.aspectRatio")
+          .setPriority(aspectRatio.priority)
+          .setInternalIdentifier("ViewConstraints.aspectRatio")
       )
     }
 

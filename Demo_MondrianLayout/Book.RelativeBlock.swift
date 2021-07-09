@@ -22,6 +22,21 @@ var _book_RelativeBlock: BookView {
     }
 
     BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.mondrian.buildSubviews {
+          ZStackBlock {
+            ZStackBlock {
+              UILabel.mockSingleline(text: "Hello Hello Hello")
+                .viewBlock
+            }
+            .relative(.horizontal, 20)
+          }
+        }
+      }
+    }
+
+
+    BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
         view.mondrian.buildSubviews {
           VStackBlock {
