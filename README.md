@@ -1,6 +1,41 @@
+> ⚠️ Unit testing can't run in GitHub Actions, that's waiting for Big Sur virtual env.
+
 # MondrianLayout - describing structured layout for AutoLayout
 
-> ⚠️ Unit testing can't run in GitHub Actions, that's waiting for Big Sur virtual env.
+**Describing the layout ergonomically in the code**
+
+**Structured Layout API (DSL)**
+
+```swift
+view.mondrian.buildSubviews {
+  VStackBlock {
+  
+    titleLabel
+    
+    HStackBlock {
+      cancelButton
+      sendButton
+    }      
+  }
+  .padding(24)
+}
+```
+
+---
+
+**To keep flexibility of AutoLayout, we have classical style API**
+
+**Classical Layout API**
+```swift
+sendButton.mondrian.layout
+  .width(120)
+  .top(.toSuperview)
+  .trailing(.toSuperview)
+  .leading(.to(cancelButton).trailing)
+  .activate()
+```
+
+---
 
 <img width="246" alt="CleanShot 2021-06-17 at 21 12 03@2x" src="https://user-images.githubusercontent.com/1888355/122394225-b1da4e80-cfb0-11eb-9e62-f5627c817b66.png">
 
