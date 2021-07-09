@@ -280,6 +280,13 @@ self.mondrian.buildSubviews {
 
 ```swift
 ZStackBlock {
+  myLabel
+    .relative(.all, .min(20))
+}
+```
+
+```swift
+ZStackBlock {
   ZStackBlock {
     myLabel
   }
