@@ -162,7 +162,7 @@ final class LayoutSnapshotTests: XCTestCase {
               )
               .viewBlock
             )
-            .relative([.top, .trailing], 10)
+            .relative([.bottom, .trailing], 10)
         )
 
       }

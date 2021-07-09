@@ -16,6 +16,7 @@
 		4B1F05D0267A6AD000A66CC7 /* HStackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */; };
 		4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */; };
 		4B1F05D4267A6D9500A66CC7 /* Book.Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */; };
+		4B30902A269824D7001AB89B /* Book.RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B309029269824D7001AB89B /* Book.RelativeBlock.swift */; };
 		4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */; };
 		4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -120,6 +121,7 @@
 		4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackTests.swift; sourceTree = "<group>"; };
 		4B1F05D1267A6D5B00A66CC7 /* InstagramPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstagramPostView.swift; sourceTree = "<group>"; };
 		4B1F05D3267A6D9500A66CC7 /* Book.Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Mondrian.swift; sourceTree = "<group>"; };
+		4B309029269824D7001AB89B /* Book.RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.RelativeBlock.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_MondrianLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -259,6 +261,7 @@
 				4B47F6382678DC4000BDE2DB /* Book.VStackBlock.swift */,
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */,
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
+				4B309029269824D7001AB89B /* Book.RelativeBlock.swift */,
 				4B7382072679EBED00D77986 /* Book.SafeArea.swift */,
 				4B9B07F3267E586400818A40 /* Book.Classic.swift */,
 				4B1256BD267CA74700FE9612 /* Book.ViewController.swift */,
@@ -549,6 +552,7 @@
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
+				4B30902A269824D7001AB89B /* Book.RelativeBlock.swift in Sources */,
 				4B64B1BD26761BE900460282 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
