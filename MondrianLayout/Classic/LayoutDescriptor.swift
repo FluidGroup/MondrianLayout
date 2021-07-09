@@ -470,13 +470,13 @@ extension NSLayoutXAxisAnchor {
 
     switch value.relation {
     case .min:
-      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).withPriority(
+      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).setPriority(
         value.priority
       )
     case .exact:
-      return constraint(equalTo: anchor, constant: value.constant).withPriority(value.priority)
+      return constraint(equalTo: anchor, constant: value.constant).setPriority(value.priority)
     case .max:
-      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).withPriority(
+      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).setPriority(
         value.priority
       )
     }
@@ -493,13 +493,13 @@ extension NSLayoutYAxisAnchor {
 
     switch value.relation {
     case .min:
-      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).withPriority(
+      return constraint(greaterThanOrEqualTo: anchor, constant: value.constant).setPriority(
         value.priority
       )
     case .exact:
-      return constraint(equalTo: anchor, constant: value.constant).withPriority(value.priority)
+      return constraint(equalTo: anchor, constant: value.constant).setPriority(value.priority)
     case .max:
-      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).withPriority(
+      return constraint(lessThanOrEqualTo: anchor, constant: value.constant).setPriority(
         value.priority
       )
     }

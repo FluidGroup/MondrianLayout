@@ -1,9 +1,7 @@
 import UIKit
 
-/**
- [MondrianLayout]
- A descriptor that lays out a single content and positions within the parent according to vertical and horizontal positional length.
- */
+/// [MondrianLayout]
+/// A descriptor that lays out a single content and positions within the parent according to vertical and horizontal positional length.
 public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
   public struct ConstrainedValue: Equatable {
@@ -11,14 +9,27 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
     public var exact: CGFloat?
     public var max: CGFloat?
 
-    public init(min: CGFloat? = nil, exact: CGFloat? = nil, max: CGFloat? = nil) {
+    var isEmpty: Bool {
+      return min == nil && exact == nil && max == nil
+    }
+
+    var isExactOnly: Bool {
+      return exact != nil && min == nil && max == nil
+    }
+
+    public init(
+      min: CGFloat? = nil,
+      exact: CGFloat? = nil,
+      max: CGFloat? = nil
+    ) {
       self.min = min
       self.exact = exact
       self.max = max
     }
 
     public mutating func accumulate(keyPath: WritableKeyPath<Self, CGFloat?>, _ other: CGFloat?) {
-      self[keyPath: keyPath] = other.map { (self[keyPath: keyPath] ?? 0) + $0 } ?? self[keyPath: keyPath]
+      self[keyPath: keyPath] =
+        other.map { (self[keyPath: keyPath] ?? 0) + $0 } ?? self[keyPath: keyPath]
     }
 
     public mutating func accumulate(_ other: Self) {
@@ -40,7 +51,7 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
   var bottom: ConstrainedValue = .init()
   var trailing: ConstrainedValue = .init()
   var leading: ConstrainedValue = .init()
-  
+
   init(
     top: CGFloat? = nil,
     leading: CGFloat? = nil,
@@ -60,44 +71,119 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
 
     func perform(current: _LayoutElement) {
 
-      context.add(
-        constraints: [
+      var proposedConstraints: [NSLayoutConstraint] = []
+
+      // setting up constraints according to values
+
+      proposedConstraints +=
+        ([
           top.exact.map {
             current.topAnchor.constraint(equalTo: parent.topAnchor, constant: $0)
           },
           trailing.exact.map {
-            current.rightAnchor.constraint(equalTo: parent.rightAnchor, constant: -$0)
+            current.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -$0)
           },
           leading.exact.map {
-            current.leftAnchor.constraint(equalTo: parent.leftAnchor, constant: $0)
+            current.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: $0)
           },
           bottom.exact.map {
             current.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -$0)
           },
-        ].compactMap { $0 }
-      )
 
-      context.add(
-        constraints: [
-          current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor),
-          current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor),
-          current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor),
-          current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor),
-        ]
-      )
+          top.min.map {
+            current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor, constant: $0)
+          },
+          trailing.min.map {
+            current.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor, constant: -$0)
+          },
+          leading.min.map {
+            current.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor, constant: $0)
+          },
+          bottom.min.map {
+            current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor, constant: -$0)
+          },
 
-      if top.exact != nil, trailing.exact != nil, leading.exact != nil, bottom.exact != nil {
-        context.add(
-          constraints: [
-            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
-              .defaultHigh
-            ),
-            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
-              .defaultHigh
-            ),
-          ]
-        )
+          top.max.map {
+            current.topAnchor.constraint(lessThanOrEqualTo: parent.topAnchor, constant: $0)
+          },
+          trailing.max.map {
+            current.trailingAnchor.constraint(greaterThanOrEqualTo: parent.trailingAnchor, constant: -$0)
+          },
+          leading.max.map {
+            current.leadingAnchor.constraint(lessThanOrEqualTo: parent.leadingAnchor, constant: $0)
+          },
+          bottom.max.map {
+            current.bottomAnchor.constraint(greaterThanOrEqualTo: parent.bottomAnchor, constant: -$0)
+          },
+
+        ] as [NSLayoutConstraint?]).compactMap { $0 }
+
+      constraintsToFitInsideContainer: do {
+
+        /**
+         If a edge does not have minimum or exact value, the element might be overflowed.
+         */
+
+        if bottom.min == nil, bottom.exact == nil {
+          proposedConstraints.append(
+            current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor)
+          )
+        }
+
+        if top.min == nil, top.exact == nil {
+          proposedConstraints.append(
+            current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor)
+          )
+        }
+
+        if leading.min == nil, leading.exact == nil {
+          proposedConstraints.append(
+            current.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor)
+          )
+        }
+
+        if trailing.min == nil, trailing.exact == nil {
+          proposedConstraints.append(
+            current.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor)
+          )
+        }
+
       }
+
+      constraintsToPositionCenter: do {
+
+        /**
+         Vertically or horizontally, if there are no specifiers, that causes an ambiguous layout.
+         As a default behavior, in that case, adds centering layout constraints.
+         */
+
+        vertical: do {
+          if [bottom, top].allSatisfy({ $0.min == nil && $0.exact == nil }) {
+            proposedConstraints.append(
+              current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).setPriority(
+                .defaultHigh
+              )
+            )
+          }
+        }
+
+        horizontal: do {
+          if [leading, trailing].allSatisfy({ $0.min == nil && $0.exact == nil }) {
+            proposedConstraints.append(
+              current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).setPriority(
+                .defaultHigh
+              )
+            )
+          }
+        }
+
+      }
+
+      proposedConstraints.forEach {
+        $0.setInternalIdentifier(name)
+      }
+
+      context.add(constraints: proposedConstraints)
 
     }
 

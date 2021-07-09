@@ -76,50 +76,50 @@ public struct ZStackBlock:
 
         constraints = [
           current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor)
-            .withInternalIdentifier("ZStack.left"),
+            .setInternalIdentifier("ZStack.left"),
           current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor)
-            .withInternalIdentifier("ZStack.top"),
+            .setInternalIdentifier("ZStack.top"),
           current.rightAnchor.constraint(lessThanOrEqualTo: parent.rightAnchor)
-            .withInternalIdentifier("ZStack.right"),
+            .setInternalIdentifier("ZStack.right"),
           current.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor)
-            .withInternalIdentifier("ZStack.bottom"),
+            .setInternalIdentifier("ZStack.bottom"),
 
-          current.widthAnchor.constraint(equalTo: parent.widthAnchor).withPriority(
+          current.widthAnchor.constraint(equalTo: parent.widthAnchor).setPriority(
             .fittingSizeLevel
           )
-          .withInternalIdentifier("ZStack.width"),
-          current.heightAnchor.constraint(equalTo: parent.heightAnchor).withPriority(
+          .setInternalIdentifier("ZStack.width"),
+          current.heightAnchor.constraint(equalTo: parent.heightAnchor).setPriority(
             .fittingSizeLevel
           )
-          .withInternalIdentifier("ZStack.height"),
+          .setInternalIdentifier("ZStack.height"),
         ]
 
         switch alignment {
         case .center:
 
           constraints += [
-            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+            current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).setPriority(
               .defaultHigh
             )
-            .withInternalIdentifier("ZStack.centerX"),
-            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+            .setInternalIdentifier("ZStack.centerX"),
+            current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).setPriority(
               .defaultHigh
             )
-            .withInternalIdentifier("ZStack.cenretY"),
+            .setInternalIdentifier("ZStack.cenretY"),
           ]
 
         case .attach(let edges):
 
           if edges.isEmpty {
             constraints += [
-              current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).withPriority(
+              current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).setPriority(
                 .defaultHigh
               )
-              .withInternalIdentifier("ZStack.centerX"),
-              current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).withPriority(
+              .setInternalIdentifier("ZStack.centerX"),
+              current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).setPriority(
                 .defaultHigh
               )
-              .withInternalIdentifier("ZStack.cenretY"),
+              .setInternalIdentifier("ZStack.cenretY"),
             ]
 
           } else {

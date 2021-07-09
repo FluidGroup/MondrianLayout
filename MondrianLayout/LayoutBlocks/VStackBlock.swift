@@ -66,12 +66,12 @@ public struct VStackBlock:
         return [
           layoutElement[keyPath: leadingEdgeKeyPath].constraint(
             equalTo: parent[keyPath: leadingEdgeKeyPath]
-          ).withPriority(
+          ).setPriority(
             .fittingSizeLevel
           ),
           layoutElement[keyPath: trailingEdgeKeyPath].constraint(
             equalTo: parent[keyPath: trailingEdgeKeyPath]
-          ).withPriority(
+          ).setPriority(
             .fittingSizeLevel
           ),
         ]

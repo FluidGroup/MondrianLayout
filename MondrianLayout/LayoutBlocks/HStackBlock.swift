@@ -61,10 +61,10 @@ public struct HStackBlock:
       /// When top, center, bottom. to shrink itself to minimum fitting size.
       func makeShrinkingWeakConstraints() -> [NSLayoutConstraint] {
         return [
-          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor).withPriority(
+          layoutElement.topAnchor.constraint(equalTo: parent.topAnchor).setPriority(
             .fittingSizeLevel
           ),
-          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor).withPriority(
+          layoutElement.bottomAnchor.constraint(equalTo: parent.bottomAnchor).setPriority(
             .fittingSizeLevel
           ),
         ]
