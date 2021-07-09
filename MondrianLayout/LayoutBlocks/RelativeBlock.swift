@@ -158,7 +158,10 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
          */
 
         vertical: do {
-          if [bottom, top].allSatisfy({ $0.min == nil && $0.exact == nil }) {
+
+          let edges = [bottom, top]
+
+          if edges.allSatisfy({ $0.exact == nil }) {
             proposedConstraints.append(
               current.centerYAnchor.constraint(equalTo: parent.centerYAnchor).setPriority(
                 .defaultHigh
@@ -168,7 +171,10 @@ public struct RelativeBlock: _LayoutBlockType, _LayoutBlockNodeConvertible {
         }
 
         horizontal: do {
-          if [leading, trailing].allSatisfy({ $0.min == nil && $0.exact == nil }) {
+
+          let edges = [leading, trailing]
+
+          if edges.allSatisfy({ $0.exact == nil }) {
             proposedConstraints.append(
               current.centerXAnchor.constraint(equalTo: parent.centerXAnchor).setPriority(
                 .defaultHigh
