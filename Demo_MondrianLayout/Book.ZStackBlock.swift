@@ -8,6 +8,23 @@ var _book_ZStackConstraint: BookView {
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
         view.mondrian.buildSubviews {
+          ZStackBlock {
+            ZStackBlock {
+              UILabel.mockSingleline(text: "Hello Hello Hello")
+                .viewBlock
+                .background(UIView.mock())
+            }
+            .padding(20)
+          }
+          .background(UIView.mock())
+        }
+      }
+    }
+    .title("Centering a label with minimum padding in the container")
+
+    BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.mondrian.buildSubviews {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
 

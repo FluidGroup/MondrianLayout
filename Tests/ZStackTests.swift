@@ -12,6 +12,26 @@ import XCTest
 
 final class ZStackTests: XCTestCase {
 
+  func test_minimum_padding() {
+
+    let view = ExampleView(width: 100, height: 100) { view in
+      view.mondrian.buildSubviews {
+        ZStackBlock {
+          ZStackBlock {
+            UILabel.mockSingleline(text: "Hello Hello Hello")
+              .viewBlock
+              .background(UIView.mock())
+          }
+          .padding(20) /// a minimum padding for the label in the container
+        }
+        .background(UIView.mock())
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+
+  }
+
   func test_expandsElementIfCanBeExpanding() {
 
     let view = ExampleView(width: 100, height: 100) { view in

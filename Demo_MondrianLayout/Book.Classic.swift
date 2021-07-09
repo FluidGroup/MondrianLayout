@@ -23,7 +23,7 @@ var _book_classic: BookView {
             .bottom(.to(box2).bottom)
 
           box2.mondrian.layout
-            .top(.toSuperview.top, .constant(10))
+            .top(.toSuperview.top, .exact(10))
             .right(.toSuperview)
             .bottom(.toSuperview)
 
