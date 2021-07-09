@@ -139,7 +139,10 @@ extension LayoutDescriptorElement where Trait == _LayoutElement.YAxisAnchor {
 /// A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
 public struct LayoutDescriptor: _DimensionConstraintType {
 
-  public struct ConstraintValue {
+  public struct ConstraintValue: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
+
+    public typealias IntegerLiteralType = Int
+    public typealias FloatLiteralType = Double
 
     public enum Relation {
       /// greater than or equal
@@ -153,6 +156,14 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     public var relation: Relation
     public var constant: CGFloat
     public var priority: UILayoutPriority
+
+    public init(integerLiteral value: Int) {
+      self.init(relation: .exact, constant: CGFloat(value), priority: .required)
+    }
+
+    public init(floatLiteral value: FloatLiteralType) {
+      self.init(relation: .exact, constant: CGFloat(value), priority: .required)
+    }
 
     public init(
       relation: Relation,
