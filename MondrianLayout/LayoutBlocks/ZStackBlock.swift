@@ -226,7 +226,7 @@ public struct _ZStackItem: _ZStackItemConvertible {
   public var alignSelf: ZStackBlock.XYAxisAlignment? = nil
 }
 
-@_functionBuilder
+@resultBuilder
 public enum ZStackContentBuilder {
   public typealias Component = _ZStackItem
 

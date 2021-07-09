@@ -410,7 +410,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func horizontal(
     _ element: LayoutDescriptorElement<EdgeAttaching>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
       $0.makeConstraints(
@@ -428,7 +428,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func vertical(
     _ element: LayoutDescriptorElement<EdgeAttaching>,
-    _ value: ConstraintValue = .constant(0)
+    _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
       $0.makeConstraints(
