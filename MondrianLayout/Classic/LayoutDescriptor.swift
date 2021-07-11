@@ -307,6 +307,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `leading` of the element
   public func leading(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -315,6 +317,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `trailing` of the element
   public func trailing(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -323,6 +327,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `left` of the element
   public func left(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -331,6 +337,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `right` of the element
   public func right(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -339,6 +347,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `centerX` of the element
   public func centerX(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -349,6 +359,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   // MARK: - Y axis
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `top` of the element
   public func top(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -357,6 +369,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `bottom` of the element
   public func bottom(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
@@ -365,6 +379,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   /// Describes a single constraint
+  ///
+  /// As default, attaches to `centerY` of the element
   public func centerY(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
