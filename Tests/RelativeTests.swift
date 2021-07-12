@@ -20,6 +20,27 @@ final class RelateiveTests: XCTestCase {
     assertSnapshot(matching: view, as: .image, record: _record)
   }
 
+  func test_accumulate_relative() {
+    let view = ExampleView(width: 100, height: 100) { view in
+      view.mondrian.buildSubviews {
+        LayoutContainer(attachedSafeAreaEdges: .all) {
+          ZStackBlock {
+
+            UIView.mock(backgroundColor: .layeringColor)
+              .viewBlock.alignSelf(.attach(.all))
+
+            UIView.mock(backgroundColor: .layeringColor, preferredSize: .smallSquare)
+              .viewBlock
+              .relative(.bottom, 20)
+              .relative(.trailing, 20)
+          }
+        }
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+  }
+
   func test_accumulate_padding() {
 
     let view = ExampleView(width: 100, height: 100) { view in

@@ -15,6 +15,25 @@ var _book_RelativeBlock: BookView {
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
         view.mondrian.buildSubviews {
+          LayoutContainer(attachedSafeAreaEdges: .all) {
+            ZStackBlock {
+
+              UIView.mock(backgroundColor: .layeringColor)
+                .viewBlock.alignSelf(.attach(.all))
+
+              UIView.mock(backgroundColor: .layeringColor, preferredSize: .smallSquare)
+                .viewBlock
+                .relative(.bottom, 20)
+                .relative(.trailing, 20)
+            }
+          }
+        }
+      }
+    }
+
+    BookPreview {
+      ExampleView(width: 100, height: 100) { view in
+        view.mondrian.buildSubviews {
           ZStackBlock {
             UILabel.mockSingleline(text: "A")
               .viewBlock
@@ -55,7 +74,6 @@ var _book_RelativeBlock: BookView {
         }
       }
     }
-
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
