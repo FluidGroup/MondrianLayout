@@ -2,6 +2,13 @@ import MondrianLayout
 import StorybookKit
 import UIKit
 
+extension FixedWidthInteger {
+
+  public var bk: CGFloat {
+    return 4 * CGFloat(self)
+  }
+}
+
 var _book_RelativeBlock: BookView {
   BookNavigationLink(title: "RelativeBlock") {
 
@@ -65,7 +72,7 @@ var _book_RelativeBlock: BookView {
                 preferredSize: .init(width: 10, height: 10)
               )
               .viewBlock
-              .relative(.top, 2)
+              .relative(.top, 2.bk)
               .relative([.trailing], 10)
               .padding(20)
 

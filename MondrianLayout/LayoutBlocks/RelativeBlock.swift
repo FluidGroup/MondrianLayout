@@ -300,6 +300,17 @@ extension _LayoutBlockNodeConvertible {
 
    You might use this modifier to pin to edge as an overlay content.
    */
+  @_disfavoredOverload
+  public func relative(_ value: CGFloat) -> RelativeBlock {
+    return relative(.exact(value))
+  }
+
+  /**
+   `.relative` modifier describes that the content attaches to specified edges with padding.
+   Not specified edges do not have constraints to the edge. so the sizing depends on intrinsic content size.
+
+   You might use this modifier to pin to edge as an overlay content.
+   */
   public func relative(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return relative(
       top: .init(floatLiteral: Double(edgeInsets.top)),
@@ -332,6 +343,11 @@ extension _LayoutBlockNodeConvertible {
 
   }
 
+  @_disfavoredOverload
+  public func relative(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
+    return relative(edges, .exact(value))
+  }
+
   /**
    .padding modifier is similar with .relative but something different.
    Different with that, Not specified edges pin to edge with 0 padding.
@@ -345,6 +361,19 @@ extension _LayoutBlockNodeConvertible {
   /**
    .padding modifier is similar with .relative but something different.
    Different with that, Not specified edges pin to edge with 0 padding.
+
+   Ambiguous position would be fixed by centering.
+   */
+  @_disfavoredOverload
+  public func padding(_ value: CGFloat) -> RelativeBlock {
+    return padding(.exact(value))
+  }
+
+  /**
+   .padding modifier is similar with .relative but something different.
+   Different with that, Not specified edges pin to edge with 0 padding.
+
+   - the values would be used as `exact`.
    */
   public func padding(_ edgeInsets: UIEdgeInsets) -> RelativeBlock {
     return relative(edgeInsets)
@@ -363,6 +392,15 @@ extension _LayoutBlockNodeConvertible {
       trailing: edges.contains(.trailing) ? value : 0
     )
 
+  }
+
+  /**
+   .padding modifier is similar with .relative but something different.
+   Different with that, Not specified edges pin to edge with 0 padding.
+   */
+  @_disfavoredOverload
+  public func padding(_ edges: Edge.Set, _ value: CGFloat) -> RelativeBlock {
+    return padding(edges, .exact(value))
   }
 
 }
