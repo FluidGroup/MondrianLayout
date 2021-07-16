@@ -2,6 +2,10 @@
 
 # MondrianLayout - describing structured layout for AutoLayout
 
+> 🤵🏻‍♂️💭
+> We guess we still don't cover the all of use-cases.
+> Please feel free to ask what you've faced case in Issues!
+
 **Describing the layout ergonomically in the code**
 
 **Structured Layout API (DSL)**
