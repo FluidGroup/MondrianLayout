@@ -126,7 +126,7 @@ public struct VStackBlock:
 
     var boxes: [_LayoutElement] = []
 
-    for (index, element) in elements.optimized().enumerated() {
+    for (index, element) in elements.optimizedSpacing().enumerated() {
 
       func appendSpacingIfNeeded() {
         if spacing > 0, index != elements.indices.last {

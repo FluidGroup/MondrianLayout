@@ -35,6 +35,7 @@
 		4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */; };
 		4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B47F6442679095500BDE2DB /* OverlayTests.swift */; };
 		4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B02799F26787AD30078B18A /* UIColor+Mondrian.swift */; };
+		4B4CA90E26A3251300863217 /* Optimization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4CA90D26A3251300863217 /* Optimization.swift */; };
 		4B5AF7BA2685195A008C51A1 /* RevealServer.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; };
 		4B5AF7BB2685195A008C51A1 /* RevealServer.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B64B1C026761E0300460282 /* RevealServer.xcframework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		4B64B1B02675D2AF00460282 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1AF2675D2AF00460282 /* Tests.swift */; };
@@ -139,6 +140,7 @@
 		4B47F6402678E51200BDE2DB /* Edge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		4B47F6422679040600BDE2DB /* SwiftUIComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIComparison.swift; sourceTree = "<group>"; };
 		4B47F6442679095500BDE2DB /* OverlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTests.swift; sourceTree = "<group>"; };
+		4B4CA90D26A3251300863217 /* Optimization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optimization.swift; sourceTree = "<group>"; };
 		4B64B1AD2675D2AF00460282 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B64B1AF2675D2AF00460282 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		4B64B1B12675D2AF00460282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */,
 				4B738209267A067700D77986 /* Dimension.swift */,
 				4B47F6402678E51200BDE2DB /* Edge.swift */,
+				4B4CA90D26A3251300863217 /* Optimization.swift */,
 			);
 			path = Descriptors;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */,
 				4B64B1C926762C1400460282 /* Mondrian+UIView.swift in Sources */,
 				4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */,
+				4B4CA90E26A3251300863217 /* Optimization.swift in Sources */,
 				4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
