@@ -1,5 +1,3 @@
-> ⚠️ Unit testing can't run in GitHub Actions, that's waiting for Big Sur virtual env.
-
 # MondrianLayout - describing structured layout for AutoLayout
 
 > 🤵🏻‍♂️💭
