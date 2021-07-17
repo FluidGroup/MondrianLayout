@@ -239,7 +239,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     return element.layoutElement
   }
 
-  private var constraints: [NSLayoutConstraint] = []
+  private var proposedConstraints: [NSLayoutConstraint] = []
 
   @inline(__always)
   private func _modify(_ modifier: (inout Self) -> Void) -> Self {
@@ -260,7 +260,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
 
     let constraint = closure(target, secondItem)
-    constraints.append(constraint)
+    proposedConstraints.append(constraint)
     return constraint
   }
 
@@ -276,7 +276,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
 
     let constraints = closure(target, secondItem)
-    self.constraints.append(contentsOf: constraints)
+    self.proposedConstraints.append(contentsOf: constraints)
     return constraints
   }
 
@@ -480,14 +480,19 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   @discardableResult
   public func activate() -> ConstraintGroup {
 
-    let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
-
-    target.view?.translatesAutoresizingMaskIntoConstraints = false
-
-    let group = ConstraintGroup(constraints: constraints + _dimensionConstraints)
+    let group = makeConstraintGroup()
     group.activate()
     return group
 
+  }
+
+  public func makeConstraintGroup() -> ConstraintGroup {
+    let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
+    return ConstraintGroup(constraints: proposedConstraints + _dimensionConstraints)
+  }
+
+  public func constraints() -> [NSLayoutConstraint] {
+    return makeConstraintGroup().constraints
   }
 
 }
