@@ -1,5 +1,7 @@
 import UIKit
 
+/// [MondrianLayout]
+/// A descriptor that lays out the content and background content in the parent layout element.
 public struct BackgroundBlock:
   _LayoutBlockType
 {
@@ -32,41 +34,28 @@ public struct BackgroundBlock:
 
     setupBackground: do {
 
-      let backgroundLayoutGuide = context.makeLayoutGuide(identifier: "Background")
-
-      context.add(constraints: [
-        backgroundLayoutGuide.topAnchor.constraint(equalTo: parent.topAnchor),
-        backgroundLayoutGuide.leftAnchor.constraint(equalTo: parent.leftAnchor),
-        backgroundLayoutGuide.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-        backgroundLayoutGuide.rightAnchor.constraint(equalTo: parent.rightAnchor),
-        backgroundLayoutGuide.widthAnchor.constraint(
-          lessThanOrEqualTo: parent.widthAnchor,
-          multiplier: 1
-        ),
-        backgroundLayoutGuide.heightAnchor.constraint(
-          lessThanOrEqualTo: parent.heightAnchor,
-          multiplier: 1
-        ),
-      ])
-
       switch backgroundContent {
 
       case .view(let c):
 
         context.register(viewConstraint: c)
-
-        let guide = _LayoutElement(layoutGuide: backgroundLayoutGuide)
-
         context.add(
-          constraints: c.makeConstraintsToEdge(guide)
+          constraints: c.makeConstraintsToEdge(parent)
         )
 
       case .relative(let c as _LayoutBlockType),
-           .vStack(let c as _LayoutBlockType),
-           .hStack(let c as _LayoutBlockType),
-           .zStack(let c as _LayoutBlockType),
-           .overlay(let c as _LayoutBlockType),
-           .background(let c as _LayoutBlockType):
+        .vStack(let c as _LayoutBlockType),
+        .hStack(let c as _LayoutBlockType),
+        .zStack(let c as _LayoutBlockType),
+        .overlay(let c as _LayoutBlockType),
+        .background(let c as _LayoutBlockType):
+
+        let backgroundLayoutGuide = context.makeLayoutGuide(identifier: "Background")
+
+        context.add(
+          constraints:
+            backgroundLayoutGuide.mondrian.layout.edges(.to(parent)).constraints()
+        )
 
         c.setupConstraints(
           parent: .init(layoutGuide: backgroundLayoutGuide),
@@ -85,13 +74,14 @@ public struct BackgroundBlock:
           constraints: c.makeConstraintsToEdge(parent)
         )
       case .relative(let c as _LayoutBlockType),
-           .vStack(let c as _LayoutBlockType),
-           .hStack(let c as _LayoutBlockType),
-           .zStack(let c as _LayoutBlockType),
-           .overlay(let c as _LayoutBlockType),
-           .background(let c as _LayoutBlockType):
+        .vStack(let c as _LayoutBlockType),
+        .hStack(let c as _LayoutBlockType),
+        .zStack(let c as _LayoutBlockType),
+        .overlay(let c as _LayoutBlockType),
+        .background(let c as _LayoutBlockType):
         c.setupConstraints(parent: parent, in: context)
       }
     }
+
   }
 }
