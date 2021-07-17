@@ -154,8 +154,6 @@ public struct HStackBlock:
 
       case .spacer(let spacer):
 
-        // TODO: optimize spacing, accumulating continuous spacing.
-
         let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.Spacer")
         boxes.append(.init(layoutGuide: newLayoutGuide))
 

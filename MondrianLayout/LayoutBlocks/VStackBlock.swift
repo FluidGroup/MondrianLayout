@@ -171,8 +171,6 @@ public struct VStackBlock:
 
       case .spacer(let spacer):
 
-        // TODO: optimize spacing, accumulating continuous spacing.
-
         let newLayoutGuide = context.makeLayoutGuide(identifier: "\(name).Spacer")
         boxes.append(.init(layoutGuide: newLayoutGuide))
 
