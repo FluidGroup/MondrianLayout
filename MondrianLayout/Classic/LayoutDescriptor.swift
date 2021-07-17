@@ -59,6 +59,10 @@ public struct LayoutDescriptorElement<Trait> {
   var anchorXAxis: _LayoutElement.XAxisAnchor?
   var anchorYAxis: _LayoutElement.YAxisAnchor?
 
+  public static func to(_ element: _LayoutElement) -> LayoutDescriptorElement {
+    return .init(usesSuperview: false, layoutElement: element)
+  }
+
   public static func to(_ view: UIView) -> LayoutDescriptorElement {
     return .init(usesSuperview: false, layoutElement: .init(view: view))
   }
