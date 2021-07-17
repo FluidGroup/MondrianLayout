@@ -1,5 +1,7 @@
 import UIKit
 
+/// [MondrianLayout]
+/// A descriptor that lays out the content and overlay content in the parent layout element.
 public struct OverlayBlock:
   _LayoutBlockType
 {
@@ -51,33 +53,14 @@ public struct OverlayBlock:
 
     setupOverlay: do {
 
-      let overlayLayoutGuide = context.makeLayoutGuide(identifier: "Overlay")
-
-      context.add(constraints: [
-        overlayLayoutGuide.topAnchor.constraint(equalTo: parent.topAnchor),
-        overlayLayoutGuide.leftAnchor.constraint(equalTo: parent.leftAnchor),
-        overlayLayoutGuide.bottomAnchor.constraint(equalTo: parent.bottomAnchor),
-        overlayLayoutGuide.rightAnchor.constraint(equalTo: parent.rightAnchor),
-        overlayLayoutGuide.widthAnchor.constraint(
-          lessThanOrEqualTo: parent.widthAnchor,
-          multiplier: 1
-        ),
-        overlayLayoutGuide.heightAnchor.constraint(
-          lessThanOrEqualTo: parent.heightAnchor,
-          multiplier: 1
-        ),
-      ])
-
       switch overlayContent {
 
       case .view(let c):
 
         context.register(viewConstraint: c)
 
-        let guide = _LayoutElement(layoutGuide: overlayLayoutGuide)
-
         context.add(
-          constraints: c.makeConstraintsToEdge(guide)
+          constraints: c.makeConstraintsToEdge(parent)
         )
 
       case .relative(let c as _LayoutBlockType),
@@ -86,6 +69,13 @@ public struct OverlayBlock:
            .zStack(let c as _LayoutBlockType),
            .overlay(let c as _LayoutBlockType),
            .background(let c as _LayoutBlockType):
+
+        let overlayLayoutGuide = context.makeLayoutGuide(identifier: "Overlay")
+
+        context.add(
+          constraints:
+            overlayLayoutGuide.mondrian.layout.edges(.to(parent)).constraints()
+        )
 
         c.setupConstraints(
           parent: .init(layoutGuide: overlayLayoutGuide),
