@@ -16,3 +16,11 @@ extension UIView {
   }
 
 }
+
+extension UILayoutGuide {
+
+  public var mondrian: MondrianNamespace<UILayoutGuide> {
+    return .init(base: self)
+  }
+
+}
