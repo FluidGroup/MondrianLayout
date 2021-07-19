@@ -480,6 +480,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   @discardableResult
   public func activate() -> ConstraintGroup {
 
+    target.view?.translatesAutoresizingMaskIntoConstraints = false
     let group = makeConstraintGroup()
     group.activate()
     return group
@@ -487,12 +488,12 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   }
 
   public func makeConstraintGroup() -> ConstraintGroup {
-    let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
-    return ConstraintGroup(constraints: proposedConstraints + _dimensionConstraints)
+    return ConstraintGroup(constraints: makeConstraints())
   }
 
-  public func constraints() -> [NSLayoutConstraint] {
-    return makeConstraintGroup().constraints
+  public func makeConstraints() -> [NSLayoutConstraint] {
+    let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
+    return proposedConstraints + _dimensionConstraints
   }
 
 }

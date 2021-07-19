@@ -74,7 +74,7 @@ public struct OverlayBlock:
 
         context.add(
           constraints:
-            overlayLayoutGuide.mondrian.layout.edges(.to(parent)).constraints()
+            overlayLayoutGuide.mondrian.layout.edges(.to(parent)).makeConstraints()
         )
 
         c.setupConstraints(
