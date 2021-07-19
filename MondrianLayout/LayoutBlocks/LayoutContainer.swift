@@ -9,7 +9,7 @@ public enum LayoutContainerBoundary<Anchor: Equatable>: Equatable {
  [MondrianLayout]
  A descriptor that makes a layout guide that attaches to safe area each edge.
  */
-public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
+public struct LayoutContainer {
 
   let top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
   let leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
@@ -18,7 +18,7 @@ public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
 
   let content: _LayoutBlockNode
 
-  public init(
+  public init<Block: _LayoutBlockNodeConvertible>(
     attachedSafeAreaEdges: Edge.Set,
     content: () -> Block
   ) {
@@ -33,7 +33,7 @@ public struct LayoutContainer<Block: _LayoutBlockNodeConvertible> {
 
   }
 
-  public init(
+  public init<Block: _LayoutBlockNodeConvertible>(
     top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
     leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>,
     bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
