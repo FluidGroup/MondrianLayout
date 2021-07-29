@@ -20,7 +20,7 @@ final class HStackTests: XCTestCase {
           UIView.mock(
             backgroundColor: .layeringColor,
             preferredSize: .smallSquare
-          )
+          ) as UIView?
 
           StackingSpacer(minLength: 20)
 
