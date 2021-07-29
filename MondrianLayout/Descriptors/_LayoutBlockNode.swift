@@ -49,21 +49,3 @@ extension _LayoutBlockNodeConvertible {
     return .init(content: _layoutBlockNode, overlayContent: block._layoutBlockNode)
   }
 }
-
-@resultBuilder
-public enum _LayoutBlockArrayBuilder {
-  public typealias Component = _LayoutBlockNode
-
-  public static func buildBlock(_ components: Component...) -> [Component] {
-    return components
-  }
-
-  public static func buildExpression<View: UIView>(_ view: View) -> Component {
-    return .view(.init(view))
-  }
-
-  public static func buildExpression<Block: _LayoutBlockNodeConvertible>(_ block: Block) -> Component {
-    return block._layoutBlockNode
-  }
-
-}

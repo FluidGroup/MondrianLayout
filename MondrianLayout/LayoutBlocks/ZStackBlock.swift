@@ -245,6 +245,11 @@ public enum ZStackContentBuilder {
       .init(node: .view(.init(view)))
     ]
   }
+  
+  public static func buildExpression<View: UIView>(_ view: View?) -> [Component] {
+    guard let view = view else { return [] }
+    return buildExpression(view)
+  }
 
   public static func buildExpression<Block: _ZStackItemConvertible>(
     _ block: Block

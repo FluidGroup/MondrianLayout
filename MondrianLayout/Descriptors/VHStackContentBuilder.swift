@@ -150,6 +150,11 @@ public enum VStackContentBuilder {
     ]
   }
 
+  public static func buildExpression<View: UIView>(_ view: View?) -> [Component] {
+    guard let view = view else { return [] }
+    return buildExpression(view)
+  }
+
   public static func buildExpression<Block: _VStackItemConvertible>(
     _ block: Block
   ) -> [Component] {
@@ -184,6 +189,11 @@ public enum HStackContentBuilder {
     return [
       .content(.init(node: .view(.init(view))))
     ]
+  }
+
+  public static func buildExpression<View: UIView>(_ view: View?) -> [Component] {
+    guard let view = view else { return [] }
+    return buildExpression(view)
   }
 
   public static func buildExpression<Block: _HStackItemConvertible>(
