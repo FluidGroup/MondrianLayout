@@ -171,7 +171,7 @@ HStackBlock(spacing: 2, alignment: .fill) {
 </p>
 </details>
 
-## Strucutured layout API and Classical layout API
+## Structured layout API and Classical layout API
 
 - 🌟 Ergonomically Enables us to describe layout by DSL (like SwiftUI's layout).
 - 🌟 Automatic adding subviews according to layout representation.
