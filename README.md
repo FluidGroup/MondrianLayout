@@ -194,7 +194,7 @@ What if we get a more ergonomic interface to declare the constraints.
 
 <img width="649" alt="CleanShot 2021-06-17 at 21 14 10@2x" src="https://user-images.githubusercontent.com/1888355/122394462-f9f97100-cfb0-11eb-9838-91f22c148bd9.png">
 
-### Unstctured layout API (classic style)
+### Unstructured layout API (classic style)
 
 <img width="330" alt="classic@2x" src="https://user-images.githubusercontent.com/1888355/124358722-84ea9480-dc5c-11eb-95f7-e0250779b65c.png">
 
