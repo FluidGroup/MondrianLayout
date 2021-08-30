@@ -89,7 +89,7 @@ public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
         view.setContentCompressionResistancePriority(priority, for: .vertical)
       }
       if let priority = horizontalCompressionResistancePriority {
-        view.setContentCompressionResistancePriority(priority, for: .vertical)
+        view.setContentCompressionResistancePriority(priority, for: .horizontal)
       }
     }
   }
