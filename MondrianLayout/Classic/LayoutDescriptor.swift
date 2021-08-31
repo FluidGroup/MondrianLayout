@@ -48,8 +48,9 @@ public final class ConstraintGroup {
 
 }
 
-public enum EdgeAttaching {}
-public enum CenterPositioning {}
+public enum LayoutDescriptorElementTraitEdgeAttaching {}
+public enum LayoutDescriptorElementTraitCenterPositioning {}
+public enum LayoutDescriptorElementTraitSizing {}
 
 public struct LayoutDescriptorElement<Trait> {
 
@@ -58,6 +59,8 @@ public struct LayoutDescriptorElement<Trait> {
 
   var anchorXAxis: _LayoutElement.XAxisAnchor?
   var anchorYAxis: _LayoutElement.YAxisAnchor?
+
+  var dimension: _LayoutElement.DimensionAnchor?
 
   public static func to(_ element: _LayoutElement) -> LayoutDescriptorElement {
     return .init(usesSuperview: false, layoutElement: element)
@@ -77,12 +80,28 @@ public struct LayoutDescriptorElement<Trait> {
 
 }
 
-extension LayoutDescriptorElement where Trait == CenterPositioning {
+extension LayoutDescriptorElement where Trait == LayoutDescriptorElementTraitCenterPositioning {
 
   public func positioned(x: _LayoutElement.XAxisAnchor, y: _LayoutElement.YAxisAnchor) -> Self {
     modified(self) {
       $0.anchorXAxis = x
       $0.anchorYAxis = y
+    }
+  }
+
+}
+
+extension LayoutDescriptorElement where Trait == LayoutDescriptorElementTraitSizing {
+
+  public var width: Self {
+    modified(self) {
+      $0.dimension = .width
+    }
+  }
+
+  public var height: Self {
+    modified(self) {
+      $0.dimension = .height
     }
   }
 
@@ -282,8 +301,9 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   // MARK: - X axis
 
+  /// X axis
   @inline(__always)
-  private func _anchor<T>(
+  private func _anchorXAxis<T>(
     from: _LayoutElement.XAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.XAxisAnchor,
@@ -296,8 +316,9 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
   }
 
+  /// Y axis
   @inline(__always)
-  private func _anchor<T>(
+  private func _anchorYAxis<T>(
     from: _LayoutElement.YAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.YAxisAnchor,
@@ -317,7 +338,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .leading, element: element, defaultAnchor: .leading, value: value)
+    _anchorXAxis(from: .leading, element: element, defaultAnchor: .leading, value: value)
   }
 
   /// Describes a single constraint
@@ -327,7 +348,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
+    _anchorXAxis(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
   }
 
   /// Describes a single constraint
@@ -337,7 +358,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .left, element: element, defaultAnchor: .left, value: value)
+    _anchorXAxis(from: .left, element: element, defaultAnchor: .left, value: value)
   }
 
   /// Describes a single constraint
@@ -347,7 +368,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .right, element: element, defaultAnchor: .right, value: value)
+    _anchorXAxis(from: .right, element: element, defaultAnchor: .right, value: value)
   }
 
   /// Describes a single constraint
@@ -357,7 +378,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .centerX, element: element, defaultAnchor: .centerX, value: value)
+    _anchorXAxis(from: .centerX, element: element, defaultAnchor: .centerX, value: value)
   }
 
   // MARK: - Y axis
@@ -369,7 +390,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .top, element: element, defaultAnchor: .top, value: value)
+    _anchorYAxis(from: .top, element: element, defaultAnchor: .top, value: value)
   }
 
   /// Describes a single constraint
@@ -379,7 +400,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
+    _anchorYAxis(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
   }
 
   /// Describes a single constraint
@@ -389,14 +410,54 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchor(from: .centerY, element: element, defaultAnchor: .centerY, value: value)
+    _anchorYAxis(from: .centerY, element: element, defaultAnchor: .centerY, value: value)
+  }
+
+  // MARK: - Sizing
+
+  /// Describes a single constraint
+  ///
+  /// As default, attaches to `width` of the element.
+  public func width(
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
+    _ value: ConstraintValue = .exact(0),
+    multiplier: CGFloat
+    ) -> Self {
+    return _modify {
+      $0.makeConstraint(element) {
+        $0.widthAnchor.constraint(
+          multiplier: multiplier,
+          constrainedConstant: value,
+          to:  $1.anchor(element.dimension ?? .width)
+        )
+      }
+    }
+  }
+
+  /// Describes a single constraint
+  ///
+  /// As default, attaches to `height` of the element.
+  public func height(
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
+    _ value: ConstraintValue = .exact(0),
+    multiplier: CGFloat
+  ) -> Self {
+    return _modify {
+      $0.makeConstraint(element) {
+        $0.heightAnchor.constraint(
+          multiplier: multiplier,
+          constrainedConstant: value,
+          to:  $1.anchor(element.dimension ?? .height)
+        )
+      }
+    }
   }
 
   // MARK: - Sugars
 
   /// Describes multiple constraints
   public func center(
-    _ element: LayoutDescriptorElement<CenterPositioning>,
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitCenterPositioning>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
@@ -420,7 +481,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   /// Describes multiple constraints
   public func edges(
-    _ element: LayoutDescriptorElement<EdgeAttaching>,
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
@@ -440,7 +501,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   /// Describes multiple constraints
   public func horizontal(
-    _ element: LayoutDescriptorElement<EdgeAttaching>,
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
@@ -458,7 +519,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
 
   /// Describes multiple constraints
   public func vertical(
-    _ element: LayoutDescriptorElement<EdgeAttaching>,
+    _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
     return _modify {
@@ -494,6 +555,42 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func makeConstraints() -> [NSLayoutConstraint] {
     let _dimensionConstraints = dimensionConstraints.makeConstraints(for: target)
     return proposedConstraints + _dimensionConstraints
+  }
+
+}
+
+extension NSLayoutDimension {
+
+  fileprivate func constraint(
+    multiplier: CGFloat,
+    constrainedConstant: LayoutDescriptor.ConstraintValue,
+    to anchor: NSLayoutDimension
+  ) -> NSLayoutConstraint {
+
+    switch constrainedConstant.relation {
+    case .min:
+      return constraint(
+        greaterThanOrEqualTo: anchor,
+        multiplier: multiplier,
+        constant: constrainedConstant.constant
+      )
+      .setPriority(constrainedConstant.priority)
+    case .exact:
+      return constraint(
+        equalTo: anchor,
+        multiplier: multiplier,
+        constant: constrainedConstant.constant
+      )
+      .setPriority(constrainedConstant.priority)
+    case .max:
+      return constraint(
+        lessThanOrEqualTo: anchor,
+        multiplier: multiplier,
+        constant: constrainedConstant.constant
+      )
+      .setPriority(constrainedConstant.priority)
+    }
+
   }
 
 }

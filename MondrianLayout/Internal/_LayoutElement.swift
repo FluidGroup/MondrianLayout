@@ -30,6 +30,11 @@ public struct _LayoutElement: __LayoutElementConvertible {
     case centerX
   }
 
+  public enum DimensionAnchor: Equatable {
+    case width
+    case height
+  }
+
   public enum YAxisAnchor: Equatable {
     case top
     case bottom
@@ -116,6 +121,15 @@ public struct _LayoutElement: __LayoutElementConvertible {
       return bottomAnchor
     case .centerY:
       return centerYAnchor
+    }
+  }
+
+  func anchor(_ type: DimensionAnchor) -> NSLayoutDimension {
+    switch type {
+    case .width:
+      return widthAnchor
+    case .height:
+      return heightAnchor
     }
   }
 }
