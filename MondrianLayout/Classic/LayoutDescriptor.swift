@@ -554,8 +554,8 @@ extension MondrianNamespace where Base: UIView {
    view.mondrian.layout
      .top(.toSuperview)
      .left(.toSuperview)
-     .right(.to(box2), .left)
-     .bottom(.to(box2), .bottom)
+     .right(.to(box2).left)
+     .bottom(.to(box2).bottom)
      .activate()
    ```
    */
@@ -575,8 +575,8 @@ extension MondrianNamespace where Base: UILayoutGuide {
    view.mondrian.layout
      .top(.toSuperview)
      .left(.toSuperview)
-     .right(.to(box2), .left)
-     .bottom(.to(box2), .bottom)
+     .right(.to(box2).left)
+     .bottom(.to(box2).bottom)
      .activate()
    ```
    */
