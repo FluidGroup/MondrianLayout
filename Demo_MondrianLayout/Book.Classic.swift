@@ -8,6 +8,33 @@ var _book_classic: BookView {
     BookPreview {
       ExampleView(width: nil, height: nil) { view in
 
+        let box1 = UIView.mock(preferredSize: .init(width: 30, height: 30))
+        let box2 = UIView.mock(preferredSize: .init(width: 30, height: 30))
+
+        view.addSubview(box1)
+        view.addSubview(box2)
+
+        mondrianBatchLayout {
+
+          box1.mondrian.layout
+            .top(.toSuperview)
+            .left(.toSuperview)
+            .right(.to(box2).left)
+            .bottom(.to(box2).bottom)
+
+          box2.mondrian.layout
+            .top(.toSuperview.top)
+            .height(.to(box1), multiplier: 2)
+            .right(.toSuperview)
+            .bottom(.toSuperview)
+
+        }
+      }
+    }
+
+    BookPreview {
+      ExampleView(width: nil, height: nil) { view in
+
         let label1 = UILabel.mockSingleline(text: "Hello")
         let label2 = UILabel.mockSingleline(text: "Hello")
 
