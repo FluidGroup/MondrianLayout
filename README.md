@@ -1,4 +1,4 @@
-# MondrianLayout - describing structured layout for AutoLayout
+# MondrianLayout - Structured layout for AutoLayout
 
 > 🤵🏻‍♂️💭
 > We guess we still don't cover the all of use-cases.
