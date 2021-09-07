@@ -17,14 +17,14 @@ var _book_classic: BookView {
         mondrianBatchLayout {
 
           box1.mondrian.layout
-            .top(.toSuperview)
+            .top(.toSuperview, .min(0))
             .left(.toSuperview)
             .right(.to(box2).left)
             .bottom(.to(box2).bottom)
 
           box2.mondrian.layout
             .top(.toSuperview.top)
-            .height(.to(box1), multiplier: 2)
+            .height(.to(box1).height, multiplier: 2)
             .right(.toSuperview)
             .bottom(.toSuperview)
 

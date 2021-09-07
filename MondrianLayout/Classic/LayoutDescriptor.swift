@@ -428,7 +428,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
         $0.widthAnchor.constraint(
           multiplier: multiplier,
           constrainedConstant: value,
-          to:  $1.anchor(element.dimension ?? .width)
+          to: $1.anchor(element.dimension ?? .width)
         )
       }
     }
@@ -447,7 +447,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
         $0.heightAnchor.constraint(
           multiplier: multiplier,
           constrainedConstant: value,
-          to:  $1.anchor(element.dimension ?? .height)
+          to: $1.anchor(element.dimension ?? .height)
         )
       }
     }
