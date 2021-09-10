@@ -5,6 +5,22 @@ import XCTest
 
 final class ClassicTests: XCTestCase {
 
+  func test_resultBuilder() {
+
+    func syntax() {
+
+      let views: [UIView] = []
+
+      mondrianBatchLayout {
+        views.map {
+          $0.mondrian.layout.minHeight(10)
+        }
+      }
+
+    }
+
+  }
+
   func test_multiplier_constraints() {
 
     let view = ExampleView(width: nil, height: nil) { view in
