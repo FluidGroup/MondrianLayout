@@ -122,7 +122,7 @@ var _book_classic: BookView {
             .edges(.toSuperview)
 
           containeeEdgesDemo.mondrian.layout
-            .edges(.toSuperview, .constant(8))
+            .edges(.toSuperview, .exact(8))
         }
       }
     }

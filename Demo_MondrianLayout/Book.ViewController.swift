@@ -36,7 +36,7 @@ var _book_ViewController: BookView {
       }
 
       return AnyViewController { view in
-        view.mondrian.buildSublayersLayout {
+        view.mondrian.buildSubviews {
           LayoutContainer(attachedSafeAreaEdges: .all) {
             ZStackBlock {
               container

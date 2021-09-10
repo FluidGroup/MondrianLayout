@@ -60,7 +60,7 @@ final class LayoutDescriptorTests: XCTestCase {
           .bottom(.to(box2).bottom)
 
         box2.mondrian.layout
-          .top(.toSuperview.top, .constant(10))
+          .top(.toSuperview.top, .exact(10))
           .right(.toSuperview)
           .bottom(.toSuperview)
 
@@ -114,7 +114,7 @@ final class LayoutDescriptorTests: XCTestCase {
           .edges(.toSuperview)
 
         containeeEdgesDemo.mondrian.layout
-          .edges(.toSuperview, .constant(8))
+          .edges(.toSuperview, .exact(8))
       }
     }
 

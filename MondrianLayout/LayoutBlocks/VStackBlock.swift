@@ -220,27 +220,3 @@ public struct VStackBlock:
 
   }
 }
-
-extension VStackBlock {
-
-  public func width(_ value: LayoutDescriptor.ConstraintValue) -> Self {
-    fatalError()
-  }
-
-  public func height(_ value: LayoutDescriptor.ConstraintValue) -> Self {
-    fatalError()
-  }
-
-  public func size(
-    width: LayoutDescriptor.ConstraintValue,
-    height: LayoutDescriptor.ConstraintValue
-  ) -> Self {
-    fatalError()
-  }
-
-  public func size(
-    _ size: CGSize
-  ) -> Self {
-    self.size(width: .exact(size.width), height: .exact(size.height))
-  }
-}

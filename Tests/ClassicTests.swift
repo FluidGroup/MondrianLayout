@@ -14,7 +14,7 @@ final class ClassicTests: XCTestCase {
 
         mondrianBatchLayout {
           views.map {
-            $0.mondrian.layout.minHeight(10)
+            $0.mondrian.layout.height(.min(10))
           }
         }
       }
@@ -25,11 +25,11 @@ final class ClassicTests: XCTestCase {
         mondrianBatchLayout {
 
           views.map {
-            $0.mondrian.layout.minHeight(10)
+            $0.mondrian.layout.height(.min(10))
           }
 
           views.map {
-            $0.mondrian.layout.minHeight(10)
+            $0.mondrian.layout.height(.min(10))
           }
         }
       }
@@ -40,14 +40,14 @@ final class ClassicTests: XCTestCase {
 
         mondrianBatchLayout {
 
-          view?.mondrian.layout.minHeight(10)
+          view?.mondrian.layout.height(.min(10))
 
           views.map {
-            $0.mondrian.layout.minHeight(10)
+            $0.mondrian.layout.height(.min(10))
           }
 
           views.map {
-            $0.mondrian.layout.minHeight(10)
+            $0.mondrian.layout.height(.min(10))
           }
         }
       }
@@ -58,14 +58,14 @@ final class ClassicTests: XCTestCase {
 
         mondrianBatchLayout {
 
-          view?.mondrian.layout.minHeight(10)
+          view?.mondrian.layout.height(.min(10))
 
           views.map {
-            $0?.mondrian.layout.minHeight(10)
+            $0?.mondrian.layout.height(.min(10))
           }
 
           views.map {
-            $0?.mondrian.layout.minHeight(10)
+            $0?.mondrian.layout.height(.min(10))
           }
         }
       }
@@ -73,14 +73,14 @@ final class ClassicTests: XCTestCase {
       do {
         let view: UIView? = nil
         mondrianBatchLayout {
-          view?.mondrian.layout.minHeight(10)
+          view?.mondrian.layout.height(.min(10))
         }
       }
 
       do {
         let view: UIView = UIView()
         mondrianBatchLayout {
-          view.mondrian.layout.minHeight(10)
+          view.mondrian.layout.height(.min(10))
         }
       }
 
@@ -88,18 +88,19 @@ final class ClassicTests: XCTestCase {
         let view: UIView = UIView()
         mondrianBatchLayout {
           if true {
-            view.mondrian.layout.minHeight(10)
+            view.mondrian.layout.height(.min(10))
           }
         }
       }
 
       do {
+        let flag = true
         let view: UIView = UIView()
         mondrianBatchLayout {
-          if true {
-            view.mondrian.layout.minHeight(10)
+          if flag {
+            view.mondrian.layout.height(.min(10))
           } else {
-            view.mondrian.layout.minHeight(10)
+            view.mondrian.layout.height(.min(10))
           }
         }
       }
