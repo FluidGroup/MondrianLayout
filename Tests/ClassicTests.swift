@@ -9,14 +9,100 @@ final class ClassicTests: XCTestCase {
 
     func syntax() {
 
-      let views: [UIView] = []
+      do {
+        let views: [UIView] = []
 
-      mondrianBatchLayout {
-        views.map {
-          $0.mondrian.layout.minHeight(10)
+        mondrianBatchLayout {
+          views.map {
+            $0.mondrian.layout.minHeight(10)
+          }
         }
       }
 
+      do {
+        let views: [UIView] = []
+
+        mondrianBatchLayout {
+
+          views.map {
+            $0.mondrian.layout.minHeight(10)
+          }
+
+          views.map {
+            $0.mondrian.layout.minHeight(10)
+          }
+        }
+      }
+
+      do {
+        let view: UIView? = nil
+        let views: [UIView] = []
+
+        mondrianBatchLayout {
+
+          view?.mondrian.layout.minHeight(10)
+
+          views.map {
+            $0.mondrian.layout.minHeight(10)
+          }
+
+          views.map {
+            $0.mondrian.layout.minHeight(10)
+          }
+        }
+      }
+
+      do {
+        let view: UIView? = nil
+        let views: [UIView?] = []
+
+        mondrianBatchLayout {
+
+          view?.mondrian.layout.minHeight(10)
+
+          views.map {
+            $0?.mondrian.layout.minHeight(10)
+          }
+
+          views.map {
+            $0?.mondrian.layout.minHeight(10)
+          }
+        }
+      }
+
+      do {
+        let view: UIView? = nil
+        mondrianBatchLayout {
+          view?.mondrian.layout.minHeight(10)
+        }
+      }
+
+      do {
+        let view: UIView = UIView()
+        mondrianBatchLayout {
+          view.mondrian.layout.minHeight(10)
+        }
+      }
+
+      do {
+        let view: UIView = UIView()
+        mondrianBatchLayout {
+          if true {
+            view.mondrian.layout.minHeight(10)
+          }
+        }
+      }
+
+      do {
+        let view: UIView = UIView()
+        mondrianBatchLayout {
+          if true {
+            view.mondrian.layout.minHeight(10)
+          } else {
+            view.mondrian.layout.minHeight(10)
+          }
+        }
+      }
     }
 
   }
@@ -29,7 +115,7 @@ final class ClassicTests: XCTestCase {
         backgroundColor: .layeringColor,
         preferredSize: .init(width: 30, height: 30)
       )
-      
+
       let box2 = UIView.mock(
         backgroundColor: .layeringColor,
         preferredSize: .init(width: 30, height: 30)
