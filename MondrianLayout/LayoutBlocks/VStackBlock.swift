@@ -3,12 +3,13 @@ import UIKit
 /// [MondrianLayout]
 /// A descriptor that lays out the contents vertically in parent layout element.
 public struct VStackBlock:
-  _LayoutBlockType
+  _LayoutBlockType,
+  _DimensionConstraintType
 {
 
   /// Alignment option for ``VStackBlock``
   public enum XAxisAlignment {
-    
+
     /// In ``VStackBlock``
     case leading
 
@@ -24,11 +25,13 @@ public struct VStackBlock:
 
   // MARK: - Properties
 
-  public let name = "VStack"
-
   public var _layoutBlockNode: _LayoutBlockNode {
     return .vStack(self)
   }
+
+  public let name = "VStack"
+
+  public var dimensionConstraints: DimensionDescriptor = .init()
 
   public var spacing: CGFloat
   public var alignment: XAxisAlignment
@@ -49,6 +52,8 @@ public struct VStackBlock:
   // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
+
+    context.add(constraints: dimensionConstraints.makeConstraints(for: parent))
 
     let startAnchorKeyPath = \_LayoutElement.topAnchor
     let endAnchorKeyPath = \_LayoutElement.bottomAnchor

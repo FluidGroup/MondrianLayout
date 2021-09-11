@@ -100,36 +100,112 @@ public protocol _DimensionConstraintType {
 
 extension _DimensionConstraintType {
 
-  private func _modify(_ modifier: (inout DimensionDescriptor) -> Void) -> Self {
+  fileprivate func _modify(_ modifier: (inout DimensionDescriptor) -> Void) -> Self {
     var new = self
     modifier(&new.dimensionConstraints)
     return new
   }
 
   /**
-   - Parameters:
-   - value: Passing nil removes constraints.
+   Constrains this view’s dimensions to the aspect ratio of the given size.
    */
-  public func aspectRatio(_ ratio: CGFloat?, priority: UILayoutPriority = .required) -> Self {
+  public func aspectRatio(_ ratio: CGFloat, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.aspectRatio = ratio.map { .init(constant: $0, priority: priority) }
+      $0.aspectRatio = .init(constant: ratio, priority: priority)
     }
   }
 
   /**
    Constrains this view’s dimensions to the aspect ratio of the given size.
-
-   - Parameters:
-   - size: Passing nil removes constraints.
    */
-  public func aspectRatio(_ size: CGSize?) -> Self {
-    aspectRatio(size.map { $0.width / $0.height })
+  public func aspectRatio(_ size: CGSize) -> Self {
+    aspectRatio(size.width / size.height)
   }
 
+  /**
+   Adding height constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
+  public func height(_ value: LayoutDescriptor.ConstraintValue) -> Self {
+    switch value.relation {
+    case .min:
+      return _modify {
+        $0.minHeight = .init(constant: value.constant, priority: value.priority)
+      }
+    case .exact:
+      return _modify {
+        $0.height = .init(constant: value.constant, priority: value.priority)
+      }
+    case .max:
+      return _modify {
+        $0.maxHeight = .init(constant: value.constant, priority: value.priority)
+      }
+    }
+  }
+
+  /**
+   Adding width constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
+  public func width(_ value: LayoutDescriptor.ConstraintValue) -> Self {
+    switch value.relation {
+    case .min:
+      return _modify {
+        $0.minWidth = .init(constant: value.constant, priority: value.priority)
+      }
+    case .exact:
+      return _modify {
+        $0.width = .init(constant: value.constant, priority: value.priority)
+      }
+    case .max:
+      return _modify {
+        $0.maxWidth = .init(constant: value.constant, priority: value.priority)
+      }
+    }
+  }
+
+  /**
+   Adding width and height constraint by separated relation and priority.
+   */
+  public func size(
+    width: LayoutDescriptor.ConstraintValue,
+    height: LayoutDescriptor.ConstraintValue
+  ) -> Self {
+    return self.width(width).height(height)
+  }
+
+  /**
+   Adding width and height constraint by size with common priority.
+   Relations are fixed as `exact`
+   */
+  public func size(_ size: CGSize, priority: UILayoutPriority = .required) -> Self {
+    _modify {
+      $0.height = .init(constant: size.height, priority: priority)
+      $0.width = .init(constant: size.width, priority: priority)
+    }
+  }
+
+  /**
+   Adding width and height constraint by length with common priority.
+   */
+  public func size(_ length: CGFloat, priority: UILayoutPriority = .required) -> Self {
+    _modify {
+      $0.height = .init(constant: length, priority: priority)
+      $0.width = .init(constant: length, priority: priority)
+    }
+  }
+}
+
+extension _DimensionConstraintType {
   /**
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .height(_ value:LayoutDescriptor.ConstraintValue)")
   public func height(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.height = value.map { .init(constant: $0, priority: priority) }
@@ -140,6 +216,7 @@ extension _DimensionConstraintType {
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .width(_ value:LayoutDescriptor.ConstraintValue)")
   public func width(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.width = value.map { .init(constant: $0, priority: priority) }
@@ -150,6 +227,7 @@ extension _DimensionConstraintType {
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .height(_ value:LayoutDescriptor.ConstraintValue)")
   public func minHeight(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.minHeight = value.map { .init(constant: $0, priority: priority) }
@@ -160,6 +238,7 @@ extension _DimensionConstraintType {
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .width(_ value:LayoutDescriptor.ConstraintValue)")
   public func minWidth(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.minWidth = value.map { .init(constant: $0, priority: priority) }
@@ -170,6 +249,7 @@ extension _DimensionConstraintType {
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .height(_ value:LayoutDescriptor.ConstraintValue)")
   public func maxHeight(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.maxHeight = value.map { .init(constant: $0, priority: priority) }
@@ -180,45 +260,10 @@ extension _DimensionConstraintType {
    - Parameters:
    - value: Passing nil removes constraints.
    */
+  @available(*, deprecated, message: "Use .width(_ value:LayoutDescriptor.ConstraintValue)")
   public func maxWidth(_ value: CGFloat?, priority: UILayoutPriority = .required) -> Self {
     _modify {
       $0.maxWidth = value.map { .init(constant: $0, priority: priority) }
-    }
-  }
-
-  /**
-   Set size constraints as specified CGSize
-
-   - Parameters:
-   - value: Passing nil removes constraints.
-   */
-  public func size(_ size: CGSize?, priority: UILayoutPriority = .required) -> Self {
-    _modify {
-      if let size = size {
-        $0.height = .init(constant: size.height, priority: priority)
-        $0.width = .init(constant: size.width, priority: priority)
-      } else {
-        $0.height = nil
-        $0.width = nil
-      }
-    }
-  }
-
-  /**
-   Set size constraints as square
-
-   - Parameters:
-   - value: Passing nil removes constraints.
-   */
-  public func size(_ length: CGFloat?, priority: UILayoutPriority = .required) -> Self {
-    _modify {
-      if let length = length {
-        $0.height = .init(constant: length, priority: priority)
-        $0.width = .init(constant: length, priority: priority)
-      } else {
-        $0.height = nil
-        $0.width = nil
-      }
     }
   }
 }

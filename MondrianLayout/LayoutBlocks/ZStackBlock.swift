@@ -1,37 +1,36 @@
 import UIKit
 
-/**
- [MondrianLayout]
- A block that overlays its children, aligning them in both axes as default behavior.
-
- Examples:
-
- **Put a view snapping to edge**
-
- ```swift
- self.mondrian.buildSubviews {
-   ZStackBlock {
-     backgroundView.viewBlock.relative(0)
-   }
- }
- ```
-
- synonyms:
-
- ```swift
- ZStackBlock(alignment: .attach(.all)) {
-   backgroundView
- }
- ```
-
- ```swift
- ZStackBlock {
-   backgroundView.viewBlock.alignSelf(.attach(.all))
- }
- ```
- */
+/// [MondrianLayout]
+/// A block that overlays its children, aligning them in both axes as default behavior.
+///
+/// Examples:
+///
+/// **Put a view snapping to edge**
+///
+/// ```swift
+/// self.mondrian.buildSubviews {
+///   ZStackBlock {
+///     backgroundView.viewBlock.relative(0)
+///   }
+/// }
+/// ```
+///
+/// synonyms:
+///
+/// ```swift
+/// ZStackBlock(alignment: .attach(.all)) {
+///   backgroundView
+/// }
+/// ```
+///
+/// ```swift
+/// ZStackBlock {
+///   backgroundView.viewBlock.alignSelf(.attach(.all))
+/// }
+/// ```
 public struct ZStackBlock:
-  _LayoutBlockType
+  _LayoutBlockType,
+  _DimensionConstraintType
 {
 
   // MARK: - Properties
@@ -45,11 +44,13 @@ public struct ZStackBlock:
     case attach(Edge.Set)
   }
 
-  public var name: String = "ZStack"
-
   public var _layoutBlockNode: _LayoutBlockNode {
     return .zStack(self)
   }
+
+  public var name: String = "ZStack"
+
+  public var dimensionConstraints: DimensionDescriptor = .init()
 
   public let alignment: XYAxisAlignment
   public let elements: [ZStackContentBuilder.Component]
@@ -67,6 +68,8 @@ public struct ZStackBlock:
   // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
+
+    context.add(constraints: dimensionConstraints.makeConstraints(for: parent))
 
     elements.forEach { element in
 
@@ -245,7 +248,7 @@ public enum ZStackContentBuilder {
       .init(node: .view(.init(view)))
     ]
   }
-  
+
   public static func buildExpression<View: UIView>(_ view: View?) -> [Component] {
     guard let view = view else { return [] }
     return buildExpression(view)

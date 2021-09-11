@@ -9,33 +9,16 @@ final class ExampleView: UIView {
     height: CGFloat?,
     build: (UIView) -> Void
   ) {
+
     super.init(frame: .zero)
     build(self)
 
-//    setContentHuggingPriority(.required, for: .horizontal)
-//    setContentHuggingPriority(.required, for: .vertical)
-
     translatesAutoresizingMaskIntoConstraints = false
 
-//    buildSelfSizing {
-//      $0.height(height)
-//    }
-
-    let fittingWdith = widthAnchor.constraint(equalToConstant: 0)
-    fittingWdith.priority = .fittingSizeLevel
-    fittingWdith.isActive = true
-
-    let fittingHeight = heightAnchor.constraint(equalToConstant: 0)
-    fittingHeight.priority = .fittingSizeLevel
-    fittingHeight.isActive = true
-
-    if let width = width {
-      widthAnchor.constraint(equalToConstant: width).isActive = true
-    }
-
-    if let height = height {
-      heightAnchor.constraint(equalToConstant: height).isActive = true
-    }
+    mondrian.layout
+      .width(width.map { .exact($0) } ?? .exact(0, .fittingSizeLevel))
+      .height(height.map { .exact($0) } ?? .exact(0, .fittingSizeLevel))
+      .activate()
 
     layoutIfNeeded()
 
