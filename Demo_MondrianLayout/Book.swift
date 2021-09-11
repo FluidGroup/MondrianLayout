@@ -8,6 +8,8 @@ let book = Book(title: "MondrianLayout") {
 
   _book_mondrian
 
+  _book_sizing
+
   _book_background
 
   _book_overlay

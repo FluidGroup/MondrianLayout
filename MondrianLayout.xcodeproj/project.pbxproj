@@ -63,6 +63,7 @@
 		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
 		4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAD3678268386FA00788518 /* MondrianNamespace.swift */; };
 		4BB75A29269035F400EA4F54 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB75A28269035F400EA4F54 /* Utils.swift */; };
+		4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */; };
 		4BC4752126E7598B000C8492 /* ClassicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4752026E7598B000C8492 /* ClassicTests.swift */; };
 		4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE8F267F28720035A66D /* StorybookKit */; };
 		4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE91267F28720035A66D /* StorybookUI */; };
@@ -169,6 +170,7 @@
 		4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeBlock.swift; sourceTree = "<group>"; };
 		4BAD3678268386FA00788518 /* MondrianNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondrianNamespace.swift; sourceTree = "<group>"; };
 		4BB75A28269035F400EA4F54 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Sizing.swift; sourceTree = "<group>"; };
 		4BC4752026E7598B000C8492 /* ClassicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTests.swift; sourceTree = "<group>"; };
 		4BE163C3267B711C00817483 /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
 		4BE16570267C5D0800817483 /* ZStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackTests.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				4B47F6362678DC0000BDE2DB /* Book.Background.swift */,
 				4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */,
 				4B47F6382678DC4000BDE2DB /* Book.VStackBlock.swift */,
+				4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */,
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */,
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
 				4B309029269824D7001AB89B /* Book.RelativeBlock.swift */,
@@ -555,6 +558,7 @@
 				4BE163C4267B711C00817483 /* CGSize+.swift in Sources */,
 				4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */,
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
+				4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */,
 				4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */,
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,

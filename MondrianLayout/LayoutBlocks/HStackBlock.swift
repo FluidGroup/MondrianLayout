@@ -5,12 +5,12 @@ import UIKit
 /// A descriptor that lays out the contents horizontally.
 public struct HStackBlock:
   _LayoutBlockType,
-  _LayoutBlockNodeConvertible
+  _DimensionConstraintType
 {
 
   /// Alignment option for ``HStackBlock``
   public enum YAxisAlignment {
-    
+
     /// In ``HStackBlock``
     case top
 
@@ -26,11 +26,13 @@ public struct HStackBlock:
 
   // MARK: - Properties
 
-  public var name: String = "HStack"
-
   public var _layoutBlockNode: _LayoutBlockNode {
     return .hStack(self)
   }
+
+  public var name: String = "HStack"
+
+  public var dimensionConstraints: DimensionDescriptor = .init()
 
   public var spacing: CGFloat
   public var alignment: YAxisAlignment
@@ -51,6 +53,8 @@ public struct HStackBlock:
   // MARK: - Functions
 
   public func setupConstraints(parent: _LayoutElement, in context: LayoutBuilderContext) {
+
+    context.add(constraints: dimensionConstraints.makeConstraints(for: parent))
 
     guard elements.isEmpty == false else {
       return
