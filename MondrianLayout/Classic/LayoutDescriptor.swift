@@ -162,6 +162,9 @@ extension LayoutDescriptorElement where Trait == _LayoutElement.YAxisAnchor {
 /// A representation of how sets the constraints from the target element (UIView or UILayoutGuide).
 public struct LayoutDescriptor: _DimensionConstraintType {
 
+  /**
+   A constraint representation that projects as `NSLayoutConstraint`.
+   */
   public struct ConstraintValue: ExpressibleByFloatLiteral, ExpressibleByIntegerLiteral {
 
     public typealias IntegerLiteralType = Int

@@ -107,25 +107,27 @@ extension _DimensionConstraintType {
   }
 
   /**
-   - Parameters:
-   - value: Passing nil removes constraints.
+   Constrains this view’s dimensions to the aspect ratio of the given size.
    */
-  public func aspectRatio(_ ratio: CGFloat?, priority: UILayoutPriority = .required) -> Self {
+  public func aspectRatio(_ ratio: CGFloat, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      $0.aspectRatio = ratio.map { .init(constant: $0, priority: priority) }
+      $0.aspectRatio = .init(constant: ratio, priority: priority)
     }
   }
 
   /**
    Constrains this view’s dimensions to the aspect ratio of the given size.
-
-   - Parameters:
-   - size: Passing nil removes constraints.
    */
-  public func aspectRatio(_ size: CGSize?) -> Self {
-    aspectRatio(size.map { $0.width / $0.height })
+  public func aspectRatio(_ size: CGSize) -> Self {
+    aspectRatio(size.width / size.height)
   }
 
+  /**
+   Adding height constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
   public func height(_ value: LayoutDescriptor.ConstraintValue) -> Self {
     switch value.relation {
     case .min:
@@ -143,6 +145,12 @@ extension _DimensionConstraintType {
     }
   }
 
+  /**
+   Adding width constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
   public func width(_ value: LayoutDescriptor.ConstraintValue) -> Self {
     switch value.relation {
     case .min:
@@ -160,6 +168,9 @@ extension _DimensionConstraintType {
     }
   }
 
+  /**
+   Adding width and height constraint by separated relation and priority.
+   */
   public func size(
     width: LayoutDescriptor.ConstraintValue,
     height: LayoutDescriptor.ConstraintValue
@@ -168,38 +179,23 @@ extension _DimensionConstraintType {
   }
 
   /**
-   Set size constraints as specified CGSize
-
-   - Parameters:
-   - value: Passing nil removes constraints.
+   Adding width and height constraint by size with common priority.
+   Relations are fixed as `exact`
    */
-  public func size(_ size: CGSize?, priority: UILayoutPriority = .required) -> Self {
+  public func size(_ size: CGSize, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      if let size = size {
-        $0.height = .init(constant: size.height, priority: priority)
-        $0.width = .init(constant: size.width, priority: priority)
-      } else {
-        $0.height = nil
-        $0.width = nil
-      }
+      $0.height = .init(constant: size.height, priority: priority)
+      $0.width = .init(constant: size.width, priority: priority)
     }
   }
 
   /**
-   Set size constraints as square
-
-   - Parameters:
-   - value: Passing nil removes constraints.
+   Adding width and height constraint by length with common priority.
    */
-  public func size(_ length: CGFloat?, priority: UILayoutPriority = .required) -> Self {
+  public func size(_ length: CGFloat, priority: UILayoutPriority = .required) -> Self {
     _modify {
-      if let length = length {
-        $0.height = .init(constant: length, priority: priority)
-        $0.width = .init(constant: length, priority: priority)
-      } else {
-        $0.height = nil
-        $0.width = nil
-      }
+      $0.height = .init(constant: length, priority: priority)
+      $0.width = .init(constant: length, priority: priority)
     }
   }
 }
