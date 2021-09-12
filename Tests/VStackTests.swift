@@ -162,4 +162,42 @@ final class VStackTests: XCTestCase {
 
   }
 
+  func test_including_layoutGuide() {
+
+    let view = ExampleView(width: 200, height: 200) { (view: UIView) in
+
+      let boxes = (0..<3).map { _ in UIView.mock(backgroundColor: .layeringColor) }
+      let guides = (0..<2).map { _ in UILayoutGuide() }
+
+      view.mondrian.buildSubviews {
+        VStackBlock(alignment: .leading) {
+
+          boxes[0]
+
+          guides[0]
+
+          boxes[1]
+
+          guides[1]
+
+          boxes[2]
+
+          StackingSpacer(minLength: 0)
+
+        }
+        .background(UIView.mock(backgroundColor: .layeringColor))
+      }
+
+      mondrianBatchLayout {
+
+        boxes.map { $0.mondrian.layout.height(20) }
+
+        guides[0].mondrian.layout.height(.to(boxes[0]))
+        guides[1].mondrian.layout.height(.to(boxes[2]), multiplier: 2)
+      }
+    }
+
+    assertSnapshot(matching: view, as: .image, record: _record)
+  }
+
 }
