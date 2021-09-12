@@ -172,9 +172,19 @@ public struct ZStackBlock:
       }
 
       switch element.node {
+
+      case .layoutGuide(let block):
+
+        context.register(layoutGuideBlock: block)
+
+        perform(
+          current: .init(layoutGuide: block.layoutGuide),
+          alignment: element.alignSelf ?? alignment
+        )
+
       case .view(let viewConstraint):
 
-        context.register(viewConstraint: viewConstraint)
+        context.register(viewBlock: viewConstraint)
 
         perform(
           current: .init(view: viewConstraint.view),
@@ -233,8 +243,29 @@ public struct _ZStackItem: _ZStackItemConvertible {
 public enum ZStackContentBuilder {
   public typealias Component = _ZStackItem
 
+  public static func buildBlock() -> [Component] {
+    return []
+  }
+
   public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
     return nestedComponents.flatMap { $0 }
+  }
+
+  public static func buildExpression(_ layoutGuides: [UILayoutGuide]...) -> [Component] {
+    return layoutGuides.flatMap { $0 }.map {
+      .init(node: .layoutGuide(.init($0)))
+    }
+  }
+
+  public static func buildExpression<LayoutGuide: UILayoutGuide>(_ layoutGuide: LayoutGuide) -> [Component] {
+    return [
+      .init(node: .layoutGuide(.init(layoutGuide)))
+    ]
+  }
+
+  public static func buildExpression<LayoutGuide: UILayoutGuide>(_ layoutGuide: LayoutGuide?) -> [Component] {
+    guard let view = layoutGuide else { return [] }
+    return buildExpression(view)
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {

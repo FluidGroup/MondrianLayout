@@ -134,8 +134,29 @@ extension _HStackItemConvertible {
 public enum VStackContentBuilder {
   public typealias Component = _VStackElementNode
 
+  public static func buildBlock() -> [Component] {
+    return []
+  }
+
   public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
     return nestedComponents.flatMap { $0 }
+  }
+
+  public static func buildExpression(_ layoutGuides: [UILayoutGuide]...) -> [Component] {
+    return layoutGuides.flatMap { $0 }.map {
+      .content(.init(node: .layoutGuide(.init($0))))
+    }
+  }
+
+  public static func buildExpression<LayoutGuide: UILayoutGuide>(_ layoutGuide: LayoutGuide) -> [Component] {
+    return [
+      .content(.init(node: .layoutGuide(.init(layoutGuide))))
+    ]
+  }
+
+  public static func buildExpression<LayoutGuide: UILayoutGuide>(_ layoutGuide: LayoutGuide?) -> [Component] {
+    guard let view = layoutGuide else { return [] }
+    return buildExpression(view)
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
