@@ -229,21 +229,25 @@ public struct RelativeBlock:
     }
 
     switch content {
-    case .view(let viewConstarint):
+    case .layoutGuide(let block):
 
-      context.register(viewConstraint: viewConstarint)
+      context.register(layoutGuideBlock: block)
+      perform(current: .init(layoutGuide: block.layoutGuide))
 
-      perform(current: .init(view: viewConstarint.view))
+    case .view(let block):
 
-    case .vStack(let c as _LayoutBlockType),
-      .hStack(let c as _LayoutBlockType),
-      .zStack(let c as _LayoutBlockType),
-      .background(let c as _LayoutBlockType),
-      .relative(let c as _LayoutBlockType),
-      .overlay(let c as _LayoutBlockType):
+      context.register(viewBlock: block)
+      perform(current: .init(view: block.view))
 
-      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeBlock.\(c.name)")
-      c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
+    case .vStack(let block as _LayoutBlockType),
+      .hStack(let block as _LayoutBlockType),
+      .zStack(let block as _LayoutBlockType),
+      .background(let block as _LayoutBlockType),
+      .relative(let block as _LayoutBlockType),
+      .overlay(let block as _LayoutBlockType):
+
+      let newLayoutGuide = context.makeLayoutGuide(identifier: "RelativeBlock.\(block.name)")
+      block.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
       perform(current: .init(layoutGuide: newLayoutGuide))
 
     }

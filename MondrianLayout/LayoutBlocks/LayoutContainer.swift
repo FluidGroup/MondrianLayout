@@ -135,19 +135,24 @@ public struct LayoutContainer {
     }
 
     switch content {
-    case .view(let c):
+    case .layoutGuide(let block):
 
-      context.register(viewConstraint: c)
-      context.add(constraints: c.makeConstraintsToEdge(prepareLayoutContainer()))
+      context.register(layoutGuideBlock: block)
+      context.add(constraints: block.makeConstraintsToEdge(prepareLayoutContainer()))
 
-    case .vStack(let c as _LayoutBlockType),
-      .hStack(let c as _LayoutBlockType),
-      .zStack(let c as _LayoutBlockType),
-      .overlay(let c as _LayoutBlockType),
-      .relative(let c as _LayoutBlockType),
-      .background(let c as _LayoutBlockType):
+    case .view(let block):
 
-      c.setupConstraints(parent: prepareLayoutContainer(), in: context)
+      context.register(viewBlock: block)
+      context.add(constraints: block.makeConstraintsToEdge(prepareLayoutContainer()))
+
+    case .vStack(let block as _LayoutBlockType),
+      .hStack(let block as _LayoutBlockType),
+      .zStack(let block as _LayoutBlockType),
+      .overlay(let block as _LayoutBlockType),
+      .relative(let block as _LayoutBlockType),
+      .background(let block as _LayoutBlockType):
+
+      block.setupConstraints(parent: prepareLayoutContainer(), in: context)
 
     }
 

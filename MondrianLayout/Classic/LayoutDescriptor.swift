@@ -424,7 +424,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func width(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
     _ value: ConstraintValue = .exact(0),
-    multiplier: CGFloat
+    multiplier: CGFloat = 1
     ) -> Self {
     return _modify {
       $0.makeConstraint(element) {
@@ -443,7 +443,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func height(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
     _ value: ConstraintValue = .exact(0),
-    multiplier: CGFloat
+    multiplier: CGFloat = 1
   ) -> Self {
     return _modify {
       $0.makeConstraint(element) {

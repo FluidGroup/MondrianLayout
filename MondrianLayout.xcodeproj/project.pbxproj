@@ -45,7 +45,7 @@
 		4B64B1BD26761BE900460282 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1BC26761BE900460282 /* Extensions.swift */; };
 		4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C426762A6F00460282 /* VStackBlock.swift */; };
 		4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C626762A8200460282 /* HStackBlock.swift */; };
-		4B64B1C926762C1400460282 /* Mondrian+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* Mondrian+UIView.swift */; };
+		4B64B1C926762C1400460282 /* UIView+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+Mondrian.swift */; };
 		4B6ABDBA26937AD9003C1698 /* RelativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6ABDB926937AD9003C1698 /* RelativeTests.swift */; };
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
 		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
@@ -66,6 +66,8 @@
 		4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */; };
 		4BBFF31926EC82D300FCC451 /* SizingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31826EC82D300FCC451 /* SizingTests.swift */; };
 		4BC4752126E7598B000C8492 /* ClassicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4752026E7598B000C8492 /* ClassicTests.swift */; };
+		4BD4A84026EDB4C1003C2F76 /* LayoutGuideBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4A83F26EDB4C1003C2F76 /* LayoutGuideBlock.swift */; };
+		4BD4A84226EDB82F003C2F76 /* UILayoutGuide+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BD4A84126EDB82F003C2F76 /* UILayoutGuide+Mondrian.swift */; };
 		4BD5FE90267F28720035A66D /* StorybookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE8F267F28720035A66D /* StorybookKit */; };
 		4BD5FE92267F28720035A66D /* StorybookUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE91267F28720035A66D /* StorybookUI */; };
 		4BD5FE9E267F2CF60035A66D /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4BD5FE9D267F2CF60035A66D /* SnapshotTesting */; };
@@ -154,7 +156,7 @@
 		4B64B1C026761E0300460282 /* RevealServer.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = RevealServer.xcframework; sourceTree = "<group>"; };
 		4B64B1C426762A6F00460282 /* VStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackBlock.swift; sourceTree = "<group>"; };
 		4B64B1C626762A8200460282 /* HStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackBlock.swift; sourceTree = "<group>"; };
-		4B64B1C826762C1400460282 /* Mondrian+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Mondrian+UIView.swift"; sourceTree = "<group>"; };
+		4B64B1C826762C1400460282 /* UIView+Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Mondrian.swift"; sourceTree = "<group>"; };
 		4B6ABDB926937AD9003C1698 /* RelativeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeTests.swift; sourceTree = "<group>"; };
 		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
 		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
@@ -174,6 +176,8 @@
 		4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Sizing.swift; sourceTree = "<group>"; };
 		4BBFF31826EC82D300FCC451 /* SizingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizingTests.swift; sourceTree = "<group>"; };
 		4BC4752026E7598B000C8492 /* ClassicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTests.swift; sourceTree = "<group>"; };
+		4BD4A83F26EDB4C1003C2F76 /* LayoutGuideBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutGuideBlock.swift; sourceTree = "<group>"; };
+		4BD4A84126EDB82F003C2F76 /* UILayoutGuide+Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILayoutGuide+Mondrian.swift"; sourceTree = "<group>"; };
 		4BE163C3267B711C00817483 /* CGSize+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+.swift"; sourceTree = "<group>"; };
 		4BE16570267C5D0800817483 /* ZStackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackTests.swift; sourceTree = "<group>"; };
 		4BE4E9432675CAB100D096DC /* RootContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContainerViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */,
 				4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */,
+				4BD4A83F26EDB4C1003C2F76 /* LayoutGuideBlock.swift */,
 				4B0279A1267880420078B18A /* OverlayBlock.swift */,
 				4B0279A32678804A0078B18A /* BackgroundBlock.swift */,
 				4B64B1C426762A6F00460282 /* VStackBlock.swift */,
@@ -355,7 +360,8 @@
 		4BFF75D12677CC32003FA7F0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4B64B1C826762C1400460282 /* Mondrian+UIView.swift */,
+				4B64B1C826762C1400460282 /* UIView+Mondrian.swift */,
+				4BD4A84126EDB82F003C2F76 /* UILayoutGuide+Mondrian.swift */,
 				4B9E1A1526762FF200D1E1C9 /* NSLayoutConstraint+.swift */,
 			);
 			path = Extensions;
@@ -518,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BD4A84026EDB4C1003C2F76 /* LayoutGuideBlock.swift in Sources */,
 				4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */,
 				4B4693AF267915080079B761 /* StackingSpacer.swift in Sources */,
 				4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */,
@@ -531,13 +538,14 @@
 				4B9B07EB267E045600818A40 /* LayoutDescriptor.swift in Sources */,
 				4B9E1A1626762FF200D1E1C9 /* NSLayoutConstraint+.swift in Sources */,
 				4B4693B326791FA90079B761 /* LayoutContainer.swift in Sources */,
+				4BD4A84226EDB82F003C2F76 /* UILayoutGuide+Mondrian.swift in Sources */,
 				4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */,
 				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */,
 				4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */,
 				4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */,
-				4B64B1C926762C1400460282 /* Mondrian+UIView.swift in Sources */,
+				4B64B1C926762C1400460282 /* UIView+Mondrian.swift in Sources */,
 				4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */,
 				4B4CA90E26A3251300863217 /* Optimization.swift in Sources */,
 				4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */,
@@ -767,7 +775,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -796,7 +803,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.muukii.MondrianLayout;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

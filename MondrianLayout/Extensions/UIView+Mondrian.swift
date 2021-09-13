@@ -77,6 +77,16 @@ extension MondrianNamespace where Base : UIView {
 
 extension UIView {
 
+  public var mondrian: MondrianNamespace<UIView> {
+    return .init(base: self)
+  }
+
+}
+
+
+
+extension UIView {
+
   /// Returns an instance of ViewBlock to describe layout.
   public var viewBlock: ViewBlock {
     .init(self)

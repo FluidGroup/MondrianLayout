@@ -21,6 +21,7 @@ extension _LayoutBlockNodeConvertible {
 public indirect enum _LayoutBlockNode: _LayoutBlockNodeConvertible {
 
   case view(ViewBlock)
+  case layoutGuide(LayoutGuideBlock)
   case vStack(VStackBlock)
   case hStack(HStackBlock)
   case zStack(ZStackBlock)
