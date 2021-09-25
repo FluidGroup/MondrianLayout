@@ -1,5 +1,20 @@
 import UIKit
 
+public struct AxisMask: OptionSet {
+
+  public var rawValue: Int8
+  public var isEmpty: Bool {
+    rawValue == 0
+  }
+
+  public init(rawValue: Int8) {
+    self.rawValue = rawValue
+  }
+
+  public static let vertical: Self = .init(rawValue: 1 << 1)
+  public static let horizontal: Self = .init(rawValue: 1 << 2)
+}
+
 public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
   Equatable
 {
@@ -31,33 +46,29 @@ public struct ViewBlock: _LayoutBlockNodeConvertible, _DimensionConstraintType,
   }
 
   public func huggingPriority(
-    _ axis: NSLayoutConstraint.Axis,
+    _ axisMask: AxisMask,
     _ priority: UILayoutPriority = .required
   ) -> Self {
     _modify {
-      switch axis {
-      case .horizontal:
+      if axisMask.contains(.horizontal) {
         $0.horizontalHuggingPriority = priority
-      case .vertical:
+      }
+      if axisMask.contains(.vertical) {
         $0.verticalHuggingPriority = priority
-      @unknown default:
-        assertionFailure()
       }
     }
   }
 
   public func compressionResistancePriority(
-    _ axis: NSLayoutConstraint.Axis,
+    _ axisMask: AxisMask,
     _ priority: UILayoutPriority = .required
   ) -> Self {
     _modify {
-      switch axis {
-      case .horizontal:
+      if axisMask.contains(.horizontal) {
         $0.horizontalCompressionResistancePriority = priority
-      case .vertical:
+      }
+      if axisMask.contains(.vertical) {
         $0.verticalCompressionResistancePriority = priority
-      @unknown default:
-        assertionFailure()
       }
     }
   }
