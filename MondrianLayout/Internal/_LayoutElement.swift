@@ -20,6 +20,9 @@ extension UILayoutGuide: __LayoutElementConvertible {
   }
 }
 
+/**
+ Abstraction of element that can be laied out by layout anchors.
+ */
 public struct _LayoutElement: __LayoutElementConvertible {
 
   public enum XAxisAnchor: Equatable {
