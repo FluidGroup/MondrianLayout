@@ -3,6 +3,8 @@ import UIKit
 /// [MondrianLayout]
 ///
 /// A descriptor that lays out the contents horizontally.
+/// spacing: `0`
+/// alignment: `.center`
 public struct HStackBlock:
   _LayoutBlockType,
   _DimensionConstraintType
