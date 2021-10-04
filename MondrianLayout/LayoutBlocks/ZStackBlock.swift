@@ -191,10 +191,13 @@ public struct ZStackBlock:
           alignment: element.alignSelf ?? alignment
         )
 
+      case .relative(let relativeConstraint):
+
+        relativeConstraint.setupConstraints(parent: parent, in: context)
+
       case .background(let c as _LayoutBlockType),
         .overlay(let c as _LayoutBlockType),
         .vStack(let c as _LayoutBlockType),
-        .relative(let c as _LayoutBlockType),
         .hStack(let c as _LayoutBlockType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")

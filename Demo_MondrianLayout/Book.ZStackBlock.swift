@@ -9,23 +9,6 @@ var _book_ZStackConstraint: BookView {
       ExampleView(width: 100, height: 100) { view in
         view.mondrian.buildSubviews {
           ZStackBlock {
-            UIView.mock(
-              backgroundColor: .layeringColor,
-              preferredSize: .smallSquare
-            )
-              .viewBlock
-              .padding(.horizontal, 20)
-              .alignSelf(.attach([.horizontal, .bottom]))
-          }
-          .background(UIView.mock())
-        }
-      }
-    }
-
-    BookPreview {
-      ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
-          ZStackBlock {
             ZStackBlock {
               UILabel.mockSingleline(text: "Hello Hello Hello")
                 .viewBlock
