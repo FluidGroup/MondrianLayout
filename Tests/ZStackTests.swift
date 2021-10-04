@@ -58,25 +58,6 @@ final class ZStackTests: XCTestCase {
 
   }
 
-  func test_alignViewToBottomWhichHasPadding() {
-    let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
-        ZStackBlock {
-          UIView.mock(
-            backgroundColor: .layeringColor,
-            preferredSize: .smallSquare
-          )
-            .viewBlock
-            .padding(.horizontal, 20)
-            .alignSelf(.attach([.horizontal, .bottom]))
-        }
-        .background(UIView.mock())
-      }
-    }
-
-    assertSnapshot(matching: view, as: .image, record: _record)
-  }
-
   func test_expandsElementWithRelative() {
 
     let view = ExampleView(width: 100, height: 100) { view in
@@ -88,7 +69,7 @@ final class ZStackTests: XCTestCase {
               preferredSize: .smallSquare
             )
             .viewBlock
-            .alignSelf(.attach(.all))
+            .relative(0)
           }
         }
       }
