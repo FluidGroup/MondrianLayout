@@ -5,26 +5,6 @@ extension MondrianNamespace where Base : UIView {
   /**
    Applies the layout constraints
    Adding subviews included in layout
-   */
-  @discardableResult
-  @available(*, deprecated, renamed: "buildSubviews")
-  public func buildSublayersLayout<Block: _LayoutBlockType>(
-    build: () -> Block
-  ) -> LayoutBuilderContext {
-    buildSubviews(build: build)
-  }
-
-  @discardableResult
-  @available(*, deprecated, renamed: "buildSubviews")
-  public func buildSublayersLayout(
-    build: () -> LayoutContainer
-  ) -> LayoutBuilderContext {
-    buildSubviews(build: build)
-  }
-
-  /**
-   Applies the layout constraints
-   Adding subviews included in layout
 
    You might use ``LayoutContainer`` from describe beginning in order to support safe-area.
    */

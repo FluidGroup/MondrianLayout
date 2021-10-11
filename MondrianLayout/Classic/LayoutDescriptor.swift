@@ -212,12 +212,6 @@ public struct LayoutDescriptor: _DimensionConstraintType {
       return .init(relation: .exact, constant: value, priority: priority)
     }
 
-    @available(*, deprecated, renamed: "exact")
-    public static func constant(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self
-    {
-      return .init(relation: .exact, constant: value, priority: priority)
-    }
-
     /// less than or equal
     public static func max(_ value: CGFloat, _ priority: UILayoutPriority = .required) -> Self {
       return .init(relation: .max, constant: value, priority: priority)
