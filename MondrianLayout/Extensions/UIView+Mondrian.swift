@@ -1,39 +1,81 @@
 import UIKit
 
+@resultBuilder
+public enum EntrypointBuilder {
+
+  public enum Either {
+    case block(_LayoutBlockType)
+    case container(LayoutContainer)
+  }
+
+  public static func buildBlock(_ components: [Either]...) -> [Either] {
+    return components.flatMap { $0 }
+  }
+
+  public static func buildExpression<Block: _LayoutBlockType>(_ components: Block...) -> [Either] {
+    return components.map { .block($0) }
+  }
+
+  public static func buildExpression(_ components: LayoutContainer...) -> [EntrypointBuilder.Either] {
+    return components.map { .container($0) }
+  }
+
+}
+
 extension MondrianNamespace where Base : UIView {
 
   /**
-   Applies the layout constraints
-   Adding subviews included in layout
+   Builds subviews of this view.
+   - activating layout-constraints
+   - adding layout-guides
+   - applying content-hugging, content-compression-resistance
 
-   You might use ``LayoutContainer`` from describe beginning in order to support safe-area.
+   You can start to describe like followings:
+
+   ```swift
+   view.mondrian.buildSubviews {
+     ZStackBlock {
+       ...
+     }
+   }
+   ```
+
+   ```swift
+   view.mondrian.buildSubviews {
+     LayoutContainer(attachedSafeAreaEdges: .vertical) {
+       ...
+     }
+   }
+   ```
+
+
+   ```swift
+   view.mondrian.buildSubviews {
+     LayoutContainer(attachedSafeAreaEdges: .vertical) {
+       ...
+     }
+     ZStackBlock {
+       ...
+     }
+   }
+   ```
    */
   @discardableResult
-  public func buildSubviews<Block: _LayoutBlockType>(
-    build: () -> Block
-  ) -> LayoutBuilderContext {
+  public func buildSubviews(@EntrypointBuilder _ build: () -> [EntrypointBuilder.Either]) -> LayoutBuilderContext {
+
+    let entrypoints = build()
 
     let context = LayoutBuilderContext(targetView: base)
-    let container = build()
-    container.setupConstraints(parent: .init(view: base), in: context)
-    context.prepareViewHierarchy()
-    context.activate()
 
-    return context
-  }
+    for entrypoint in entrypoints {
+      switch entrypoint {
+      case .block(let block):
+        block.setupConstraints(parent: .init(view: base), in: context)
+      case .container(let container):
+        container.setupConstraints(parent: base, in: context)
+      }
+    }
 
-  /**
-   Applies the layout constraints
-   Adding subviews included in layout
-   */
-  @discardableResult
-  public func buildSubviews(
-    build: () -> LayoutContainer
-  ) -> LayoutBuilderContext {
-
-    let context = LayoutBuilderContext(targetView: base)
-    let container = build()
-    container.setupConstraints(parent: base, in: context)
     context.prepareViewHierarchy()
     context.activate()
 
