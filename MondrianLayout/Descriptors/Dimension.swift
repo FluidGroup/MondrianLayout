@@ -146,6 +146,17 @@ extension _DimensionConstraintType {
   }
 
   /**
+   Adding height constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
+  @_disfavoredOverload
+  public func height(_ exactValue: CGFloat) -> Self {
+    height(.exact(exactValue))
+  }
+
+  /**
    Adding width constraint
 
    the constraints can be described for each relations - min, max, exact.
@@ -166,6 +177,17 @@ extension _DimensionConstraintType {
         $0.maxWidth = .init(constant: value.constant, priority: value.priority)
       }
     }
+  }
+
+  /**
+   Adding width constraint
+
+   the constraints can be described for each relations - min, max, exact.
+   It does not support that multiple constraints in the same relation.
+   */
+  @_disfavoredOverload
+  public func width(_ exactValue: CGFloat) -> Self {
+    width(.exact(exactValue))
   }
 
   /**
