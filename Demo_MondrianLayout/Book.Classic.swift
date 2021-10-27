@@ -202,13 +202,13 @@ var _book_classic: BookView {
             box1.mondrian.layout
               .top(.toSuperview, 10)
               .left(.toSuperview, 10)
-              .bottom(.toSuperview, -10)
+              .bottom(.toSuperview, 10)
 
             box2.mondrian.layout
               .top(.toSuperview, 10)
               .left(.to(box1).right, 10)
-              .right(.toSuperview, -10)
-              .bottom(.toSuperview, -10)
+              .right(.toSuperview, 10)
+              .bottom(.toSuperview, 10)
 
           }
 
