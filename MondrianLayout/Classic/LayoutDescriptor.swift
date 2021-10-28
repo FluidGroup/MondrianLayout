@@ -313,6 +313,21 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
   }
 
+  /// X axis
+  @inline(__always)
+  private func _anchorXAxisInverted<T>(
+    from: _LayoutElement.XAxisAnchor,
+    element: LayoutDescriptorElement<T>,
+    defaultAnchor anchor: _LayoutElement.XAxisAnchor,
+    value: ConstraintValue
+  ) -> Self {
+    return _modify {
+      $0.makeConstraint(element) {
+        $1.anchor(element.anchorXAxis ?? anchor).constraint(value: value, to: $0.anchor(from))
+      }
+    }
+  }
+
   /// Y axis
   @inline(__always)
   private func _anchorYAxis<T>(
@@ -324,6 +339,21 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     return _modify {
       $0.makeConstraint(element) {
         $0.anchor(from).constraint(value: value, to: $1.anchor(element.anchorYAxis ?? anchor))
+      }
+    }
+  }
+
+  /// Y axis
+  @inline(__always)
+  private func _anchorYAxisInverted<T>(
+    from: _LayoutElement.YAxisAnchor,
+    element: LayoutDescriptorElement<T>,
+    defaultAnchor anchor: _LayoutElement.YAxisAnchor,
+    value: ConstraintValue
+  ) -> Self {
+    return _modify {
+      $0.makeConstraint(element) {
+        $1.anchor(element.anchorYAxis ?? anchor).constraint(value: value, to: $0.anchor(from))
       }
     }
   }
@@ -345,7 +375,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchorXAxis(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
+    _anchorXAxisInverted(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
   }
 
   /// Describes a single constraint
@@ -365,7 +395,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchorXAxis(from: .right, element: element, defaultAnchor: .right, value: value)
+    _anchorXAxisInverted(from: .right, element: element, defaultAnchor: .right, value: value)
   }
 
   /// Describes a single constraint
@@ -397,7 +427,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
     _ value: ConstraintValue = .exact(0)
   ) -> Self {
-    _anchorYAxis(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
+    _anchorYAxisInverted(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
   }
 
   /// Describes a single constraint
