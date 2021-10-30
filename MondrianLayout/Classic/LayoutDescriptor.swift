@@ -18,6 +18,9 @@ public func mondrianBatchLayout(
 
 }
 
+/**
+ A group that manages constraints.
+ */
 public final class ConstraintGroup {
 
   public private(set) var constraints: [NSLayoutConstraint]
@@ -36,11 +39,17 @@ public final class ConstraintGroup {
     self.constraints.append(contentsOf: otherGroup.constraints)
   }
 
+  /**
+   Activates the all of constraints managed in this group.
+   */
   public func activate() {
 
     NSLayoutConstraint.activate(constraints)
   }
 
+  /**
+   Deactivates the all of constraints managed in this group.
+   */
   public func deactivate() {
 
     NSLayoutConstraint.deactivate(constraints)
