@@ -276,7 +276,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   @inline(__always)
   @discardableResult
   private mutating func makeConstraint<T>(
-    _ element: LayoutDescriptorElement<T>,
+    element: LayoutDescriptorElement<T>,
+    identifier: String,
     _ closure: (_LayoutElement, _LayoutElement) -> NSLayoutConstraint
   ) -> NSLayoutConstraint? {
 
@@ -285,6 +286,7 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
 
     let constraint = closure(target, secondItem)
+    constraint.identifier = identifier
     proposedConstraints.append(constraint)
     return constraint
   }
@@ -292,7 +294,8 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   @inline(__always)
   @discardableResult
   private mutating func makeConstraints<T>(
-    _ element: LayoutDescriptorElement<T>,
+    element: LayoutDescriptorElement<T>,
+    identifier: String,
     _ closure: (_LayoutElement, _LayoutElement) -> [NSLayoutConstraint]
   ) -> [NSLayoutConstraint]? {
 
@@ -301,6 +304,9 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     }
 
     let constraints = closure(target, secondItem)
+    constraints.forEach {
+      $0.identifier = identifier
+    }
     self.proposedConstraints.append(contentsOf: constraints)
     return constraints
   }
@@ -313,10 +319,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     from: _LayoutElement.XAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.XAxisAnchor,
-    value: ConstraintValue
+    value: ConstraintValue,
+    identifier: String
   ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $0.anchor(from).constraint(value: value, to: $1.anchor(element.anchorXAxis ?? anchor))
       }
     }
@@ -328,10 +335,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     from: _LayoutElement.XAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.XAxisAnchor,
-    value: ConstraintValue
+    value: ConstraintValue,
+    identifier: String
   ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $1.anchor(element.anchorXAxis ?? anchor).constraint(value: value, to: $0.anchor(from))
       }
     }
@@ -343,10 +351,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     from: _LayoutElement.YAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.YAxisAnchor,
-    value: ConstraintValue
+    value: ConstraintValue,
+    identifier: String
   ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $0.anchor(from).constraint(value: value, to: $1.anchor(element.anchorYAxis ?? anchor))
       }
     }
@@ -358,10 +367,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
     from: _LayoutElement.YAxisAnchor,
     element: LayoutDescriptorElement<T>,
     defaultAnchor anchor: _LayoutElement.YAxisAnchor,
-    value: ConstraintValue
+    value: ConstraintValue,
+    identifier: String
   ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $1.anchor(element.anchorYAxis ?? anchor).constraint(value: value, to: $0.anchor(from))
       }
     }
@@ -372,9 +382,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `leading` of the element
   public func leading(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.leading"
   ) -> Self {
-    _anchorXAxis(from: .leading, element: element, defaultAnchor: .leading, value: value)
+    _anchorXAxis(from: .leading, element: element, defaultAnchor: .leading, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -382,9 +393,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `trailing` of the element
   public func trailing(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.trailing"
   ) -> Self {
-    _anchorXAxisInverted(from: .trailing, element: element, defaultAnchor: .trailing, value: value)
+    _anchorXAxisInverted(from: .trailing, element: element, defaultAnchor: .trailing, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -392,9 +404,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `left` of the element
   public func left(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.left"
   ) -> Self {
-    _anchorXAxis(from: .left, element: element, defaultAnchor: .left, value: value)
+    _anchorXAxis(from: .left, element: element, defaultAnchor: .left, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -402,9 +415,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `right` of the element
   public func right(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.right"
   ) -> Self {
-    _anchorXAxisInverted(from: .right, element: element, defaultAnchor: .right, value: value)
+    _anchorXAxisInverted(from: .right, element: element, defaultAnchor: .right, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -412,9 +426,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `centerX` of the element
   public func centerX(
     _ element: LayoutDescriptorElement<_LayoutElement.XAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.centerX"
   ) -> Self {
-    _anchorXAxis(from: .centerX, element: element, defaultAnchor: .centerX, value: value)
+    _anchorXAxis(from: .centerX, element: element, defaultAnchor: .centerX, value: value, identifier: identifier)
   }
 
   // MARK: - Y axis
@@ -424,9 +439,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `top` of the element
   public func top(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.top"
   ) -> Self {
-    _anchorYAxis(from: .top, element: element, defaultAnchor: .top, value: value)
+    _anchorYAxis(from: .top, element: element, defaultAnchor: .top, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -434,9 +450,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `bottom` of the element
   public func bottom(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.bottom"
   ) -> Self {
-    _anchorYAxisInverted(from: .bottom, element: element, defaultAnchor: .bottom, value: value)
+    _anchorYAxisInverted(from: .bottom, element: element, defaultAnchor: .bottom, value: value, identifier: identifier)
   }
 
   /// Describes a single constraint
@@ -444,9 +461,10 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// As default, attaches to `centerY` of the element
   public func centerY(
     _ element: LayoutDescriptorElement<_LayoutElement.YAxisAnchor>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.centerY"
   ) -> Self {
-    _anchorYAxis(from: .centerY, element: element, defaultAnchor: .centerY, value: value)
+    _anchorYAxis(from: .centerY, element: element, defaultAnchor: .centerY, value: value, identifier: identifier)
   }
 
   // MARK: - Sizing
@@ -457,10 +475,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func width(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
     _ value: ConstraintValue = .exact(0),
-    multiplier: CGFloat = 1
+    multiplier: CGFloat = 1,
+    identifier: String = "mondrian.classic.width"
     ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $0.widthAnchor.constraint(
           multiplier: multiplier,
           constrainedConstant: value,
@@ -476,10 +495,11 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   public func height(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitSizing>,
     _ value: ConstraintValue = .exact(0),
-    multiplier: CGFloat = 1
+    multiplier: CGFloat = 1,
+    identifier: String = "mondrian.classic.height"
   ) -> Self {
     return _modify {
-      $0.makeConstraint(element) {
+      $0.makeConstraint(element: element, identifier: identifier) {
         $0.heightAnchor.constraint(
           multiplier: multiplier,
           constrainedConstant: value,
@@ -494,11 +514,13 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func center(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitCenterPositioning>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.center"
   ) -> Self {
     return _modify {
       $0.makeConstraints(
-        element,
+        element: element,
+        identifier: identifier,
         {
           [
             $0.anchor(.centerY).constraint(
@@ -518,11 +540,13 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func edges(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.edges"
   ) -> Self {
     return _modify {
       $0.makeConstraints(
-        element,
+        element: element,
+        identifier: identifier,
         {
           [
             $0.anchor(.top).constraint(value: value, to: $1.topAnchor),
@@ -538,11 +562,13 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func horizontal(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.horizontal"
   ) -> Self {
     return _modify {
       $0.makeConstraints(
-        element,
+        element: element,
+        identifier: identifier,
         {
           [
             $0.anchor(.left).constraint(value: value, to: $1.leftAnchor),
@@ -556,11 +582,13 @@ public struct LayoutDescriptor: _DimensionConstraintType {
   /// Describes multiple constraints
   public func vertical(
     _ element: LayoutDescriptorElement<LayoutDescriptorElementTraitEdgeAttaching>,
-    _ value: ConstraintValue = .exact(0)
+    _ value: ConstraintValue = .exact(0),
+    identifier: String = "mondrian.classic.vertical"
   ) -> Self {
     return _modify {
       $0.makeConstraints(
-        element,
+        element: element,
+        identifier: identifier,
         {
           [
             $0.anchor(.top).constraint(value: value, to: $1.topAnchor),
