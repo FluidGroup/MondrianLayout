@@ -56,6 +56,7 @@ public enum _HStackElementNode: _StackElementNodeType {
 public protocol StackItemType {
   var spacingBefore: CGFloat? { get }
   var spacingAfter: CGFloat? { get }
+  var isEnabled: Bool { get }
 }
 
 public protocol _VStackItemConvertible {
@@ -74,6 +75,7 @@ public struct _VStackItem: _VStackItemConvertible, StackItemType {
   public var alignSelf: VStackBlock.XAxisAlignment? = nil
   public var spacingBefore: CGFloat? = nil
   public var spacingAfter: CGFloat? = nil
+  public var isEnabled: Bool = true
 
 }
 
@@ -85,6 +87,7 @@ public struct _HStackItem: _HStackItemConvertible, StackItemType {
   public var alignSelf: HStackBlock.YAxisAlignment? = nil
   public var spacingBefore: CGFloat? = nil
   public var spacingAfter: CGFloat? = nil
+  public var isEnabled: Bool  = true
 
 }
 
@@ -107,6 +110,12 @@ extension _VStackItemConvertible {
     item.spacingAfter = (item.spacingAfter ?? 0) + spacing
     return item
   }
+
+  public func isEnabled(_ isEnabled: Bool) -> _VStackItem {
+    var item = _vStackItem
+    item.isEnabled = isEnabled
+    return item
+  }
 }
 
 extension _HStackItemConvertible {
@@ -126,6 +135,12 @@ extension _HStackItemConvertible {
   public func spacingAfter(_ spacing: CGFloat) -> _HStackItem {
     var item = _hStackItem
     item.spacingAfter = (item.spacingAfter ?? 0) + spacing
+    return item
+  }
+
+  public func isEnabled(_ isEnabled: Bool) -> _HStackItem {
+    var item = _hStackItem
+    item.isEnabled = isEnabled
     return item
   }
 }
@@ -179,11 +194,15 @@ public enum VStackContentBuilder {
   public static func buildExpression<Block: _VStackItemConvertible>(
     _ block: Block
   ) -> [Component] {
-    return [.content(block._vStackItem)]
+    let item = block._vStackItem
+    return item.isEnabled ? [.content(item)] : []
   }
 
   public static func buildExpression(_ blocks: [_VStackItemConvertible]...) -> [Component] {
-    return blocks.flatMap { $0 }.map { .content($0._vStackItem) }
+    return blocks.flatMap { $0 }.compactMap {
+      let item = $0._vStackItem
+      return item.isEnabled ? .content(item) : nil
+    }
   }
 
   public static func buildExpression(_ spacer: StackingSpacer) -> [Component] {
@@ -220,12 +239,17 @@ public enum HStackContentBuilder {
   public static func buildExpression<Block: _HStackItemConvertible>(
     _ block: Block
   ) -> [Component] {
-    return [.content(block._hStackItem)]
+    let item = block._hStackItem
+    return item.isEnabled ? [.content(item)] : []
   }
 
   public static func buildExpression(_ blocks: [_HStackItemConvertible]...) -> [Component] {
-    return blocks.flatMap { $0 }.map { .content($0._hStackItem) }
+    return blocks.flatMap { $0 }.compactMap {
+      let item = $0._hStackItem
+      return item.isEnabled ? .content(item) : nil
+    }
   }
+
 
   public static func buildExpression(_ spacer: StackingSpacer) -> [Component] {
     return [.spacer(spacer)]
