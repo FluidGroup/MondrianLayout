@@ -142,6 +142,18 @@ public enum VStackContentBuilder {
     return nestedComponents.flatMap { $0 }
   }
 
+  public static func buildOptional(_ component: [Component]?) -> [Component] {
+    return component ?? []
+  }
+
+  public static func buildEither(first component: [Component]) -> [Component] {
+    return component
+  }
+
+  public static func buildEither(second component: [Component]) -> [Component] {
+    return component
+  }
+
   public static func buildExpression(_ layoutGuides: [UILayoutGuide]...) -> [Component] {
     return layoutGuides.flatMap { $0 }.map {
       .content(.init(node: .layoutGuide(.init($0))))
@@ -196,8 +208,24 @@ public enum VStackContentBuilder {
 public enum HStackContentBuilder {
   public typealias Component = _HStackElementNode
 
+  public static func buildBlock() -> [Component] {
+    return []
+  }
+
   public static func buildBlock(_ nestedComponents: [Component]...) -> [Component] {
     return nestedComponents.flatMap { $0 }
+  }
+
+  public static func buildOptional(_ component: [Component]?) -> [Component] {
+    return component ?? []
+  }
+
+  public static func buildEither(first component: [Component]) -> [Component] {
+    return component
+  }
+
+  public static func buildEither(second component: [Component]) -> [Component] {
+    return component
   }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {

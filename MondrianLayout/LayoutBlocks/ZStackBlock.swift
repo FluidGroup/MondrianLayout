@@ -251,6 +251,18 @@ public enum ZStackContentBuilder {
     return nestedComponents.flatMap { $0 }
   }
 
+  public static func buildOptional(_ component: [Component]?) -> [Component] {
+    return component ?? []
+  }
+
+  public static func buildEither(first component: [Component]) -> [Component] {
+    return component
+  }
+
+  public static func buildEither(second component: [Component]) -> [Component] {
+    return component
+  }
+
   public static func buildExpression(_ layoutGuides: [UILayoutGuide]...) -> [Component] {
     return layoutGuides.flatMap { $0 }.map {
       .init(node: .layoutGuide(.init($0)))
