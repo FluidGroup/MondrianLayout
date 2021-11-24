@@ -21,6 +21,8 @@
 		4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */; };
 		4B384D8E2675CF47001B0267 /* MondrianLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; };
 		4B384D8F2675CF47001B0267 /* MondrianLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4B4057622675C501003B28A1 /* MondrianLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4B3B0F72274E8F98001C9E6B /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B0F71274E8F98001C9E6B /* LayoutManager.swift */; };
+		4B3B0F74274E9A3B001C9E6B /* Book.Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3B0F73274E9A3B001C9E6B /* Book.Manager.swift */; };
 		4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4057722675C51E003B28A1 /* AppDelegate.swift */; };
 		4B40577C2675C51F003B28A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577B2675C51F003B28A1 /* Assets.xcassets */; };
 		4B40577F2675C51F003B28A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B40577D2675C51F003B28A1 /* LaunchScreen.storyboard */; };
@@ -131,6 +133,8 @@
 		4B309029269824D7001AB89B /* Book.RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.RelativeBlock.swift; sourceTree = "<group>"; };
 		4B3156442707E4B700BEC0E3 /* AnyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyView.swift; sourceTree = "<group>"; };
 		4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderContext.swift; sourceTree = "<group>"; };
+		4B3B0F71274E8F98001C9E6B /* LayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
+		4B3B0F73274E9A3B001C9E6B /* Book.Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Manager.swift; sourceTree = "<group>"; };
 		4B4057622675C501003B28A1 /* MondrianLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MondrianLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057702675C51E003B28A1 /* Demo_MondrianLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo_MondrianLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4057722675C51E003B28A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -225,6 +229,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4B3B0F70274E8F8D001C9E6B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4B3B0F71274E8F98001C9E6B /* LayoutManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		4B4057582675C501003B28A1 = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +264,7 @@
 		4B4057642675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
+				4B3B0F70274E8F8D001C9E6B /* Manager */,
 				4B9B07EE267E1C2900818A40 /* Classic */,
 				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
 				4B9A1B84267A286D0029907C /* LayoutBlocks */,
@@ -279,6 +292,7 @@
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
 				4B309029269824D7001AB89B /* Book.RelativeBlock.swift */,
 				4B7382072679EBED00D77986 /* Book.SafeArea.swift */,
+				4B3B0F73274E9A3B001C9E6B /* Book.Manager.swift */,
 				4B9B07F3267E586400818A40 /* Book.Classic.swift */,
 				4B1256BD267CA74700FE9612 /* Book.ViewController.swift */,
 				4B40577B2675C51F003B28A1 /* Assets.xcassets */,
@@ -550,6 +564,7 @@
 				4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */,
 				4B3156452707E4B700BEC0E3 /* AnyView.swift in Sources */,
 				4B64B1C926762C1400460282 /* UIView+Mondrian.swift in Sources */,
+				4B3B0F72274E8F98001C9E6B /* LayoutManager.swift in Sources */,
 				4B64B1C726762A8200460282 /* HStackBlock.swift in Sources */,
 				4B4CA90E26A3251300863217 /* Optimization.swift in Sources */,
 				4B64B1BB2675F98500460282 /* VHStackContentBuilder.swift in Sources */,
@@ -575,6 +590,7 @@
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
 				4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */,
 				4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */,
+				4B3B0F74274E9A3B001C9E6B /* Book.Manager.swift in Sources */,
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
