@@ -5,6 +5,24 @@ import UIKit
  An object that manages layout.
  It supports updating the layout.
  In the case of defining distinct layouts under some conditions, this helps.
+
+ ```swift
+ /// Defines a instance
+ /// It needs to be retained somewhere such as inside view controller or view.
+ let manager = LayoutManager()
+
+ /// Sets up the layout in the escaping closure
+ manager.setup(on: view) {
+   VStackBlock {
+     ...
+   }
+ }
+
+ /// Calls when you need to get a new layout.
+ /// It calls the closure set in `setup` to build subviews again.
+ manager.reloadLayout()
+ ```
+ 
  */
 public final class LayoutManager {
 
