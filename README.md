@@ -1,9 +1,5 @@
 # MondrianLayout - Structured layout for AutoLayout
 
-> 🤵🏻‍♂️💭
-> We guess we still don't cover the all of use-cases.
-> Please feel free to ask what you've faced case in Issues!
-
 **Describing the layout ergonomically in the code**
 
 **Structured Layout API (DSL)**
@@ -38,6 +34,10 @@ sendButton.mondrian.layout
 ```
 
 ---
+
+> 🤵🏻‍♂️💭
+> We guess we still don't cover the all of use-cases.
+> Please feel free to ask what you've faced case in Issues!
 
 <img width="246" alt="CleanShot 2021-06-17 at 21 12 03@2x" src="https://user-images.githubusercontent.com/1888355/122394225-b1da4e80-cfb0-11eb-9e62-f5627c817b66.png">
 
