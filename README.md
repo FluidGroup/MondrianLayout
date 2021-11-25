@@ -458,6 +458,15 @@ ZStackBlock {
 }
 ```
 
+
+
+
+
+## Updating layout dynamically
+
+`LayoutManager` does support it.  
+If we need to change the layout each some conditions such as depending traits, this object helps that.
+
 ## Animations
 
 // TODO: 

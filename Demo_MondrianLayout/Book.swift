@@ -28,6 +28,8 @@ let book = Book(title: "MondrianLayout") {
 
   _book_classic
 
+  _book_layoutManager
+
   BookNavigationLink(title: "Instagram Post") {
     BookPreview {
       InstagramPostView()

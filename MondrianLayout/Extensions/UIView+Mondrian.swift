@@ -20,6 +20,14 @@ public enum EntrypointBuilder {
     return components.map { .container($0) }
   }
 
+  public static func buildEither(first component: [EntrypointBuilder.Either]) -> [EntrypointBuilder.Either] {
+    return component
+  }
+
+  public static func buildEither(second component: [EntrypointBuilder.Either]) -> [EntrypointBuilder.Either] {
+    return component
+  }
+
 }
 
 extension MondrianNamespace where Base : UIView {

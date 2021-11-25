@@ -10,6 +10,7 @@ public final class LayoutBuilderContext {
 
   public weak var targetView: UIView?
   public let name: String?
+  public private(set) var isActive = false
 
   public init(
     name: String? = nil,
@@ -73,9 +74,17 @@ public final class LayoutBuilderContext {
    */
   public func activate() {
 
+    assert(Thread.isMainThread)
+
     guard let targetView = targetView else {
       return
     }
+
+    guard isActive == false else {
+      return
+    }
+
+    isActive = true
 
     viewAppliers.forEach { $0() }
 
@@ -99,6 +108,12 @@ public final class LayoutBuilderContext {
     guard let targetView = targetView else {
       return
     }
+
+    guard isActive == true else {
+      return
+    }
+
+    isActive = false
 
     managedLayoutGuides.forEach {
       targetView.removeLayoutGuide($0)
