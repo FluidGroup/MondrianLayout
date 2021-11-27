@@ -27,8 +27,10 @@ open class AnyView: UIView {
     _onDeinit?()
   }
 
-  public func setOnDeinit(_ closure: @escaping () -> Void) {
+  @discardableResult
+  public func setOnDeinit(_ closure: @escaping () -> Void) -> Self {
     _onDeinit = closure
+    return self
   }
 
 }
