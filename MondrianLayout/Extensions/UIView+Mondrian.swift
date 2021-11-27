@@ -8,6 +8,10 @@ public enum EntrypointBuilder {
     case container(LayoutContainer)
   }
 
+  public static func buildBlock() -> [EntrypointBuilder.Either] {
+    return []
+  }
+
   public static func buildBlock(_ components: [Either]...) -> [Either] {
     return components.flatMap { $0 }
   }
