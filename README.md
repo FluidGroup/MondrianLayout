@@ -369,6 +369,10 @@ self.mondrian.buildSubviews {
 }
 ```
 
+#### StackingSpacer
+
+Adds a space in stacking layout block.
+
 #### Background modifier
 
 ```swift
