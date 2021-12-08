@@ -21,7 +21,7 @@ view.mondrian.buildSubviews {
 
 ---
 
-**To keep flexibility of AutoLayout, we have classical style API**
+**To preserve flexibility of AutoLayout, we have classical style API**
 
 **Classical Layout API**
 ```swift
