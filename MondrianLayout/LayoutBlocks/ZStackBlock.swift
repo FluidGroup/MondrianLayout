@@ -75,9 +75,7 @@ public struct ZStackBlock:
 
       func perform(current: _LayoutElement, alignment: XYAxisAlignment) {
 
-        var constraints: [NSLayoutConstraint]
-
-        constraints = [
+        let baseConstraints: [NSLayoutConstraint] = [
           current.leftAnchor.constraint(greaterThanOrEqualTo: parent.leftAnchor)
             .setInternalIdentifier("ZStack.left"),
           current.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor)
@@ -96,6 +94,8 @@ public struct ZStackBlock:
           )
           .setInternalIdentifier("ZStack.height"),
         ]
+
+        var constraints: [NSLayoutConstraint] = []
 
         switch alignment {
         case .center:
@@ -168,7 +168,7 @@ public struct ZStackBlock:
           }
         }
 
-        context.add(constraints: constraints)
+        context.add(constraints: baseConstraints + constraints)
       }
 
       switch element.node {
