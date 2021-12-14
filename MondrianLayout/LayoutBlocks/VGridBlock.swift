@@ -226,8 +226,6 @@ public struct VGridBlock: _LayoutBlockType, _DimensionConstraintType {
 
       }
 
-    print(layoutGuidesBuffer)
-
   }
 
 }
