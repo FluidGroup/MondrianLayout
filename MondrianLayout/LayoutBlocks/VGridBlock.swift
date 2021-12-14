@@ -197,7 +197,7 @@ public struct VGridBlock: _LayoutBlockType, _DimensionConstraintType {
         .forEach { layoutGuide in
 
         context.add(constraints: [
-          layoutGuide.widthAnchor.constraint(equalTo: firstLayuotGuide.widthAnchor)
+          layoutGuide.widthAnchor.constraint(equalTo: firstLayuotGuide.widthAnchor).setPriority(.init(rawValue: 999))
         ])
 
       }
