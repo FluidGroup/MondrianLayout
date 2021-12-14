@@ -1,8 +1,10 @@
 # MondrianLayout - Structured layout for AutoLayout
 
+🚀 A Next generation Autolayout DSL for iOS.
+
 **Describing the layout ergonomically in the code**
 
-**Structured Layout API (DSL)**
+🏗 **Structured Layout API**
 
 ```swift
 view.mondrian.buildSubviews {
@@ -21,7 +23,7 @@ view.mondrian.buildSubviews {
 
 ---
 
-**To preserve flexibility of AutoLayout, we have classical style API**
+💃 **To preserve flexibility of AutoLayout, we have classical style API**
 
 **Classical Layout API**
 ```swift
