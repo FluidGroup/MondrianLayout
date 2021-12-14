@@ -64,6 +64,9 @@
 		4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */; };
 		4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1B2676333C00D1E1C9 /* _LayoutBlockType.swift */; };
 		4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */; };
+		4BACE5D72768EFB700C32A09 /* VGridBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE5D62768EFB700C32A09 /* VGridBlock.swift */; };
+		4BACE5D92768F7BC00C32A09 /* Book.VGridBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE5D82768F7BC00C32A09 /* Book.VGridBlock.swift */; };
+		4BACE5DD276912CD00C32A09 /* VGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE5DC276912CD00C32A09 /* VGridTests.swift */; };
 		4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAD3678268386FA00788518 /* MondrianNamespace.swift */; };
 		4BB75A29269035F400EA4F54 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB75A28269035F400EA4F54 /* Utils.swift */; };
 		4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */; };
@@ -177,6 +180,9 @@
 		4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackBlock.swift; sourceTree = "<group>"; };
 		4B9E1A1B2676333C00D1E1C9 /* _LayoutBlockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LayoutBlockType.swift; sourceTree = "<group>"; };
 		4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeBlock.swift; sourceTree = "<group>"; };
+		4BACE5D62768EFB700C32A09 /* VGridBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGridBlock.swift; sourceTree = "<group>"; };
+		4BACE5D82768F7BC00C32A09 /* Book.VGridBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.VGridBlock.swift; sourceTree = "<group>"; };
+		4BACE5DC276912CD00C32A09 /* VGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGridTests.swift; sourceTree = "<group>"; };
 		4BAD3678268386FA00788518 /* MondrianNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondrianNamespace.swift; sourceTree = "<group>"; };
 		4BB75A28269035F400EA4F54 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Sizing.swift; sourceTree = "<group>"; };
@@ -290,6 +296,7 @@
 				4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */,
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */,
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
+				4BACE5D82768F7BC00C32A09 /* Book.VGridBlock.swift */,
 				4B309029269824D7001AB89B /* Book.RelativeBlock.swift */,
 				4B7382072679EBED00D77986 /* Book.SafeArea.swift */,
 				4B3B0F73274E9A3B001C9E6B /* Book.Manager.swift */,
@@ -317,6 +324,7 @@
 				4B1F05CF267A6AD000A66CC7 /* HStackTests.swift */,
 				4BE16570267C5D0800817483 /* ZStackTests.swift */,
 				4B9B07E8267CF60000818A40 /* SyntaxTests.swift */,
+				4BACE5DC276912CD00C32A09 /* VGridTests.swift */,
 				4B6ABDB926937AD9003C1698 /* RelativeTests.swift */,
 				4BC4752026E7598B000C8492 /* ClassicTests.swift */,
 				4BBFF31826EC82D300FCC451 /* SizingTests.swift */,
@@ -331,6 +339,7 @@
 				4B4693AE267915080079B761 /* StackingSpacer.swift */,
 				4B9E1A1D26763D0200D1E1C9 /* RelativeBlock.swift */,
 				4B9E1A172676323600D1E1C9 /* ZStackBlock.swift */,
+				4BACE5D62768EFB700C32A09 /* VGridBlock.swift */,
 				4B9E1A1326762D6A00D1E1C9 /* ViewBlock.swift */,
 				4BD4A83F26EDB4C1003C2F76 /* LayoutGuideBlock.swift */,
 				4B0279A1267880420078B18A /* OverlayBlock.swift */,
@@ -559,6 +568,7 @@
 				4B64B1C526762A6F00460282 /* VStackBlock.swift in Sources */,
 				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */,
+				4BACE5D72768EFB700C32A09 /* VGridBlock.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */,
 				4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */,
 				4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */,
@@ -595,6 +605,7 @@
 				4B4057732675C51E003B28A1 /* AppDelegate.swift in Sources */,
 				4BE4E9462675CABE00D096DC /* Book.swift in Sources */,
 				4B30902A269824D7001AB89B /* Book.RelativeBlock.swift in Sources */,
+				4BACE5D92768F7BC00C32A09 /* Book.VGridBlock.swift in Sources */,
 				4B64B1BD26761BE900460282 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +626,7 @@
 				4B47F6452679095500BDE2DB /* OverlayTests.swift in Sources */,
 				4B0941322677C02700E1997B /* ExampleView.swift in Sources */,
 				4B6ABDBA26937AD9003C1698 /* RelativeTests.swift in Sources */,
+				4BACE5DD276912CD00C32A09 /* VGridTests.swift in Sources */,
 				4B47F6462679097A00BDE2DB /* UIColor+Mondrian.swift in Sources */,
 				4B1F05D0267A6AD000A66CC7 /* HStackTests.swift in Sources */,
 			);

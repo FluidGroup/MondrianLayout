@@ -198,7 +198,8 @@ public struct ZStackBlock:
       case .background(let c as _LayoutBlockType),
         .overlay(let c as _LayoutBlockType),
         .vStack(let c as _LayoutBlockType),
-        .hStack(let c as _LayoutBlockType):
+        .hStack(let c as _LayoutBlockType),
+        .vGrid(let c as _LayoutBlockType):
 
         let newLayoutGuide = context.makeLayoutGuide(identifier: "ZStackBlock.\(c.name)")
         c.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)
