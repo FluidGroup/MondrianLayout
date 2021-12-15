@@ -44,7 +44,7 @@ final class InstagramPostView: UIView {
       $0.width(200)
     }
 
-    self.mondrian.buildSubviews {
+    Mondrian.buildSubviews(on: self) {
       VStackBlock(alignment: .fill) {
 
         HStackBlock {

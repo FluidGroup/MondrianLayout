@@ -7,7 +7,7 @@ final class RelateiveTests: XCTestCase {
 
   func test_centering_in_ambiguous() {
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         ZStackBlock {
           UILabel.mockSingleline(text: "A")
             .viewBlock
@@ -22,7 +22,7 @@ final class RelateiveTests: XCTestCase {
 
   func test_accumulate_relative() {
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         LayoutContainer(attachedSafeAreaEdges: .all) {
           ZStackBlock {
 
@@ -44,7 +44,7 @@ final class RelateiveTests: XCTestCase {
   func test_accumulate_padding() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           VStackBlock {
             UIView.mock(

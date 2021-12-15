@@ -13,7 +13,7 @@ var _book_HStackBlock: BookView {
         alignment in
         BookPreview {
           ExampleView(width: 180, height: nil) { (view: UIView) in
-            view.mondrian.buildSubviews {
+            Mondrian.buildSubviews(on: view) {
               VStackBlock(alignment: alignment) {
 
                 HStackBlock(spacing: 4) {
@@ -50,7 +50,7 @@ var _book_HStackBlock: BookView {
         alignment in
         BookPreview {
           ExampleView(width: 60, height: nil) { (view: UIView) in
-            view.mondrian.buildSubviews {
+            Mondrian.buildSubviews(on: view) {
               VStackBlock(alignment: alignment) {
 
                 UIView.mock(
@@ -69,7 +69,7 @@ var _book_HStackBlock: BookView {
         alignment in
         BookPreview {
           ExampleView(width: 60, height: nil) { (view: UIView) in
-            view.mondrian.buildSubviews {
+            Mondrian.buildSubviews(on: view) {
               VStackBlock(alignment: alignment) {
 
                 StackingSpacer(minLength: 10)
@@ -87,7 +87,7 @@ var _book_HStackBlock: BookView {
 
       BookPreview {
         ExampleView(width: 180, height: nil) { (view: UIView) in
-          view.mondrian.buildSubviews {
+          Mondrian.buildSubviews(on: view) {
             VStackBlock {
               HStackBlock(spacing: 10) {
                 UIView.mock(
@@ -179,7 +179,7 @@ var _book_HStackBlock: BookView {
         alignment in
         BookPreview {
           ExampleView(width: nil, height: nil) { (view: UIView) in
-            view.mondrian.buildSubviews {
+            Mondrian.buildSubviews(on: view) {
               HStackBlock(spacing: 4, alignment: alignment) {
                 UILabel.mockMultiline(text: "Hello\nHello", textColor: .white)
                   .viewBlock
@@ -202,7 +202,7 @@ var _book_HStackBlock: BookView {
 
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
-          view.mondrian.buildSubviews {
+          Mondrian.buildSubviews(on: view) {
             HStackBlock(spacing: 4) {
               UIView.mock(
                 backgroundColor: .mondrianYellow,
@@ -226,7 +226,7 @@ var _book_HStackBlock: BookView {
 
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
-          view.mondrian.buildSubviews {
+          Mondrian.buildSubviews(on: view) {
             HStackBlock(spacing: 4) {
               UIView.mock(
                 backgroundColor: .mondrianYellow,

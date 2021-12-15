@@ -7,7 +7,7 @@ var _book_SafeArea: BookView {
 
     BookPush(title: "Push") {
       AnyViewController { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             VStackBlock {
               UIView.mock(
@@ -32,7 +32,7 @@ var _book_SafeArea: BookView {
     BookPush(title: "Push custom") {
       AnyViewController { view in
 
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(top: .view(.top), leading: .view(.leading), bottom: .safeArea(.top), trailing: .view(.trailing)) {
             UIView.mock(
               backgroundColor: .layeringColor,
@@ -43,7 +43,7 @@ var _book_SafeArea: BookView {
 
         }
 
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             UIView.mock(
               backgroundColor: .layeringColor,
@@ -58,7 +58,7 @@ var _book_SafeArea: BookView {
 
     BookPush(title: "Push") {
       AnyViewController { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
               UIView.mock(
@@ -77,7 +77,7 @@ var _book_SafeArea: BookView {
 
     BookPush(title: "Bottom Buttons") {
       AnyViewController { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
 

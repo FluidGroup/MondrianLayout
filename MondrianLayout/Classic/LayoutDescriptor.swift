@@ -1,21 +1,11 @@
 import UIKit
 
+@available(*, deprecated, renamed: "Mondrian.layout")
 @discardableResult
 public func mondrianBatchLayout(
   @MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]
 ) -> ConstraintGroup {
-
-  let descriptors = closure()
-
-  let group = ConstraintGroup(constraints: [])
-
-  descriptors.forEach {
-    let g = $0.activate()
-    group.append(g)
-  }
-
-  return group
-
+  Mondrian.layout(closure)
 }
 
 /**
@@ -703,46 +693,4 @@ extension NSLayoutYAxisAnchor {
     }
 
   }
-}
-
-extension MondrianNamespace where Base: UIView {
-
-  /**
-   Entry point to describe layout constraints
-   Activates by calling `activate()` or using `mondrianBatchLayout`
-
-   ```swift
-   view.mondrian.layout
-     .top(.toSuperview)
-     .left(.toSuperview)
-     .right(.to(box2).left)
-     .bottom(.to(box2).bottom)
-     .activate()
-   ```
-   */
-  public var layout: LayoutDescriptor {
-    .init(view: base)
-  }
-
-}
-
-extension MondrianNamespace where Base: UILayoutGuide {
-
-  /**
-   Entry point to describe layout constraints
-   Activates by calling `activate()` or using `mondrianBatchLayout`
-
-   ```swift
-   view.mondrian.layout
-     .top(.toSuperview)
-     .left(.toSuperview)
-     .right(.to(box2).left)
-     .bottom(.to(box2).bottom)
-     .activate()
-   ```
-   */
-  public var layout: LayoutDescriptor {
-    .init(layoutGuide: base)
-  }
-
 }

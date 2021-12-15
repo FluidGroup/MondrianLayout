@@ -7,7 +7,8 @@ var _book_background: BookView {
   BookNavigationLink(title: "Background") {
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -25,12 +26,13 @@ var _book_background: BookView {
           .padding(10)
           .background(UIView.mock(backgroundColor: .mondrianGray))
         }
+
       }
     }
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(spacing: 2) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -69,7 +71,7 @@ var _book_background: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,

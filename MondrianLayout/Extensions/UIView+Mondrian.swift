@@ -36,64 +36,13 @@ public enum EntrypointBuilder {
 
 extension MondrianNamespace where Base : UIView {
 
-  /**
-   Builds subviews of this view.
-   - activating layout-constraints
-   - adding layout-guides
-   - applying content-hugging, content-compression-resistance
-
-   You can start to describe like followings:
-
-   ```swift
-   view.mondrian.buildSubviews {
-     ZStackBlock {
-       ...
-     }
-   }
-   ```
-
-   ```swift
-   view.mondrian.buildSubviews {
-     LayoutContainer(attachedSafeAreaEdges: .vertical) {
-       ...
-     }
-   }
-   ```
-
-
-   ```swift
-   view.mondrian.buildSubviews {
-     LayoutContainer(attachedSafeAreaEdges: .vertical) {
-       ...
-     }
-     ZStackBlock {
-       ...
-     }
-   }
-   ```
-   */
+  @available(*, deprecated, message: "Use Mondrian.buildSubviews")
   @discardableResult
   public func buildSubviews(@EntrypointBuilder _ build: () -> [EntrypointBuilder.Either]) -> LayoutBuilderContext {
-
-    let entrypoints = build()
-
-    let context = LayoutBuilderContext(targetView: base)
-
-    for entrypoint in entrypoints {
-      switch entrypoint {
-      case .block(let block):
-        block.setupConstraints(parent: .init(view: base), in: context)
-      case .container(let container):
-        container.setupConstraints(parent: base, in: context)
-      }
-    }
-
-    context.prepareViewHierarchy()
-    context.activate()
-
-    return context
+    Mondrian.buildSubviews(on: base, build)
   }
 
+  @available(*, deprecated, message: "Use classic layout")
   /// Applies the layout of the dimension in itself.
   public func buildSelfSizing(build: (ViewBlock) -> ViewBlock) {
 

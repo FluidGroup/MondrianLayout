@@ -7,7 +7,7 @@ final class SizingTests: XCTestCase {
 
   func test_sizing() {
     let view =  ExampleView(width: 200, height: 200) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         ZStackBlock {
 
           HStackBlock {

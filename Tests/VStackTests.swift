@@ -14,7 +14,7 @@ final class VStackTests: XCTestCase {
 
   func test_mixing_spacer() {
     let view = ExampleView(width: nil, height: 180) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(spacing: 4) {
           UIView.mock(
             backgroundColor: .layeringColor,
@@ -45,7 +45,7 @@ final class VStackTests: XCTestCase {
   func test_enter() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(spacing: 4, alignment: .center) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
             .viewBlock
@@ -70,7 +70,7 @@ final class VStackTests: XCTestCase {
   func test_leading() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(spacing: 4, alignment: .leading) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
             .viewBlock
@@ -95,7 +95,7 @@ final class VStackTests: XCTestCase {
   func test_trailing() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(spacing: 4, alignment: .trailing) {
           UILabel.mockMultiline(text: "Hello", textColor: .white)
             .viewBlock
@@ -120,7 +120,7 @@ final class VStackTests: XCTestCase {
   func test_additional_spacing() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(spacing: 4) {
           UIView.mock(
             preferredSize: .smallSquare
@@ -145,7 +145,7 @@ final class VStackTests: XCTestCase {
   func test_label_alignment() {
 
     let view = ExampleView(width: 200, height: 200) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(alignment: .leading) {
           UILabel.mockMultiline(text: "Hello")
             .viewBlock
@@ -169,7 +169,7 @@ final class VStackTests: XCTestCase {
       let boxes = (0..<3).map { _ in UIView.mock(backgroundColor: .layeringColor) }
       let guides = (0..<2).map { _ in UILayoutGuide() }
 
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock(alignment: .leading) {
 
           boxes[0]

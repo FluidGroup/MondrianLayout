@@ -15,7 +15,7 @@ final class HStackTests: XCTestCase {
   func test_mixing_spacer() {
 
     let view = ExampleView(width: 180, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         HStackBlock(spacing: 4) {
           UIView.mock(
             backgroundColor: .layeringColor,
@@ -47,7 +47,7 @@ final class HStackTests: XCTestCase {
   func test_additional_spacing() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         HStackBlock(spacing: 4) {
           UIView.mock(
             preferredSize: .smallSquare
