@@ -37,6 +37,11 @@ sendButton.mondrian.layout
 
 ---
 
+## Support the project
+<a href="https://www.buymeacoffee.com/muukii">
+<img width="545" alt="yellow-button" src="https://user-images.githubusercontent.com/1888355/146226808-eb2e9ee0-c6bd-44a2-a330-3bbc8a6244cf.png">
+</a>
+
 > 🤵🏻‍♂️💭
 > We guess we still don't cover the all of use-cases.
 > Please feel free to ask what you've faced case in Issues!
