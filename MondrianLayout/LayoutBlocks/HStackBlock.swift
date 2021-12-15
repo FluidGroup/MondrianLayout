@@ -152,7 +152,8 @@ public struct HStackBlock:
           .relative(let block as _LayoutBlockType),
           .vStack(let block as _LayoutBlockType),
           .hStack(let block as _LayoutBlockType),
-          .zStack(let block as _LayoutBlockType):
+          .zStack(let block as _LayoutBlockType),
+          .vGrid(let block as _LayoutBlockType):
 
           let newLayoutGuide = context.makeLayoutGuide(identifier: "HStackBlock.\(block.name)")
           block.setupConstraints(parent: .init(layoutGuide: newLayoutGuide), in: context)

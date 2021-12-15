@@ -28,6 +28,7 @@ public indirect enum _LayoutBlockNode: _LayoutBlockNodeConvertible {
   case relative(RelativeBlock)
   case overlay(OverlayBlock)
   case background(BackgroundBlock)
+  case vGrid(VGridBlock)
 
   public var _layoutBlockNode: _LayoutBlockNode { self }
 }

@@ -46,13 +46,14 @@ public struct OverlayBlock:
         context.add(
           constraints: block.makeConstraintsToEdge(parent)
         )
-      case .relative(let block as _LayoutBlockType),
-           .vStack(let block as _LayoutBlockType),
-           .hStack(let block as _LayoutBlockType),
-           .zStack(let block as _LayoutBlockType),
-           .overlay(let block as _LayoutBlockType),
-           .background(let block as _LayoutBlockType):
-        block.setupConstraints(parent: parent, in: context)
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType),
+           .vGrid(let c as _LayoutBlockType):
+        c.setupConstraints(parent: parent, in: context)
       }
     }
 
@@ -72,12 +73,13 @@ public struct OverlayBlock:
           constraints: block.makeConstraintsToEdge(parent)
         )
 
-      case .relative(let block as _LayoutBlockType),
-           .vStack(let block as _LayoutBlockType),
-           .hStack(let block as _LayoutBlockType),
-           .zStack(let block as _LayoutBlockType),
-           .overlay(let block as _LayoutBlockType),
-           .background(let block as _LayoutBlockType):
+      case .relative(let c as _LayoutBlockType),
+           .vStack(let c as _LayoutBlockType),
+           .hStack(let c as _LayoutBlockType),
+           .zStack(let c as _LayoutBlockType),
+           .overlay(let c as _LayoutBlockType),
+           .background(let c as _LayoutBlockType),
+           .vGrid(let c as _LayoutBlockType):
 
         let overlayLayoutGuide = context.makeLayoutGuide(identifier: "Overlay")
 
@@ -86,7 +88,7 @@ public struct OverlayBlock:
             overlayLayoutGuide.mondrian.layout.edges(.to(parent)).makeConstraints()
         )
 
-        block.setupConstraints(
+        c.setupConstraints(
           parent: .init(layoutGuide: overlayLayoutGuide),
           in: context
         )

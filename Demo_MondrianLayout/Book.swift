@@ -20,6 +20,8 @@ let book = Book(title: "MondrianLayout") {
 
   _book_ZStackConstraint
 
+  _book_VGridConstraint
+
   _book_RelativeBlock
 
   _book_SafeArea

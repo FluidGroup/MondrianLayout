@@ -1,3 +1,8 @@
+
+func buildArray<T>(type: T.Type, @MondrianArrayBuilder<T> _ build: () -> [T]) -> [T] {
+  build()
+}
+
 @resultBuilder
 public struct MondrianArrayBuilder<Element> {
 

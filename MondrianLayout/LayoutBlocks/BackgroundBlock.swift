@@ -54,7 +54,8 @@ public struct BackgroundBlock:
         .hStack(let c as _LayoutBlockType),
         .zStack(let c as _LayoutBlockType),
         .overlay(let c as _LayoutBlockType),
-        .background(let c as _LayoutBlockType):
+        .background(let c as _LayoutBlockType),
+        .vGrid(let c as _LayoutBlockType):
 
         let backgroundLayoutGuide = context.makeLayoutGuide(identifier: "Background")
 
@@ -91,7 +92,8 @@ public struct BackgroundBlock:
         .hStack(let c as _LayoutBlockType),
         .zStack(let c as _LayoutBlockType),
         .overlay(let c as _LayoutBlockType),
-        .background(let c as _LayoutBlockType):
+        .background(let c as _LayoutBlockType),
+        .vGrid(let c as _LayoutBlockType):
         c.setupConstraints(parent: parent, in: context)
       }
     }
