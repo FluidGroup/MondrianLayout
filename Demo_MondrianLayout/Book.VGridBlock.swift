@@ -8,7 +8,7 @@ var _book_VGridConstraint: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: nil) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VGridBlock(
             columns: [
               .init(.flexible(), spacing: 16),

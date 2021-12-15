@@ -6,7 +6,7 @@ import UIKit
 var _book_mondrian: BookView {
   BookPreview {
     ExampleView(width: 200, height: 200) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
 
         HStackBlock(spacing: 2, alignment: .fill) {
           VStackBlock(spacing: 2, alignment: .fill) {
@@ -137,7 +137,7 @@ var _book_mondrian: BookView {
 var _book_neonGrid: BookView {
   BookPreview {
     ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
 
         VStackBlock(spacing: 2, alignment: .fill) {
 

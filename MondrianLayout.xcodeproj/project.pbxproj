@@ -68,6 +68,7 @@
 		4BACE5DD276912CD00C32A09 /* VGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BACE5DC276912CD00C32A09 /* VGridTests.swift */; };
 		4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAD3678268386FA00788518 /* MondrianNamespace.swift */; };
 		4BB75A29269035F400EA4F54 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB75A28269035F400EA4F54 /* Utils.swift */; };
+		4BBD72022769D47A00F1FFAF /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD72012769D47A00F1FFAF /* EntryPoint.swift */; };
 		4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */; };
 		4BBFF31926EC82D300FCC451 /* SizingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31826EC82D300FCC451 /* SizingTests.swift */; };
 		4BC4752126E7598B000C8492 /* ClassicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4752026E7598B000C8492 /* ClassicTests.swift */; };
@@ -183,6 +184,7 @@
 		4BACE5DC276912CD00C32A09 /* VGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VGridTests.swift; sourceTree = "<group>"; };
 		4BAD3678268386FA00788518 /* MondrianNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondrianNamespace.swift; sourceTree = "<group>"; };
 		4BB75A28269035F400EA4F54 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4BBD72012769D47A00F1FFAF /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
 		4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Sizing.swift; sourceTree = "<group>"; };
 		4BBFF31826EC82D300FCC451 /* SizingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizingTests.swift; sourceTree = "<group>"; };
 		4BC4752026E7598B000C8492 /* ClassicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTests.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		4B4057642675C501003B28A1 /* MondrianLayout */ = {
 			isa = PBXGroup;
 			children = (
+				4BBD72012769D47A00F1FFAF /* EntryPoint.swift */,
 				4B3B0F70274E8F8D001C9E6B /* Manager */,
 				4B9B07EE267E1C2900818A40 /* Classic */,
 				4BFF75CF2677CC16003FA7F0 /* Descriptors */,
@@ -566,6 +569,7 @@
 				4B47F6412678E51200BDE2DB /* Edge.swift in Sources */,
 				4B9E1A1426762D6A00D1E1C9 /* ViewBlock.swift in Sources */,
 				4BACE5D72768EFB700C32A09 /* VGridBlock.swift in Sources */,
+				4BBD72022769D47A00F1FFAF /* EntryPoint.swift in Sources */,
 				4B384D8A2675CDA9001B0267 /* LayoutBuilderContext.swift in Sources */,
 				4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */,
 				4B9E1A1C2676333C00D1E1C9 /* _LayoutBlockType.swift in Sources */,

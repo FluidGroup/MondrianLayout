@@ -14,7 +14,7 @@ var _book_RelativeBlock: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .all) {
             ZStackBlock {
 
@@ -33,7 +33,7 @@ var _book_RelativeBlock: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
             UILabel.mockSingleline(text: "A")
               .viewBlock
@@ -47,7 +47,7 @@ var _book_RelativeBlock: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
             ZStackBlock {
               UILabel.mockSingleline(text: "Hello Hello Hello")
@@ -63,7 +63,7 @@ var _book_RelativeBlock: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
             ZStackBlock {
               UILabel.mockSingleline(text: "Hello Hello Hello")
@@ -77,7 +77,7 @@ var _book_RelativeBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             ZStackBlock {
               UIView.mock(

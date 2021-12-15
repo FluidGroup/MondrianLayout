@@ -8,7 +8,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: 200, height: 200) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(alignment: .leading) {
             UILabel.mockMultiline(text: BookGenerator.loremIpsum(length: 10))
               .viewBlock
@@ -25,7 +25,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: 180) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -55,7 +55,7 @@ var _book_VStackBlock: BookView {
     BookForEach(data: [.center, .leading, .trailing, .fill] as [VStackBlock.XAxisAlignment]) { alignment in
       BookPreview {
         ExampleView(width: nil, height: nil) { (view: UIView) in
-          view.mondrian.buildSubviews {
+          Mondrian.buildSubviews(on: view) {
             VStackBlock(spacing: 4, alignment: alignment) {
               UILabel.mockMultiline(text: "Hello", textColor: .white)
                 .viewBlock
@@ -78,7 +78,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -102,7 +102,7 @@ var _book_VStackBlock: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(spacing: 4) {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -132,7 +132,7 @@ var _book_VStackBlock: BookView {
         let boxes = (0..<3).map { _ in UIView.mock(backgroundColor: .layeringColor) }
         let guides = (0..<2).map { _ in UILayoutGuide() }
 
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock(alignment: .leading) {
 
             boxes[0]

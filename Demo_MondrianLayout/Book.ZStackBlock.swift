@@ -7,7 +7,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
             ZStackBlock {
               UILabel.mockSingleline(text: "Hello Hello Hello")
@@ -24,7 +24,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
 
@@ -158,7 +158,7 @@ var _book_ZStackConstraint: BookView {
     )
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
               UIView.mock(
@@ -178,7 +178,7 @@ var _book_ZStackConstraint: BookView {
     BookParagraph("The view has intrinsicContentSize but expanded by relative modifier")
     BookPreview {
       ExampleView(width: 100, height: 100) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .vertical) {
             ZStackBlock {
               UIView.mock(
@@ -195,7 +195,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             ZStackBlock {
               UIView.mock(
@@ -218,7 +218,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -259,7 +259,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           VStackBlock {
             UIView.mock(
               backgroundColor: .mondrianYellow,
@@ -280,7 +280,7 @@ var _book_ZStackConstraint: BookView {
 
     BookPreview {
       ExampleView(width: nil, height: nil) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
 
             UIView.mock(

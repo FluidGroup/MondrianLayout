@@ -9,7 +9,7 @@ var _book_ViewController: BookView {
     BookPush(title: "Push") {
 
       let body = ExampleView(width: nil, height: nil) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           HStackBlock {
             UIView.mock(
               backgroundColor: .layeringColor,
@@ -28,7 +28,7 @@ var _book_ViewController: BookView {
       }
 
       let container = ExampleView(width: nil, height: nil) { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
             body.viewBlock.padding(10)
           }
@@ -36,7 +36,7 @@ var _book_ViewController: BookView {
       }
 
       return AnyViewController { view in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           LayoutContainer(attachedSafeAreaEdges: .all) {
             ZStackBlock {
               container

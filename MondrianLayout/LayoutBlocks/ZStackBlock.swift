@@ -8,7 +8,7 @@ import UIKit
 /// **Put a view snapping to edge**
 ///
 /// ```swift
-/// self.mondrian.buildSubviews {
+/// Mondrian.buildSubviews(on: self) {
 ///   ZStackBlock {
 ///     backgroundView.viewBlock.relative(0)
 ///   }

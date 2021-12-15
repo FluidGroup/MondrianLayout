@@ -8,7 +8,7 @@ var _book_sizing: BookView {
 
     BookPreview {
       ExampleView(width: 200, height: 200) { (view: UIView) in
-        view.mondrian.buildSubviews {
+        Mondrian.buildSubviews(on: view) {
           ZStackBlock {
 
             HStackBlock {

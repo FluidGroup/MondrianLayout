@@ -171,7 +171,7 @@ var _book_classic: BookView {
           let box1 = UIView.mock(backgroundColor: .neon(.red), preferredSize: .largeSquare)
           let box2 = UIView.mock(backgroundColor: .neon(.yellow), preferredSize: .largeSquare)
 
-          view.mondrian.buildSubviews {
+          Mondrian.buildSubviews(on: view) {
             HStackBlock(spacing: 10) {
               box1
               box2

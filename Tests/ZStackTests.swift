@@ -15,7 +15,7 @@ final class ZStackTests: XCTestCase {
   func test_minimum_padding() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         ZStackBlock {
           ZStackBlock {
             UILabel.mockSingleline(text: "Hello Hello Hello")
@@ -35,7 +35,7 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementIfCanBeExpanding() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           ZStackBlock {
 
@@ -61,7 +61,7 @@ final class ZStackTests: XCTestCase {
   func test_expandsElementWithRelative() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           ZStackBlock {
             UIView.mock(
@@ -81,7 +81,7 @@ final class ZStackTests: XCTestCase {
   func test_alignSelf() {
 
     let view = ExampleView(width: 100, height: 100) { view in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         LayoutContainer(attachedSafeAreaEdges: .vertical) {
           ZStackBlock {
 

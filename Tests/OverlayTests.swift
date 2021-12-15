@@ -9,7 +9,7 @@ final class OverlayTests: XCTestCase {
   func test_1() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         UIView.mock(
           backgroundColor: .layeringColor,
           preferredSize: .init(width: 100, height: 100)
@@ -35,7 +35,7 @@ final class OverlayTests: XCTestCase {
   func test_2() {
 
     let view = ExampleView(width: nil, height: nil) { (view: UIView) in
-      view.mondrian.buildSubviews {
+      Mondrian.buildSubviews(on: view) {
         VStackBlock {
           UIView.mock(
             preferredSize: .smallSquare
