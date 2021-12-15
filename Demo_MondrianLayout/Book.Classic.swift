@@ -14,7 +14,7 @@ var _book_classic: BookView {
         view.addSubview(box1)
         view.addSubview(box2)
 
-        mondrianBatchLayout {
+        Mondrian.layout {
 
           box1.mondrian.layout
             .top(.toSuperview, .min(0))

@@ -1,6 +1,6 @@
 import UIKit
 
-@available(*, deprecated, message: "Use Mondrian.layout")
+@available(*, deprecated, renamed: "Mondrian.layout")
 @discardableResult
 public func mondrianBatchLayout(
   @MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]
