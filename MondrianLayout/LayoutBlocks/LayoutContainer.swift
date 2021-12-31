@@ -159,3 +159,11 @@ public struct LayoutContainer {
 
   }
 }
+
+extension _LayoutBlockType {
+
+  public func respectSafeArea(edges: Edge.Set) -> LayoutContainer {
+    return .init(attachedSafeAreaEdges: edges, content: { self })
+  }
+
+}
