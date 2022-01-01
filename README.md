@@ -1,6 +1,5 @@
-# MondrianLayout - Structured layout for AutoLayout
-
-🚀 A way to build AutoLayout rapidly than using InterfaceBuilder(XIB, Storyboard) in iOS.
+# MondrianLayout
+## A way to build AutoLayout rapidly than using InterfaceBuilder(XIB, Storyboard) in iOS.
 
 **Describing the layout ergonomically in the code**
 
