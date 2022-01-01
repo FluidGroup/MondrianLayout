@@ -1,6 +1,6 @@
 # MondrianLayout - Structured layout for AutoLayout
 
-🚀 A Next generation Autolayout DSL for iOS.
+🚀 A way to build AutoLayout rapidly than using InterfaceBuilder(XIB, Storyboard) in iOS.
 
 **Describing the layout ergonomically in the code**
 
