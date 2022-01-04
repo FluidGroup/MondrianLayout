@@ -177,8 +177,19 @@ extension _LayoutBlockType {
   /**
    Converts to ``LayoutContainer`` wrapping this block.
    */
-  public func respectSafeArea(edges: Edge.Set) -> LayoutContainer {
+  public func container(respectingSafeAreaEdges edges: Edge.Set) -> LayoutContainer {
     return .init(attachedSafeAreaEdges: edges, content: { self })
   }
 
+  /**
+   Converts to ``LayoutContainer`` wrapping this block.
+   */
+  public func container(
+    top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
+    leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>,
+    bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
+    trailing: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
+  ) -> LayoutContainer {
+    return .init(top: top, leading: leading, bottom: bottom, trailing: trailing, content: { self })
+  }
 }
