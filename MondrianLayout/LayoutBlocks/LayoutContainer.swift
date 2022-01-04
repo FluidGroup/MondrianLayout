@@ -7,17 +7,20 @@ public enum LayoutContainerBoundary<Anchor: Equatable>: Equatable {
 
 /**
  [MondrianLayout]
- A descriptor that makes a layout guide that attaches to safe area each edge.
+ A representation that describes a container for laying out subviews.
  */
 public struct LayoutContainer {
 
-  let top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
-  let leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
-  let bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
-  let trailing: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
+  private let top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
+  private let leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
+  private let bottom: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>
+  private let trailing: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>
 
-  let content: _LayoutBlockNode
+  private let content: _LayoutBlockNode
 
+  /**
+   Attaching to safeArea specified edges
+   */
   public init<Block: _LayoutBlockNodeConvertible>(
     attachedSafeAreaEdges: Edge.Set,
     content: () -> Block
@@ -33,6 +36,11 @@ public struct LayoutContainer {
 
   }
 
+  /**
+   Attaching to edge specified anchor of layout guide or view.
+
+   It helps to lay out views outside of safe area.
+   */
   public init<Block: _LayoutBlockNodeConvertible>(
     top: LayoutContainerBoundary<_LayoutElement.YAxisAnchor>,
     leading: LayoutContainerBoundary<_LayoutElement.XAxisAnchor>,
@@ -49,7 +57,11 @@ public struct LayoutContainer {
     self.content = content()._layoutBlockNode
   }
 
+  /**
+   Internal method
+   */
   func setupConstraints(parent: UIView, in context: LayoutBuilderContext) {
+
     func prepareLayoutContainer() -> _LayoutElement {
 
       if top == .view(.top), leading == .view(.leading), bottom == .view(.bottom),
@@ -162,6 +174,9 @@ public struct LayoutContainer {
 
 extension _LayoutBlockType {
 
+  /**
+   Converts to ``LayoutContainer`` wrapping this block.
+   */
   public func respectSafeArea(edges: Edge.Set) -> LayoutContainer {
     return .init(attachedSafeAreaEdges: edges, content: { self })
   }

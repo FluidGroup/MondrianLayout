@@ -50,7 +50,7 @@
 		4B64B1C926762C1400460282 /* UIView+Mondrian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B64B1C826762C1400460282 /* UIView+Mondrian.swift */; };
 		4B6ABDBA26937AD9003C1698 /* RelativeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6ABDB926937AD9003C1698 /* RelativeTests.swift */; };
 		4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7382072679EBED00D77986 /* Book.SafeArea.swift */; };
-		4B73820A267A067700D77986 /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* Dimension.swift */; };
+		4B73820A267A067700D77986 /* DimensionDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B738209267A067700D77986 /* DimensionDescriptor.swift */; };
 		4B73820C267A0D6900D77986 /* _LayoutBlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B73820B267A0D6900D77986 /* _LayoutBlockNode.swift */; };
 		4B8A4834267F36F100609D3E /* Ne in Frameworks */ = {isa = PBXBuildFile; productRef = 4B8A4833267F36F100609D3E /* Ne */; };
 		4B9B07E9267CF60000818A40 /* SyntaxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9B07E8267CF60000818A40 /* SyntaxTests.swift */; };
@@ -69,6 +69,7 @@
 		4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BAD3678268386FA00788518 /* MondrianNamespace.swift */; };
 		4BB75A29269035F400EA4F54 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB75A28269035F400EA4F54 /* Utils.swift */; };
 		4BBD72022769D47A00F1FFAF /* EntryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD72012769D47A00F1FFAF /* EntryPoint.swift */; };
+		4BBE8B6027845520007F8051 /* Book.LayoutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBE8B5F27845520007F8051 /* Book.LayoutContainer.swift */; };
 		4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */; };
 		4BBFF31926EC82D300FCC451 /* SizingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BBFF31826EC82D300FCC451 /* SizingTests.swift */; };
 		4BC4752126E7598B000C8492 /* ClassicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4752026E7598B000C8492 /* ClassicTests.swift */; };
@@ -167,7 +168,7 @@
 		4B64B1C826762C1400460282 /* UIView+Mondrian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Mondrian.swift"; sourceTree = "<group>"; };
 		4B6ABDB926937AD9003C1698 /* RelativeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeTests.swift; sourceTree = "<group>"; };
 		4B7382072679EBED00D77986 /* Book.SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.SafeArea.swift; sourceTree = "<group>"; };
-		4B738209267A067700D77986 /* Dimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimension.swift; sourceTree = "<group>"; };
+		4B738209267A067700D77986 /* DimensionDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionDescriptor.swift; sourceTree = "<group>"; };
 		4B73820B267A0D6900D77986 /* _LayoutBlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _LayoutBlockNode.swift; sourceTree = "<group>"; };
 		4B9B07E8267CF60000818A40 /* SyntaxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		4B9B07EA267E045600818A40 /* LayoutDescriptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDescriptor.swift; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		4BAD3678268386FA00788518 /* MondrianNamespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MondrianNamespace.swift; sourceTree = "<group>"; };
 		4BB75A28269035F400EA4F54 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		4BBD72012769D47A00F1FFAF /* EntryPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryPoint.swift; sourceTree = "<group>"; };
+		4BBE8B5F27845520007F8051 /* Book.LayoutContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.LayoutContainer.swift; sourceTree = "<group>"; };
 		4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.Sizing.swift; sourceTree = "<group>"; };
 		4BBFF31826EC82D300FCC451 /* SizingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizingTests.swift; sourceTree = "<group>"; };
 		4BC4752026E7598B000C8492 /* ClassicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTests.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				4B47F63E2678E35400BDE2DB /* Book.Overlay.swift */,
 				4B47F6382678DC4000BDE2DB /* Book.VStackBlock.swift */,
 				4BBFF31626EC7DFF00FCC451 /* Book.Sizing.swift */,
+				4BBE8B5F27845520007F8051 /* Book.LayoutContainer.swift */,
 				4B47F63A2678DC6C00BDE2DB /* Book.HStackBlock.swift */,
 				4B47F63C2678DCAC00BDE2DB /* Book.ZStackBlock.swift */,
 				4BACE5D82768F7BC00C32A09 /* Book.VGridBlock.swift */,
@@ -367,7 +370,7 @@
 				4B9E1A1B2676333C00D1E1C9 /* _LayoutBlockType.swift */,
 				4B64B1BA2675F98500460282 /* VHStackContentBuilder.swift */,
 				4B384D892675CDA9001B0267 /* LayoutBuilderContext.swift */,
-				4B738209267A067700D77986 /* Dimension.swift */,
+				4B738209267A067700D77986 /* DimensionDescriptor.swift */,
 				4B47F6402678E51200BDE2DB /* Edge.swift */,
 				4B4CA90D26A3251300863217 /* Optimization.swift */,
 			);
@@ -554,7 +557,7 @@
 				4B9E1A1E26763D0200D1E1C9 /* RelativeBlock.swift in Sources */,
 				4B4693AF267915080079B761 /* StackingSpacer.swift in Sources */,
 				4BAD3679268386FA00788518 /* MondrianNamespace.swift in Sources */,
-				4B73820A267A067700D77986 /* Dimension.swift in Sources */,
+				4B73820A267A067700D77986 /* DimensionDescriptor.swift in Sources */,
 				4B9E1A182676323600D1E1C9 /* ZStackBlock.swift in Sources */,
 				4B0279A42678804A0078B18A /* BackgroundBlock.swift in Sources */,
 				4B64B1B92675F7AB00460282 /* _LayoutElement.swift in Sources */,
@@ -599,6 +602,7 @@
 				4B7382082679EBED00D77986 /* Book.SafeArea.swift in Sources */,
 				4B47F63F2678E35400BDE2DB /* Book.Overlay.swift in Sources */,
 				4BBFF31726EC7DFF00FCC451 /* Book.Sizing.swift in Sources */,
+				4BBE8B6027845520007F8051 /* Book.LayoutContainer.swift in Sources */,
 				4B1F05D2267A6D5B00A66CC7 /* InstagramPostView.swift in Sources */,
 				4B3B0F74274E9A3B001C9E6B /* Book.Manager.swift in Sources */,
 				4B47F6432679040600BDE2DB /* SwiftUIComparison.swift in Sources */,
