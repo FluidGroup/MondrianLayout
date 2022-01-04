@@ -275,6 +275,17 @@ Mondrian.buildSubviews(on: self) {
 }
 ```
 
+or
+
+```swift
+Mondrian.buildSubviews(on: self) {
+  VStackBlock {
+    ...
+  }
+  .container(respectingSafeAreaEdges: .vertical)
+}
+```
+
 #### Put a view snapping to edge
 
 ```swift
@@ -299,7 +310,7 @@ ZStackBlock {
 }
 ```
 
-#### Add constraints to view itself
+#### Add constraints to view itself - using classic layout
 
 ```swift
 Mondrian.layout {
@@ -311,6 +322,7 @@ or
 ```swift
 self.mondrian.layout.width(...).height(...).activate()
 ```
+
 #### Stacking views on Z axis
 
 `relative(0)` fills to the edges of `ZStackBlock`.
