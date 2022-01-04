@@ -3,7 +3,8 @@ import UIKit
 public enum Mondrian {
 
   @discardableResult
-  public static func layout(@MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]
+  public static func layout(
+    @MondrianArrayBuilder<LayoutDescriptor> _ closure: () -> [LayoutDescriptor]
   ) -> ConstraintGroup {
 
     let descriptors = closure()
@@ -56,7 +57,10 @@ public enum Mondrian {
    ```
    */
   @discardableResult
-  public static func buildSubviews(on view: UIView, @EntrypointBuilder _ build: () -> [EntrypointBuilder.Either]) -> LayoutBuilderContext {
+  public static func buildSubviews(
+    on view: UIView,
+    @EntrypointBuilder _ build: () -> [EntrypointBuilder.Either]
+  ) -> LayoutBuilderContext {
 
     let entrypoints = build()
 
