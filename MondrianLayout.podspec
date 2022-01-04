@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name = "MondrianLayout"
-  spec.version = "0.8.0"
+  spec.version = "0.9.0"
   spec.summary = "A DSL based layout builder for AutoLayout"
   spec.description = <<-DESC
   This library is a layout builder by DSL described for AutoLayout.
