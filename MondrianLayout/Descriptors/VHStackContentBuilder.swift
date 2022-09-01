@@ -231,6 +231,10 @@ public enum HStackContentBuilder {
   public static func buildEither(second component: [Component]) -> [Component] {
     return component
   }
+  
+  public static func buildArray(_ components: [[Component]]) -> [Component] {
+    components.flatMap { $0 }
+  }
 
   public static func buildExpression(_ views: [UIView]...) -> [Component] {
     return views.flatMap { $0 }.map {
