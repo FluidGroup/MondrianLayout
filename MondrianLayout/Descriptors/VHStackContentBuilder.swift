@@ -153,6 +153,10 @@ public enum VStackContentBuilder {
   public static func buildEither(second component: [Component]) -> [Component] {
     return component
   }
+  
+  public static func buildArray(_ components: [[Component]]) -> [Component] {
+    return components.flatMap { $0 }
+  }
 
   public static func buildExpression(_ layoutGuides: [UILayoutGuide]...) -> [Component] {
     return layoutGuides.flatMap { $0 }.map {
