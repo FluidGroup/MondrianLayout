@@ -25,6 +25,10 @@ public struct MondrianArrayBuilder<Element> {
   public static func buildEither(second component: [Element]) -> [Element] {
     return component
   }
+  
+  public static func buildArray(_ components: [[Element]]) -> [Element] {
+    components.flatMap { $0 }
+  }
 
   public static func buildExpression(_ element: Element?) -> [Element] {
     return element.map { [$0] } ?? []
